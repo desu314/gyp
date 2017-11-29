@@ -19,3 +19,22 @@
 /fuel/app/logs/*/*/*
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
+
+.idea/*
+
+#缓存文件
+./temp/backup/*
+./temp/caches/*
+./temp/compiled/*
+./temp/query_caches/*
+./temp/static_caches/*
+./temp/index.htm
+
+#mobile 缓存文件
+./mobile/supplier/temp/caches/*
+./mobile/supplier/temp/compiled/*
+./mobile/supplier/temp/static_caches/*
+
+*.sql
+./data/config.php
+.//mobile/supplier/data/config.php
