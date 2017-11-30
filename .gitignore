@@ -20,7 +20,7 @@
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
 
-.idea/*
+./.idea/*
 
 #缓存文件
 ./temp/backup/*
@@ -37,4 +37,4 @@
 
 *.sql
 ./data/config.php
-.//mobile/supplier/data/config.php
+./mobile/supplier/data/config.php
