@@ -675,7 +675,7 @@ class cls_image
      * @access      public
      * @return      int         可能的值为0，1，2
      */
-    static function gd_version()
+    function gd_version()
     {
         static $version = -1;
 
