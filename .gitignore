@@ -1,4 +1,11 @@
-/.idea/*
+.idea/*
+.user.ini
+
+
+images/*
+supplier/images/*
+mobile/images/*
+admin/images/*
 
 #缓存文件
 /temp/backup/*
