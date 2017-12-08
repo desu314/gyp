@@ -10,7 +10,8 @@ return true;
 } 
 window.onerror = killerrors; 
 //-->
-
+//检查是否有需要自动收货的订单
+Ajax.call('api/okgoods.php', '', '', 'GET', 'JSON');
 function checkSearchForm()
 {
     if(document.getElementById('searchtype').value == 0){

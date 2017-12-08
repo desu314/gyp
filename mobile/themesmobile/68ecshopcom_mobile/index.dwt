@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css"/>
 <link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/index.css"/>
 <script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/TouchSlide.1.1.js"></script>
+    {insert_scripts files='transport.js'}
 </head>
 <body>
 {insert name='share'}{insert name='add_url_uid'}
