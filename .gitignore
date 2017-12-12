@@ -23,3 +23,10 @@ admin/images/*
 *.sql
 /data/config.php
 /mobile/supplier/data/config.php
+
+admin/images/ecshop_logo.png
+favicon.ico
+qrcode.png
+supplier.png 
+themes/68ecshopcom_360buy/images/logo.gif
+mobile/temp
