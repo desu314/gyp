@@ -631,7 +631,7 @@ i, cite,em, strong, th {
 	height: 70px;
 }
 .header .mall-logo-right a{
-	display:block;
+	display:none;
 	width:150px;
 	height:70px;
 	background:url(../images/common/logo_right.gif)	no-repeat center center;
