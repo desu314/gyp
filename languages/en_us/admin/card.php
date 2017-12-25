@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Greetings card management language item
+ * YNDTH Greetings card management language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

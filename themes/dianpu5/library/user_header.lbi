@@ -7,7 +7,7 @@ var process_request = "{$lang.process_request}";
 </div>
 <div id="sn-bd"> <b class="sn-edge"></b>
   <div class="sn-container"> {insert_scripts files='utils.js,common.min.js'}
-    <p id="login-info" class="sn-login-info">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}</p>
+    <p id="login-info" class="sn-login-info">{* YNDTH 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}</p>
     <ul class="sn-quick-menu">
       <li class="sn-mytaobao menu-item j_MyTaobao">
         <div class="sn-menu">

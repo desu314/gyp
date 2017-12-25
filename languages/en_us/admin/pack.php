@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Packing management language item
+ * YNDTH Packing management language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

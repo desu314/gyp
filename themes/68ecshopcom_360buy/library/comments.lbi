@@ -43,7 +43,7 @@ $this->assign('templatepath',  'themes/'.$GLOBALS['_CFG']['template']);
 	
 	<div class="blank"></div>
 {insert_scripts files='transport.js,utils.js'}
-<div id="ECS_COMMENT"> {* ECSHOP 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id  }
+<div id="ECS_COMMENT"> {* YNDTH 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id  }
 
 <div style="height:0px; line-height:0px; clear:both;"></div>
 </div>

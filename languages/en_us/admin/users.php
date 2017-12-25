@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Member ID management language files
+ * YNDTH Member ID management language files
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

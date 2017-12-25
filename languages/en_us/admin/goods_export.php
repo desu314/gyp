@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Vote management
+ * YNDTH Vote management
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

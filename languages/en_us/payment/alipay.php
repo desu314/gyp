@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Alipay language file
+ * YNDTH Alipay language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Control panel administrator operate content language file
+ * YNDTH Control panel administrator operate content language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

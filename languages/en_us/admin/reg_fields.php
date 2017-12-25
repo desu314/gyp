@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP User register options manage language file
+ * YNDTH User register options manage language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

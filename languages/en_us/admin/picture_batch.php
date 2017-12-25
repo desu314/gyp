@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Image batch processing program language file
+ * YNDTH Image batch processing program language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

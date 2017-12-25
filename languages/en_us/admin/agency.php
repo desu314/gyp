@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP agency management language file
+ * YNDTH agency management language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.
