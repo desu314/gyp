@@ -25,6 +25,7 @@ if (isset($_REQUEST['is_login']))
 {
     $img->session_word = 'captcha_login';
 }
-$img->generate_image();
+var_dump($img->generate_image());
+die;
 
 ?>
