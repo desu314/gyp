@@ -258,6 +258,7 @@ function checkMobilePhoneExist(mobile, callback) {
 	$.post('register.php?act=check_mobile_exist', {
 		mobile: mobile
 	}, function(result) {
+		result = result.replace(/(^\s*)|(\s*$)/g, "");
 		if (result == 'false') {
 			document.getElementById('mobile_phone_notice').innerHTML = msg_can_rg;
 			document.getElementById('mobile_phone_notice').style.color = '#093';
