@@ -310,11 +310,6 @@ else
 {
     ob_start();
 }*/
-if (gzip_enabled()) {
-    ob_start('ob_gzhandler');
-} else {
-    ob_start();
-}
 //page_header.lbi page_header_index.lbi  page_shopheader.lbi  页面提取的PHP代码
 function get_brands1($cat = 0, $app = 'brand')
 {
