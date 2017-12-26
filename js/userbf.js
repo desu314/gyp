@@ -597,7 +597,7 @@ function checkEmail(email)
 
 function check_email_callback(result)
 {
-  result = result.replace(/\n|\r/g, '');
+
   if ( result == 'ok' )
   {
     document.getElementById('email_notice').innerHTML = msg_can_rg;

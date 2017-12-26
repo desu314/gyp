@@ -511,7 +511,6 @@ function is_registered(username) {
 }
 
 function registed_callback(result) {
-	result = result.replace(/\n|\r/g, '');
 	if (result == "true") {
 		document.getElementById('username_notice').innerHTML = msg_can_rg;
 		document.getElementById('username_notice').style.color = "#093";
