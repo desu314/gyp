@@ -794,7 +794,7 @@ class integrate
 			$sql = "SELECT " . $this->field_id . " FROM " . $this->table($this->user_table) . " WHERE " . $this->field_mobile_phone . " = '$mobile_phone' ";
 			if($this->db->getOne($sql, true) > 0)
 			{
-				$this->error = ERR_MOBILE_PHONE_EXISTS;
+				//$this->error = ERR_MOBILE_PHONE_EXISTS;
 				return true;
 			}
 			return false;
