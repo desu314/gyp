@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP YTO Express plug-in language file
+ * YNDTH YTO Express plug-in language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

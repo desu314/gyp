@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Control panel payment mothod language file
+ * YNDTH Control panel payment mothod language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

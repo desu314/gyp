@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Bonus type/Bonus management program
+ * YNDTH Bonus type/Bonus management program
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP SQL query language item
+ * YNDTH SQL query language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Control panel shipping method language file
+ * YNDTH Control panel shipping method language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

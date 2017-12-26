@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Suppliers manage language file
+ * YNDTH Suppliers manage language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Batch upload products,modification language item
+ * YNDTH Batch upload products,modification language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

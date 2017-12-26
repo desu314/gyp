@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Article management language item
+ * YNDTH Article management language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Cash on shipping language file
+ * YNDTH Cash on shipping language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology 
  * Development Ltd.

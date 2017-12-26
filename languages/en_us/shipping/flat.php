@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Cost is fixed plug-in's language file
+ * YNDTH Cost is fixed plug-in's language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Statistics of visitors language file
+ * YNDTH Statistics of visitors language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

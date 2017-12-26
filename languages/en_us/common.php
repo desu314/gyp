@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Front language file
+ * YNDTH Front language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology Development Ltd.
  * Web site: http://www.ecshop.com

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Plug-in management language file
+ * YNDTH Plug-in management language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

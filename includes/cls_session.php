@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP SESSION 鍏?敤绫诲簱
+ * YNDTH SESSION 鍏?敤绫诲簱
  * ============================================================================
  * * 鐗堟潈鎵€鏈 2005-2012 涓婃捣鍟嗘淳缃戠粶绉戞妧鏈夐檺鍏?徃锛屽苟淇濈暀鎵€鏈夋潈鍒┿€
  * 缃戠珯鍦板潃: http://www.ecshop.com锛
@@ -267,12 +267,12 @@ class cls_session
 		/* 注释掉下面这段代码或者直接删除_start   By  www.68ecshop.com */		
         //setcookie($this->session_name, $this->session_id, 1, $this->session_cookie_path, $this->session_cookie_domain, $this->session_cookie_secure);
 
-        /* ECSHOP 鑷?畾涔夋墽琛岄儴鍒 */
+        /* YNDTH 鑷?畾涔夋墽琛岄儴鍒 */
         //if (!empty($GLOBALS['ecs']))
         //{
             //$this->db->query('DELETE FROM ' . $GLOBALS['ecs']->table('cart') . " WHERE session_id = '$this->session_id'");
         //}
-        /* ECSHOP 鑷?畾涔夋墽琛岄儴鍒 */
+        /* YNDTH 鑷?畾涔夋墽琛岄儴鍒 */
 		
 		/* 注释掉下面这段代码或者直接删除_end   By  www.68ecshop.com */
 

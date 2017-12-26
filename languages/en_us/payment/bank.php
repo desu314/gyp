@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Bank transfer (Virement) language file
+ * YNDTH Bank transfer (Virement) language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology 
  * Development Ltd.

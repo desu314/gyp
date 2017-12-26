@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Manage a center start page language file
+ * YNDTH Manage a center start page language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

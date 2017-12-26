@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP 后台对上传文件的处理类(实现图片上传，图片缩小， 增加水印)
+ * YNDTH 后台对上传文件的处理类(实现图片上传，图片缩小， 增加水印)
  * 需要定义以下常量
  *  define('ERR_INVALID_IMAGE',             1);
  *  define('ERR_NO_GD',                     2);

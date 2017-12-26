@@ -20,14 +20,14 @@
 <script type="text/javascript" src="themes/68ecshopcom_360buy/js/validate/messages_zh.js"></script>
 <script type="text/javascript" src="themes/68ecshopcom_360buy/js/placeholder.js" ></script>
 {insert_scripts files='jquery.json.js,transport.js'} 
-{* 包含脚本文件 *} 
+{* 包含脚本文件 *}
 {insert_scripts files='common.js,register.js'}
 </head><body onclick="ecshop68_onclick();">
 <script>
 function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sType == 'show') { oDiv.style.display = 'block';} if (sType == 'hide') { oDiv.style.display = 'none';} }
 </script>
 <div class="logo-r">
-  <div class="logo-info-r"> <a href="./" class="logo"></a> <span class="findpw">欢迎注册</span> <!-- #BeginLibraryItem "/library/user_right.lbi" --><!-- #EndLibraryItem --> </div>
+  <div class="logo-info-r"> <a href="./" class="logo"></a> <span class="findpw">欢迎注册</span> <!-- BeginLibraryItem "/library/user_right.lbi" --><!-- #EndLibraryItem --> </div>
 </div>
 <div class="blank"></div>
 <div class="blank"></div>

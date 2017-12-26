@@ -25,7 +25,7 @@
 function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sType == 'show') { oDiv.style.display = 'block';} if (sType == 'hide') { oDiv.style.display = 'none';} }
 </script>
 <div class="logo-r">
-  <div class="logo-info-r"><a href="./" class="logo"></a><span class="findpw">欢迎登录</span><!-- #BeginLibraryItem "/library/user_right.lbi" --><!-- #EndLibraryItem --></div>
+  <div class="logo-info-r"><a href="./" class="logo"></a><span class="findpw">欢迎登录</span><!-- BeginLibraryItem "/library/user_right.lbi" --><!-- #EndLibraryItem --></div>
 </div>
 <div class="w"> 
   <!--#登录界面 start--> 

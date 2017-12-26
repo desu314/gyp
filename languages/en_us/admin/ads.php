@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Advertisement management language file
+ * YNDTH Advertisement management language file
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP 银联在线语言包文件(chinapay)
+ * YNDTH 银联在线语言包文件(chinapay)
  */
 
 global $_LANG;

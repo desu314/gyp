@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Brand management language item
+ * YNDTH Brand management language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

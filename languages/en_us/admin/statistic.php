@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP Statistics information language item
+ * YNDTH Statistics information language item
  * ============================================================================
  * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology
  * Development Ltd.

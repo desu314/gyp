@@ -1,27 +1,27 @@
-<?php
+﻿<?php
+
 /**
- * shopex46 Convert program language file
+ * shopex Single v4.6 转换程序语言文件
  * ============================================================================
- * All right reserved (C) 2005-2011 Beijing Yi Shang Interactive Technology 
- * Development Ltd.
- * Web site: http://www.ecshop.com
+ * 版权所有 2005-2011 上海商派网络科技有限公司，并保留所有权利。
+ * 网站地址: http://www.ecshop.com；
  * ----------------------------------------------------------------------------
- * This is a free/open source software；it mean that you can modify, use and 
- * republish the program code, on the premise of that your behavior is not for 
- * commercial purposes.
+ * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
+ * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
  * $Author: liubo $
  * $Id: shopex46.php 17217 2011-01-19 06:29:08Z liubo $
  */
 
-$_LANG['shopex46_desc']     = 'Shopex Single V4.6';
+$_LANG['shopex46_desc']     = 'shopex Single V4.6';
 
-$_LANG['step_file']         = 'Copying files...';
-$_LANG['step_cat']          = 'Converting product category...';
-$_LANG['step_brand']        = 'Converting product brand...';
-$_LANG['step_goods']        = 'Converting product...';
-$_LANG['step_users']        = 'Converting user...';
-$_LANG['step_article']      = 'Converting article...';
-$_LANG['step_order']        = 'Converting product order...';
-$_LANG['step_config']       = 'Converting config for shop...';
+$_LANG['step_file']         = 'đang photo văn kiện...';
+$_LANG['step_cat']          = 'đang chuyển đổi phân loại thương phẩm ...';
+$_LANG['step_brand']        = 'đang chuyển đổi nhắn hiệu thương phẩm ...';
+$_LANG['step_goods']        = 'đang chuyển đổi thương phẩm ...';
+$_LANG['step_users']        = 'đang chuyển đổi hội viên...';
+$_LANG['step_article']      = 'đang chuyển đổi bài văn...';
+$_LANG['step_order']        = 'đang chuyển đổi đưa đặt hàng...';
+$_LANG['step_config']       = 'đang chuyển đổi thiếp lập cửa hàng...';
+
 ?>
