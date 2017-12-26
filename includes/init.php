@@ -301,7 +301,7 @@ if ((DEBUG_MODE & 4) == 4)
     include(ROOT_PATH . 'includes/lib.debug.php');
 }
 
-/* 判断是否支持 Gzip 模式 */
+/* 判断是否支持 Gzip 模式
 if (!defined('INIT_NO_SMARTY') && gzip_enabled())
 {
     ob_start('ob_gzhandler');
@@ -309,7 +309,7 @@ if (!defined('INIT_NO_SMARTY') && gzip_enabled())
 else
 {
     ob_start();
-}
+}*/
 //page_header.lbi page_header_index.lbi  page_shopheader.lbi  页面提取的PHP代码
 function get_brands1($cat = 0, $app = 'brand')
 {
