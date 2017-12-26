@@ -158,6 +158,7 @@ function checkEmailExist(email, callback) {
 	$.post('register.php?act=check_email_exist', {
 		email: email
 	}, function(result) {
+		result = result.replace(/(^\s*)|(\s*$)/g, "");
 		if (result == 'false') {
 			document.getElementById('email_notice').innerHTML = msg_can_rg;
 			document.getElementById('email_notice').style.color = '#093';
