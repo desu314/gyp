@@ -325,17 +325,14 @@ function action_check_mobile_exist ()
 	$mobile = empty($_POST['mobile']) ? '' : $_POST['mobile'];
 	
 	$user = $GLOBALS['user'];
-	
+	var_dump($user->check_mobile_phone($mobile));
+	die;
 	if($user->check_mobile_phone($mobile))
 	{
-		echo 1;
-		die;
 		echo 'true';
 	}
 	else
 	{
-		echo 2;
-		die;
 		echo 'false';
 	}
 }
