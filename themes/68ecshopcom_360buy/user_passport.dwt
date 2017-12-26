@@ -69,12 +69,12 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
                   <input type="hidden" name="back_act" value="{$back_act}" />
                   <input type="submit" name="submit" class="btn-img btn-entry" id="loginsubmit" value="立即登录" />
                 </div>
-                <div class="item-coagent">
-                    <a href="user.php?act=oath&type=weixin"><i class="weixin"></i>微信</a>
-                    <a href="user.php?act=oath&type=qq"><i class="qq"></i>QQ</a>
-                    <a href="user.php?act=oath&type=weibo"><i class="sina"></i>新浪</a>
-                    <a href="user.php?act=oath&type=alipay" class="last"><i class="alipay"></i>支付宝</a>
-                </div>
+                  <!--div class="item-coagent">
+                      <a href="user.php?act=oath&type=weixin"><i class="weixin"></i>微信</a>
+                      <a href="user.php?act=oath&type=qq"><i class="qq"></i>QQ</a>
+                      <a href="user.php?act=oath&type=weibo"><i class="sina"></i>新浪</a>
+                      <a href="user.php?act=oath&type=alipay" class="last"><i class="alipay"></i>支付宝</a>
+                  </div-->
               </div>
             </form>
         </div>
