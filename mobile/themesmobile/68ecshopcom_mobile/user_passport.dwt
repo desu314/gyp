@@ -88,14 +88,14 @@
                   <a href="findPwd.php" >忘记密码？</a>
                 </span>
               </div>
-              <div class="third-area">
-                <div class="third-area-a"><font color="#d8d8d8">————</font>&nbsp;第三方登录&nbsp;<font color="#d8d8d8">————</font></div>
-                <a class="ta-qq" href="user.php?act=oath&type=qq"  title="QQ"></a>
-                <a class="ta-weibo" href="user.php?act=oath&type=weibo" title="weibo"></a>
-                {if $iswei > 0}
-                <a class="ta-weixin" href="weixin_login.php" title="weixin"></a>
-                {/if}
-              </div>
+                  <!--div class="third-area">
+                    <div class="third-area-a"><font color="#d8d8d8">————</font>&nbsp;第三方登录&nbsp;<font color="#d8d8d8">————</font></div>
+                    <a class="ta-qq" href="user.php?act=oath&type=qq"  title="QQ"></a>
+                    <a class="ta-weibo" href="user.php?act=oath&type=weibo" title="weibo"></a>
+                    {if $iswei > 0}
+                    <a class="ta-weixin" href="weixin_login.php" title="weixin"></a>
+                    {/if}
+                  </div-->
             </div>
 			</div>
 			</form>
