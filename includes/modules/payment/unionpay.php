@@ -31,7 +31,7 @@ if (isset($set_modules) && $set_modules == TRUE)
 	/* 支付费用 */
 	$modules[$i]['pay_fee'] = '0';
 	/* 作者 */
-	$modules[$i]['author'] = 'yangsong';
+	$modules[$i]['author'] = 'YNDTH TEAM';
 	/* 网址 */
 	$modules[$i]['website'] = 'https://merchant.unionpay.com/portal/login.jsp';
 	/* 版本号 */
