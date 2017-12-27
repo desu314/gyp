@@ -158,6 +158,7 @@ function checkEmailExist(email, callback) {
 	$.post('register.php?act=check_email_exist', {
 		email: email
 	}, function(result) {
+		result = result.replace(/(^\s*)|(\s*$)/g, "");
 		if (result == 'false') {
 			document.getElementById('email_notice').innerHTML = msg_can_rg;
 			document.getElementById('email_notice').style.color = '#093';
@@ -258,6 +259,7 @@ function checkMobilePhoneExist(mobile, callback) {
 	$.post('register.php?act=check_mobile_exist', {
 		mobile: mobile
 	}, function(result) {
+		result = result.replace(/(^\s*)|(\s*$)/g, "");
 		if (result == 'false') {
 			document.getElementById('mobile_phone_notice').innerHTML = msg_can_rg;
 			document.getElementById('mobile_phone_notice').style.color = '#093';

@@ -310,24 +310,24 @@ function action_check_email_exist ()
 
 function action_check_mobile_exist ()
 {
-    $_LANG = $GLOBALS['_LANG'];
-    $_CFG = $GLOBALS['_CFG'];
-    $smarty = $GLOBALS['smarty'];
-    $db = $GLOBALS['db'];
-    $ecs = $GLOBALS['ecs'];
-
-    $mobile = empty($_POST['mobile']) ? '' : $_POST['mobile'];
-
-    $user = $GLOBALS['user'];
-
-    if($user->check_mobile_phone($mobile))
-    {
-        echo 'true';
-    }
-    else
-    {
-        echo 'false';
-    }
+	$_LANG = $GLOBALS['_LANG'];
+	$_CFG = $GLOBALS['_CFG'];
+	$smarty = $GLOBALS['smarty'];
+	$db = $GLOBALS['db'];
+	$ecs = $GLOBALS['ecs'];
+	
+	$mobile = empty($_POST['mobile']) ? '' : $_POST['mobile'];
+	
+	$user = $GLOBALS['user'];
+	
+	if($user->check_mobile_phone($mobile))
+	{
+		echo 'true';
+	}
+	else
+	{
+		echo 'false';
+	}
 }
 
 /**
