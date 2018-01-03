@@ -21,7 +21,7 @@
 <script type="text/javascript" src="themes/68ecshopcom_360buy/js/placeholder.js" ></script>
 {insert_scripts files='jquery.json.js,transport.js'} 
 {* 包含脚本文件 *}
-{insert_scripts files='common.js,register.js'}
+{insert_scripts files='common.js,register.js?v=1'}
 </head><body onclick="ecshop68_onclick();">
 <script>
 function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sType == 'show') { oDiv.style.display = 'block';} if (sType == 'hide') { oDiv.style.display = 'none';} }
@@ -66,9 +66,18 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
               <div> <span class="label" id="email_notice"></span> </div>
             </div>
             <!-- {else} -->
-            <div class="item">
-              <input name="mobile_phone" type="text" id="mobile_phone" placeholder="{$lang.other_mobile_phone}" onblur="checkMobilePhone(this)"  class="text" />
-              <i class="i-phone"></i>
+            <div class="item" style="height: 48px">
+              <select name="mobile_prefix" id="mobile_prefix" style="width: 247px; height: 36px; line-height: 36px;"">
+                <option value='0'>{$lang.mobile_phone_prefix}</option>
+                  {html_options options=$mobile_prefix}
+              </select>
+            </div>
+            <div class="item" style="height: 68px;">
+              <span id="mobile_prefix_num" style="border: #ddd 1px solid; width: 50px; height: 27px; margin-right: 5px; display: block; float: left; text-align: center; font-size: 14px; padding-top: 10px;" >
+                +&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <input name="mobile_phone" type="text" id="mobile_phone" placeholder="{$lang.other_mobile_phone}" onblur="checkMobilePhone(this)"  class="text" style="width: 148px"/>
+              <i class="i-phone" style="left: 68px"></i>
               <div> <span class="label" id="mobile_phone_notice"></span> </div>
             </div>
             <!-- {/if} -->
@@ -203,7 +212,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
 				$("#captcha_notice").css({color: '#E31939'});
 				return;
 			}
-			sendMobileCode($("#mobile_phone"), $("#mobile_code"), $(this));
+			sendMobileCode($("#mobile_phone"), $("#mobile_prefix"), $("#mobile_code"), $(this));
 		});
 		
 		
@@ -215,6 +224,12 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
 			$("#formRegister").submit();
 		});
 	});
+
+	//获取当前国家码 显示到手机号前
+    $("#mobile_prefix").change(function(){
+        var mobile_prefix = $("#mobile_prefix").val();
+        $("#mobile_prefix_num").text("+"+mobile_prefix)
+    });
 </script> 
 </body>
 </html>

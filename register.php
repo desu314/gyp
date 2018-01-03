@@ -152,7 +152,7 @@ function action_send_email_code ()
     }
 }
 
-/* 发送注册邮箱验证码到邮箱 */
+/* 发送注册短信验证码到手机 */
 function action_send_mobile_code ()
 {
 
@@ -245,16 +245,12 @@ function action_send_mobile_code ()
     // 设置为空
     $_SESSION['mobile_register'] = array();
 
-    require_once (ROOT_PATH . 'sms/sms.php');
-
-    // 生成6位短信验证码
+    //todo 腾讯手机短信发送插件
     $mobile_code = rand_number(6);
-    // 短信内容
     $content = sprintf($_LANG['mobile_code_template'], $GLOBALS['_CFG']['shop_name'], $mobile_code, $GLOBALS['_CFG']['shop_name']);
+    $result = qSendSms($content,$mobile_phone,$_POST['mobile_prefix']);
 
-    /* 发送激活验证邮件 */
-    // $result = true;
-    $result = sendSMS($mobile_phone, $content);
+    //成功记录发送次数*/
     if($result)
     {
 
@@ -360,14 +356,22 @@ function action_default ()
         $smarty->assign('rand', mt_rand());
     }
 
+    /*手机归属地*/
+    $sql = 'SELECT * FROM country_mobile_prefix';
+    $mobile_prefix = $db->getAll($sql);
+    $country = array_column($mobile_prefix,'country');
+    $country_number = array_column($mobile_prefix,'mobile_prefix');
+    $mobile_prefix = array_combine($country_number,$country);
+    //print_r($mobile_prefix);die;
+    $smarty->assign('mobile_prefix',$mobile_prefix);
     /* 密码提示问题 */
     $smarty->assign('passwd_questions', $_LANG['passwd_questions']);
-    /* 代码增加_start By www.68ecshop.com */
+    /* 代码增加_start By www.yndth.cn */
     $smarty->assign('sms_register', $_CFG['sms_register']);
-    /* 代码增加_end By www.68ecshop.com */
-    /* 代码增加_star By www.68ecshop.com */
+    /* 代码增加_end By www.yndth.cn */
+    /* 代码增加_star By www.yndth.cn */
     $smarty->assign('sms_register', $_CFG['sms_register']);
-    /* 代码增加_end By www.68ecshop.com */
+    /* 代码增加_end By www.yndth.cn */
     /* 增加是否关闭注册 */
     $smarty->assign('shop_reg_closed', $_CFG['shop_reg_closed']);
     // 登陆注册-注册类型

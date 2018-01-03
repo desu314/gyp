@@ -453,6 +453,7 @@ $_LANG['email_empty'] = 'email为空';
 $_LANG['email_invalid'] = '%s 不是合法的email地址';
 $_LANG['email_exist'] = '%s 已经存在';
 $_LANG['email_not_allow'] = 'Email %s 不允许注册';
+$_LANG['mobile_phone_prefix'] = '请选择国家';
 $_LANG['mobile_phone_empty'] = '手机号码为空';
 $_LANG['mobile_phone_invalid'] = '%s 不是合法的手机号码';
 $_LANG['mobile_phone_exist'] = '%s 已经存在';

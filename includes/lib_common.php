@@ -4598,5 +4598,23 @@ function get_dir($type, $id)
 	return $dirname;
  }
 
- /* 代码增加_end  By  www.68ecshop.com */
+/**
+ * sendSms 腾讯短信发送 兼容国内外短信发送
+ * @param content 短信内容
+ * @param mobile  手机号
+ */
+function qSendSms($content,$mobile,$mobile_prefix="86"){
+    $appid = 1400057442;
+    $appkey = "667e3a00fb2b61b3a66a1086ebaf9a62";
+    require_once (ROOT_PATH."Qcloud/Sms/SmsSingleSender.php");
+    try {
+        $sender = new Qcloud\Sms\SmsSingleSender ($appid, $appkey);
+        $result = $sender->send(0, "86", $mobile,
+            $content, "", "");
+        $rsp = json_decode($result);
+        return $result;
+    } catch(\Exception $e) {
+        return $e;
+    }
+}
 ?>
