@@ -247,9 +247,9 @@ function action_send_mobile_code ()
 
     //todo 腾讯手机短信发送插件
     $mobile_code = rand_number(6);
-    $content = sprintf($_LANG['mobile_code_template'], $GLOBALS['_CFG']['shop_name'], $mobile_code, $GLOBALS['_CFG']['shop_name']);
+    //您的注册验证码为{1}。如非本人操作，请忽略本短信。
+    $content = sprintf($_LANG['register_template'],  $mobile_code);
     $result = qSendSms($content,$mobile_phone,$_POST['mobile_prefix']);
-
     //成功记录发送次数*/
     if($result)
     {
@@ -271,7 +271,7 @@ function action_send_mobile_code ()
         $_SESSION[VT_MOBILE_REGISTER] = $mobile_phone;
         // 保存验证信息
         save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_REGISTER, time(), time() + 30 * 60, $ext_info);
-        echo 'ok';
+        echo '短信已发送请注意查收!';
     }
     else
     {

@@ -4603,16 +4603,16 @@ function get_dir($type, $id)
  * @param content 短信内容
  * @param mobile  手机号
  */
-function qSendSms($content,$mobile,$mobile_prefix="86"){
+function qSendSms($content,$mobile,$mobile_prefix){
     $appid = 1400057442;
     $appkey = "667e3a00fb2b61b3a66a1086ebaf9a62";
     require_once (ROOT_PATH."Qcloud/Sms/SmsSingleSender.php");
     try {
         $sender = new Qcloud\Sms\SmsSingleSender ($appid, $appkey);
-        $result = $sender->send(0, "86", $mobile,
-            $content, "", "");
+        $result = $sender->send(0, $mobile_prefix, $mobile,$content, "", "");
+        //$result = $sender->sendWithParam($mobile_prefix, $mobile,73353,array('123123'), "", "", "");
         $rsp = json_decode($result);
-        return $result;
+        return $rsp;
     } catch(\Exception $e) {
         return $e;
     }

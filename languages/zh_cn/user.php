@@ -467,6 +467,7 @@ $_LANG['sel_question'] = '请选择密码提示问题';
 $_LANG['passwd_answer'] = '密码问题答案';
 $_LANG['passwd_balnk'] = '密码中不能包含空格';
 $_LANG['mobile_code_template'] = '【%s】验证码为%s（客服绝不会以任何理由索取此验证码，切勿告知他人），请在页面中输入以完成验证。';//短信验证码模版
+$_LANG['register_template'] = '您的注册验证码为%s。如非本人操作，请忽略本短信。';//短信验证码模版
 $_LANG['mobile_virtual_template'] = '【%s】提示：感谢您购买 【%s】 您的验证码为 %s 请在 %s 之前使用，谢谢合作。';//虚拟团购验证码发送模板
 /* 用户中心默认页面 */
 $_LANG['welcome_to'] = '欢迎您回到';
