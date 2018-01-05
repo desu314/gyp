@@ -185,7 +185,7 @@ function checkEmailExist(email, callback) {
 }
 
 function checkMobile(sMobile){
-	if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(sMobile))){
+	if(!(/\d{1,14}$/.test(sMobile))){
 		return false;
 	}
 	else
@@ -202,8 +202,15 @@ function checkMobilePhone(mobile, callback) {
 	if (typeof (mobile) == 'object') {
 		mobileObj = $(mobile);
 		mobile = mobileObj.val();
+		mobile_prefix = mobileObj.parent().prev().children("select").val();
 	}
 
+	//判断是否选择国家码
+	if(mobile_prefix == 0){
+        document.getElementById('mobile_phone_notice').innerHTML = "*请先选择国家!";
+        document.getElementById('mobile_phone_notice').style.color = '#E31939';
+        submit_disabled = true;
+	}
 	if (mobile == '') {
 		document.getElementById('mobile_phone_notice').innerHTML = msg_mobile_phone_blank;
 		document.getElementById('mobile_phone_notice').style.color = '#E31939';

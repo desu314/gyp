@@ -4599,18 +4599,27 @@ function get_dir($type, $id)
  }
 
 /**
- * sendSms 腾讯短信发送 兼容国内外短信发送
- * @param content 短信内容
- * @param mobile  手机号
+ * sendSms 腾讯短信发送 兼容国内外短信发送 可指定模板
+ * @param $content 短信内容
+ * @param $mobile  手机号
+ * @param $mobile_prefix 国家码
+ * @param $tempId 可选 短信模板id
+ * @param $tempParam  array 可选 短信模板id
  */
-function qSendSms($content,$mobile,$mobile_prefix){
+function qSendSms($content, $mobile, $mobile_prefix, $tempId, $tempParam){
     $appid = 1400057442;
     $appkey = "667e3a00fb2b61b3a66a1086ebaf9a62";
     require_once (ROOT_PATH."Qcloud/Sms/SmsSingleSender.php");
     try {
         $sender = new Qcloud\Sms\SmsSingleSender ($appid, $appkey);
-        $result = $sender->send(0, $mobile_prefix, $mobile,$content, "", "");
-        //$result = $sender->sendWithParam($mobile_prefix, $mobile,73353,array('123123'), "", "", "");
+        if(empty($tempId)){
+            $result = $sender->send(0, $mobile_prefix, $mobile,$content, "", "");
+        }
+        else{
+            if(is_array($tempParam)){
+                $result = $sender->sendWithParam($mobile_prefix, $mobile,$tempId,array('123123'), "", "", "");
+            }
+        }
         $rsp = json_decode($result);
         return $rsp;
     } catch(\Exception $e) {

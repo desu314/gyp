@@ -43,7 +43,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
     </div>
   </div>
   <!-- {else} --> 
-  {insert_scripts files='utils.js'}
+  {insert_scripts files='utils.js?v=1.0'}
   <div id="regist">
     <div class="register-con">
       <div class="box-pic-reg"></div>
