@@ -542,6 +542,7 @@ $_LANG['passport_js']['msg_email_blank'] = '- 邮件地址不能为空';
 $_LANG['passport_js']['msg_email_registered'] = '- 邮箱已存在';
 $_LANG['passport_js']['msg_email_format'] = '- 邮件地址不合法';
 $_LANG['passport_js']['msg_mobile_phone_blank'] = '- 手机号码不能为空';
+$_LANG['passport_js']['msg_mobile_phone_prefix'] = '- 手机号码不能为空';
 $_LANG['passport_js']['msg_mobile_phone_registered'] = '- 手机号码已存在';
 $_LANG['passport_js']['msg_mobile_phone_format'] = '- 手机号码不是一个有效号码';
 $_LANG['passport_js']['msg_blank'] = '- 不能为空';

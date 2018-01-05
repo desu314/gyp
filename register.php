@@ -519,7 +519,11 @@ function action_register ()
 
             $mobile_phone = ! empty($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
             $mobile_code = ! empty($_POST['mobile_code']) ? trim($_POST['mobile_code']) : '';
-
+            $mobile_prefix = ! empty($_POST['mobile_prefix']) ? trim($_POST['mobile_prefix']) : '';
+            /* 手机区号检查 */
+            if (empty($mobile_prefix)){
+                show_message($_LANG['msg_mobile_phone_prefix'], $_LANG['sign_up'], 'register.php', 'error');
+            }
             $record = get_validate_record($mobile_phone);
 
             $session_mobile_phone = $_SESSION[VT_MOBILE_REGISTER];
@@ -550,7 +554,7 @@ function action_register ()
             $username = generate_username_by_mobile($mobile_phone);
 
             /* 手机注册 */
-            $result = register_by_mobile($username, $password, $mobile_phone, $other);
+            $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
 
             if($result)
             {
@@ -590,7 +594,7 @@ function action_register ()
                 $sql = 'INSERT INTO ' . $ecs->table('reg_extend_info') . ' (`user_id`, `reg_field_id`, `content`) VALUES' . $extend_field_str;
                 $db->query($sql);
             }
-            /* 代码增加2014-12-23 by www.68ecshop.com _star */
+            /* 代码增加2014-12-23 by www.yndth.com _star */
             // if($_SESSION['tag'] > 0)
             // {
             // $sql = "update " . $GLOBALS['ecs']->table('users') . " set
@@ -607,9 +611,9 @@ function action_register ()
             // $GLOBALS['db']->query($sql);
             // }
             // }
-            /* 代码增加2014-12-23 by www.68ecshop.com _end */
+            /* 代码增加2014-12-23 by www.yndth.com _end */
             /*
-             * 代码增加_start By www.68ecshop.com
+             * 代码增加_start by www.yndth.com
              * include_once(ROOT_PATH . '/includes/cls_image.php');
              * $image = new cls_image($_CFG['bgcolor']);
              * $headimg_original =
@@ -628,7 +632,7 @@ function action_register ()
              * $_SESSION['user_id'] . "'";
              * $db->query($sql);
              * }
-             * 代码增加_end By www.68ecshop.com
+             * 代码增加_end by www.yndth.com
              */
 
             /* 写入密码提示问题和答案 */
@@ -638,7 +642,7 @@ function action_register ()
                 $db->query($sql);
             }
 
-            /* 代码增加_start By www.68ecshop.com */
+            /* 代码增加_start by www.yndth.com */
             $now = gmtime();
             if($_CFG['bonus_reg_rand'])
             {
@@ -657,7 +661,7 @@ function action_register ()
             {
                 $_LANG['register_success'] = '用户名 %s 注册成功,并获得官方赠送的红包礼品';
             }
-            /* 代码增加_end By www.68ecshop.com */
+            /* 代码增加_end by www.yndth.com */
 
             /* 判断是否需要自动发送注册邮件 */
             if($GLOBALS['_CFG']['member_email_validate'] && $GLOBALS['_CFG']['send_verify_email'])
@@ -676,7 +680,7 @@ function action_register ()
             $GLOBALS['err']->show($_LANG['sign_up'], 'register.php');
         }
     }
-    /* 代码增加2014-12-23 by www.68ecshop.com _star */
+    /* 代码增加2014-12-23 by www.yndth.com _star */
 }
 
 /**

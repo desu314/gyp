@@ -53,9 +53,9 @@ function register_by_email ($username, $password, $email, $other = array())
  *        	
  * @return bool $bool
  */
-function register_by_mobile ($username, $password, $mobile, $other = array())
+function register_by_mobile ($username, $password, $mobile, $other = array(), $mobile_prefix)
 {
-	return _register($username, $password, $mobile, $other, 'mobile');
+	return _register($username, $password, $mobile, $other, 'mobile', $mobile_prefix);
 }
 
 /**
@@ -69,7 +69,7 @@ function register_by_mobile ($username, $password, $mobile, $other = array())
  *        	注册类型：邮箱-email 手机号-mobile
  * @return boolean
  */
-function _register ($username, $password, $email_or_mobile, $other = array(), $register_type = 'email')
+function _register ($username, $password, $email_or_mobile, $other = array(), $register_type = 'email', $mobile_prefix)
 {
 	/* 检查注册是否关闭 */
 	if(! empty($GLOBALS['_CFG']['shop_reg_closed']))
@@ -254,6 +254,8 @@ function _register ($username, $password, $email_or_mobile, $other = array(), $r
 		);
 		$update_data['reg_time'] = local_strtotime(local_date('Y-m-d H:i:s'));
 		$update_data['froms'] = WEB_FROM;
+		//记录国家码
+        $update_data['mobile_prefix'] = $mobile_prefix;
 		if($other)
 		{
 			foreach($other as $key => $val)
