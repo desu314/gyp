@@ -36,10 +36,10 @@ if (isset($set_modules) && $set_modules == TRUE)
     $modules[$i]['desc']    = 'clear_file_desc';
 
     /* 作者 */
-    $modules[$i]['author']  = 'ECSHOP开发中心';
+    $modules[$i]['author']  = 'YNDTH TEAM';
 
     /* 网址 */
-    $modules[$i]['website'] = 'http://www.68ecshop.com';
+    $modules[$i]['website'] = 'http://www.yndth.com';
 
     /* 版本号 */
     $modules[$i]['version'] = '1.0.0';

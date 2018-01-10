@@ -90,7 +90,7 @@ function check_conform_password(conform_password) {
 
 /**
  * 验证邮箱,第一步合法性验证， 第二步是否存在验证
- * 
+ *
  * @param email
  *            验证邮箱：支持邮箱和邮箱对象
  * @param callback
@@ -140,7 +140,7 @@ function checkEmail(email, callback) {
 
 /**
  * 检查邮箱是否已经绑定过用户
- * 
+ *
  * @param email
  *            验证邮件:支持邮箱和邮箱对象
  * @param callback
@@ -171,11 +171,11 @@ function checkEmailExist(email, callback) {
 			document.getElementById('email_notice').innerHTML = msg_email_registered;
 			document.getElementById('email_notice').style.color = '#E31939';
 			document.forms['formUser'].elements['Submit'].disabled = 'disabled';
-			
+
 			if (emailObj != null) {
 				emailObj.focus();
 			}
-			
+
 			if ($.isFunction(callback)) {
 				callback(false);
 			}
@@ -184,9 +184,9 @@ function checkEmailExist(email, callback) {
 	}, 'text');
 }
 
-function checkMobile(sMobile){ 
-	if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(sMobile))){ 
-		return false; 
+function checkMobile(sMobile){
+	if(!(/\d{1,14}$/.test(sMobile))){
+		return false;
 	}
 	else
 	{
@@ -202,8 +202,15 @@ function checkMobilePhone(mobile, callback) {
 	if (typeof (mobile) == 'object') {
 		mobileObj = $(mobile);
 		mobile = mobileObj.val();
+		mobile_prefix = mobileObj.parent().prev().children("select").val();
 	}
 
+	//判断是否选择国家码
+	if(mobile_prefix == 0){
+        document.getElementById('mobile_phone_notice').innerHTML = "*请先选择国家!";
+        document.getElementById('mobile_phone_notice').style.color = '#E31939';
+        submit_disabled = true;
+	}
 	if (mobile == '') {
 		document.getElementById('mobile_phone_notice').innerHTML = msg_mobile_phone_blank;
 		document.getElementById('mobile_phone_notice').style.color = '#E31939';
@@ -289,7 +296,7 @@ function checkMobilePhoneExist(mobile, callback) {
 
 /**
  * 用户注册
- * 
+ *
  * @param register_type
  *            注册类型：email、mobile
  */
@@ -303,7 +310,7 @@ function register(register_type) {
 
 /**
  * 通过邮箱注册
- * 
+ *
  * @returns {Boolean}
  */
 function reg_by_email() {
@@ -520,7 +527,7 @@ function reg_by_mobile() {
 
 /**
  * 发送邮箱验证码
- * 
+ *
  * @param emailObj
  *            邮箱对象
  * @param emailCodeObj
@@ -557,7 +564,7 @@ function sendEmailCode(emailObj, emailCodeObj, sendButton) {
 
 /**
  * 发送手机验证码
- * 
+ *
  * @param mobileObj
  *            手机号对象
  * @param mobileCodeObj
@@ -565,16 +572,17 @@ function sendEmailCode(emailObj, emailCodeObj, sendButton) {
  * @param sendButton
  *            点击发送短信证码的按钮对象，用于显示倒计时信息
  */
-function sendMobileCode(mobileObj, mobileCodeObj, sendButton) {
+function sendMobileCode(mobileObj,mobile_prefixObj, mobileCodeObj, sendButton) {
 	checkMobilePhone(mobileObj, function(result) {
 		if (result) {
 
-			// 发送邮件
+			// 发送短信
 			var url = 'register.php?act=send_mobile_code';
 			$.post(url, {
 				XDEBUG_SESSION_START: 'ECLIPSE_DBGP',
 				captcha: $("#captcha").size() > 0 ? $("#captcha").val() : "",
-				mobile_phone: mobileObj.val()
+				mobile_phone: mobileObj.val(),
+				mobile_prefix: mobile_prefixObj.val()
 			}, function(result) {
 				if (result == 'ok') {
 					// 倒计时
@@ -594,7 +602,7 @@ function sendMobileCode(mobileObj, mobileCodeObj, sendButton) {
 
 /*******************************************************************************
  * 检测密码强度
- * 
+ *
  * @param string
  *            pwd 密码
  */

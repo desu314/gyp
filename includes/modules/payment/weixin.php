@@ -28,7 +28,7 @@ if (isset ( $set_modules ) && $set_modules == TRUE) {
 	$modules [$i] ['is_online'] = '1';
 	
 	/* 作者 */
-	$modules [$i] ['author'] = '68ecshop';
+	$modules [$i] ['author'] = 'YNDTH TEAM';
 	
 	/* 网址 */
 	$modules [$i] ['website'] = '';

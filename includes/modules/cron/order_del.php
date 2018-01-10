@@ -17,11 +17,11 @@ if (!defined('IN_ECS'))
 {
     die('Hacking attempt');
 }
-$cron_lang_www_ecshop68_com = ROOT_PATH . 'languages/' .$GLOBALS['_CFG']['lang']. '/cron/order_del_www_ecshop68_com.php';
-if (file_exists($cron_lang_www_ecshop68_com))
+$cron_lang_www_dth_com = ROOT_PATH . 'languages/' .$GLOBALS['_CFG']['lang']. '/cron/order_del_www_ecshop68_com.php';
+if (file_exists($cron_lang_www_dth_com))
 {
     global $_LANG;
-    include_once($cron_lang_www_ecshop68_com);
+    include_once($cron_lang_www_dth_com);
 }
 
 /* 模块的基本信息 */
@@ -36,10 +36,10 @@ if (isset($set_modules) && $set_modules == TRUE)
     $modules[$i]['desc']    = 'order_del_www_ecshop68_com_desc';
 
     /* 作者 */
-    $modules[$i]['author']  = '68ecshop';
+    $modules[$i]['author']  = 'YNDTH TEAM';
 
     /* 网址 */
-    $modules[$i]['website'] = 'http://www.ecshop.com';
+    $modules[$i]['website'] = 'http://www.dth.com';
 
     /* 版本号 */
     $modules[$i]['version'] = '1.0.0';
