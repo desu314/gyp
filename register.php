@@ -321,9 +321,7 @@ function action_check_mobile_exist ()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
 	$mobile = empty($_POST['mobile']) ? '' : $_POST['mobile'];
-	
 	$user = $GLOBALS['user'];
 	if($user->check_mobile_phone($mobile))
 	{
@@ -764,5 +762,4 @@ function generate_username ()
 
 	return $username;
 }
-
 ?>
