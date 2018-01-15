@@ -2523,7 +2523,18 @@ function action_back_order_detail ()
 	$back_shipping['status_back_1'] = $back_shipping['status_back'];
 	$back_shipping['status_back'] = $_LANG['bos'][$back_shipping['status_back']] . ($back_shipping['status_back'] == '3' && $back_shipping['back_type'] && $back_shipping['back_type'] != '4' ? ' (换回商品已寄出，请注意查收) ' : '');
 	$back_shipping['status_refund'] = $_LANG['bps'][$back_shipping['status_refund']];
-	
+
+	$refund_money = 0;
+	foreach ($back_shipping['goods_list'] as $k => $v) {
+		if ($v['status_refund'] != 1) {
+			$refund_money += $v['back_goods_price'];
+		}
+	}
+	$back_shipping['refund_money_1'] = price_format($refund_money + $back_shipping['shipping_fee'], false);
+	if ($back_shipping['status_refund'] == 1) {
+		$back_shipping['refund_money_1'] = price_format(0, false);
+	}
+
 	$smarty->assign('back_shipping', $back_shipping);
 
 	// 退货商品 + 换货商品 详细信息
@@ -2664,6 +2675,7 @@ function action_back_list ()
 	
 	$smarty->assign('pager', $pager);
 	$smarty->assign('orders', $orders);
+
 	$smarty->display('user_transaction.dwt');
 }
 
@@ -6189,7 +6201,16 @@ function get_user_backorders ($user_id, $num = 10, $start = 0)
 		
 		$sql_goods = "SELECT * FROM " . $GLOBALS['ecs']->table('back_goods') . " WHERE back_id = " . $row['back_id'];
 		$row['goods_list'] = $GLOBALS['db']->getAll($sql_goods);
-		
+		$refund_money = 0;
+		foreach ($row['goods_list'] as $k => $v) {
+			if ($v['status_refund'] != 1) {
+				$refund_money += $v['back_goods_price'];
+			}
+		}
+		$row['refund_money_1'] = price_format($refund_money + $row['shipping_fee'], false);
+		if ($row['status_refund'] == 1) {
+			$row['refund_money_1'] = price_format(0, false);
+		}
 		$arr[] = $row;
 	}
 	

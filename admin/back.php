@@ -35,12 +35,24 @@ if ($_REQUEST['act'] == 'back_list')
 
     /* 查询 */
     $result = back_list();
-    
+
 	if(intval($_REQUEST['supp']) > 0){
     	$suppliers_list = get_supplier_list();
     	$smarty->assign('supp_list',   $suppliers_list);
     }
 
+    $refund_money = 0;
+    foreach ($result['back'] as $k => $v) {
+        foreach ($v['goods_list'] as $ks => $vs) {
+            if ($vs['status_refund'] != 1) {
+                $refund_money += $vs['back_goods_price'];
+            }
+        }
+        $result['back'][$k]['refund_money_1'] = price_format($refund_money + $v['shipping_fee'], false);
+        if ($v['status_refund'] == 1) {
+            $result['back'][$k]['refund_money_1'] = price_format(0, false);
+        }
+    }
     /* 模板赋值 */
     $smarty->assign('ur_here', $_LANG['10_back_order']);
 
@@ -204,6 +216,7 @@ elseif ($_REQUEST['act'] == 'back_info')
     /* 模板赋值 */
     $smarty->assign('back_order', $back_order);
     $smarty->assign('exist_real_goods', $exist_real_goods);
+    //print_r($back_order);die;
     $smarty->assign('goods_list', $goods_list);
     $smarty->assign('back_id', $back_id); // 发货单id
     
