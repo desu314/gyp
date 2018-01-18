@@ -153,16 +153,14 @@ function action_send_mobile_code ()
 	$_SESSION[VT_MOBILE_VALIDATE] = array();
 	
 	require_once (ROOT_PATH . 'sms/sms.php');
-	
-	// 生成6位短信验证码
-	$mobile_code = rand_number(6);
-	// 短信内容
-	$content = sprintf($_LANG['mobile_code_template'], $GLOBALS['_CFG']['shop_name'], $mobile_code, $GLOBALS['_CFG']['shop_name']);
-	
-	/* 发送激活验证邮件 */
-	$result = sendSMS($mobile_phone, $content);
-// 	$result = true;
-	if($result)
+
+    //todo 腾讯手机短信发送插件
+    // 生成6位短信验证码
+    $mobile_code = rand_number(6);
+    // 短信内容
+    $content = sprintf($_LANG['mobile_code_template'],  $mobile_code);
+    $result = qSendSms($content,$mobile_phone,$_SESSION[VT_MOBILE_PREFIX]);
+	if($result->result==0)
 	{
 		if(! isset($count))
 		{
@@ -180,7 +178,7 @@ function action_send_mobile_code ()
 		$_SESSION[VT_MOBILE_VALIDATE] = $mobile_phone;
 		// 保存验证信息
 		save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_VALIDATE, time(), time() + 30 * 60, $ext_info);
-		echo 'ok';
+		echo '验证码已发送,请注意查收!';
 	}
 	else
 	{

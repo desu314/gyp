@@ -4606,7 +4606,7 @@ function get_dir($type, $id)
  * @param $tempId 可选 短信模板id
  * @param $tempParam  array 可选 短信模板id
  */
-function qSendSms($content, $mobile, $mobile_prefix, $tempId, $tempParam){
+function qSendSms($content, $mobile, $mobile_prefix="86", $tempId="", $tempParam=array()){
     $appid = 1400057442;
     $appkey = "667e3a00fb2b61b3a66a1086ebaf9a62";
     require_once (ROOT_PATH."Qcloud/Sms/SmsSingleSender.php");
@@ -4617,7 +4617,7 @@ function qSendSms($content, $mobile, $mobile_prefix, $tempId, $tempParam){
         }
         else{
             if(is_array($tempParam)){
-                $result = $sender->sendWithParam($mobile_prefix, $mobile,$tempId,array('123123'), "", "", "");
+                $result = $sender->sendWithParam($mobile_prefix, $mobile,$tempId,$tempParam, "", "", "");
             }
         }
         $rsp = json_decode($result);

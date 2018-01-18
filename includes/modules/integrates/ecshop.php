@@ -340,7 +340,7 @@ class ecshop extends integrate
 	 */
 	function get_profile_by_id ($id)
 	{
-		$sql = "SELECT " . $this->field_id . " AS user_id," . $this->field_name . " AS user_name," . $this->field_email . " AS email," . $this->field_gender . " AS sex," . $this->field_email_validated . " AS email_validated, " . $this->field_mobile_phone . " AS mobile_phone, " . $this->field_mobile_validated . " AS mobile_validated, " . $this->field_bday . " AS birthday," . $this->field_reg_date . " AS reg_time, " . $this->field_pass . " AS password, " . $this->ec_salt . " AS ec_salt " . " FROM " . $this->table($this->user_table) . " WHERE " . $this->field_id . "='$id'";
+		$sql = "SELECT " . $this->field_id . " AS user_id," . $this->field_name . " AS user_name," . $this->field_email . " AS email," . $this->field_gender . " AS sex," . $this->field_email_validated . " AS email_validated, " . $this->field_mobile_phone . " AS mobile_phone, " . $this->field_mobile_validated . " AS mobile_validated, " . $this->field_bday . " AS birthday," . $this->field_reg_date . " AS reg_time, " . $this->field_pass . " AS password, " . $this->ec_salt . " AS ec_salt, mobile_prefix " . " FROM " . $this->table($this->user_table) . " WHERE " . $this->field_id . "='$id'";
 		$row = $this->db->getRow($sql);
 		
 		return $row;

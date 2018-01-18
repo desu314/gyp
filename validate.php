@@ -1,6 +1,6 @@
 <?php
 define('IN_ECS', true);
-
+ini_set('display_errors',1);
 require (dirname(__FILE__) . '/includes/init.php');
 /* 载入语言文件 */
 require_once (ROOT_PATH . 'languages/' . $_CFG['lang'] . '/user.php');
@@ -30,9 +30,9 @@ function action_send_email_code ()
 	$ecs = $GLOBALS['ecs'];
 
 	require_once (ROOT_PATH . 'includes/lib_validate_record.php');
-	
+
 	$email = trim($_SESSION[VT_EMAIL_VALIDATE]);
-	
+
 	if(empty($email))
 	{
 		exit("邮箱不能为空");
@@ -45,9 +45,9 @@ function action_send_email_code ()
 	}
 	else if(check_validate_record_exist($email))
 	{
-		
+
 		$record = get_validate_record($email);
-		
+
 		/**
 		 * 检查是过了限制发送邮件的时间
 		 */
@@ -57,21 +57,21 @@ function action_send_email_code ()
 			return;
 		}
 	}
-	
+
 	require_once (ROOT_PATH . 'includes/lib_passport.php');
-	
+
 	/* 设置验证邮件模板所需要的内容信息 */
 	$template = get_mail_template('email_validate');
-	
+
 	// 生成邮箱验证码
 	$email_code = rand_number(6);
-	
+
 	$GLOBALS['smarty']->assign('email_code', $email_code);
 	$GLOBALS['smarty']->assign('shop_name', $GLOBALS['_CFG']['shop_name']);
 	$GLOBALS['smarty']->assign('send_date', date($GLOBALS['_CFG']['date_format']));
-	
+
 	$content = $GLOBALS['smarty']->fetch('str:' . $template['template_content']);
-	
+
 	/* 发送激活验证邮件 */
 	$result = send_mail($email, $email, $template['template_subject'], $content, $template['is_html']);
 	if($result)
@@ -80,7 +80,7 @@ function action_send_email_code ()
 		$_SESSION[VT_EMAIL_VALIDATE] = $email;
 		// 保存验证记录
 		save_validate_record($email, $email_code, VT_EMAIL_VALIDATE, time(), time() + 30 * 60);
-		
+
 		echo 'ok';
 	}
 	else
@@ -98,11 +98,11 @@ function action_send_mobile_code ()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+
 	require_once (ROOT_PATH . 'includes/lib_validate_record.php');
-	
+
 	$mobile_phone = trim($_SESSION[VT_MOBILE_VALIDATE]);
-	
+
 	if(empty($mobile_phone))
 	{
 		exit("手机号不能为空");
@@ -117,7 +117,7 @@ function action_send_mobile_code ()
 	{
 		// 获取数据库中的验证记录
 		$record = get_validate_record($mobile_phone);
-		
+
 		/**
 		 * 检查是过了限制发送短信的时间
 		 */
@@ -125,12 +125,12 @@ function action_send_mobile_code ()
 		$expired_time = $record['expired_time'];
 		$create_time = $record['create_time'];
 		$count = $record['count'];
-		
+
 		// 每天每个手机号最多发送的验证码数量
 		$max_sms_count = 10;
 		// 发送最多验证码数量的限制时间，默认为24小时
 		$max_sms_count_time = 60 * 60 * 24;
-		
+
 		if((time() - $last_send_time) < 60)
 		{
 			echo ("每60秒内只能发送一次短信验证码，请稍候重试");
@@ -146,23 +146,20 @@ function action_send_mobile_code ()
 			$count ++;
 		}
 	}
-	
+
 	require_once (ROOT_PATH . 'includes/lib_passport.php');
-	
+
 	// 设置为空
 	$_SESSION[VT_MOBILE_VALIDATE] = array();
-	
+
 	require_once (ROOT_PATH . 'sms/sms.php');
-	
+    //todo 腾讯手机短信发送插件
 	// 生成6位短信验证码
 	$mobile_code = rand_number(6);
 	// 短信内容
-	$content = sprintf($_LANG['mobile_code_template'], $GLOBALS['_CFG']['shop_name'], $mobile_code, $GLOBALS['_CFG']['shop_name']);
-	
-	/* 发送激活验证邮件 */
-	$result = sendSMS($mobile_phone, $content);
-// 	$result = true;
-	if($result)
+	$content = sprintf($_LANG['mobile_code_template'],  $mobile_code);
+    $result = qSendSms($content,$mobile_phone,$_SESSION[VT_MOBILE_PREFIX]); //todo 获取当前号码的 国家码
+	if($result->result==0)
 	{
 		if(! isset($count))
 		{
@@ -180,7 +177,7 @@ function action_send_mobile_code ()
 		$_SESSION[VT_MOBILE_VALIDATE] = $mobile_phone;
 		// 保存验证信息
 		save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_VALIDATE, time(), time() + 30 * 60, $ext_info);
-		echo 'ok';
+		echo '验证码已发送,请注意查收!';
 	}
 	else
 	{

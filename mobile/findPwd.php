@@ -171,7 +171,7 @@ function action_check_username ()
 	}
 	
 	// 获取用户信息，判断用户是否验证了手机、邮箱
-	$sql = "select user_id, user_name, email, mobile_phone from " . $ecs->table('users') . " where user_id = '" . $user_id . "'";
+	$sql = "select user_id, user_name, email, mobile_phone,mobile_prefix from " . $ecs->table('users') . " where user_id = '" . $user_id . "'";
 	
 	$row = $db->getRow($sql);
 	
@@ -225,6 +225,7 @@ function action_check_username ()
 	
 	//用于validate.php获取数据
 	$_SESSION[VT_MOBILE_VALIDATE] = $row['mobile_phone'];
+	$_SESSION[VT_MOBILE_PREFIX] = $row['mobile_prefix'];
 	$_SESSION[VT_EMAIL_VALIDATE] = $row['email'];
 	
 	$smarty->assign("validate_types", $validate_types);
