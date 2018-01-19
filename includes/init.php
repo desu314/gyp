@@ -45,7 +45,7 @@ if (!file_exists(ROOT_PATH . 'data/install.lock') && !file_exists(ROOT_PATH . 'i
 @ini_set('session.auto_start',    0);
 @ini_set('display_errors',        0);
 
-// 是否开启错误提示：0-不开启 1-开启
+// 是否开启错误提示：0-不开启 1-开启 
 define('MYSQL_ERROR_DISPLAY', 0);
 
 if (DIRECTORY_SEPARATOR == '\\')
@@ -114,9 +114,15 @@ define('IMAGE_DIR', $ecs->image_dir());
 /* 初始化数据库类 */
 require(ROOT_PATH . 'includes/cls_mysql.php');
 require(ROOT_PATH . 'includes/lib_soap.php');
-$db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);
+$db = new cls_mysql($db_host, $db_user, $db_pass, $db_name, 'UTF-8');
 $db->set_disable_cache_tables(array($ecs->table('sessions'), $ecs->table('sessions_data'), $ecs->table('cart')));
 $db_host = $db_user = $db_pass = $db_name = NULL;
+var_dump($db);
+die;
+$q = 'select * from `ecs_users` limit 1';
+$rs = $db->getAll($q);
+print_r($rs);
+die;
 
 /* 创建错误处理对象 */
 $err = new ecs_error('message.dwt');
