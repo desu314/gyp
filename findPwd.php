@@ -189,7 +189,8 @@ function action_check_username ()
 	$mobile_phone = $user_info['mobile_phone'];
 	$email_validate = $user_info['email_validated'];
 	$mobile_validate = $user_info['mobile_validated'];
-	
+	$mobile_prefix = $user_info['mobile_prefix'];
+
 	$validate_types = array();
 	
 	if(isset($mobile_phone) && ! empty($mobile_phone) && $mobile_validate == 1)
@@ -222,6 +223,7 @@ function action_check_username ()
 	
 	// 用于validate.php获取数据
 	$_SESSION[VT_MOBILE_VALIDATE] = $mobile_phone;
+	$_SESSION[VT_MOBILE_PREFIX] = $mobile_prefix;
 	$_SESSION[VT_EMAIL_VALIDATE] = $email;
 	
 	$smarty->assign("validate_types", $validate_types);
