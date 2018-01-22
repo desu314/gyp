@@ -14,6 +14,7 @@
 */
 
 $_LANG['rank_name'] = '入驻商等级名称';
+$_LANG['rank_money'] = '入驻商等级费用';
 $_LANG['supplier_rank_list'] = '入驻商等级';
 $_LANG['integral_min'] = '积分下限';
 $_LANG['integral_max'] = '积分上限';
