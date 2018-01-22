@@ -94,15 +94,15 @@ elseif ($_REQUEST['act'] == 'insert')
         sys_msg(sprintf($_LANG['rank_name_exists'], trim($_POST['rank_name'])), 1);
     }
 
-    /* 检查是否存在重名的会员等级费用
+    /* 检查是否存在重名的会员等级费用*/
     if (!$exc->is_only('rank_money', trim($_POST['rank_money']))) {
         sys_msg(sprintf($_LANG['rank_money_exists'], trim($_POST['rank_money'])), 1);
-    }*/
+    }
 
     $sql = "INSERT INTO " .$ecs->table('supplier_rank') ."( ".
         "rank_name, rank_money, sort_order" .
             ") VALUES (".
-        "'$_POST[rank_name]', '" . intval($_POST['sort_order']) . "')";
+        "'$_POST[rank_name]', '" . "'$_POST[rank_money]'" . intval($_POST['sort_order']) . "')";
     $db->query($sql);
 
     /* 管理员日志 */
