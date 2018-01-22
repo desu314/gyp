@@ -29,7 +29,7 @@ $_LANG['sort_order'] = '排序';
 $_LANG['notice_discount'] = '请填写为0-100的整数,如填入80，表示初始折扣率为8折';
 
 $_LANG['rank_name_exists'] = '入驻商等级名 %s 已经存在。';
-$_LANG['rank_money_exists'] = '入驻商等级费用 %s 已经存在。';
+//$_LANG['rank_money_exists'] = '入驻商等级费用 %s 已经存在。';
 $_LANG['add_rank_success'] = '入驻商等级已经添加成功。';
 
 /* JS 语言 */
