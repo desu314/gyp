@@ -94,10 +94,15 @@ elseif ($_REQUEST['act'] == 'insert')
         sys_msg(sprintf($_LANG['rank_name_exists'], trim($_POST['rank_name'])), 1);
     }
 
+    /* 检查是否存在重名的会员等级费用*/
+    if (!$exc->is_only('rank_money', trim($_POST['rank_money']))) {
+        sys_msg(sprintf($_LANG['rank_money_exists'], trim($_POST['rank_money'])), 1);
+    }
+
     $sql = "INSERT INTO " .$ecs->table('supplier_rank') ."( ".
-                "rank_name,  sort_order".
+        "rank_name, rank_money, sort_order" .
             ") VALUES (".
-                "'$_POST[rank_name]', '" .intval($_POST['sort_order']). "')";
+        "'$_POST[rank_name]', '" . "'$_POST[rank_money]'" . intval($_POST['sort_order']) . "')";
     $db->query($sql);
 
     /* 管理员日志 */
@@ -138,7 +143,7 @@ elseif ($_REQUEST['act'] == 'edit_name')
 	check_authz_json('supplier_rank');
     $id = intval($_REQUEST['id']);
     $val = empty($_REQUEST['val']) ? '' : json_str_iconv(trim($_REQUEST['val']));
-    
+
     if ($exc->is_only('rank_name', $val, $id))
     {
         if ($exc->edit("rank_name = '$val'", $id))
@@ -154,6 +159,25 @@ elseif ($_REQUEST['act'] == 'edit_name')
     }
     else
     {
+        make_json_error(sprintf($_LANG['rank_name_exists'], htmlspecialchars($val)));
+    }
+} /*
+ *  编辑供货商等级费用
+ */
+elseif ($_REQUEST['act'] == 'edit_money') {
+    check_authz_json('supplier_rank');
+    $id = intval($_REQUEST['id']);
+    $val = empty($_REQUEST['val']) ? '' : json_str_iconv(trim($_REQUEST['val']));
+
+    if ($exc->is_only('rank_money', $val, $id)) {
+        if ($exc->edit("rank_money = '$val'", $id)) {
+            /* 管理员日志 */
+            clear_cache_files();
+            make_json_result(stripcslashes($val));
+        } else {
+            make_json_error($db->error());
+        }
+    } else {
         make_json_error(sprintf($_LANG['rank_name_exists'], htmlspecialchars($val)));
     }
 }

@@ -10,13 +10,16 @@
 
 <table cellspacing='1' id="list-table">
   <tr>
-    <th>{$lang.rank_name}</th>    
+    <th>{$lang.rank_name}</th>
+    <th>{$lang.rank_money}</th>
     <th>{$lang.sort_order}</th>
     <th>{$lang.handler}</th>
   </tr>
   {foreach from=$user_ranks item=rank}
   <tr>
     <td class="first-cell" ><span onclick="listTable.edit(this,'edit_name', {$rank.rank_id})">{$rank.rank_name}</span></td>
+    <td class="first-cell"><span onclick="listTable.edit(this,'edit_money', {$rank.rank_id})">{$rank.rank_money}</span>
+    </td>
     <td align="center"><span onclick="listTable.edit(this, 'edit_sort', {$rank.rank_id})" />{$rank.sort_order}</span></td>
     <td align="center">
     <a href="javascript:;" onclick="listTable.remove({$rank.rank_id}, '{$lang.drop_confirm}')" title="{$lang.remove}"><img src="images/icon_drop.gif" border="0" height="16" width="16"></a></td>
