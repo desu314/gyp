@@ -26,7 +26,7 @@
 function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sType == 'show') { oDiv.style.display = 'block';} if (sType == 'hide') { oDiv.style.display = 'none';} }
 </script>
 <div class="logo-r">
-  <div class="logo-info-r"> <a href="./" class="logo"></a> <span class="findpw">找回密码</span> <!-- #BeginLibraryItem "/library/user_right.lbi" --><!-- #EndLibraryItem --> </div>
+  <div class="logo-info-r"> <a href="./" class="logo"></a> <span class="findpw">找回密码</span> </div>
 </div>
 <div class="w990"> 
   <!-- 代码增加2014-12-23 by www.68ecshop.com  _star --> 

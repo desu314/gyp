@@ -805,8 +805,15 @@ function checkMobilePhone(mobile, callback) {
 	if (typeof (mobile) == 'object') {
 		mobileObj = $(mobile);
 		mobile = mobileObj.val();
+        mobile_prefix = mobileObj.parent().parent().prev().children().children("select").val();
+        console.log(mobile_prefix);
 	}
-
+	//判断是否选择国家码
+    if(mobile_prefix == 0){
+        document.getElementById('mobile_phone_notice').innerHTML = "*请先选择国家!";
+        document.getElementById('mobile_phone_notice').style.color = '#E31939';
+        submit_disabled = true;
+    }
 	if (mobile == '') {
 		document.getElementById('mobile_phone_notice').innerHTML = msg_mobile_phone_blank;
 		document.getElementById('mobile_phone_notice').style.color = '#900';
@@ -953,15 +960,16 @@ function sendEmailCode(emailObj, emailCodeObj, sendButton) {
  * @param sendButton
  *            点击发送短信证码的按钮对象，用于显示倒计时信息
  */
-function sendMobileCode(mobileObj, mobileCodeObj, sendButton) {
+function sendMobileCode(mobileObj, mobile_prefixObj, mobileCodeObj, sendButton) {
 	checkMobilePhone(mobileObj, function(result) {
 		if (result) {
-			// 发送邮件
+			// 发送短信
 			var url = 'register.php?act=send_mobile_code';
 			var captchaObj = $("#mobileForm").find("#captcha");
 			$.post(url, {
 				captcha: captchaObj.size() > 0 ? captchaObj.val() : "",
-				mobile_phone: mobileObj.val()
+				mobile_phone: mobileObj.val(),
+                mobile_prefix: mobile_prefixObj.val()
 			}, function(result) {
 				if (result == 'ok') {
 					// 倒计时

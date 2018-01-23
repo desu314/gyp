@@ -3270,4 +3270,32 @@ function get_pc_url(){
    }
    return $res;
 }
+/**
+ * sendSms 腾讯短信发送 兼容国内外短信发送 可指定模板
+ * @param $content 短信内容
+ * @param $mobile  手机号
+ * @param $mobile_prefix 国家码
+ * @param $tempId 可选 短信模板id
+ * @param $tempParam  array 可选 短信模板id
+ */
+function qSendSms($content, $mobile, $mobile_prefix="86", $tempId="", $tempParam=array()){
+    $appid = 1400057442;
+    $appkey = "667e3a00fb2b61b3a66a1086ebaf9a62";
+    require_once (ROOT_PATH."../Qcloud/Sms/SmsSingleSender.php");
+    try {
+        $sender = new Qcloud\Sms\SmsSingleSender ($appid, $appkey);
+        if(empty($tempId)){
+            $result = $sender->send(0, $mobile_prefix, $mobile,$content, "", "");
+        }
+        else{
+            if(is_array($tempParam)){
+                $result = $sender->sendWithParam($mobile_prefix, $mobile,$tempId,$tempParam, "", "", "");
+            }
+        }
+        $rsp = json_decode($result);
+        return $rsp;
+    } catch(\Exception $e) {
+        return $e;
+    }
+}
 ?>

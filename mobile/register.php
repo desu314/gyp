@@ -155,132 +155,131 @@ function action_send_email_code ()
 	}
 }
 
-/* 发送注册邮箱验证码到邮箱 */
+/* 发送注册短信验证码到手机 */
 function action_send_mobile_code ()
 {
-	
-	// 获取全局变量
-	$user = $GLOBALS['user'];
-	$_CFG = $GLOBALS['_CFG'];
-	$_LANG = $GLOBALS['_LANG'];
-	$smarty = $GLOBALS['smarty'];
-	$db = $GLOBALS['db'];
-	$ecs = $GLOBALS['ecs'];
-	$user_id = $_SESSION['user_id'];
-	
-	/* 载入语言文件 */
-	require_once (ROOT_PATH . 'languages/' . $_CFG['lang'] . '/user.php');
-	
-	require_once (ROOT_PATH . 'includes/lib_validate_record.php');
-	
-	$mobile_phone = trim($_REQUEST['mobile_phone']);
-	
-	/* 验证码检查 */
-	if((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
-	{
-		if(empty($_POST['captcha']))
-		{
-			exit($_LANG['invalid_captcha']);
-			return;
-		}
-			
-		/* 检查验证码 */
-		include_once ('includes/cls_captcha.php');
-			
-		$captcha = new captcha();
-			
-		if(! $captcha->check_word(trim($_POST['captcha'])))
-		{
-			exit($_LANG['invalid_captcha']);
-			return;
-		}
-	}
-	
-	if(empty($mobile_phone))
-	{
-		exit("手机号不能为空");
-		return;
-	}
-	else if(! is_mobile_phone($mobile_phone))
-	{
-		exit("手机号格式不正确");
-		return;
-	}
-	else if(check_validate_record_exist($mobile_phone))
-	{
-		// 获取数据库中的验证记录
-		$record = get_validate_record($mobile_phone);
-		
-		/**
-		 * 检查是过了限制发送短信的时间
-		 */
-		$last_send_time = $record['last_send_time'];
-		$expired_time = $record['expired_time'];
-		$create_time = $record['create_time'];
-		$count = $record['count'];
-		
-		// 每天每个手机号最多发送的验证码数量
-		$max_sms_count = 10;
-		// 发送最多验证码数量的限制时间，默认为24小时
-		$max_sms_count_time = 60 * 60 * 24;
-		
-		if((time() - $last_send_time) < 60)
-		{
-			echo ("每60秒内只能发送一次短信验证码，请稍候重试");
-			return;
-		}
-		else if(time() - $create_time < $max_sms_count_time && $record['count'] > $max_sms_count)
-		{
-			echo ("您发送验证码太过于频繁，请稍后重试！");
-			return;
-		}
-		else
-		{
-			$count ++;
-		}
-	}
-	
-	require_once (ROOT_PATH . 'includes/lib_passport.php');
-	
-	// 设置为空
-	$_SESSION['mobile_register'] = array();
-	
-	require_once (ROOT_PATH . 'sms/sms.php');
-	
-	// 生成6位短信验证码
-	$mobile_code = rand_number(6);
-	// 短信内容
-	$content = sprintf($_LANG['mobile_code_template'], $GLOBALS['_CFG']['shop_name'], $mobile_code, $GLOBALS['_CFG']['shop_name']);
-	
-	/* 发送激活验证邮件 */
-	// $result = true;
-	$result = sendSMS($mobile_phone, $content);
-	if($result)
-	{
-		
-		if(! isset($count))
-		{
-			$ext_info = array(
-				"count" => 1
-			);
-		}
-		else
-		{
-			$ext_info = array(
-				"count" => $count
-			);
-		}
-		
-		// 保存手机号码到SESSION中
-		$_SESSION[VT_MOBILE_REGISTER] = $mobile_phone;
-		// 保存验证信息
-		save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_REGISTER, time(), time() + 30 * 60, $ext_info);
-		echo 'ok';
-	}
-	else
-	{
-		echo '短信验证码发送失败';
-	}
+
+    // 获取全局变量
+    $user = $GLOBALS['user'];
+    $_CFG = $GLOBALS['_CFG'];
+    $_LANG = $GLOBALS['_LANG'];
+    $smarty = $GLOBALS['smarty'];
+    $db = $GLOBALS['db'];
+    $ecs = $GLOBALS['ecs'];
+    $user_id = $_SESSION['user_id'];
+
+    /* 载入语言文件 */
+    require_once (ROOT_PATH . 'languages/' . $_CFG['lang'] . '/user.php');
+
+    require_once (ROOT_PATH . 'includes/lib_validate_record.php');
+
+    $mobile_phone = trim($_REQUEST['mobile_phone']);
+
+    /* 验证码检查 */
+    if((intval($_CFG['captcha']) & CAPTCHA_REGISTER) && gd_version() > 0)
+    {
+        if(empty($_POST['captcha']))
+        {
+            exit($_LANG['invalid_captcha']);
+            return;
+        }
+
+        /* 检查验证码 */
+        include_once ('includes/cls_captcha.php');
+
+        $captcha = new captcha();
+
+        if(! $captcha->check_word(trim($_POST['captcha'])))
+        {
+            exit($_LANG['invalid_captcha']);
+            return;
+        }
+
+        //清空验证码
+        unset($_SESSION[$captcha->session_word]);
+    }
+
+    if(empty($mobile_phone))
+    {
+        exit("手机号不能为空");
+        return;
+    }
+    else if(! is_mobile_phone($mobile_phone))
+    {
+        exit("手机号格式不正确");
+        return;
+    }
+    else if(check_validate_record_exist($mobile_phone))
+    {
+        // 获取数据库中的验证记录
+        $record = get_validate_record($mobile_phone);
+
+        /**
+         * 检查是过了限制发送短信的时间
+         */
+        $last_send_time = $record['last_send_time'];
+        $expired_time = $record['expired_time'];
+        $create_time = $record['create_time'];
+        $count = $record['count'];
+
+        // 每天每个手机号最多发送的验证码数量
+        $max_sms_count = 10;
+        // 发送最多验证码数量的限制时间，默认为24小时
+        $max_sms_count_time = 60 * 60 * 24;
+
+        if((time() - $last_send_time) < 60)
+        {
+            echo ("每60秒内只能发送一次短信验证码，请稍候重试");
+            return;
+        }
+        else if(time() - $create_time < $max_sms_count_time && $record['count'] > $max_sms_count)
+        {
+            echo ("您发送验证码太过于频繁，请稍后重试！");
+            return;
+        }
+        else
+        {
+            $count ++;
+        }
+    }
+
+    require_once (ROOT_PATH . 'includes/lib_passport.php');
+
+    // 设置为空
+    $_SESSION['mobile_register'] = array();
+ini_set('display_errors',1);
+    //todo 腾讯手机短信发送插件
+    $mobile_code = rand_number(6);
+    //您的注册验证码为{1}。如非本人操作，请忽略本短信。
+    $content = sprintf($_LANG['register_template'],  $mobile_code);
+    $result = qSendSms($content,$mobile_phone,$_POST['mobile_prefix']);
+    //成功记录发送次数*/
+    if($result->result == 0)
+    {
+
+        if(! isset($count))
+        {
+            $ext_info = array(
+                "count" => 1
+            );
+        }
+        else
+        {
+            $ext_info = array(
+                "count" => $count
+            );
+        }
+
+        // 保存手机号码到SESSION中
+        $_SESSION[VT_MOBILE_REGISTER] = $mobile_phone;
+        // 保存验证信息
+        save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_REGISTER, time(), time() + 30 * 60, $ext_info);
+        echo '短信已发送请注意查收!';
+    }
+    else
+    {
+        echo '短信验证码发送失败';
+    }
 }
 
 /**
@@ -359,7 +358,14 @@ function action_default ()
 		$smarty->assign('enabled_captcha', 1);
 		$smarty->assign('rand', mt_rand());
 	}
-	
+    /*手机归属地*/
+    $sql = 'SELECT * FROM country_mobile_prefix';
+    $mobile_prefix = $db->getAll($sql);
+    $country = array_column($mobile_prefix,'country');
+    $country_number = array_column($mobile_prefix,'mobile_prefix');
+    $mobile_prefix = array_combine($country_number,$country);
+    //print_r($mobile_prefix);die;
+    $smarty->assign('mobile_prefix',$mobile_prefix);
 	/* 密码提示问题 */
 	$smarty->assign('passwd_questions', $_LANG['passwd_questions']);
 	/* 代码增加_start By www.68ecshop.com */

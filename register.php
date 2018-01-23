@@ -251,7 +251,7 @@ function action_send_mobile_code ()
     $content = sprintf($_LANG['register_template'],  $mobile_code);
     $result = qSendSms($content,$mobile_phone,$_POST['mobile_prefix']);
     //成功记录发送次数*/
-    if($result)
+    if($result->result == 0)
     {
 
         if(! isset($count))

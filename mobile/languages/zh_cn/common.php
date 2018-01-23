@@ -24,6 +24,7 @@ $_LANG['please_view_order_detail'] = '商品已发货，详情请到用户中心
 $_LANG['user_center'] = '用户中心';
 $_LANG['shop_closed'] = '本店盘点中，请您稍后再来...';
 $_LANG['shop_register_closed'] = '该网店暂停注册';
+$_LANG['mobile_phone_prefix'] = '选择国家';
 $_LANG['shop_upgrade'] = "本店升级中，管理员从 <a href=\"admin/\">管理中心</a> 登录后，系统会自动完成升级";
 $_LANG['js_languages']['process_request'] = '正在处理您的请求...';
 $_LANG['process_request'] = '正在处理您的请求...';

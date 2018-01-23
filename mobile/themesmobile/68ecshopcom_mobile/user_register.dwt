@@ -92,10 +92,21 @@
 						<form action="register.php" id="mobileForm" name="mobileForm" method="post">
 							<input type="hidden" id="register_type" name="register_type" value="mobile" />
                               <div class="bgwhite">
-                            <div class="Login">                          
+                            <div class="Login">
 								<dl>
-                                <dt>手机号</dt>
-							    <dd><input type="text" id="mobile_phone" name="mobile_phone" placeholder="请输入手机号" class="" onblur="checkMobilePhone(this);" />
+									<dt>选择国家</dt>
+									<dd><select name="mobile_prefix" id="mobile_prefix" style="border-color: #faffbd; height: 35px; line-height: 35px; padding: 5px 5px; width: 210px; font-size: 16px;">
+											<option value='0'>{$lang.mobile_phone_prefix}</option>
+                                        {html_options options=$mobile_prefix}
+										</select>
+									</dd>
+								</dl>
+								<dl>
+                                <dt >手机号</dt>
+							    <dd style="width: 210px">
+									<span id="mobile_prefix_num" style="border: #faffbd 1px solid; float: left; text-align: center; font-size: 14px; height: 16px; padding: 10px 0px; line-height: 16px; width: 40px;" >
+                +&nbsp;&nbsp;&nbsp;&nbsp;
+              </span><input style="width: 158px" type="text" id="mobile_phone" name="mobile_phone" placeholder="请输入手机号" class="" onblur="checkMobilePhone(this);" />
                                 <div class="tips">
 										<span id="mobile_phone_notice"></span>
 									</div>
@@ -368,7 +379,8 @@
 						$("#mobileForm").find("#captcha_notice").css({color: '#900'});
 						return;
 					}
-					sendMobileCode($("#mobileForm").find("#mobile_phone"), $("#mobileForm").find("#mobile_code"), $(this));
+					sendMobileCode($("#mobileForm").find("#mobile_phone"), $("#mobile_prefix"), $("#mobileForm").find("#mobile_code"), $
+					(this));
 				});
 				
 				$("#emailForm").submit(function(){
@@ -401,7 +413,12 @@
 		 $(".global-nav").css("display",'flex'); 
 		} 
 		}); 
-	}) 
+	})
+    //获取当前国家码 显示到手机号前
+    $("#mobile_prefix").change(function(){
+        var mobile_prefix = $("#mobile_prefix").val();
+        $("#mobile_prefix_num").text("+"+mobile_prefix)
+    });
 	</script>
 </body>
 </html>
