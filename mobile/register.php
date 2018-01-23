@@ -522,11 +522,15 @@ function action_register ()
 			
 			$mobile_phone = ! empty($_POST['mobile_phone']) ? trim($_POST['mobile_phone']) : '';
 			$mobile_code = ! empty($_POST['mobile_code']) ? trim($_POST['mobile_code']) : '';
-			
+            $mobile_prefix = ! empty($_POST['mobile_prefix']) ? trim($_POST['mobile_prefix']) : '';
+            /* 手机区号检查 */
+            if (empty($mobile_prefix)){
+                show_message($_LANG['msg_mobile_phone_prefix'], $_LANG['sign_up'], 'register.php', 'error');
+            }
 			$record = get_validate_record($mobile_phone);
 			
 			$session_mobile_phone = $_SESSION[VT_MOBILE_REGISTER];
-			
+
 			/* 手机验证码检查 */
 			
 			if(empty($mobile_code))
@@ -553,7 +557,7 @@ function action_register ()
 			$username = generate_username_by_mobile($mobile_phone);
 			
 			/* 手机注册 */
-			$result = register_by_mobile($username, $password, $mobile_phone, $other);
+			$result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
 			
 			if($result)
 			{
