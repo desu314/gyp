@@ -117,12 +117,7 @@ require(ROOT_PATH . 'includes/lib_soap.php');
 $db = new cls_mysql($db_host, $db_user, $db_pass, $db_name, 'UTF-8');
 $db->set_disable_cache_tables(array($ecs->table('sessions'), $ecs->table('sessions_data'), $ecs->table('cart')));
 $db_host = $db_user = $db_pass = $db_name = NULL;
-var_dump($db);
-die;
-$q = 'select * from `ecs_users` limit 1';
-$rs = $db->getAll($q);
-print_r($rs);
-die;
+
 
 /* 创建错误处理对象 */
 $err = new ecs_error('message.dwt');

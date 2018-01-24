@@ -73,7 +73,7 @@ Utils.isEmail = function( email )
 
 Utils.isMobile = function ( mobile )
 {
-	var reg = /^1\d{10}$/; //11位数字，以1开头。
+	var reg = /\d{1,14}$/; //11位数字，以1开头。
 	
 	return reg.test( mobile );
 }
