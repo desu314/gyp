@@ -5,11 +5,7 @@
   <meta name="Keywords" content="{$keywords}" />
   <meta name="Description" content="{$description}" />
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-  <!-- TemplateBeginEditable name="doctitle" -->
   <title>{$page_title}</title>
-  <!-- TemplateEndEditable -->
-  <!-- TemplateBeginEditable name="head" -->
-  <!-- TemplateEndEditable -->
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="icon" href="animated_favicon.gif" type="image/gif" />
   <link rel="stylesheet" type="text/css" href="themes/68ecshopcom_360buy/css/user.css" />
@@ -20,47 +16,23 @@
   {insert_scripts files='common.js,user.js'}
 </head>
 <body>
-<!--文字提示框-->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="themes/68ecshopcom_360buy/css/68ecshop_common.css" />
-<script language="javascript">
-  <!--
-  /*屏蔽所有的js错误*/
-  function killerrors() {
-    return true;
-  }
-  window.onerror = killerrors;
-  //-->
-</script>
-<script type="text/javascript" src="themes/68ecshopcom_360buy/js/page.js"></script>
-<script type="text/javascript" src="themes/68ecshopcom_360buy/js/bubbleup.js"></script>
-
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
 <div class="margin-w1210 clearfix">
   <div class="user-right">
     <div class="box">
       <div class="header">
-        <h2 class="header-logo"><a href="index.php"><img src="../images/logo.gif" /></a><span style="font-size: 30px; float: right; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span></h2>
+        <h2 class="header-logo" align="center"><span style="font-size: 30px; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span></h2>
       </div>
 
       <!-- {if $action eq "pay_view"} -->
       <form name="formSurplus" method="post" action="apply_pay.php" onSubmit="return submitSurplus()">
-        <!--table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
-          <tr>
-            <td width="10%" align="right">{$lang.payment_money}：</td>
-            <td align="left"><input type="text" name="amount"  class="inputBg" value="{$rank.rank_money}" size="30" /></td>
-          </tr>
-          <tr>
-            <td align="right">{$lang.rank_level}：</td>
-            <td align="left"><textarea name="user_note" cols="55" rows="6" style="border:1px solid #ddd;">{$order.user_note|escape}</textarea></td>
-          </tr>
-        </table-->
         <div class="blank10"></div>
         <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
           <tr align="center">
             <td colspan="3" align="center"><b>{$lang.rank_level}：</b>{$rank.rank_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               |&nbsp;&nbsp;&nbsp;&nbsp;<b>{$lang.payment_money}：</b>{$rank.rank_money}</td>
             <input type="hidden" name="amount" value="{$rank.rank_money}" />
-            <input type="hidden" name="user_note" value="入驻商缴费" />
+            <input type="hidden" name="user_note" value="{$lang.apply_pay_title}" />
           </tr>
           <tr align="center">
             <td colspan="3" align="left">{$lang.payment}:</td>

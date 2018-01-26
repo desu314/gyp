@@ -28,6 +28,7 @@ $_LANG['rank_surplus_amount'] = '您的缴费金额为：';
 $_LANG['rank_payment_name'] = '您选择的支付方式为：';
 $_LANG['rank_payment_fee'] = '支付手续费用为：';
 $_LANG['rank_payment_desc'] = '支付方式描述：';
+$_LANG['rank_require_login'] = '请先登录！';
 $_LANG['rank_select_payment_pls'] = '请选择一个支付方式';
 
 ?>
