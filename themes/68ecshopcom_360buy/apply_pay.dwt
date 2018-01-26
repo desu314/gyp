@@ -41,7 +41,7 @@
         <div class="box">
             <div class="header">
                 <h2 class="header-logo"><a href="index.php"><img src="../images/logo.gif"/></a><span
-                        style="font-size: 30px; float: right; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span
+                        style="font-size: 30px; float: right; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span>
                 </h2>
             </div>
 
@@ -76,8 +76,9 @@
                     </tr>
                     <!-- {foreach from=$payment item=list} -->
                     <tr>
-                        <td align="left"><input type="radio" name="payment_id" value="{$list.pay_id}" {if $list.pay_code
-                                                eq 'alipay_bank'}id="alipay_bank_input"{/if}/>
+                        <td align="left">
+                            <input type="radio" name="payment_id" value="{$list.pay_id}" {if $list.pay_code eq
+                            'alipay_bank'}id="alipay_bank_input"{/if}/>
                             {$list.pay_name}
                         </td>
                         <td align="left">{$list.pay_desc}</td>
@@ -129,8 +130,8 @@
             </table>
             <!-- {/if} -->
 
-        </div>
     </div>
+</div>
 </div>
 </body>
 
