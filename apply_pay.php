@@ -22,11 +22,7 @@ $_LANG = $GLOBALS['_LANG'];
 $user_id = $_SESSION['user_id'];
 $action = isset($_REQUEST['act']) ? trim($_REQUEST['act']) : 'default';
 
-/* 未登录处理 */
-if (empty($_SESSION['user_id'])) {
-    $function_name = 'login';
-    call_user_func($function_name);
-}
+
 
 /* 路由 */
 
