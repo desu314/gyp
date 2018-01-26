@@ -61,22 +61,22 @@
 	}
 	</script>
       <table border="0" cellpadding="0" cellspacing="0" class="all">
-        <thead>
+        <!--thead>
           <tr>
             <th colspan="2" align="left">请选择您的开店身份</th>
           </tr>
-        </thead>
+        </thead-->
         <tbody>
           <tr>
-            <td><input type="radio" name="apply_type" {if !$supplier.guimo}checked{/if} onClick="radioShow()">
-              个人
-              <input type="radio" name="apply_type" {if $supplier.guimo}checked{/if} onClick="radioShow()">
+            <td><!--input type="radio" name="apply_type" {if !$supplier.guimo}checked{/if} onClick="radioShow()">
+              个人-->
+              <input type="radio" name="apply_type" checked onClick="radioShow()">
               企业 </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div id="apply_person_info" class="apply-company-info">
+    <!--div id="apply_person_info" class="apply-company-info">
       <div class="note"><i></i>以下所需要上传的电子版资质文件仅支持JPG\GIF\PNG格式图片，大小请控制在{$piclimit}K之内。</div>
       <form id="form_person_info" name="form_person_info" action="apply.php" method="post" enctype="multipart/form-data" onSubmit="return supplier_person_Reg()">
         <table border="0" cellpadding="0" cellspacing="0" class="all">
@@ -228,8 +228,8 @@
           <input type="submit" value="下一步" class="btn">
         </div>
       </form>
-    </div>
-    <div id="apply_company_info" class="apply-company-info"  style="display:none">
+    </div-->
+    <div id="apply_company_info" class="apply-company-info">
       <div class="note"><i></i>以下所需要上传的电子版资质文件仅支持JPG\GIF\PNG格式图片，大小请控制在{$piclimit}K之内。</div>
       <form id="form_company_info" name="form_company_info" action="apply.php" method="post" enctype="multipart/form-data" onSubmit="return supplier_Reg()">
         <table border="0" cellpadding="0" cellspacing="0" class="all">

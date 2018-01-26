@@ -1,9 +1,9 @@
 <?php
 
 /**
- * YNDTH 支付宝插件
+ * ECSHOP 支付宝插件
  * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
+ * * 版权所有 2005-2012 云南迅迈网络信息科技有限公司，并保留所有权利。
  * 网站地址: http://www.ecshop.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
@@ -45,7 +45,7 @@ if (isset($set_modules) && $set_modules == TRUE)
     $modules[$i]['is_online']  = '1';
 
     /* 作者 */
-    $modules[$i]['author']  = 'YNDTH TEAM';
+    $modules[$i]['author'] = 'ECSHOP TEAM';
 
     /* 网址 */
     $modules[$i]['website'] = 'http://www.alipay.com';
@@ -79,16 +79,16 @@ class alipay
      * @return void
      */
 
-	/* 代码修改_start  By  www.68ecshop.com */
+    /* 代码修改_start  By  www.xunmai.cc */
     function __construct()
     {
         $this->alipay();
     }
 
-	 function alipay()
+    function alipay()
     {
     }
-	/* 代码修改_end  By  www.68ecshop.com */
+    /* 代码修改_end  By  www.xunmai.cc */
 
     /**
      * 生成支付代码

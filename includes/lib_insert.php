@@ -582,12 +582,15 @@ function insert_apply_supplier($user){
 		$company_type = explode("\n", str_replace("\r\n", "\n", $_CFG['company_type']));
 		$GLOBALS['smarty']->assign('company_type', $company_type);
     }elseif($shownum == 3){
-    	$sql="select rank_id,rank_name from ". $GLOBALS['ecs']->table('supplier_rank') ." order by sort_order";
+        $sql = "select rank_id,rank_name,rank_money from " . $GLOBALS['ecs']->table('supplier_rank') . " order by sort_order";
 		$supplier_rank=$GLOBALS['db']->getAll($sql);
 		$GLOBALS['smarty']->assign('supplier_rank', $supplier_rank);
 		$sql="select str_id,str_name from ". $GLOBALS['ecs']->table('street_category') ." where is_show=1 order by sort_order";
 		$supplier_type=$GLOBALS['db']->getAll($sql);
 		$GLOBALS['smarty']->assign('supplier_type', $supplier_type);
+        $sql = "select * from " . $GLOBALS['ecs']->table('article') . " where cat_id=23";
+        $article_list = $GLOBALS['db']->getAll($sql);
+        $GLOBALS['smarty']->assign('article_list', $article_list);
     }elseif($shownum == 5){
     	/**/
     	$supplier_country = $supplier['country'] ?  $supplier['country'] : $_CFG['shop_country'];
