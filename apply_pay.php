@@ -83,7 +83,7 @@ function action_default()
     $smarty = $GLOBALS['smarty'];
     $position = assign_ur_here(0, $_LANG['apply_pay']);
     $smarty->assign('page_title', $position['title']); // 页面标题
-    ini_set('display_errors', 1);
+    //ini_set('display_errors', 1);
     $rank_id = isset($_REQUEST['r']) && $_REQUEST['r'] != 0 ? $_REQUEST['r'] : 0;
     if ($rank_id == 0) {
         show_message($_LANG['rank_error'], '', 'apply.php');
