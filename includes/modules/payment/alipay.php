@@ -110,7 +110,8 @@ class alipay
 
         switch ($real_method){
             case '0':
-                $service = 'trade_create_by_buyer';
+                //$service = 'trade_create_by_buyer';
+                $service = 'create_partner_trade_by_buyer';
                 break;
             case '1':
                 $service = 'create_partner_trade_by_buyer';
