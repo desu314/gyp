@@ -180,7 +180,9 @@ class alipay
         }
         $payment  = get_payment($_GET['code']);
         $seller_email = rawurldecode($_GET['seller_email']);
-        $order_sn = str_replace($_GET['subject'], '', $_GET['out_trade_no']);
+        //$order_sn = str_replace($_GET['subject'], '', $_GET['out_trade_no']);
+        $search = '`'. preg_quote($_GET['subject'], '`'). '`';
+        $order_sn = preg_replace($search, '', $_GET['out_trade_no'], 1);
         $order_sn = trim($order_sn);
 
         /* 检查数字签名是否正确 */
@@ -200,13 +202,11 @@ class alipay
         //$sign = substr($sign, 0, -1) . ALIPAY_AUTH;
         if (md5($sign) != $_GET['sign'])
         {
-            return 'aa';
             return false;
         }
         /* 检查支付的金额是否相符 */
         if (!check_money($order_sn, $_GET['total_fee']))
         {
-            return 'bb';
             return false;
         }
         if ($_GET['trade_status'] == 'WAIT_SELLER_SEND_GOODS')
@@ -232,7 +232,6 @@ class alipay
         }
         else
         {
-            return 'cc';
             return false;
         }
     }
