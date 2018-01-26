@@ -70,7 +70,7 @@ else
             include_once($plugin_file);
 
             $payment = new $pay_code();
-var_dump(@$payment->respond());die;
+            //var_dump(@$payment->respond());die;
             $msg     = (@$payment->respond()) ? $_LANG['pay_success'] : $_LANG['pay_fail'];
         }
         else
