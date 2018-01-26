@@ -200,11 +200,13 @@ class alipay
         //$sign = substr($sign, 0, -1) . ALIPAY_AUTH;
         if (md5($sign) != $_GET['sign'])
         {
+            return 'aa';
             return false;
         }
         /* 检查支付的金额是否相符 */
         if (!check_money($order_sn, $_GET['total_fee']))
         {
+            return 'bb';
             return false;
         }
         if ($_GET['trade_status'] == 'WAIT_SELLER_SEND_GOODS')
@@ -230,6 +232,7 @@ class alipay
         }
         else
         {
+            return 'cc';
             return false;
         }
     }
