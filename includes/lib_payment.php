@@ -278,10 +278,15 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
             elseif($pay_log['order_type'] == PAY_RANK)
             {
                 $sql = 'SELECT `id` FROM ' . $GLOBALS['ecs']->table('rank_account') .  " WHERE `id` = '$pay_log[order_id]' AND `is_paid` = 1  LIMIT 1";
-                $res_id=$GLOBALS['db']->getOne($sql);
-                if(empty($res_id))
+                $res_id = $GLOBALS['db']->getOne($sql);
+                $sql = 'select `user_id` from '. $GLOBALS['ecs']->table('rank_account') . " where `id` = '$pay_log[order_id]' limit 1";
+                $user_id = $GLOBALS['db']->getOne($sql);
+                if(empty($res_id) && !empty($user_id))
                 {
-                    /* 更新入驻商预付款的到款状态 */
+                    /* 更新入驻商表付款状态 */
+                    $sql = "UPDATE ".$GLOBALS['ecs']->table('supplier')." set is_pay = 1 where user_id = $user_id limit 1";
+                    $GLOBALS['db']->query($sql);
+                    /* 更新入驻商预付款的流水状态 */
                     $sql = 'UPDATE ' . $GLOBALS['ecs']->table('rank_account') .
                         " SET paid_time = '" .gmtime(). "', is_paid = 1" .
                         " WHERE id = '$pay_log[order_id]' LIMIT 1";
@@ -340,4 +345,14 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
     }
 }
 
+/**
+ * 查询是否缴费成功
+ * @ user_id  会员id
+ */
+function get_rank_paid($user_id)
+{
+    $sql = "select `is_pay` from ".$GLOBALS['ecs']->table('supplier')." where `user_id` = $user_id and `is_pay` = 1 limit 1";
+    $res = $GLOBALS['db']->getOne($sql);
+    return $res;
+}
 ?>
