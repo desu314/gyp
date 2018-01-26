@@ -86,8 +86,8 @@ function action_rank_pay()
     $ecs = $GLOBALS['ecs'];
     $user_id = $_SESSION['user_id'];
     $smarty->assign('lang', $_LANG);
-//ini_set('display_errors',1);
-    $amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0;
+    //ini_set('display_errors',1);
+    //$amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0;
 
     if ($_POST['payment_id'] <= 0) {
         show_message($_LANG['rank_select_payment_pls'], '', 'apply_pay.php?r=' . $_POST['r']);
@@ -97,6 +97,11 @@ function action_rank_pay()
     // 获取支付方式名称
     $payment_info = array();
     $payment_info = payment_info($_POST['payment_id']);
+    $rank['payment'] = $payment_info['pay_name'];
+    $rank['rank_id'] = $_POST['r'];
+    $rank['user_id'] = $user_id;
+    $sql = "select rank_money from " . $GLOBALS['ecs']->table('supplier_rank') . " where rank_id=".$_POST['r'];
+    $amount = $GLOBALS['db']->getOne($sql);
     if ($payment_info['pay_code'] == 'alipay_bank') {
         $rank['defaultbank'] = isset($_POST['www_68ecshop_com_bank']) ? trim($_POST['www_68ecshop_com_bank']) : '';
     }

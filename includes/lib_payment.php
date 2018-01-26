@@ -275,6 +275,19 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
 				   }
                 }
             }
+            elseif($pay_log['order_type'] == PAY_RANK)
+            {
+                $sql = 'SELECT `id` FROM ' . $GLOBALS['ecs']->table('rank_account') .  " WHERE `id` = '$pay_log[order_id]' AND `is_paid` = 1  LIMIT 1";
+                $res_id=$GLOBALS['db']->getOne($sql);
+                if(empty($res_id))
+                {
+                    /* 更新入驻商预付款的到款状态 */
+                    $sql = 'UPDATE ' . $GLOBALS['ecs']->table('rank_account') .
+                        " SET paid_time = '" .gmtime(). "', is_paid = 1" .
+                        " WHERE id = '$pay_log[order_id]' LIMIT 1";
+                    $GLOBALS['db']->query($sql);
+                }
+            }
         }
         else
         {
