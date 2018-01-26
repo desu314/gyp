@@ -57,15 +57,28 @@
           <tr>
             <th><i>*</i>店铺等级：</th>
             <td>
-	    <select name="rank_id" size=1>
+	        <select name="rank_id" size=1>
                 <option value="0">请选择</option>
 		 {foreach from=$supplier_rank item=rank}
                 <option value="{$rank.rank_id}" {if $supplier.rank_id eq $rank.rank_id}selected{/if}>{$rank.rank_name}</option>
 		  {/foreach}
               </select>
+              <!--新增会员费代码start01-->
+                <input type="button" value="充值会员费" id="userMoney" onclick=userMoneyShow() />
+              <!--新增会员费代码end01-->
               <span></span>
               <div id="grade_explain" class="grade_explain"></div></td>
           </tr>
+          <!--新增会员费代码start02-->
+              <tr>
+                <th>店铺优势：</th>
+                <td>
+                    {foreach from=$article_list item=article}
+                        <p><a href="article.php?id={$article.article_id}" target="_blank">《{$article.title}》</a></p>
+                    {/foreach}
+                </td>
+              </tr>
+          <!--新增会员费代码end02-->
           <tr>
             <th><i>*</i>店铺分类：</th>
             <td> <select name="type_id" size=1>
@@ -119,5 +132,12 @@ function supplier_Reg()
 	{
 		return true;
 	}
+}
+
+function userMoneyShow()
+{
+    var frm = document.forms['form_company_info'];
+    var r = frm.elements['rank_id'].value;
+    window.open("apply_pay.php?r="+r);
 }
 </script>
