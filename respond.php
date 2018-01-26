@@ -52,7 +52,7 @@ else
         $_GET[$arr2[0]]     = $arr2[1];
         $pay_code           = $arr1[0];
     }
-echo $pay_code;die;
+
     /* 判断是否启用 */
     $sql = "SELECT COUNT(*) FROM " . $ecs->table('payment') . " WHERE pay_code = '$pay_code' AND enabled = 1";
     if ($db->getOne($sql) == 0)
@@ -70,6 +70,7 @@ echo $pay_code;die;
             include_once($plugin_file);
 
             $payment = new $pay_code();
+var_dump(@$payment->respond());die;
             $msg     = (@$payment->respond()) ? $_LANG['pay_success'] : $_LANG['pay_fail'];
         }
         else
