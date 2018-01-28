@@ -289,7 +289,12 @@ if(isset($_POST['do']) && $_POST['do']){
 		$save['type_id'] = isset($_POST['type_id']) ? intval($_POST['type_id']) : 0; 
 		
 		$save['applynum'] = 3;//店铺信息设置
-		
+		//查询是否缴费成功
+		include_once(ROOT_PATH . 'includes/lib_payment.php');
+		$is_paid = get_rank_paid($userid);
+		if(empty($is_paid)){
+			show_message('请先缴纳会员费！', '返回', 'apply.php');
+		}
 		//必填项验证
 		$save1 = array_filter($save);
 		if(count($save1)!=count($save)){

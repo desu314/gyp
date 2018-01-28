@@ -18,59 +18,30 @@ define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require_once(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/apply_pay.php');
 
-if ((DEBUG_MODE & 2) != 2) {
-    $smarty->caching = true;
-}
-
+$_LANG = $GLOBALS['_LANG'];
 $user_id = $_SESSION['user_id'];
 $action = isset($_REQUEST['act']) ? trim($_REQUEST['act']) : 'default';
+
+/* 未登录处理 */
+if (empty($_SESSION['user_id'])) {
+    $function_name = 'login';
+    call_user_func($function_name);
+}
 
 /* 路由 */
 
 $function_name = 'action_' . $action;
-
 if (!function_exists($function_name)) {
     $function_name = "action_default";
 }
-
 call_user_func($function_name);
 
 /* 路由 */
 
-/* 未登录处理 */
-if (empty($_SESSION['user_id']) && $action != 're_validate_email' && $action != 'valid_email') {
-    if (!in_array($action, $not_login_arr)) {
-        if (in_array($action, $ui_arr)) {
-            /*
-             * 如果需要登录,并是显示页面的操作，记录当前操作，用于登录后跳转到相应操作
-             * if ($action == 'login')
-             * {
-             * if (isset($_REQUEST['back_act']))
-             * {
-             * $back_act = trim($_REQUEST['back_act']);
-             * }
-             * }
-             * else
-             * {}
-             */
-            $query_string = $_SERVER['QUERY_STRING'];
-            if (!empty($query_string)) {
-                if (strpos($query_string, 'findPwd.php') != false) {
-                    $query_string = 'index.php';
-                }
-                $back_act = 'user.php?' . strip_tags($query_string);
-            }
-            $action = 'login';
-        } else {
-            // 未登录提交数据。非正常途径提交数据！
-            // die($_LANG['require_login']);
-            show_message($_LANG['require_login'], array(
-                '</br>登录', '</br>返回首页'
-            ), array(
-                'user.php?act=login', $ecs->url()
-            ), 'error', false);
-        }
-    }
+function login()
+{
+    $_LANG = $GLOBALS['_LANG'];
+    show_message($_LANG['rank_require_login'],'','user.php?act=login');
 }
 
 
@@ -83,7 +54,7 @@ function action_default()
     $smarty = $GLOBALS['smarty'];
     $position = assign_ur_here(0, $_LANG['apply_pay']);
     $smarty->assign('page_title', $position['title']); // 页面标题
-    ini_set('display_errors', 1);
+    //ini_set('display_errors', 1);
     $rank_id = isset($_REQUEST['r']) && $_REQUEST['r'] != 0 ? $_REQUEST['r'] : 0;
     if ($rank_id == 0) {
         show_message($_LANG['rank_error'], '', 'apply.php');
@@ -115,8 +86,8 @@ function action_rank_pay()
     $ecs = $GLOBALS['ecs'];
     $user_id = $_SESSION['user_id'];
     $smarty->assign('lang', $_LANG);
-//ini_set('display_errors',1);
-    $amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0;
+    //ini_set('display_errors',1);
+    //$amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0;
 
     if ($_POST['payment_id'] <= 0) {
         show_message($_LANG['rank_select_payment_pls'], '', 'apply_pay.php?r=' . $_POST['r']);
@@ -126,6 +97,11 @@ function action_rank_pay()
     // 获取支付方式名称
     $payment_info = array();
     $payment_info = payment_info($_POST['payment_id']);
+    $rank['payment'] = $payment_info['pay_name'];
+    $rank['rank_id'] = $_POST['r'];
+    $rank['user_id'] = $user_id;
+    $sql = "select rank_money from " . $GLOBALS['ecs']->table('supplier_rank') . " where rank_id=".$_POST['r'];
+    $amount = $GLOBALS['db']->getOne($sql);
     if ($payment_info['pay_code'] == 'alipay_bank') {
         $rank['defaultbank'] = isset($_POST['www_68ecshop_com_bank']) ? trim($_POST['www_68ecshop_com_bank']) : '';
     }

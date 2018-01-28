@@ -110,7 +110,8 @@ class alipay
 
         switch ($real_method){
             case '0':
-                $service = 'trade_create_by_buyer';
+                //$service = 'trade_create_by_buyer';
+                $service = 'create_partner_trade_by_buyer';
                 break;
             case '1':
                 $service = 'create_partner_trade_by_buyer';
@@ -179,7 +180,9 @@ class alipay
         }
         $payment  = get_payment($_GET['code']);
         $seller_email = rawurldecode($_GET['seller_email']);
-        $order_sn = str_replace($_GET['subject'], '', $_GET['out_trade_no']);
+        //$order_sn = str_replace($_GET['subject'], '', $_GET['out_trade_no']);
+        $search = '`'. preg_quote($_GET['subject'], '`'). '`';
+        $order_sn = preg_replace($search, '', $_GET['out_trade_no'], 1);
         $order_sn = trim($order_sn);
 
         /* 检查数字签名是否正确 */
