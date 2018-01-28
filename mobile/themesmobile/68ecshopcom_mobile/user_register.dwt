@@ -17,7 +17,7 @@
 <body style="background:#f2f2f2">
 	<header id="header" class='header'>
 	<div class="h-left"><a href="javascript:history.back(-1)" class="back"></a></div>
-    <div class="h-mid">用户注册</div>
+    <div class="h-mid">111用户注册</div>
      </header>
 	<div id="tbh5v0">
 			<!-- {if $shop_reg_closed eq 1} -->

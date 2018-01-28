@@ -35,3 +35,10 @@ themes/ecmoban_kaola2016/*
 
 33$goodslist$goodslist$goodslist.txt
 data/supplier/*
+
+#产品图片文件
+data/afficheimg/*
+mobile/data/afficheimg/*
+data/flashdata/*
+data/flash_data.xml
+data/flashdata/default/data.xml
