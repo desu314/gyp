@@ -101,7 +101,7 @@ window.setTimeout( "run()", 2000 );
 </div>
 <!---推荐品牌--->
 <div class="brand">
-<h4><span>{$lang.index_brand}</span><i><a href="brand.php">更多</a></i></h4>
+<!--h4><span>{$lang.index_brand}</span><i><a href="brand.php">更多</a></i></h4-->
 <dl>
  <!-- TemplateBeginEditable name="首页品牌左侧广告" -->
 <!-- #BeginLibraryItem "/library/ad_position.lbi" -->
