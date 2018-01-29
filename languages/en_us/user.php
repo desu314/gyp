@@ -434,6 +434,8 @@ $_LANG['email_exist'] = '%s already exists.';
 $_LANG['email_not_allow'] = 'Email %s not allow';
 $_LANG['register'] = 'Register.';
 $_LANG['register_success'] = '%s register successfully.';
+$_LANG['register_template'] = 'your verification code is %s. For account safety, don\'t forward the code to others.';//越南短信验证码模版
+
 
 $_LANG['passwd_question'] = 'Password Question';
 $_LANG['sel_question'] = 'Please choose a password prompt problem';

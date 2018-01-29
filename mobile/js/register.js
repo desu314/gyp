@@ -882,7 +882,8 @@ function checkMobilePhoneExist(mobile, callback) {
 		mobile: mobile
 	}, function(result) {
 
-		if (result == 'false') {
+        result = result.replace(/(^\s*)|(\s*$)/g, "");
+        if (result == 'false') {
 			document.getElementById('mobile_phone_notice').innerHTML = "";
 			//document.getElementById('mobile_phone_notice').style.color = '#093';
 			// document.forms['formUser'].elements['Submit'].disabled = '';
