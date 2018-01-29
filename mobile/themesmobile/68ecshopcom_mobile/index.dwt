@@ -14,7 +14,7 @@
 </head>
 <body>
 {insert name='share'}{insert name='add_url_uid'}
-<div class="body_bj">
+<div-- class="body_bj">
 <!--网站头部-->
 <header id="header"> <!-- #BeginLibraryItem "/library/page_header.lbi" --> <!-- #EndLibraryItem --> </header>
 <!--banner--> 
@@ -99,31 +99,34 @@ window.setTimeout( "run()", 2000 );
 </li>
 </ul>
 </div>
+
+
 <!---推荐品牌--->
-<div class="brand">
+<!--div class="brand"-->
 <!--h4><span>{$lang.index_brand}</span><i><a href="brand.php">更多</a></i></h4-->
-<dl>
+<!--dl-->
  <!-- TemplateBeginEditable name="首页品牌左侧广告" -->
 <!-- #BeginLibraryItem "/library/ad_position.lbi" -->
-{insert name=ads id=$ads_id num=$ads_num}
+<!--{insert name=ads id=$ads_id num=$ads_num}-->
  <!-- #EndLibraryItem -->
 <!-- TemplateEndEditable --> 
-</dl>
-<ul>
+<!--/dl-->
+<!--ul-->
 <!-- TemplateBeginEditable name="首页推荐品牌" -->
 <!-- #BeginLibraryItem "/library/brands.lbi" -->
-
+<!--
 {if $brand_list}
 {foreach from=$brand_list item=brand name=brand}
 {if $smarty.foreach.brand.iteration < 7}
 <li class="image"><a href="{$brand.url}" title="{$brand.brand_name|escape:html}"><img src="{$brand.brand_logo}" alt="{$brand.brand_name|escape:html}"/></a></li>
 {/if}
 {/foreach}
-{/if}
+{/if}-->
  <!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
-</ul>
-</div>
+<!--/ul>
+</div-->
+
 
 <!--促销商品-->
 <!-- TemplateBeginEditable name="首页促销模块" -->
