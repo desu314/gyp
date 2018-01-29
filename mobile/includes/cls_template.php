@@ -285,7 +285,7 @@ class cls_template
             $source = $this->smarty_prefilter_preCompile($source);
         }
         $source = preg_replace("/<\?[^><]+\?>|<\%[^><]+\%>|<script[^>]+language[^>]*=[^>]*php[^>]*>[^><]*<\/script\s*>/iU", "", $source);
-        return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this->select($r[1]); }, $source);
+        return preg_replace("/{([^\}\{\n]*)}/e", "\$this->select('\\1');", $source);
     }
 
     /**
@@ -403,9 +403,7 @@ class cls_template
         }
         else
         {
-            //$tag_sel = array_shift(explode(' ', $tag));
-            $tagArr = explode(' ', $tag);
-            $tag_sel = array_shift($tagArr);
+            $tag_sel = array_shift(explode(' ', $tag));
             switch ($tag_sel)
             {
                 case 'if':
@@ -535,8 +533,7 @@ class cls_template
     {
         if (strrpos($val, '[') !== false)
         {
-            //$val = preg_replace("/\[([^\[\]]*)\]/eis", "'.'.str_replace('$','\$','\\1')", $val);
-            $val = preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this->select($r[1]); }, $val);
+            $val = preg_replace("/\[([^\[\]]*)\]/eis", "'.'.str_replace('$','\$','\\1')", $val);
         }
 
         if (strrpos($val, '|') !== false)
@@ -1053,10 +1050,9 @@ class cls_template
         if ($file_type == '.dwt')
         {
             /* 将模板中所有library替换为链接 */
-            $pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/s';
+            $pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/se';
             $replacement = "'{include file='.strtolower('\\1'). '}'";
-            //$source      = preg_replace($pattern, $replacement, $source);
-            $source      = preg_replace_callback($pattern, function($r) { return $this->select($r[1]); }, $source);
+            $source      = preg_replace($pattern, $replacement, $source);
 
             /* 检查有无动态库文件，如果有为其赋值 */
             $dyna_libs = get_dyna_libs($GLOBALS['_CFG']['template'], $this->_current_file);
