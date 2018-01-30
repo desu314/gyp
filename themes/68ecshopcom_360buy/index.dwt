@@ -36,17 +36,17 @@ var select_spe = "{$lang.select_spe}";
 			<!-- #BeginLibraryItem "/library/recommend_right_promotion.lbi" --><!-- #EndLibraryItem -->	
             <div class="proclamation">
 					<ul class="tabs-nav">
-                    	<li class="tabs-selected">
+                    	<li>
 							<h3>商城公告</h3>
 						</li>
-						<li>
+						<li class="tabs-selected">
 							<h3>招商入驻</h3>
 						</li>
 					</ul>
                     <!-- TemplateBeginEditable name="首页主广告右侧公告" -->
 <!-- #BeginLibraryItem "/library/cat_articles.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
-					<div class="tabs-panel tabs-hide">
+					<div class="tabs-panel">
 						<a href="apply_index.php" title="申请商家入驻；已提交申请，可查看当前审核状态。" class="store-join-btn" target="_blank">&nbsp;</a>
 						<a href="supplier" target="_blank" class="store-join-help">
 							<i class="icon-cog"></i>
