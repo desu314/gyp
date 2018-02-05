@@ -29,6 +29,7 @@
 .fen_img a em{ display:block; width:90%; height:30px; margin:auto; text-align:center;font-size:14px; color:#999; line-height:30px;}
 
 .fen{width:33.3%;float:left; overflow:hidden;text-align:left;margin-bottom:5px; }
-.fen a{display:block; width:90%; height:35px; line-height:35px; border:1px solid #e5e5e5; text-align:center;font-size:14px; color:#999; background:#FFF; margin:auto}
+.fen a{display: block;  width: 90%;  height: 35px;  line-height: 35px;  border: 1px solid #e5e5e5;  text-align: center;  font-size: 14px;  color: #f5f5f5;  background: -webkit-gradient( linear, left top, left bottom, color-stop(8%, #79bbff), color-stop(181%, #547ecd) );
+ border-radius: 8px;    margin: auto;}
 
-.all{ display:block; width:97%; height:35px; background:#E71F19; font-size:14px; line-height:35px; text-align:center;  margin:auto;margin-bottom:10px; border-radius:3px; margin-top:10px;}
+.all{ display:block; width:97%; height:35px; background:#69a2ea; font-size:14px; line-height:35px; text-align:center;  margin:auto;margin-bottom:10px; border-radius:8px; margin-top:10px;}
