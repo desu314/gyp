@@ -14,6 +14,8 @@ admin/images/*
 /temp/query_caches/*
 /temp/static_caches/*
 /temp/index.htm
+qrcode.png
+supplier.png
 
 #mobile 缓存文件
 /mobile/supplier/temp/caches/*

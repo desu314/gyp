@@ -16,9 +16,13 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
-/* 代码增加 by www.68ecshop.com strat */
+/* 代码增加 by www.yndth.cn strat */
 require(dirname(__FILE__) . '/includes/lib_comment.php');
-/* 代码增加 by www.68ecshop.com end */
+include(ROOT_PATH . 'languages/'.$_CFG['lang'].'/shipping/good.php');
+$smarty->assign('lang',$_LANG);
+
+
+/* 代码增加 by www.yndth.cn end */
 if ((DEBUG_MODE & 2) != 2)
 {
     $smarty->caching = true;
@@ -74,7 +78,7 @@ elseif (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'get_pickup_point_list')
 $goods_id = isset($_REQUEST['id'])  ? intval($_REQUEST['id']) : 0;
 
 
-/* 代码增加_start  By  www.68ecshop.com */
+/* 代码增加_start  By  www.yndth.cn */
 $path_name = isset($_REQUEST['path_name'])  ? trim($_REQUEST['path_name']) : '';
 if($path_name)
 {
@@ -86,10 +90,10 @@ if($path_name)
 		exit;
 	}
 }
-/* 代码增加_end  By  www.68ecshop.com */
+/* 代码增加_end  By  www.yndth.cn */
 
 
-/* 代码增加_start By  www.ecshop68.com */
+/* 代码增加_start By  www.yndth.cn */
 $sql_attr_www_ecshop68_com="SELECT a.attr_id, ga.goods_attr_id FROM ". $GLOBALS['ecs']->table('attribute') . " AS a left join ". $GLOBALS['ecs']->table('goods_attr') . "  AS ga on a.attr_id=ga.attr_id  WHERE a.is_attr_gallery=1 and ga.goods_id='" . $goods_id. "' order by ga.goods_attr_id ";
 $goods_attr=$GLOBALS['db']->getRow($sql_attr_www_ecshop68_com);
 if($goods_attr){
@@ -142,7 +146,7 @@ $row = get_products_info($goods_id,explode(",",$spce_id));
 die($json->encode($row));
 
 }
-/* 代码增加_end By  www.ecshop68.com */
+/* 代码增加_end By  www.yndth.cn */
 
 /*------------------------------------------------------ */
 //-- 改变属性、数量时重新计算商品价格
@@ -331,7 +335,21 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
     die($json->encode($res));
 }
 
+/**
+ * 商品询价处理
+ * 1:信息入库 建表
+ * 2:短信通知卖家联系用户
+ * @param name,tel,order,goodId
+ */
+if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'nowInquiry'){
+    //建议游客不可以咨询
+    include('includes/cls_json.php');
+    $json   = new JSON;
+    $res    = array('err_msg' => '', 'result' => '');
+    $params = checkEmpty($_REQUEST);//数据检查
+    //是否处理
 
+}
 /*------------------------------------------------------ */
 //-- PROCESSOR
 /*------------------------------------------------------ */
@@ -366,7 +384,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
     $smarty->assign('cfg',          $_CFG);
     $smarty->assign('promotion',       get_promotion_info($goods_id));//促销信息
     //$smarty->assign('promotion_info', get_promotion_info());
-/* 代码增加_start   By www.ecshop68.com */
+/* 代码增加_start   By www.yndth.cn */
 	$smarty->assign('shop_country',   $_CFG['shop_country']);
 	$sql = 'select region_id, region_name from ' . $ecs->table('region') . ' where parent_id=' . $_CFG['shop_country'];
 	$country_list = $GLOBALS['db']->getAll($sql);
@@ -375,16 +393,16 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 	$smarty->assign('city_id',        $city_id);
 	$district_id = $db->getOne('select region_id from ' . $ecs->table('region') . ' where parent_id=' . $city_id);
 	$smarty->assign('district_id',    $district_id);
-/* 代码增加_end   By www.ecshop68.com */
+/* 代码增加_end   By www.yndth.cn */
 	$pups = $db->getOne('select * from ' . $ecs->table('shipping') . ' where shipping_code="pups"');
     $smarty->assign('pups',    $pups);
-    /* 代码增加 By  www.68ecshop.com Start */
+    /* 代码增加 By  www.yndth.cn Start */
     $suppid = intval($_REQUEST['suppid']);
     $ppts = $GLOBALS['db']->getOne(
         'SELECT COUNT(*) FROM ' . $GLOBALS['ecs']->table('pickup_point') . ' WHERE supplier_id = ' . $suppid
     );
     $smarty->assign('ppts', $ppts);
-    /* 代码增加 By  www.68ecshop.com End */
+    /* 代码增加 By  www.yndth.cn End */
 	/* 获得商品的信息 */
     $goods = get_goods_info($goods_id);
     
@@ -401,7 +419,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
             $goods['goods_brand_url'] = build_uri('brand', array('bid'=>$goods['brand_id']), $goods['goods_brand']);
         }
 
-		/* 代码增加_start  By  www.68ecshop.com */
+		/* 代码增加_start  By  www.yndth.cn */
 		$goods['supplier_name'] ="网站自营";
 		 if ($goods['supplier_id'] > 0)
          {
@@ -411,7 +429,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 			 $goods['supplier_name']= $shopuserinfo['supplier_name'];
 			 get_dianpu_baseinfo($goods['supplier_id'],$shopuserinfo);
 		 }
-		/* 代码增加_end  By  www.68ecshop.com */
+		/* 代码增加_end  By  www.yndth.cn */
 
         $shop_price   = $goods['shop_price'];
         $linked_goods = get_linked_goods($goods_id);
@@ -517,7 +535,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('properties',          $properties['pro']);                              // 商品属性
 
 
-		/* 代码增加_start  By  www.ecshop68.com */	
+		/* 代码增加_start  By  www.yndth.cn */
 		$sql_zhyh_qq = "select attr_id from ".$ecs->table('attribute')." where cat_id='". $goods['goods_type'] ."' and is_attr_gallery='1' ";
 		$attr_id_gallery = $db->getOne($sql_zhyh_qq);
 		
@@ -575,7 +593,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 		}
 		$smarty->assign('is_goods_page', 1);
 
-		/* 代码增加_end  By  www.ecshop68.com */
+		/* 代码增加_end  By  www.yndth.cn */
 
 		$smarty->assign('promotion',       get_promotion_info($goods_id,$goods['supplier_id']));//促销信息
         $smarty->assign('specification',       $properties['spe']);                              // 商品规格
@@ -585,8 +603,8 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         $smarty->assign('goods_article_list',  get_linked_articles($goods_id));                  // 关联文章
         $smarty->assign('fittings',            get_goods_fittings(array($goods_id)));                   // 配件
         $smarty->assign('rank_prices',         get_user_rank_prices($goods_id, $shop_price));    // 会员等级价格
-		$smarty->assign('pictures',            get_goods_gallery_attr_www_ecshop68_com($goods_id, $goods_attr_id)); // 商品相册_修改 By www.ecshop68.com
-		$smarty->assign('new_goods',           get_recommend_goods('new'));     // 最新商品  改 By www.ecshop68.com
+		$smarty->assign('pictures',            get_goods_gallery_attr_www_ecshop68_com($goods_id, $goods_attr_id)); // 商品相册_修改 By www.yndth.cn
+		$smarty->assign('new_goods',           get_recommend_goods('new'));     // 最新商品  改 By www.yndth.cn
         $smarty->assign('bought_goods',        get_also_bought($goods_id));                      // 购买了该商品的用户还购买了哪些商品
         $smarty->assign('goods_rank',          get_goods_rank($goods_id));                       // 商品的销售排名
 		$smarty->assign('best_goods',          get_recommend_goods('best',$goods['supplier_id']));     				 // 最新商品
@@ -625,10 +643,10 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
         //获取关联礼包
         $package_goods_list = get_package_goods_list($goods['goods_id']);
         $smarty->assign('package_goods_list',$package_goods_list);    // 获取关联礼包
-		/* 代码增加_start By www.ecshop68.com */
+		/* 代码增加_start By www.yndth.cn */
 		$package_goods_list_ecshop = get_package_goods_list_ecshop($goods['goods_id']);
         $smarty->assign('package_goods_list_ecshop',$package_goods_list_ecshop);    // 获取关联礼包
-		/* 代码增加_end By www.ecshop68.com */
+		/* 代码增加_end By www.yndth.cn */
 
         assign_dynamic('goods');
         $volume_price_list = get_volume_price_list($goods['goods_id'], '1');
@@ -636,7 +654,7 @@ if (!$smarty->is_cached('goods.dwt', $cache_id))
 		
 		
 		
-		//评价晒单 增加 by www.68ecshop.com
+		//评价晒单 增加 by www.yndth.cn
 		$rank_num['rank_a'] = $db->getOne("SELECT COUNT(*) AS num FROM ".$ecs->table('comment')." WHERE id_value = '$goods_id' AND status = 1 AND comment_rank in (5,4)");
 		$rank_num['rank_b'] = $db->getOne("SELECT COUNT(*) AS num FROM ".$ecs->table('comment')." WHERE id_value = '$goods_id' AND status = 1 AND comment_rank in (3,2)");
 		$rank_num['rank_c'] = $db->getOne("SELECT COUNT(*) AS num FROM ".$ecs->table('comment')." WHERE id_value = '$goods_id' AND status = 1 AND comment_rank = 1");
@@ -1120,7 +1138,7 @@ function get_dianpu_baseinfo($suppid=0,$suppinfo){
     $smarty->assign('userrank',        htmlspecialchars($suppinfo['rank_name']));//商家等级
    	$smarty->assign('region', get_province_city($_goods_attr['shop_province'],$_goods_attr['shop_city']));
 	$smarty->assign('address', $_goods_attr['shop_address']);
-    /* 代码修改 By  www.68ecshop.com Start */
+    /* 代码修改 By  www.yndth.cn Start */
     $_goods_attr['qq'] = explode(',', $_goods_attr['qq']);
     $_goods_attr['ww'] = explode(',', $_goods_attr['ww']);
     
@@ -1152,7 +1170,7 @@ function get_dianpu_baseinfo($suppid=0,$suppinfo){
 	    }
 		$smarty->assign('serviceww', $arr_ww);
 	}
-    /* 代码修改 By  www.68ecshop.com End */
+    /* 代码修改 By  www.yndth.cn End */
 	$smarty->assign('serviceemail', $_goods_attr['service_email']);
 	$smarty->assign('servicephone', $_goods_attr['service_phone']);
     $smarty->assign('createtime',      gmdate('Y-m-d',$suppinfo['add_time']));//商家创建时间
@@ -1164,7 +1182,7 @@ function get_dianpu_baseinfo($suppid=0,$suppinfo){
 	//代码增加 
     $suppid = (intval($suppid)>0) ? intval($suppid) : intval($_GET['suppId']);
 }
-/* 代码增加_start By www.ecshop68.com */
+/* 代码增加_start By www.yndth.cn */
 /**
  * 获得指定商品的相册
  *
@@ -1204,7 +1222,7 @@ function get_goods_gallery_attr_www_ecshop68_com($goods_id, $goods_attr_id)
     return array_values($ret);
 }
 
-/* 代码增加_end By www.ecshop68.com */
+/* 代码增加_end By www.yndth.cn */
 
 /**
  * 获取相关属性的库存
@@ -1281,7 +1299,7 @@ function get_goods_attr_value($goodsid,$name='goods_sn,goods_name')
 	$row = $GLOBALS['db']->getRow($sql);
 	return $row;
 }
-/* 代码增加_start  By www.ecshop68.com */
+/* 代码增加_start  By www.yndth.cn */
 function get_package_goods_list_ecshop($goods_id)
 {
 	$now = gmtime();
@@ -1391,7 +1409,7 @@ function get_package_goods_list_ecshop($goods_id)
 		{
 			$goods_res[$key]['rank_price_zk']=$val['rank_price'] * $zhekou;
 			$goods_res[$key]['rank_price_zk_format']= price_format($goods_res[$key]['rank_price_zk']);
-            /* 代码增加 By  www.68ecshop.com Start */
+            /* 代码增加 By  www.yndth.cn Start */
             if(isset($val['goods_attr_price']))
             {
                 $goods_res[$key]['rank_price_format'] = price_format($val['rank_price'] + $val['goods_attr_price']);
@@ -1402,7 +1420,7 @@ function get_package_goods_list_ecshop($goods_id)
                 $goods_res[$key]['rank_price_format']= price_format($val['rank_price']);
                 $subtotal += $val['rank_price'];
             }
-            /* 代码增加 By  www.68ecshop.com End */
+            /* 代码增加 By  www.yndth.cn End */
         }
 
         $res[$tempkey]['goods_list']    = $goods_res;
@@ -1426,7 +1444,7 @@ function get_mark_price($goods_id)
 }
 
 
-/* 代码增加_start  By www.ecshop68.com */
+/* 代码增加_start  By www.yndth.cn */
 /*
  *
  *查询商品的优惠数量和价格 
@@ -1452,7 +1470,7 @@ function get_goods_volume($goods_id)
 }
 
 
-/* 代码增加_start  By  www.68ecshop.com */
+/* 代码增加_start  By  www.yndth.cn */
 make_html();
-/* 代码增加_end   By  www.68ecshop.com */
+/* 代码增加_end   By  www.yndth.cn */
 ?>
