@@ -403,12 +403,70 @@
                 </ul>
                <div class="buyNub-buy-wrap">
                 	<div id="choose-btns1" class="buyNub-buy" style="display:none"> 
-                    	<a onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>到货通知</a>
+                    	<a onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>{$lang.Arrival_Notice}</a>
                   	</div>
+                   <!--遮罩层-->
+                   <div class="bgPop"></div>
+                   <!--弹出框-->
+                   <div class="pop" style="display: block">
+                       <p style="font-size: 1.5em;margin: 3% auto">{$lang.Please_enter_the_following_information} <font size="0.5em">({$lang.keep_the_phone_unblocked})</font></p>
+                       <form id="inquiry_form" action="#" method="post">
+                           <table>
+                               <tr>
+                                   <td class="tdtitle">{$lang.name}</td>
+                                   <td><input type="text" class="text" name="name" id="iq_name"></td>
+                               </tr>
+                               <tr>
+                                   <td class="tdtitle">{$lang.phone}</td>
+                                   <td><input type="text" class="text"  name="tel" id="iq_tel" /></td>
+                               </tr>
+                               <tr>
+                                   <td class="tdtitle">{$lang.Priority_level}</td>
+                                   <td id="iq_order">
+                                       <input type="radio" name="order" value="1" class="radio" checked> {$lang.normal}
+                                       <input type="radio" name="order" value="2" class="radio"> {$lang.Urgent}
+                                       <input type="radio" name="order" value="3" class="radio"> {$lang.very_urgent}</td>
+                               </tr>
+                               <tr>
+                                   <td></td>
+                                   <td><input type="button" value="{$lang.is_cancel}" class="cancel"/>
+                                       <input type="button" value="{$lang.submit}" class="ok" id="now_inquiry"/></td>
+                               </tr>
+                           </table>
+                       </form>
+                       <script type="text/javascript">
+                           $("#now_inquiry").click(function () {
+                               //必要参数 act goodid name tel order 输入参数未验证
+                               var name,tel,order,goodId;
+                               goodId = {$goods.goods_id};
+                               name = $('#iq_name').val();
+                               tel =$('#iq_tel').val();
+                               order = $("#iq_order>[name='order']:checked").val();
+                               Ajax.call('goods.php', 'act=nowInquiry&id=' + goodsId + '&name =' + name + '&tel =' + tel + '&order ='+ order   , closeIquery() , 'post', 'JSON');
+                           });
+                           function closeIquery() {
+                               $('.bgPop,.pop').hide();
+                           }
+                       </script>
+                   </div>
                   	<div id="choose-btns" class="buyNub-buy"> 
                         <!--{if $goods_n>0}--> 
-                        <a href="javascript:addToCart({$goods.goods_id},0,1)" name="bi_addToCart" class="u-buy1">立即购买</a> <a href="javascript:addToCart({$goods.goods_id})" name="bi_addToCart" class="u-buy2">加入购物车</a> 
-                        <!-- {else}--> 
+                        <a href="javascript:addToCart({$goods.goods_id},0,1)" name="bi_addToCart" class="u-buy1">立即购买</a>
+                        <a href="javascript:addToCart({$goods.goods_id})" name="bi_addToCart" class="u-buy2">加入购物车</a>
+                        <a href="javascritp:void(0)" name="bi_addToCart" class="u-buy2" id="now_inquiry_button">{$lang.Now_inquiry}</a>
+                        <script type="text/javascript">
+                            //展示询价表单
+                            $(function () {
+                                $('#now_inquiry_button').click(function () {
+                                    $('.bgPop,.pop').show();
+                                });
+                                $('.cancel').click(function () {
+                                    $('.bgPop,.pop').hide();
+                                });
+                            });
+
+                        </script>
+                        <!-- {else}-->
                         <a onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>到货通知</a>
                         <!-- {/if}--> 
                         <a id="phone" class="btn-phone" style="position:relative;cursor:pointer">

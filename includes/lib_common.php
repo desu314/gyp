@@ -4626,4 +4626,43 @@ function qSendSms($content, $mobile, $mobile_prefix="86", $tempId="", $tempParam
         return $e;
     }
 }
+
+/**
+ * 检查参数是否为空,可以传入不为空字段
+ * @param $params
+ * @param string $type
+ * @param array $unckeck
+ * @return array
+ */
+function checkEmpty($params,$type='',$unckeck=array()){
+    if(!empty($params)){
+        unset($params['act']);
+        $result = array();
+        if($type=='json'){
+            //转换为数组,循环验证是否为空
+            $params = json_decode($params);
+            foreach ($params as $key=>$val) {
+                if(empty($params[$key])){
+                    return $result;
+                }else{
+                    if(is_string($params[$key])){
+                        $result[$key] = htmlspecialchars($val);
+                    }
+                    $result[$key] = $val;
+                }
+            }
+            return $result;
+        }else{
+            //循环验证是否为空
+            foreach ($params as $key=>$val) {
+                if(empty($params[$key])){
+                    return $result;
+                }else{
+                    $result[$key] = $val;
+                }
+            }
+            return $result;
+        }
+    }
+}
 ?>

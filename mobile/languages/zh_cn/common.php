@@ -94,6 +94,7 @@ $_LANG['drop'] = '删除';
 $_LANG['view'] = '查看';
 $_LANG['modify'] = '修改';
 $_LANG['is_cancel'] = '取消';
+$_LANG['submit'] = '提交';
 $_LANG['amend_amount'] = '修改数量';
 $_LANG['end'] = '结束';
 $_LANG['require_field'] = '(必填)';
