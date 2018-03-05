@@ -408,7 +408,7 @@
                    <!--遮罩层-->
                    <div class="bgPop"></div>
                    <!--弹出框-->
-                   <div class="pop" style="display: block">
+                   <div class="pop">
                        <p style="font-size: 1.5em;margin: 3% auto">{$lang.Please_enter_the_following_information} <font size="0.5em">({$lang.keep_the_phone_unblocked})</font></p>
                        <form id="inquiry_form" action="#" method="post">
                            <table>
@@ -436,17 +436,19 @@
                        </form>
                        <script type="text/javascript">
                            $("#now_inquiry").click(function () {
-                               //必要参数 act goodid name tel order 输入参数未验证
-                               var name,tel,order,goodId;
-                               goodId = {$goods.goods_id};
+                               //询价 必要参数 act goodid name tel order 输入参数未验证
+                               var name,tel,order,goodsId;
+                               goodsId = {$goods.goods_id};
                                name = $('#iq_name').val();
                                tel =$('#iq_tel').val();
-                               order = $("#iq_order>[name='order']:checked").val();
-                               Ajax.call('goods.php', 'act=nowInquiry&id=' + goodsId + '&name =' + name + '&tel =' + tel + '&order ='+ order   , closeIquery() , 'post', 'JSON');
+                               priority = $("#iq_order>[name='order']:checked").val();
+                               Ajax.call('goods.php', 'act=nowInquiry&goodsid=' + goodsId + '&name=' + name + '&tel=' + tel + '&priority='+ priority +'&userId='+{$smarty.session.user_id}   , closeIquery , 'post', 'JSON');
                            });
-                           function closeIquery() {
+                           function closeIquery(result) {
+                               alert(result.result);
                                $('.bgPop,.pop').hide();
                            }
+                           //询价回调处理函数
                        </script>
                    </div>
                   	<div id="choose-btns" class="buyNub-buy"> 

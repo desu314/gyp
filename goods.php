@@ -342,12 +342,42 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'gotopage')
  * @param name,tel,order,goodId
  */
 if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'nowInquiry'){
-    //建议游客不可以咨询
+    //游客不可以咨询
     include('includes/cls_json.php');
     $json   = new JSON;
     $res    = array('err_msg' => '', 'result' => '');
-    $params = checkEmpty($_REQUEST);//数据检查
-    //是否处理
+    $userid = intval($_REQUEST['userId']);
+    if($userid <= 0){
+        $result['result']='用户信息获取失败，请重新登陆!';
+        $result['err_msg']='1';
+    }else{
+        $params = checkEmpty($_REQUEST);//数据检查
+        $time = time();
+        $dateStr = date('Y-m-d', time());
+        $timestamp0 = strtotime($dateStr);
+//当日24点的时间
+        $timestamp24 = strtotime($dateStr) + 86400;
+        //检查是否存在未处理的询价单
+        $sql = "select id from nowinquiry WHERE user_id=".$userid." and good_id=".$params['goodsid']." and status=0"." and 
+priority=".$params['priority']." and tel=".$params['tel']." and date BETWEEN $timestamp0 and $timestamp24";
+        if($db->getOne($sql)){
+            $result['result']='当日不可重复询价!';
+            $result['err_msg']='1';
+        }else{
+            $sql = "insert into nowinquiry (user_id,good_id,status,priority,tel,date) values ('$userid','$params[goodsid]','0',
+'$params[priority]','$params[tel]','$time' )";
+            if(!$db->query($sql)){
+                $result['result']='提交失败,请稍后再试!';
+                $result['err_msg']='1';
+            }else{
+                //todo 发送短信提醒商家
+                $result['result'] = '询价申请已提交!稍后商家会主动与您联系!';
+                $result['err_msg']='0';
+            }
+        }
+
+    }
+    die($json->encode($result));
 
 }
 /*------------------------------------------------------ */
