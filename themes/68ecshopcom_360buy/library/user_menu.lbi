@@ -2,7 +2,8 @@
 <div class="navList">
       <div class="func func1 clearfix">
         <p class="title"><i></i><span>会员中心</span></p>
-        <a href="user.php" class="item {if $action eq 'default'}curs{/if}"><span>{$lang.label_welcome}</span><i></i></a> 
+        <a href="user.php" class="item {if $action eq 'default'}curs{/if}"><span>{$lang.label_welcome}</span><i></i></a>
+        <a href="user.php?act=apply_pay" class="item {if $action eq 'pay_view' || $action eq 'act_account_rank'}curs{/if}"><span>{$lang.label_pay}</span><i></i></a>
         <a href="user.php?act=profile" class="item {if $action eq 'profile'}curs{/if}"><span>{$lang.label_profile}</span><i></i></a>
         <a href="security.php" class="item {if $is_security eq 'true'}curs{/if}"><span>账户安全</span><i></i></a>    
         <a href="user.php?act=address_list" class="item {if $action eq 'address_list'}curs{/if}"><span>{$lang.label_address}</span><i></i></a>

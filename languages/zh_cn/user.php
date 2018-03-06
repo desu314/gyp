@@ -23,6 +23,7 @@ $_LANG['shot_message'] = "短消息";
 /* 用户菜单 */
 $_LANG['label_welcome'] = '欢迎页';
 $_LANG['label_profile'] = "用户信息";
+$_LANG['label_pay'] = '缴纳会员费';
 $_LANG['label_order'] = '我的订单';
 $_LANG['label_address'] = '收货地址';
 $_LANG['label_message'] = '我的留言';
@@ -37,6 +38,23 @@ $_LANG['label_user_surplus'] = '资金管理';
 $_LANG['label_track_packages'] = '跟踪包裹';
 $_LANG['label_transform_points'] = '积分兑换';
 $_LANG['label_logout'] = '退出';
+
+/* 入驻商缴费 */
+$_LANG['pay_name'] = '名称';
+$_LANG['pay_desc'] = '描述';
+$_LANG['payment'] = '支付方式';
+$_LANG['apply_pay_title'] = '入驻商店铺缴费';
+$_LANG['apply_pay'] = '入驻商缴费';
+$_LANG['payment_money'] = '支付金额';
+$_LANG['submit_request_apply'] = '开始缴费';
+$_LANG['rank_error'] = '请选择一个店铺级别！';
+$_LANG['rank_level'] = '店铺等级';
+$_LANG['rank_surplus_amount'] = '您的缴费金额为：';
+$_LANG['rank_payment_name'] = '您选择的支付方式为：';
+$_LANG['rank_payment_fee'] = '支付手续费用为：';
+$_LANG['rank_payment_desc'] = '支付方式描述：';
+$_LANG['rank_require_login'] = '请先登录！';
+$_LANG['rank_select_payment_pls'] = '请选择一个支付方式';
 
 /* 会员余额(预付款) */
 $_LANG['add_surplus_log'] = '查看帐户明细';
