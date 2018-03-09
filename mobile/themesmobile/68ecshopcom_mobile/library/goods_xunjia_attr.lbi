@@ -1,0 +1,32 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="x_title_attr"></div>
+<div class="x_content_attr">
+    <form id="inquiry_form" action="#" method="post">
+        <table>
+            <tr>
+                <td class="tdtitle">{$lang.name}</td>
+                <td><input type="text" class="text" name="name" id="iq_name"></td>
+            </tr>
+            <tr>
+                <td class="tdtitle">{$lang.phone}</td>
+                <td><input type="text" class="text"  name="tel" id="iq_tel" /></td>
+            </tr>
+            <tr>
+                <td class="tdtitle">{$lang.Priority_level}</td>
+                <td id="iq_order">
+                    <input type="radio" name="order" value="1" class="radio" checked> {$lang.normal}
+                    <input type="radio" name="order" value="2" class="radio"> {$lang.Urgent}
+                    <input type="radio" name="order" value="3" class="radio"> {$lang.very_urgent}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="{$lang.is_cancel}" class="cancel"/>
+                    <input type="button" value="{$lang.submit}" class="ok" id="now_inquiry"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="x_foot">
+    <input type="submit"  border="0" class="add_gift_attr" value="提交" />
+    <div style=" height:30px"></div>
+</div>

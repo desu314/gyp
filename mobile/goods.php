@@ -17,6 +17,7 @@ define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
 include_once(ROOT_PATH. "includes/lib_comment.php");
+include(ROOT_PATH . 'languages/'.$_CFG['lang'].'/shipping/good.php');
 
 if ((DEBUG_MODE & 2) != 2)
 {
@@ -173,7 +174,68 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'price')
     die($json->encode($res));
 }
 
+/**
+ * 商品询价处理
+ */
+if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'nowInquiry'){
+    //游客不可以咨询
+    include('includes/cls_json.php');
+    $json   = new JSON;
+    $res    = array('err_msg' => '', 'result' => '');
+    $userid = $_SESSION['user_id'];
+    if($userid <= 0){
+        $result['result']='用户信息获取失败，请重新登陆!';
+        $result['err_msg']='1';
+    }else{
+        $goods_id = $_REQUEST['good_id'];
+        $sql = "select valid_date,supplier_id from ".$GLOBALS['ecs']->table('goods') ." where goods_id=".$goods_id;
+        $goods_info = $GLOBALS['db']->getRow($sql);
+        $time = time();
+        $dateStr = date('Y-m-d', time());
+        $timestamp0 = strtotime($dateStr);
+        //当日24点的时间
+        $timestamp24 = strtotime($dateStr) + 86400;
+        //检查是否存在未处理的询价单
+        $priority = !empty($_REQUEST['priority'])?$_REQUEST['priority']:0;
+        $sql = "select id from nowinquiry WHERE user_id=".$userid." and good_id=".$goods_id." and status=0"." and 
+priority=".$priority." and date BETWEEN $timestamp0 and $timestamp24";
+        if($db->getOne($sql)){
+            $result['result']='当日不可重复询价!';
+            $result['err_msg']='1';
+        }else{
+            $sql = "select mobile_phone,user_id from ".$GLOBALS['ecs']->table('users')."where user_id = ".$userid;
+            $user_info = $GLOBALS['db']->getRow($sql);
+            $sql = "insert into nowinquiry (user_id,good_id,status,priority,tel,date,supplier_id) values ('$userid',
+'$goods_id','0','$priority','$user_info[mobile_phone]','$time','$goods_info[supplier_id]' )";
+            if(!$db->query($sql)){
+                $result['result']='提交失败,请稍后再试!';
+                $result['err_msg']='1';
+            }else{
+                //todo 发送短信提醒商家 平台自营supplier_id 为 0
+                if($goods_info['supplier_id']>0){
+                    $sql = "select user_id,tel from ".$GLOBALS['ecs']->table('supplier')." where supplier_id=" .$goods_info['supplier_id'];
+                    $supplier_info = $GLOBALS['db']->getRow($sql);
+                    $sql = "select mobile_prefix,user_id from ".$GLOBALS['ecs']->table('users')."where user_id = ".$supplier_info['user_id'];
+                    $supplier_user_info = $GLOBALS['db']->getRow($sql);
+                    $tel = $supplier_info['tel'];
+                    $mobile_prefix = $supplier_user_info['mobile_prefix'];
+                }else{
+                    //平台自营sms_shop_mobile
+                    $sql = "select value from ". $GLOBALS['ecs']->table('shop_config')."where code='sms_shop_mobile'";
+                    $result = $GLOBALS['db']->getRow($sql);
+                    $tel = $result['value'];
+                    $mobile_prefix = 86;
+                }
+                //系统提示:商家您好!有客户在平台向您发起了询价,请登陆商家后台查看并及时处理!
+                $result = qSendSms($_LANG['inquiry_sms_template'],$tel,$mobile_prefix);
+                $result['result'] = '询价申请已提交!稍后商家会主动与您联系!';
+                $result['err_msg']='0';
+            }
+        }
+    }
+    die($json->encode($result));
 
+}
 /**
  * 获取相关属性的库存
  * @param int $goodid 商品id
