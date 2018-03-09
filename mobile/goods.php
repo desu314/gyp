@@ -178,6 +178,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'price')
  * 商品询价处理
  */
 if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'nowInquiry'){
+    ini_set('display_errors',1);
     //游客不可以咨询
     include('includes/cls_json.php');
     $json   = new JSON;
@@ -222,12 +223,12 @@ priority=".$priority." and date BETWEEN $timestamp0 and $timestamp24";
                 }else{
                     //平台自营sms_shop_mobile
                     $sql = "select value from ". $GLOBALS['ecs']->table('shop_config')."where code='sms_shop_mobile'";
-                    $result = $GLOBALS['db']->getRow($sql);
-                    $tel = $result['value'];
+                    $shop_config_info = $GLOBALS['db']->getRow($sql);
+                    $tel = $shop_config_info['value'];
                     $mobile_prefix = 86;
                 }
                 //系统提示:商家您好!有客户在平台向您发起了询价,请登陆商家后台查看并及时处理!
-                $result = qSendSms($_LANG['inquiry_sms_template'],$tel,$mobile_prefix);
+                $SmsResult = qSendSms($_LANG['inquiry_sms_template'],$tel,$mobile_prefix);
                 $result['result'] = '询价申请已提交!稍后商家会主动与您联系!';
                 $result['err_msg']='0';
             }

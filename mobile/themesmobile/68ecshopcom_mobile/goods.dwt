@@ -543,15 +543,14 @@ function choose_attr(num){
 
 }
 function nowInquiry(){
-    Ajax.call('goods.php?act=nowInquiry', 'good_id=' + {$id}, nowInquiryResponse, 'GET', 'JSON');
+    Ajax.call('goods.php?act=nowInquiry', 'good_id=' + {$id}, nowInquiryResponse, 'POST', 'JSON');
 }
 
 function nowInquiryResponse(result) {
     if(result.err_msg>0){
         alert(result.result)
     }else{
-        var cartInfo = document.getElementById('ECS_CARTINFO');
-        cartInfo.innerHTML = result.content;
+        alert(result.result)
     }
 }
 
