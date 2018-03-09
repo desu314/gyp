@@ -315,10 +315,12 @@ function changePriceResponse(res)
             if(res.goods_attr_number > 0){
                 document.getElementById('ECS_ADD_TO_CART').style.display="block";
                 document.getElementById('ECS_ONE_STEP_BUY').style.display="block";
+                document.getElementById('NOW_INQUIRY').style.display="block";
                 document.getElementById('ECS_DAOHUO').style.display="none";
             }else{
                 document.getElementById('ECS_ADD_TO_CART').style.display="none";
                 document.getElementById('ECS_ONE_STEP_BUY').style.display="none";
+                document.getElementById('NOW_INQUIRY').style.display="none";
                 document.getElementById('ECS_DAOHUO').style.display="block";
             }
         }
@@ -513,6 +515,11 @@ function close_choose_attr1(){
 <section class="f_block" id="choose_attr" style="height:0; overflow:hidden;">
 <!-- #BeginLibraryItem "/library/goods_choose_attr.lbi" --><!-- #EndLibraryItem -->
 </section>
+<!-- 询价单-->
+<section class="f_xunjia" style="display: none;"></section>
+{*<section class="f_xunjia_block" id="xunJia_attr" style="height:0; overflow:hidden;">
+
+</section>*}
 <script>
 function choose_attr(num){
 	document.body.style.overflow='hidden';
@@ -535,6 +542,19 @@ function choose_attr(num){
         }
 
 }
+function nowInquiry(){
+    Ajax.call('goods.php?act=nowInquiry', 'good_id=' + {$id}, nowInquiryResponse, 'GET', 'JSON');
+}
+
+function nowInquiryResponse(result) {
+    if(result.err_msg>0){
+        alert(result.result)
+    }else{
+        var cartInfo = document.getElementById('ECS_CARTINFO');
+        cartInfo.innerHTML = result.content;
+    }
+}
+
 function close_choose_attr(){	
 document.body.style.overflow='';
 	$(".f_mask").hide();	
@@ -665,7 +685,7 @@ function selcartResponse(result){
 </form>  
 <div style=" height:55px;"></div>
 <div class="footer_nav">
- <ul> 
+ <ul>
  <li class="bian"><a href="index.php"><em class="goods_nav1"></em><span>首页</span></a> </li>
  <li class="bian">{if $customers}<a href="javascript:chat_online();">{else}{if $goods.supplier_id}<a href="tel:{$servicephone}">{else}<a href="tel:{insert name='ecsmart_tel'}">{/if}{/if}<em class="goods_nav2"></em><span>客服</span></a> </li>
  <li><a href="javascript:collect({$goods.goods_id})" id="favorite_add"><em class="goods_nav3"></em><span>收藏</span></a></li>
@@ -673,6 +693,7 @@ function selcartResponse(result){
  <dl> 
  <dd class="flow" id="ECS_ADD_TO_CART"><a class="button active_button" onClick="choose_attr(0)">加入购物车</a> </dd>
  <dd class="goumai" id="ECS_ONE_STEP_BUY"><a style="display:block;" onClick="choose_attr(1)">立即购买</a> </dd>
+ <dd class="xunjia" id="NOW_INQUIRY"><a style="display:block;" onClick="nowInquiry(1)">现在询价</a> </dd>
  <span class="daohuo" id="ECS_DAOHUO"> <a onClick="tell_me({$goods.goods_id})"/>到货通知</a></span>
  </dl>                
 </div>  

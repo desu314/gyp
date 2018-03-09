@@ -19,7 +19,8 @@ $_LANG['Priority_level'] = "优先级别"; //Priority level
 $_LANG['normal'] = "正常"; //normal
 $_LANG['Urgent'] = "紧急"; //Urgent
 $_LANG['very_urgent'] = "非常紧急"; //very urgent
-$_LANG[''] = ""; //
+
+$_LANG['inquiry_sms_template'] = "系统提示:商家您好!有客户在平台向您发起了询价,请登陆商家后台查看并及时处理!"; //
 $_LANG[''] = ""; //
 $_LANG[''] = ""; //
 
