@@ -50,7 +50,7 @@ $purview['17_tag_manage'] = 'tag_manage';
 /* 代码删除 By  www.68ecshop.com End */
 $purview['goods_auto'] = 'goods_auto';
 $purview['scan_store'] = 'scan_store';
-$purview['nowinquiry'] = 'nowinquiry'; //商品询价aa
+$purview['nowinquiry'] = 'nowinquiry'; //商品询价
 $purview['05_shaidan_manage'] = 'shaidan_manage';
 $purview['05_question_manage'] = 'question_manage';
 $purview['05_goods_tags'] = 'tag_manage';

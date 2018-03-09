@@ -76,7 +76,7 @@ elseif ($_REQUEST['act'] == 'toggle_status')
 }
 
 /**
- * 获得询价 列表aaa
+ * 获得询价 列表
  *
  * @access  public
  * @params  integer $isdelete
