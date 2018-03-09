@@ -201,6 +201,7 @@ $_LANG['scan_store'] = '出入库管理';
 $_LANG['price_batch'] = '批量修改价格'; // 代码增加 By www.68ecshop.com
 $_LANG['article_auto'] = '文章自动发布';
 $_LANG['navigator'] = '自定义导航栏';
+$_LANG['nowinquiry'] = '商品询价';//新增询价
 /* 虚拟团购 代码增加 by www.68ecshop.com start */
 $_LANG['virtual_card_list'] = '虚拟券订单列表';
 $_LANG['virtual_goods_sup'] = '入驻商虚拟商品列表';
