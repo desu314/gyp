@@ -49,6 +49,7 @@ $modules['02_cat_and_goods']['17_tag_manage'] = 'tag_manage.php?act=list';
  */
 $modules['02_cat_and_goods']['goods_auto'] = 'goods_auto.php?act=list';
 $modules['02_cat_and_goods']['scan_store'] = 'scan.php?act=insert';
+$modules['02_cat_and_goods']['nowinquiry'] = 'nowinquiry.php?act=list'; //商品询价
 
 /* $modules['03_promotion']['02_snatch_list'] = 'snatch.php?act=list'; */
 $modules['03_promotion']['04_bonustype_list'] = 'bonus.php?act=list';

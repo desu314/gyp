@@ -83,12 +83,6 @@ var select_spe = "{$lang.select_spe}";
 			<!-- TemplateBeginEditable name="商品分类楼层" -->
 <!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/cat_goods.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->
 	</div>
     <script type="text/javascript" src="themes/68ecshopcom_360buy/js/indexPrivate.min.js"></script>
