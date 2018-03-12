@@ -390,7 +390,7 @@ priority=".$params['priority']." and tel=".$params['tel']." and date BETWEEN $ti
                     $mobile_prefix = 86;
                 }
                 //系统提示:商家您好!有客户在平台向您发起了询价,请登陆商家后台查看并及时处理!
-                $result = qSendSms($_LANG['inquiry_sms_template'],$tel,$mobile_prefix);
+                $smsResult = qSendSms($_LANG['inquiry_sms_template'],$tel,$mobile_prefix);
                 $result['result'] = '询价申请已提交!稍后商家会主动与您联系!';
                 $result['err_msg']='0';
             }
