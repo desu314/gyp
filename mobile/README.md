@@ -3,7 +3,7 @@
 ####1:同步用户基础信息
 ##### 接口地址 ####
 ```
-http://gyp.yndth.cn/mobile/register.php
+http://****.cn/mobile/register.php
 ```
 ##### 请求方式 ####
 ```
@@ -17,7 +17,7 @@ data    用户手机号 des加密后字符串  必传
 ```
 ##### 请求范例 ####
 ```
-http://gyp.yndth.com/mobile/register.php?act=synUserInfo&data=hff3WysLyhsMdXoCf2l3tQ==
+http://****.com/mobile/register.php?act=synUserInfo&data=hff3WysLyhsMdXoCf2l3tQ==
 ```
  
 #### 返回值 ####
