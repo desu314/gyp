@@ -2,13 +2,6 @@
 
 /**
  * YNDTH 注册
- * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: register.php 17217 2015-08-07 06:29:08Z niqingyang $
  */
@@ -334,7 +327,6 @@ function action_check_mobile_exist ()
  */
 function action_default ()
 {
-	
 	// 获取全局变量
 	$_CFG = $GLOBALS['_CFG'];
 	$_LANG = $GLOBALS['_LANG'];
@@ -392,7 +384,7 @@ function action_default ()
  */
 function action_register ()
 {
-	
+	//print_r($_POST);die;
 	// 获取全局变量
 	$_CFG = $GLOBALS['_CFG'];
 	$_LANG = $GLOBALS['_LANG'];
@@ -724,6 +716,44 @@ function action_register ()
 	/* 代码增加2014-12-23 by www.68ecshop.com _star */
 }
 
+/**
+ * 同步其他平台用户接口
+ */
+function action_synUserInfo(){
+    //echo openssl_encrypt('18338355701','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
+    include_once (ROOT_PATH . 'includes/lib_passport.php');
+    $data = $_GET['data'];
+    include_once ('includes/cls_json.php');
+    $json = new JSON();
+    $res = array('err'=>0,'err_msg'=>'OK','data'=>array());
+    if(empty($data)){
+        $res['err']=1;
+        $res['err_msg']='参数不正确!';
+        die($json->encode($res));
+    }
+    $mobile_phone = openssl_decrypt($data, 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+    //验证手机号是否存在
+    $user = $GLOBALS['user'];
+    if($user->check_mobile_phone($mobile_phone)){
+        $res['err'] = 2;
+        $res['err_msg'] = '用户已存在';
+        die($json->encode($res));
+    }
+    $username = generate_username_by_mobile($mobile_phone);
+    $mobile_prefix = '86';
+    $password = '';
+    $other = array();
+    /* 手机注册 */
+    $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
+    if(!$result){
+        $res['err'] = 3;
+        $res['err_msg'] = '系统繁忙';
+        die($json->encode($res));
+    }else{
+        die($json->encode($res));
+    }
+
+}
 /**
  * 随机生成指定长度的数字
  *
