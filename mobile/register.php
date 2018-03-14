@@ -720,7 +720,7 @@ function action_register ()
  * 同步其他平台用户接口
  */
 function action_synUserInfo(){
-    //echo openssl_encrypt('18338355701','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
+    //echo openssl_encrypt('18338355702,123446','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
     include_once (ROOT_PATH . 'includes/lib_passport.php');
     $data = $_GET['data'];
     include_once ('includes/cls_json.php');
@@ -731,7 +731,9 @@ function action_synUserInfo(){
         $res['err_msg']='参数不正确!';
         die($json->encode($res));
     }
-    $mobile_phone = openssl_decrypt($data, 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+    $deData = openssl_decrypt($data, 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+    $deDataArr = explode(',',$deData);
+    $mobile_phone = $deDataArr[0];
     //验证手机号是否存在
     $user = $GLOBALS['user'];
     if($user->check_mobile_phone($mobile_phone)){
@@ -741,7 +743,7 @@ function action_synUserInfo(){
     }
     $username = generate_username_by_mobile($mobile_phone);
     $mobile_prefix = '86';
-    $password = '';
+    $password = $deDataArr[1];
     $other = array();
     /* 手机注册 */
     $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
@@ -752,6 +754,17 @@ function action_synUserInfo(){
     }else{
         die($json->encode($res));
     }
+
+}
+
+/**
+ * 总平台打开页面
+ * @param module 跳转模块
+ * @param mobile_phone 手机
+ * @param password 密码
+ * return back_url
+ */
+function action_openGph(){
 
 }
 /**
