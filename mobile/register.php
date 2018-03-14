@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 /**
  * YNDTH 注册
  * $Author: liubo $
@@ -720,7 +720,6 @@ function action_register ()
  * 同步其他平台用户接口
  */
 function action_synUserInfo(){
-    //echo openssl_encrypt('18338355702,123446','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
     include_once (ROOT_PATH . 'includes/lib_passport.php');
     $data = $_GET['data'];
     include_once ('includes/cls_json.php');
@@ -757,16 +756,7 @@ function action_synUserInfo(){
 
 }
 
-/**
- * 总平台打开页面
- * @param module 跳转模块
- * @param mobile_phone 手机
- * @param password 密码
- * return back_url
- */
-function action_openGph(){
 
-}
 /**
  * 随机生成指定长度的数字
  *
