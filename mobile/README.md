@@ -1,6 +1,6 @@
 ##总平台对接接口文档
 
-####1:同步用户基础信息
+####1:用户登录
 ##### 接口地址 ####
 ```
 http://****.cn/mobile/register.php
@@ -26,5 +26,61 @@ http://****.com/mobile/register.php?act=synUserInfo&data=hff3WysLyhsMdXoCf2l3tQ=
     "err": 2,                   //状态码 0:正常 1:参数错误 2:用户已存在 3:系统繁忙
     "err_msg": "用户已存在",     //错误信息
     "data": []
+}
+```
+
+####1:总平台打开工业品电商入口
+##### 接口地址 ####
+```
+http://****.cn/mobile/user.php
+```
+##### 请求方式 ####
+```
+POST
+```
+ 
+##### 传递参数 #####
+```
+act     必传(默认值 openGyp )
+data    模块,用户手机号,密码三个信息  ','拼接后 des加密成字符串  必传  例:main,18338355702,123446
+
+模块命名
+ 1:main 工业品买卖
+ ......待定
+```
+##### 请求范例 ####
+```
+var form = new FormData();
+form.append("data", "F3o5yWGOp7M+0W5banFMCZg0ojJMPV10fsf9etwbZ+Q=");
+form.append("act", "openGyp");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://****.com/mobile/user.php",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "008fd1fd-f2bb-6e9e-cd4b-349472adecfd"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+ 
+#### 返回值 ####
+```
+{
+    "err": 0,                         //状态码 0:正常 1:参数错误 4:本网站有多个会员绑定了和您相同的手机号，请使用其他登录方式 3:系统繁忙
+    "err_msg": "OK",                //错误信息
+    "data": {                       //数据体
+        "back_url": "gyp.yndth.cn"  //打开地址
+    }
 }
 ```

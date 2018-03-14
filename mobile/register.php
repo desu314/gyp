@@ -720,6 +720,7 @@ function action_register ()
  * 同步其他平台用户接口
  */
 function action_synUserInfo(){
+    //echo openssl_encrypt('18338355701,12345678','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
     include_once (ROOT_PATH . 'includes/lib_passport.php');
     $data = $_GET['data'];
     include_once ('includes/cls_json.php');
@@ -748,7 +749,7 @@ function action_synUserInfo(){
     $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
     if(!$result){
         $res['err'] = 3;
-        $res['err_msg'] = '系统繁忙';
+        $res['err_msg'] = '同步错误';
         die($json->encode($res));
     }else{
         die($json->encode($res));

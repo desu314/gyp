@@ -2,13 +2,6 @@
 
 /**
  * YNDTH 整合插件类的基类
- * ============================================================================
- * 版权所有 2008-2015 秦皇岛商之翼网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.68ecshop.com
- * ----------------------------------------------------------------------------
- * 这是一个免费开源的软件；这意味着您可以在不用于商业目的的前提下对程序代码
- * 进行修改、使用和再发布。
- * ============================================================================
  * $Author: derek $
  * $Id: integrate.php 17217 2011-01-19 06:29:08Z derek $
  */
@@ -735,7 +728,7 @@ class integrate
 			$sql = "SELECT " . $this->field_id . " FROM " . $this->table($this->user_table) . " WHERE " . $this->field_name . "='" . $post_username . "' AND " . $this->field_pass . " ='" . $this->compile_password(array(
 				'password' => $password
 			)) . "'";
-			
+
 			return $this->db->getOne($sql);
 		}
 	}

@@ -1,5 +1,5 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 /**
  * YNDTH 会员中心
  * $Author: derek $
@@ -69,7 +69,7 @@ $back_act = '';
 
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr = array(
-	'login','act_login','act_edit_password','get_password','send_pwd_email','password','signin','add_tag','collect','return_to_cart','logout','email_list','validate_email','send_hash_mail','order_query','is_registered','check_email','clear_history','qpassword_name','get_passwd_question','check_answer','oath','oath_login','other_login','getverifycode','act_forget_pass','re_pass','open_surplus_password','close_surplus_password','check_register','book_goods'
+	'login','act_login','act_edit_password','get_password','send_pwd_email','password','signin','add_tag','collect','return_to_cart','logout','email_list','validate_email','send_hash_mail','order_query','is_registered','check_email','clear_history','qpassword_name','get_passwd_question','check_answer','oath','oath_login','other_login','getverifycode','act_forget_pass','re_pass','open_surplus_password','close_surplus_password','check_register','book_goods','openGyp'
 );
 
 /* 显示页面的action列表 */
@@ -1162,7 +1162,6 @@ function action_act_login()
 			$username = $username_e;
 		}
 	}
-	
 	if($user->login($username, $password, isset($_POST['remember'])))
 	{
 		update_user_info();
@@ -1190,6 +1189,75 @@ function action_act_login()
 	{
 		$_SESSION['login_fail'] ++;
 		show_message($_LANG['login_failure'], $_LANG['relogin_lnk'], 'user.php', 'error');
+	}
+}
+/**
+ * 总平台打开页面
+ * @param module 跳转模块  main 主站
+ * @param mobile_phone 手机
+ * @param password 密码
+ * return back_url
+ */
+function action_openGyp(){
+	ini_set('display_errors',1);
+    $ecs = $GLOBALS['ecs'];
+    $db = $GLOBALS['db'];
+    $user = $GLOBALS['user'];
+    //echo openssl_encrypt('main,18338355701,12345678','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
+    include_once ('includes/cls_json.php');
+    $json = new JSON();
+    $res = array("err"=>0,"err_msg"=>"OK","data"=>array());
+    if(empty($_REQUEST['data'])){
+        $res['err']=1;
+        $res['err_msg']="参数不正确!";
+        die($json->encode($res));
+	}
+    $deData = openssl_decrypt($_REQUEST['data'], 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+    $deDataArr = explode(',',$deData);
+    if(count($deDataArr)!==3){
+        $res['err']=1;
+        $res['err_msg']="参数不正确!";
+        die($json->encode($res));
+	}
+    $doMain = "gyp.yndth.cn";
+    $moduleBackUrlArr = array('main'=>$doMain);
+    $back_act = $moduleBackUrlArr[$deDataArr[0]];
+    $username = $deDataArr[1];
+    $password = $deDataArr[2];
+    if(is_telephone($username))
+    {
+        $sql = "select user_name from " . $ecs->table('users') . " where mobile_phone='" . $username . "'";
+        $username_res = $db->query($sql);
+        $kkk = 0;
+        while($username_row = $db->fetchRow($username_res))
+        {
+            $username_e = $username_row['user_name'];
+            $kkk = $kkk + 1;
+        }
+        if($kkk > 1)
+        {
+            $res['err'] = 4;
+            $res['err_msg'] = "本网站有多个会员绑定了和您相同的手机号，请使用其他登录方式";
+            die($json->decode($res));
+        }
+        if($username_e)
+        {
+            $username = $username_e;
+        }
+    }
+
+    if($user->login($username, $password, 1))
+    {
+        update_user_info();
+        recalculate_price();
+        $res['err'] = 0;
+        $res['err_msg'] = "OK";
+        $res['data'] = array("back_url"=>$back_act);
+        die($json->encode($res));
+    }else{
+        $res['err'] = 3;
+        $res['err_msg'] = "系统繁忙请稍后再试!";
+        die($json->encode($res));
 	}
 }
 
