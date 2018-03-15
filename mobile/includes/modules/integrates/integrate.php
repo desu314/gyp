@@ -547,7 +547,7 @@ class integrate
 		if($values)
 		{
 			$sql = "UPDATE " . $this->table($this->user_table) . " SET " . implode(', ', $values) . " WHERE " . $this->field_name . "='" . $cfg['post_username'] . "' LIMIT 1";
-			
+
 			$this->db->query($sql);
 			
 			if($this->need_sync)

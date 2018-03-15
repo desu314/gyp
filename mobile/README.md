@@ -29,7 +29,7 @@ http://****.com/mobile/register.php?act=synUserInfo&data=hff3WysLyhsMdXoCf2l3tQ=
 }
 ```
 
-####1:总平台打开工业品电商入口
+####2:总平台打开工业品电商入口
 ##### 接口地址 ####
 ```
 http://****.cn/mobile/user.php
@@ -62,6 +62,57 @@ var settings = {
   "headers": {
     "cache-control": "no-cache",
     "postman-token": "008fd1fd-f2bb-6e9e-cd4b-349472adecfd"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+ 
+#### 返回值 ####
+```
+{
+    "err": 0,                         //状态码 0:正常 1:参数错误 4:本网站有多个会员绑定了和您相同的手机号，请使用其他登录方式 3:系统繁忙
+    "err_msg": "OK",                //错误信息
+    "data": {                       //数据体
+        "back_url": "gyp.yndth.cn"  //打开地址
+    }
+}
+```
+####3:同步用户修改密码
+##### 接口地址 ####
+```
+http://****.cn/mobile/user.php
+```
+##### 请求方式 ####
+```
+POST
+```
+ 
+##### 传递参数 #####
+```
+act     必传(默认值 sysUserPwd )
+data    用户手机号,密码   ','拼接后 des加密成字符串  必传  例:18338355702,123446
+```
+##### 请求范例 ####
+```
+var form = new FormData();
+form.append("data", "hff3WysLyhvEs390GANTqO1VqPTqHEpR");
+form.append("act", "sysUserPwd");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://****.com/mobile/user.php",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "9c66ab0e-dc0c-b09f-85be-c6c8d5c3a26e"
   },
   "processData": false,
   "contentType": false,

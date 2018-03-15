@@ -1261,6 +1261,58 @@ function action_openGyp(){
 	}
 }
 
+/**
+ * 同步总平台修改密码
+ * @param mobile_phone 手机
+ * @param password 密码
+ */
+function action_sysUserPwd(){
+    //echo openssl_encrypt('18338355701,12345678','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
+    $res = array("err"=>0,"err_msg"=>"OK","data"=>array());
+    $deData = openssl_decrypt($_REQUEST['data'], 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+    $deDataArr = explode(',',$deData);
+    if(count($deDataArr)!==1){
+        $res['err']=1;
+        $res['err_msg']="参数不正确!";
+        exit(json_encode($res));
+    }
+    $smarty = $GLOBALS['smarty'];
+    $db = $GLOBALS['db'];
+    $ecs = $GLOBALS['ecs'];
+
+    $password = $deDataArr[1];
+
+    if(!isset($password) || empty($password))
+    {
+    	$res['err'] = 1;
+    	$res['err_msg'] = '参数不正确';
+        exit(json_encode($res));
+    }
+
+    if(!isset($deDataArr[0]))
+    {
+        $res['err'] = 1;
+        $res['err_msg'] = '参数不正确';
+        exit(json_encode($res));
+    }
+	$sql = "select user_name,password from ".$ecs->table('users')." where mobile_phone = ".$deDataArr[0];
+    $user = $db->getRow($sql);
+
+    $result = $GLOBALS['user']->edit_user(array('username' => $user['user_name'], 'password' => $password));
+
+    if($result == false)
+    {
+        $res['err'] = 5;
+        $res['err_msg'] = '重置密码失败，请重新尝试';
+        exit(json_encode($res));
+    }
+    else
+    {
+        exit(json_encode($res));
+    }
+}
+
+
 /* 处理 ajax 的登录请求 */
 function action_signin()
 {

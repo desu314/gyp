@@ -393,7 +393,7 @@ function action_to_success()
 	$smarty->display('user_findPwd.dwt');
 }
 
-/* 余额额支付密码_添加_END_www.68ecshop.com */
+/* 余额额支付密码_添加_END_  */
 function get_takegoods_orders ($user_id, $num = 10, $start = 0)
 {
 	$order_status = array(
@@ -401,10 +401,10 @@ function get_takegoods_orders ($user_id, $num = 10, $start = 0)
 	);
 	/* 取得订单列表 */
 	$arr = array();
-	
+
 	$sql = "SELECT * " . " FROM " . $GLOBALS['ecs']->table('takegoods_order') . " WHERE user_id = '$user_id' ORDER BY rec_id DESC";
 	$res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
-	
+
 	while($row = $GLOBALS['db']->fetchRow($res))
 	{
 		$row['country_name'] = $GLOBALS['db']->getOne("select region_name from " . $GLOBALS['ecs']->table('region') . " where region_id='$row[country]' ");
@@ -418,35 +418,35 @@ function get_takegoods_orders ($user_id, $num = 10, $start = 0)
 			'rec_id' => $row['rec_id'],'tg_sn' => $row['tg_sn'],'goods_name' => $row['goods_name'],'address' => $row['country_name'] . $row['province_name'] . $row['city_name'] . $row['district_name'] . $row['address'],'add_time' => local_date($GLOBALS['_CFG']['time_format'], $row['add_time']),'order_status' => $row['order_status'],'order_status_name' => $order_status[$row['order_status']],'goods_url' => $row['goods_url'],'handler' => $row['handler']
 		);
 	}
-	
+
 	return $arr;
 }
 
-/* 代码增加_end By www.68ecshop.com */
-/* 代码增加_start By www.68ecshop.com */
+/* 代码增加_end By   */
+/* 代码增加_start By   */
 function get_user_backorders ($user_id, $num = 10, $start = 0)
 {
 	/* 取得订单列表 */
 	$arr = array();
-	
+
 	$sql = "SELECT bo.*, g.goods_name " . " FROM " . $GLOBALS['ecs']->table('back_order') . " AS bo left join " . $GLOBALS['ecs']->table('goods') . " AS g " . " on bo.goods_id=g.goods_id  " . " WHERE user_id = '$user_id' ORDER BY add_time DESC";
 	$res = $GLOBALS['db']->SelectLimit($sql, $num, $start);
-	
+
 	while($row = $GLOBALS['db']->fetchRow($res))
 	{
-		
+
 		$row['order_time'] = local_date($GLOBALS['_CFG']['time_format'], $row['add_time']);
 		$row['refund_money_1'] = price_format($row['refund_money_1'], false);
-		
+
 		$row['goods_url'] = build_uri('goods', array(
 			'gid' => $row['goods_id']
 		), $row['goods_name']);
 		$row['status_back_1'] = $row['status_back'];
 		$row['status_back'] = $GLOBALS['_LANG']['bos'][(($row['back_type'] == 4 && $row['status_back'] != 8) ? $row['back_type'] : $row['status_back'])] . ' - ' . $GLOBALS['_LANG']['bps'][$row['status_refund']];
-		
+
 		$arr[] = $row;
 	}
-	
+
 	return $arr;
 }
 
@@ -462,7 +462,7 @@ function mc_random ($length, $char_str = 'abcdefghijklmnopqrstuvwxyz0123456789')
 	return $hash;
 }
 
-/* 代码增加2014-12-23 by www.68ecshop.com _end */
+/* 代码增加2014-12-23 by   _end */
 function get_user_yue ($user_id)
 {
 	$sql = "SELECT user_money FROM " . $GLOBALS['ecs']->table('users') . "WHERE user_id = '$user_id'";
