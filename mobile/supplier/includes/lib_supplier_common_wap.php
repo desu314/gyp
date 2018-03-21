@@ -73,12 +73,12 @@ function _wap_assign_header_info($ur_here='',$page_title='',$no_back=0,$no_refre
     $page_title = trim($page_title);
     if(empty($page_title))
     {
-        $page_title = '商之翼商户后台';
+        $page_title = '商户后台';
     }
     $ur_here = trim($ur_here);
     if(empty($ur_here))
     {
-        $ur_here = '商之翼商户后台';
+        $ur_here = '商户后台';
     }
     $smarty->assign('page_title',$page_title);
     $smarty->assign('ur_here',$ur_here);
