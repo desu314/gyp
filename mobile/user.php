@@ -1245,7 +1245,7 @@ function action_openGyp(){
         }
     }
 
-    if($user->login($username, $password, 1))
+    if($user->login($username, null, 1))
     {
         update_user_info();
         recalculate_price();
