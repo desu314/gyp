@@ -135,3 +135,54 @@ $.ajax(settings).done(function (response) {
     }
 }
 ```
+
+####4:设置用户登录状态
+##### 接口地址 ####
+```
+http://****.cn/mobile/user.php
+```
+##### 请求方式 ####
+```
+POST
+```
+ 
+##### 传递参数 #####
+```
+act     必传(默认值 setUser )
+data    用户手机号,密码   ','拼接后 des加密成字符串  必传  例:18338355702,123446
+```
+##### 请求范例 ####
+```
+var form = new FormData();
+form.append("data", "hff3WysLyhvEs390GANTqO1VqPTqHEpR");
+form.append("act", "setUser");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://182.92.165.86/mobile/user.php",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "27dd83cd-bf7e-c850-2bed-395c9d2c1969"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+ 
+#### 返回值 ####
+```
+{
+    "err": 0,                         //状态码 0:正常 1:参数错误 4:本网站有多个会员绑定了和您相同的手机号，请使用其他登录方式 3:系统繁忙
+    "err_msg": "OK",                //错误信息
+    "data": {                       //数据体
+    }
+}
+```

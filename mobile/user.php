@@ -1315,6 +1315,7 @@ function action_sysUserPwd(){
  * 打开平台后设置session  cookie
  */
 function action_setUser(){
+    //echo openssl_encrypt('18338355701,12345678','DES-ECB','1a0dcfbdba61c4cca212ec91bb55af28');die;
     $ecs = $GLOBALS['ecs'];
     $db = $GLOBALS['db'];
     $user = $GLOBALS['user'];
@@ -1357,7 +1358,7 @@ function action_setUser(){
         }
     }
 
-    if($user->login($username, $password, 1))
+    if($user->login($username, null, 1))
     {
         update_user_info();
         recalculate_price();
