@@ -57,7 +57,7 @@ if(isset($_POST['do']) && $_POST['do']){
 	    $save['contacts_phone'] = isset($_POST['contacts_phone']) ? trim(addslashes(htmlspecialchars($_POST['contacts_phone']))) : '';
 	    $save['business_licence_number'] = isset($_POST['business_licence_number']) ? trim(addslashes(htmlspecialchars($_POST['business_licence_number']))) : '';
 	    $save['business_sphere'] = isset($_POST['business_sphere']) ? trim(addslashes(htmlspecialchars($_POST['business_sphere']))) : '';
-	    $save['organization_code'] = isset($_POST['organization_code']) ? trim(addslashes(htmlspecialchars($_POST['organization_code']))) : '';
+	    //$save['organization_code'] = isset($_POST['organization_code']) ? trim(addslashes(htmlspecialchars($_POST['organization_code']))) : '';
 	    
 		if (isset($_FILES['zhizhao']) && $_FILES['zhizhao']['tmp_name'] != '' &&  isset($_FILES['zhizhao']['tmp_name']) && $_FILES['zhizhao']['tmp_name'] != 'none')
 		{
@@ -77,7 +77,7 @@ if(isset($_POST['do']) && $_POST['do']){
 			   $save['zhizhao'] = $zhizhao_img;
 			}
 		}
-		if (isset($_FILES['organization_code_electronic']) && $_FILES['organization_code_electronic']['tmp_name'] != '' &&  isset($_FILES['organization_code_electronic']['tmp_name']) && $_FILES['organization_code_electronic']['tmp_name'] != 'none')
+		/*if (isset($_FILES['organization_code_electronic']) && $_FILES['organization_code_electronic']['tmp_name'] != '' &&  isset($_FILES['organization_code_electronic']['tmp_name']) && $_FILES['organization_code_electronic']['tmp_name'] != 'none')
 		{
 			if($_FILES['organization_code_electronic']['size'] / 1024 > $upload_size_limit)
 	        {
@@ -94,7 +94,7 @@ if(isset($_POST['do']) && $_POST['do']){
 			{
 				$save['organization_code_electronic'] = $organization_code_electronic_img;
 			}
-		}
+		}*/
 		if (isset($_FILES['general_taxpayer']) && $_FILES['general_taxpayer']['tmp_name'] != '' &&  isset($_FILES['general_taxpayer']['tmp_name']) && $_FILES['general_taxpayer']['tmp_name'] != 'none')
 		{
 			if($_FILES['general_taxpayer']['size'] / 1024 > $upload_size_limit)

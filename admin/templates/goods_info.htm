@@ -10,6 +10,13 @@
 <!-- 代码增加 By  www.68ecshop.com 促销商品时间精确到时分 End -->
 <!-- zTree Style -->
 <link href="styles/zTree/zTreeStyle.css" rel="stylesheet" type="text/css" />
+
+<script src="./js/js/jquery-1.11.2.min.js"></script>
+<script>
+	jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+</script>
+<script type="text/javascript" src="./js/js/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="./js/MultipleTreeSelect.js"></script>
 {insert_scripts files='jquery.ztree.all-3.5.min.js,category_selecter.js'} {if $warning}
 <ul style="padding:0; margin: 0; list-style-type:none; color: #CC0000;">
 	<li style="border: 1px solid #CC0000; background: #FFFFCC; padding: 10px; margin-bottom: 5px;">{$warning}</li>
@@ -102,14 +109,30 @@
 				<tr>
 					<td class="label">{$lang.lab_other_cat}</td>
 					<td>
-						<input type="button" value="{$lang.add}" onclick="addOtherCat(this.parentNode)" class="button" />
-						{foreach from=$goods.other_cat item=cat_id}
+						<!--<input type="button" value="{$lang.add}" onclick="addOtherCat(this.parentNode)" class="button" />-->
+						<!--{foreach from=$goods.other_cat item=cat_id}
 						<select name="other_cat[]">
 							<option value="0">{$lang.select_please}</option>
 							{$other_cat_list.$cat_id}
 						</select>
-						{/foreach}
-						<select name="other_cat[]" onchange="hideCatDiv()" ><option value="0">{$lang.select_please}</option>{$cat_other_list}</select>
+						{/foreach}-->
+						<script type="text/javascript">
+							var zNodes = {$cat_other_list};
+							var defaults = {
+								zNodes: zNodes,
+								height:233
+							};
+							$(document).ready(function () {
+								$("textarea").drawMultipleTree(defaults);
+							});
+						</script>
+						<textarea style="width: 300px; overflow:hidden;" checks="{$check_cat_list}" name="other_cat" textLabel="jasontext"  type="text" readonly></textarea>
+
+						<!--<select name="other_cat[]" onchange="hideCatDiv()">
+							<option value="0">{$lang.select_please}</option>
+
+						</select>-->
+
 					</td>
 				</tr>
 				<tr>

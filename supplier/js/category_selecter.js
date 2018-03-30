@@ -135,7 +135,7 @@
 		var treeDemo_id = "treeDemo_"+catId;
 		
 		//生成DIV
-		var menuHtml = "<div id='"+menuContent_id+"' class='menuContent' style='display: none; position: absolute; background-color: white; border: 1px black solid;'>"
+		var menuHtml = "<div id='"+menuContent_id+"' class='menuContent' style='display: none; position: absolute; z-index:999; background-color: white; border: 1px black solid;'>"
 		    +"<div style='text-align: center;'>"
 		    +"<input type='button' id='"+btn_expand_all_id+"' value='"+lang_cat_expand_all+"' class='button expand_all'>"
 		    +"<input type='button' id='"+btn_expand_id+"' value='"+lang_cat_expand+"' class='button expand'>"

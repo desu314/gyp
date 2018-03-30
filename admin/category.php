@@ -148,7 +148,11 @@ if ($_REQUEST['act'] == 'add')
     $smarty->assign('goods_type_list',  goods_type_list(0)); // 取得商品类型
     $smarty->assign('attr_list',        get_attr_list()); // 取得商品属性
     $smarty->assign('is_virtual',        0); //  分类属性
-    $smarty->assign('cat_select',   cat_list(0, 0, true));
+    //$smarty->assign('cat_select',   cat_list(0, 0, true));
+    $cat_select = substr(cat_list_par(),2,strlen(cat_list_par()));
+    $cat_select1 = '[{id:0,pId:0,name:"顶级分类"},{'.$cat_select;
+    //echo '<pre>';print_r($cat_select1);die;
+    $smarty->assign('cat_select', $cat_select1);
     $smarty->assign('form_act',     'insert');
     $smarty->assign('cat_info',     array('is_show' => 1));
 
@@ -357,10 +361,21 @@ if ($_REQUEST['act'] == 'edit')
         }
         $smarty->assign('cat_recommend', $cat_recommend);
     }
-
+ini_set('display_errors',1);
     $smarty->assign('cat_info',    $cat_info);
     $smarty->assign('form_act',    'update');
-    $smarty->assign('cat_select',  $cat_info['is_virtual']?get_virtual_cat_select():cat_list(0, $cat_info['parent_id'], true));
+    $other_cat_list = array();
+    $sql = "SELECT cat_id FROM " . $ecs->table('category') . " WHERE cat_id = '$cat_info[parent_id]'";
+    $par_cat = $db->getRow($sql);
+    if(empty($par_cat)){
+        $par_cat['cat_id'] = 0;
+    }
+    //echo '<pre>'; print_r($other_cat_list);die;
+    $smarty->assign('check', $par_cat['cat_id']);
+    $cat_select = substr(cat_list_par(),2,strlen(cat_list_par()));
+    $cat_select1 = '[{id:0,pId:0,name:"顶级分类"},{'.$cat_select;
+    $smarty->assign('cat_select',  $cat_info['is_virtual']?get_virtual_cat_tree():$cat_select1);
+    //cat_list(0, $cat_info['parent_id'], true)
     $smarty->assign('goods_type_list',  goods_type_list(0)); // 取得商品类型
 
     /* 显示页面 */
@@ -1208,6 +1223,24 @@ function get_cat_parents(&$parents, $cat_map, $cat_id)
 	array_push($parents, $cat);
     
 }
+
+/**
+ * 获取虚拟团购分类一级列表
+ * @return type
+ */
+function get_virtual_cat_tree(){
+    $sql = "SELECT cat_id,cat_name ". 'FROM ' . $GLOBALS['ecs']->table('category') .
+        ' where is_virtual = 1 and parent_id = 0';
+    $res = $GLOBALS['db']->getAll($sql);
+    $str = '[{';
+    foreach($res as $k=>$v){
+        $str .= 'id:'.$v['cat_id'].',pId:'.$v['parent_id'].',name:'.'"'.$v['cat_name'].'"},{';
+    }
+    $str = substr($str,0,strlen($str)-2);
+    $str .= ']';
+    return $str;
+}
+
 
 /**
  * 获取虚拟团购分类一级列表
