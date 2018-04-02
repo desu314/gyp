@@ -1364,6 +1364,7 @@ function action_setUser(){
         recalculate_price();
         $res['err'] = 0;
         $res['err_msg'] = "OK";
+        $res['data']['user_info'] = array('user_id'=>$_SESSION['user_id'],'username'=>$_SESSION['user_name']);
         die($json->encode($res));
     }else{
         $res['err'] = 3;

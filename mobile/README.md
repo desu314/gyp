@@ -183,6 +183,10 @@ $.ajax(settings).done(function (response) {
     "err": 0,                         //状态码 0:正常 1:参数错误 4:本网站有多个会员绑定了和您相同的手机号，请使用其他登录方式 3:系统繁忙
     "err_msg": "OK",                //错误信息
     "data": {                       //数据体
+        "user_info": {              //需要设置成cookie的参数(注:返回字段名即设置cookie字段名)
+                    "user_id": "67",            //用户id 
+                    "username": "u183NVPL5701"  //用户名
+                }
     }
 }
 ```
