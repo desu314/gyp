@@ -249,6 +249,23 @@ function &init_users()
 }
 
 /**
+ * 获取商品扩展分类
+ */
+function cat_list_par(){
+    $sql = "SELECT cat_id,cat_name,parent_id ". 'FROM ' . $GLOBALS['ecs']->table('category') .
+        'ORDER BY sort_order ASC';
+    $res = $GLOBALS['db']->getAll($sql);
+    $str = '[{';
+    foreach($res as $k=>$v){
+        $str .= 'id:'.$v['cat_id'].',pId:'.$v['parent_id'].',name:'.'"'.$v['cat_name'].'"},{';
+    }
+    $str = substr($str,0,strlen($str)-2);
+    $str .= ']';
+    return $str;
+}
+
+
+/**
  * 获得指定分类下的子分类的数组
  *
  * @access  public

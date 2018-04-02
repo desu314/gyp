@@ -1,6 +1,13 @@
 <!-- $Id: category_info.htm 16752 2009-10-20 09:59:38Z wangleisvn $ -->
 
-{include file="pageheader.htm"} 
+{include file="pageheader.htm"}
+<link type="text/css" rel="stylesheet" href="./styles/metroStyle/metroStyle.css">
+<script src="./js/js/jquery-1.11.2.min.js"></script>
+<script>
+    jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+</script>
+<script type="text/javascript" src="./js/js/jquery.ztree.all.js"></script>
+<script type="text/javascript" src="./js/MultipleTreeSelectRadio.js"></script>
 <!-- start add new category form -->
 <div class="main-div">
   <form action="category.php" method="post" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
@@ -23,12 +30,23 @@
       
       <tr>
         <td class="label">{$lang.parent_id}:</td>
-        <td><select name="parent_id">
+        <td>
+            <!--<select name="parent_id">
             <option value="0">{$lang.cat_top}</option>
-            
-            {$cat_select}
-          
-          </select></td>
+            {}
+            </select>-->
+            <script type="text/javascript">
+                var zNodes = {$cat_select};
+                var defaults = {
+                    zNodes: zNodes,
+                    height:233
+                };
+                $(document).ready(function () {
+                    $("#textarea").drawMultipleTree(defaults);
+                });
+            </script>
+            <textarea style="width: 300px; overflow:hidden;" checks="{$check}" id="textarea" name="parent_id" textLabel="jasontext"  type="text" readonly></textarea>
+        </td>
       </tr>
       <tr id="measure_unit">
         <td class="label">{$lang.measure_unit}:</td>

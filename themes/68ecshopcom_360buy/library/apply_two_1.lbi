@@ -326,7 +326,7 @@
         <table border="0" cellpadding="0" cellspacing="0" class="all">
           <thead>
             <tr>
-              <th colspan="20" align="left">营业执照信息（副本）</th>
+              <th colspan="20" align="left">营业执照信息（三证合一副本）</th>
             </tr>
           </thead>
           <tbody>
@@ -353,7 +353,7 @@
             </tr>
           </tfoot>
         </table>
-        <table border="0" cellpadding="0" cellspacing="0" class="all">
+        <!--table border="0" cellpadding="0" cellspacing="0" class="all">
           <thead>
             <tr>
               <th colspan="20" align="left">组织机构代码证</th>
@@ -397,7 +397,7 @@
               <td colspan="20">&nbsp;</td>
             </tr>
           </tfoot>
-        </table>
+        </table-->
         <input type="hidden" name="shownum" value="1">
         <input type="hidden" name="do" value="1">
         <input type="hidden" name="company" value="1">

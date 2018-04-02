@@ -23,10 +23,23 @@
       
       <tr>
         <td class="label">{$lang.parent_id}:</td>
-        <td><select name="parent_id">
+        <td>
+            <!--<select name="parent_id">
             <option value="0">{$lang.cat_top}</option>
-       {$cat_select}
-          </select></td>
+            {}
+          </select>-->
+            <script type="text/javascript">
+                var zNodes = {$cat_select};
+                var defaults = {
+                    zNodes: zNodes,
+                    height:233
+                };
+                $(document).ready(function () {
+                    $("#textarea").drawMultipleTree(defaults);
+                });
+            </script>
+            <textarea style="width: 300px; overflow:hidden;" checks="{$check}" id="textarea" name="parent_id" textLabel="jasontext"  type="text" readonly></textarea>
+        </td>
       </tr>
       <tr id="measure_unit">
         <td class="label">{$lang.measure_unit}:</td>

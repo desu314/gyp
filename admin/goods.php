@@ -424,14 +424,21 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
         }
 
         // 扩展分类
-        $other_cat_list = array();
+        //$other_cat_list = array();
         $sql = "SELECT cat_id FROM " . $ecs->table('goods_cat') . " WHERE goods_id = '$_REQUEST[goods_id]'";
-        $goods['other_cat'] = $db->getCol($sql);
-        foreach ($goods['other_cat'] AS $cat_id)
+        $cat_list_res = $db->getAll($sql);
+        /*foreach ($goods['other_cat'] AS $cat_id)
         {
             $other_cat_list[$cat_id] = cat_list(0, $cat_id);
+        }*/
+        $smarty->assign('cat_other_list',     cat_list_par());
+        foreach($cat_list_res as $key=>$val){
+            $check_cat_list .= $val['cat_id'].',';
         }
-        $smarty->assign('other_cat_list', $other_cat_list);
+        //$other_cat_list = implode(',',$cat_list_res);
+        $check_cat_list = substr($check_cat_list,0,-1);
+        //echo '<pre>'; print_r($check_cat_list);die;
+        $smarty->assign('check_cat_list', $check_cat_list);
 
         $link_goods_list    = get_linked_goods($goods['goods_id']); // 关联商品
         $group_goods_list   = get_group_goods($goods['goods_id']); // 配件
@@ -481,7 +488,9 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
     $smarty->assign('goods_name_style', $goods_name_style[1]);
 	
 	$smarty->assign('cat_list', cat_list(0, $goods['cat_id']));
-    $smarty->assign('cat_other_list',     cat_list(0));
+    //$smarty->assign('cat_other_list',     cat_list(0));
+    $smarty->assign('cat_other_list',     cat_list_par());
+    //echo cat_list_par();die;
 	
     $cat_list = cat_list(0, $selected, false);
 	$smarty->assign('goods_cat_list', cat_list_to_json($cat_list, $goods['cat_id']));
@@ -540,6 +549,7 @@ elseif ($_REQUEST['act'] == 'add' || $_REQUEST['act'] == 'edit' || $_REQUEST['ac
 
 elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
 {
+    $_POST['other_cat'] = explode(',',$_POST['other_cat']);
     $code = empty($_REQUEST['extension_code']) ? '' : trim($_REQUEST['extension_code']);
 
     /* 是否处理缩略图 */

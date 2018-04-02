@@ -184,6 +184,9 @@ function action_apply_pay(){
 }
 
 /**
+ * 
+ */
+/**
  * 缴费操作
  */
 function action_rank_pay()
