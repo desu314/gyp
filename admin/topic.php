@@ -306,9 +306,9 @@ elseif ($_REQUEST["act"] == "delete")
 
     $sql = "DELETE FROM " . $ecs->table('topic') . " WHERE ";
 
-    if (!empty($_POST['checkboxs']))
+    if (!empty($_POST['checkboxes']))
     {
-        $sql .= db_create_in($_POST['checkboxs'], 'topic_id');
+        $sql .= db_create_in($_POST['checkboxes'], 'topic_id');
     }
     elseif (!empty($_GET['id']))
     {
