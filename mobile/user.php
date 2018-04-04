@@ -1218,7 +1218,7 @@ function action_openGyp(){
         $res['err_msg']="参数不正确!";
         die($json->encode($res));
 	}
-    $doMain = "gyp.yndth.cn";
+    $doMain = "gyp-cn.yndth.cn";
     $moduleBackUrlArr = array('main'=>$doMain);
     $back_act = $moduleBackUrlArr[$deDataArr[0]];
     $username = $deDataArr[1];
@@ -1255,7 +1255,7 @@ function action_openGyp(){
         die($json->encode($res));
     }else{
         $res['err'] = 3;
-        $res['err_msg'] = "系统繁忙请稍后再试!";
+        $res['err_msg'] = "登录失败!";
         die($json->encode($res));
 	}
 }
