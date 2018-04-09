@@ -190,3 +190,49 @@ $.ajax(settings).done(function (response) {
     }
 }
 ```
+
+####4:直接请求用户登陆地址（设置登陆状态）
+##### 接口地址 ####
+```
+http://****.cn/mobile/user.php
+```
+##### 请求方式 ####
+```
+POST
+```
+ 
+##### 传递参数 #####
+```
+act     必传(默认值 act_login )
+data    用户名,密码   ','拼接后 des加密成字符串  必传  例:18338355702,123446
+```
+##### 请求范例 ####
+```
+var form = new FormData();
+form.append("act", "act_login");
+form.append("auto_login", "hff3WysLyhvEs390GANTqO1VqPTqHEpR");
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://182.92.165.86/mobile/user.php",
+  "method": "POST",
+  "headers": {
+    "cache-control": "no-cache",
+    "postman-token": "27dd83cd-bf7e-c850-2bed-395c9d2c1969"
+  },
+  "processData": false,
+  "contentType": false,
+  "mimeType": "multipart/form-data",
+  "data": form
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+ 
+#### 返回值 ####
+```
+无返回
+```

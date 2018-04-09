@@ -1113,7 +1113,18 @@ function action_act_login()
 	$username = isset($_POST['username']) ? trim($_POST['username']) : '';
 	$password = isset($_POST['password']) ? trim($_POST['password']) : '';
 	$back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
-	
+	if(!empty($_POST['auto_login'])){
+        $deData = openssl_decrypt($_REQUEST['auto_login'], 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
+        $deDataArr = explode(',',$deData);
+        if (count($deDataArr)!=2){
+        	file_put_contents('auto_login.log','Error_level:1 , '.json_encode($deDataArr).PHP_EOL,8);
+		}else{
+        	$_POST = $deDataArr;
+            $username = isset($_POST[0]) ? trim($_POST[0]) : '';
+            $password = isset($_POST[1]) ? trim($_POST[1]) : '';
+            $_POST['remember'] = 1;
+		}
+	}
 	$captcha = intval($_CFG['captcha']);
 	if(($captcha & CAPTCHA_LOGIN) && (! ($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2)) && gd_version() > 0)
 	{
@@ -1179,6 +1190,9 @@ function action_act_login()
 		}
 		
 		$ucdata = isset($user->ucdata) ? $user->ucdata : '';
+		if(!empty($deDataArr)){
+            header("Location: index.php\n");exit;
+		}
 		show_message($_LANG['login_success'] . $ucdata, array(
 			$_LANG['back_up_page'],$_LANG['profile_lnk']
 		), array(
