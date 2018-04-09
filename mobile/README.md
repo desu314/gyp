@@ -198,7 +198,7 @@ http://****.cn/mobile/user.php
 ```
 ##### 请求方式 ####
 ```
-POST
+GET
 ```
  
 ##### 传递参数 #####
@@ -215,11 +215,11 @@ form.append("auto_login", "hff3WysLyhvEs390GANTqO1VqPTqHEpR");
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://182.92.165.86/mobile/user.php",
-  "method": "POST",
+  "url": "http://****.com/mobile/user.php?act=act_login&auto_login=hff3WysLyhvEs390GANTqO1VqPTqHEpR",
+  "method": "GET",
   "headers": {
     "cache-control": "no-cache",
-    "postman-token": "27dd83cd-bf7e-c850-2bed-395c9d2c1969"
+    "postman-token": "f34fd858-1b8a-67d8-db25-c50930048a34"
   },
   "processData": false,
   "contentType": false,

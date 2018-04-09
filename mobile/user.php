@@ -1113,7 +1113,7 @@ function action_act_login()
 	$username = isset($_POST['username']) ? trim($_POST['username']) : '';
 	$password = isset($_POST['password']) ? trim($_POST['password']) : '';
 	$back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
-	if(!empty($_POST['auto_login'])){
+	if(!empty($_REQUEST['auto_login'])){
         $deData = openssl_decrypt($_REQUEST['auto_login'], 'DES-ECB', '1a0dcfbdba61c4cca212ec91bb55af28');
         $deDataArr = explode(',',$deData);
         if (count($deDataArr)!=2){
