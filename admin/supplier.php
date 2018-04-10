@@ -233,6 +233,7 @@ elseif ($_REQUEST['act']=='update')
         'settlement_bank_account_number'	=>	trim($_POST['settlement_bank_account_number']),
         'settlement_bank_name'	=>	trim($_POST['settlement_bank_name']),
         'settlement_bank_code'	=>	trim($_POST['settlement_bank_code']),
+        'supplier_name' => trim($_POST['supplier_name']),
         /* 代码增加 By  www.68ecshop.com Start */
         'rank_id' => $_POST['rank_id'],
         /* 代码增加 By  www.68ecshop.com End */
@@ -294,6 +295,17 @@ elseif ($_REQUEST['act']=='update')
 
     /* 保存供货商信息 */
     $db->autoExecute($ecs->table('supplier'), $supplier, 'UPDATE', "supplier_id = '" . $supplier_id . "'");
+
+    /**
+     * 查找入驻商店铺设置，如果存在，则修改店铺名称
+     */
+    $sql = "select * from ". $ecs->table('supplier_shop_config') ." where supplier_id=".$supplier_old['supplier_id'];
+    $shopConfig = $db->getAll($sql);
+    if(!empty($shopConfig)){
+        /*修改店铺信息*/
+        $sql = "update ". $ecs->table('supplier_shop_config') ." set value = '".$_POST['supplier_name']."' where code = 'shop_name' or code = 'shop_title' and supplier_id = ".$supplier_id;
+        $db->query($sql);
+    }
 
     if ($_POST['status']!='1')
     {

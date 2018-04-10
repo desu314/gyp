@@ -45,6 +45,9 @@ if (!$smarty->is_cached('mall.dwt', $cache_id))
     assign_template();
     assign_template_supplier();
     $position = assign_ur_here();
+    if($position['title'] == ''){
+        $position['title'] = $db->getRow("SELECT supplier_name FROM " . $ecs->table("supplier") . " WHERE `supplier_id` =  " . $_GET['suppId']);
+    }
     $smarty->assign('page_title',      $position['title']);    // 页面标题
     //$smarty->assign('ur_here',         $position['ur_here']);  // 当前位置
     //$smarty->assign('feed_url',        ($_CFG['rewrite'] == 1) ? 'feed.xml' : 'feed.php'); // RSS URL

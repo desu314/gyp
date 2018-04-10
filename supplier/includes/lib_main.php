@@ -1189,14 +1189,16 @@ function create_shop_settiongs()
 	if($num>0){
 		return;
 	}else{
+        $sql = "select supplier_name from " . $ecs->table('supplier') ." WHERE supplier_id=".$_SESSION['supplier_id'];
+        $supplier_name = $db->getOne($sql);
 		$insql = "INSERT INTO ". $ecs->table('supplier_shop_config') ." (`id`, `parent_id`, `code`, `type`, `store_range`, `store_dir`, `value`, `sort_order`, `supplier_id`) VALUES
 				(1, 0, 'shop_info', 'group', '', '', '', 1, ".$_SESSION['supplier_id']."),
 				(2, 0, 'hidden', 'hidden', '', '', '', 1, ".$_SESSION['supplier_id']."),
 				(8, 0, 'sms', 'group', '', '', '', 1, ".$_SESSION['supplier_id']."),
-				(101, 1, 'shop_name', 'text', '', '', '商家店铺名称', 1, ".$_SESSION['supplier_id']."),
-				(102, 1, 'shop_title', 'text', '', '', '商家店铺标题', 1, ".$_SESSION['supplier_id']."),
-				(103, 1, 'shop_desc', 'hidden', '', '', '商家店铺描述', 1, ".$_SESSION['supplier_id']."),
-				(104, 1, 'shop_keywords', 'text', '', '', '商家店铺关键字', 1, ".$_SESSION['supplier_id']."),
+				(101, 1, 'shop_name', 'text', '', '', '".$supplier_name."', 1, ".$_SESSION['supplier_id']."),
+				(102, 1, 'shop_title', 'text', '', '', '".$supplier_name."', 1, ".$_SESSION['supplier_id']."),
+				(103, 1, 'shop_desc', 'hidden', '', '', '".$supplier_name."', 1, ".$_SESSION['supplier_id']."),
+				(104, 1, 'shop_keywords', 'text', '', '', '".$supplier_name."', 1, ".$_SESSION['supplier_id']."),
 				(105, 1, 'shop_country', 'manual', '', '', '1', 1, ".$_SESSION['supplier_id']."),
 				(106, 1, 'shop_province', 'manual', '', '', '0', 1, ".$_SESSION['supplier_id']."),
 				(107, 1, 'shop_city', 'manual', '', '', '0', 1, ".$_SESSION['supplier_id']."),
