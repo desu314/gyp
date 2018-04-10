@@ -413,7 +413,16 @@ var url = 'index_bestgoods.php?act=ajax';
 $(function(){
 	$('#J_ItemList').more({'address': url});
 });
+if({$auto_login}){
+    var username = "{$login_user_info.0}";
+    var password = "{$login_user_info.1}";
+    var remember = 1;
+    console.log(username)
+Ajax.call('user.php', 'act=act_login&username=' + username + '&password=' + password +'&remember'+remember,  reposed, 'POST', '');
+}
+function reposed() {
 
+}
 </script> 
 <script>
 function goTop(){
