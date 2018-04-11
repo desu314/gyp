@@ -3,7 +3,7 @@
 * @作者  http://www.68ecshop.com/
 */
 
-if(!defined("IN_ECS")){die("<a href=\"http://www.68ecshop.com/\">68ecshop</a>");}
+if(!defined("IN_ECS")){die("<a href=\"http://gyp-cn.yndth.cn/\">首页</a>");}
 @require_once(ROOT_PATH . 'themes/' . $_CFG['template'] . '/options.php');
 if (!defined('INIT_NO_SMARTY') && !defined('ECS_ADMIN')){
 $hu = $ecs->url();
