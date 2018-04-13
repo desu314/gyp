@@ -576,13 +576,17 @@ function action_update ()
 	}
 	if(! empty($password))
 	{
-		//如果修改密码，则修改入驻商管理员的密码
-		$supp_ec_salt = rand(1, 9999);
-		$supp_password = ! empty($_POST['password']) ? " password = '" . md5(md5($password) . $supp_ec_salt) . "'" : '';
-		$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $_POST['id'];
-		$db->query($sql);
-		$sql = "UPDATE " . $ecs->table('users') . "SET `ec_salt`='0' WHERE user_name= '" . $username . "'";
-		$db->query($sql);
+		$old_pass_sql = "select mobile_phone from " . $ecs->table('users') . " where user_name = '" . $username ."'";
+		$old_pass = $db->getOne($old_pass_sql);
+		if($password != $old_pass){
+			//如果修改密码，则修改入驻商管理员的密码
+			$supp_ec_salt = rand(1, 9999);
+			$supp_password = ! empty($_POST['password']) ? " password = '" . md5(md5($password) . $supp_ec_salt) . "'" : '';
+			$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $_POST['id'];
+			$db->query($sql);
+			$sql = "UPDATE " . $ecs->table('users') . "SET `ec_salt`='0' WHERE user_name= '" . $username . "'";
+			$db->query($sql);
+		}
 	}
 	/* 代码增加2014-12-23 by www.68ecshop.com _star */
 	if(isset($_FILES['face_card']) && $_FILES['face_card']['tmp_name'] != '')
