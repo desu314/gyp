@@ -2,8 +2,6 @@
 define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require(dirname(__FILE__) . '/includes/phpqrcode.php');
-
-
 if(isset($_REQUEST['data']) && !empty($_REQUEST['data'])){
 	$data= $_REQUEST['data'];
 	//$size = '250x250';
@@ -16,14 +14,11 @@ if(isset($_REQUEST['data']) && !empty($_REQUEST['data'])){
 	//$size = '250x250';
 	$logo = str_replace("..", ".", $_CFG['erweima_logo']);	// 中间那logo图
 }
-
-$errorCorrectionLevel = 'L';//容错级别  
+$errorCorrectionLevel = 'L';//容错级别
 $matrixPointSize = 6;//生成图片大小  
 //生成二维码图片  
 QRcode::png($data, 'qrcode.png', $errorCorrectionLevel, $matrixPointSize, 2);
-
-$QR = 'qrcode.png';//已经生成的原始二维码图  
-
+$QR = 'qrcode.png';//已经生成的原始二维码图
 if ($logo !== FALSE) {  
     $QR = imagecreatefromstring(file_get_contents($QR));  
     $logo = imagecreatefromstring(file_get_contents($logo));  

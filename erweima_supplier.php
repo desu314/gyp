@@ -2,8 +2,6 @@
 define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require(dirname(__FILE__) . '/includes/phpqrcode.php');
-
-
 $sid= isset($_GET['sid']) ? intval($_GET['sid']) : 0;
 
 $urlinfo = pathinfo($_CFG['erweima_wapurl']);
@@ -11,7 +9,6 @@ $data = $urlinfo['dirname'];
 if($sid>0){
 	$data = $urlinfo['dirname'].'/supplier.php?suppId='.$sid;
 }
-
 $errorCorrectionLevel = 'L';//容错级别  
 $matrixPointSize = 6;//生成图片大小  
 //生成二维码图片  
@@ -35,10 +32,9 @@ if ($logo !== FALSE) {
     $logo_qr_height, $logo_width, $logo_height);  
 }  
 //输出图片  
-//imagepng($QR, 'helloweba.png');  
-//echo '<img src="helloweba.png">'; 
+//imagepng($QR, 'helloweba.png');
+//echo '<img src="helloweba.png">';
 header('Content-type: image/png');
 imagepng($QR);
 imagedestroy($QR);
-
 ?>
