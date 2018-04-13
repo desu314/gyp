@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require(dirname(__FILE__) . '/includes/phpqrcode.php');
