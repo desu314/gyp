@@ -92,14 +92,14 @@ $modules['04_order']['12_kuaidi_order2'] = 'kuaidi_order.php?act=list&order_stat
 $modules['04_order']['12_invoice_list'] = 'order.php?act=invoice_list';
 /* 增值税发票_添加_START_www.68ecshop.com */
 
-/* 虚拟卷订单列表_添加_START_www.68ecshop.com */
+/* 虚拟卷订单列表_添加_START_www.68ecshop.com
 $modules['18_virtual']['virtual_goods_add'] = 'virtual_goods.php?act=add&extension_code=virtual_good'; // 添加虚拟商品
 $modules['18_virtual']['virtual_goods_sup'] = 'virtual_goods.php?act=list&extension_code=virtual_good&supp=1'; // 虚拟商品列表
 $modules['18_virtual']['virtual_goods_list'] = 'virtual_goods.php?act=list&extension_code=virtual_good'; // 虚拟商品列表
 $modules['18_virtual']['virtual_card_list'] = 'virtual_goods_card.php?act=all_card';
 $modules['18_virtual']['virtual_validate'] = 'virtual_goods_card.php?act=verification_info';
 $modules['18_virtual']['virtual_category'] = 'category.php?act=virtual_list'; // 虚拟商品分类管理
-$modules['18_virtual']['virtual_district'] = 'virtual_goods.php?act=district'; // 虚拟商品商圈管理
+$modules['18_virtual']['virtual_district'] = 'virtual_goods.php?act=district'; // 虚拟商品商圈管理*/
 /* 虚拟卷订单列表_添加_START_www.68ecshop.com */
 
 $modules['05_banner']['ad_position'] = 'ad_position.php?act=list';

@@ -156,7 +156,7 @@ $_LANG['14_sms'] = '短信管理';
 $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
 $_LANG['17_weixin_manage'] = '微信模块'; // 增加 by www.68ecshop.com 微商城
-$_LANG['18_virtual'] = '虚拟团购管理';
+//$_LANG['18_virtual'] = '虚拟团购管理';
 
 /* 商品管理 */
 /* 代码增加_start By supplier.68ecshop.com */
