@@ -3,7 +3,6 @@ define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require(dirname(__FILE__) . '/includes/phpqrcode.php');
 $sid= isset($_GET['sid']) ? intval($_GET['sid']) : 0;
-
 $urlinfo = pathinfo($_CFG['erweima_wapurl']);
 $data = $urlinfo['dirname'];
 if($sid>0){
@@ -13,9 +12,7 @@ $errorCorrectionLevel = 'L';//容错级别
 $matrixPointSize = 6;//生成图片大小  
 //生成二维码图片  
 $QR = QRcode::png($data, 'supplier.png', $errorCorrectionLevel, $matrixPointSize, 2);
-
-$QR = 'supplier.png';//已经生成的原始二维码图  
-
+$QR = 'supplier.png';//已经生成的原始二维码图
 if ($logo !== FALSE) {  
     $QR = imagecreatefromstring(file_get_contents($QR));  
     $logo = imagecreatefromstring(file_get_contents($logo));  

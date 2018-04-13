@@ -10,7 +10,6 @@ if(isset($_REQUEST['data']) && !empty($_REQUEST['data'])){
 }else{
 	$id= isset($_GET['id']) ? intval($_GET['id']) : 0;
 	$data = str_replace('{id}', $id, $_CFG['erweima_wapurl']);
-	//$data = 'http://www.68ecshop.com/';
 	//$size = '250x250';
 	$logo = str_replace("..", ".", $_CFG['erweima_logo']);	// 中间那logo图
 }
