@@ -45,7 +45,6 @@ if ($logo !== FALSE) {
 header('Content-type: image/png');
 imagepng($QR);
 imagedestroy($QR);
-
 exit;
 
 // 通过google api生成未加logo前的QR图，也可以自己使用RQcode类生成
