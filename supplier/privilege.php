@@ -469,9 +469,9 @@ function action_edit ()
 	}
 	
 	/* 获取管理员信息 */
-	$sql = "SELECT user_id, user_name, email, password, agency_id, role_id, supplier_id FROM " . $ecs->table('supplier_admin_user') . " WHERE user_id = '" . $_REQUEST['id'] . "' AND supplier_id=" . $_SESSION['supplier_id'];
+	$sql = "SELECT user_id, uid, user_name, email, password, agency_id, role_id, supplier_id FROM " . $ecs->table('supplier_admin_user') . " WHERE user_id = '" . $_REQUEST['id'] . "' AND supplier_id=" . $_SESSION['supplier_id'];
 	$user_info = $db->getRow($sql);
-	
+	//var_dump($user_info);die;
 	/* 取得该管理员负责的办事处名称 */
 	if($user_info['agency_id'] > 0)
 	{
