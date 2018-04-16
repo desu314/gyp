@@ -26,7 +26,7 @@
         <dd>{$shop_address}</dd>
       </dl>
       <ul class="service-promise">
-        <li class="service-promise1"><a href="javascript:;" title="货到付款"></a></li>
+        
         <li class="service-promise2"><a href="javascript:;" title="正品保障"></a></li>
         <li class="service-promise3" style="margin:0;"><a href="javascript:;" title="当天配送"></a></li>
       </ul>
