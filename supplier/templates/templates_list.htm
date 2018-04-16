@@ -9,7 +9,8 @@
       <tr>
         <td width="250" align="center"><img id="screenshot" src="{$curr_template.screenshot}"/></td>
         <td valign="top"><strong><span id="templateName">{$curr_template.name}</span></strong> v<span id="templateVersion">{$curr_template.version}</span><br />
-          <span id="templateAuthor"><a href="{$curr_template.uri}" target="_blank">{$curr_template.author}</a></span><br />
+          <!--<span id="templateAuthor"><a href="{$curr_template.uri}" target="_blank">{$curr_template.author}</a></span><br />-->
+          <span id="templateAuthor"><a href="javascript:;;" target="_blank">{$curr_template.author}</a></span><br />
           <span id="templateDesc">{$curr_template.desc}</span><br />
           <span style="display:none"><input class="button" onclick="backupTemplate('{$curr_template.code}')" value="{$lang.backup}" type="button" id="backup" /></span>
           <div id="CurrTplStyleList">
