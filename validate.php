@@ -157,8 +157,11 @@ function action_send_mobile_code ()
 	// 生成6位短信验证码
 	$mobile_code = rand_number(6);
 	// 短信内容
+	$sql = "select mobile_prefix from " . $GLOBALS['ecs']->table('users') ." where mobile_phone = '".$mobile_phone."'";
+	$mobile_prefix = $GLOBALS['db']->getOne($sql);
 	$content = sprintf($_LANG['mobile_code_template'],  $mobile_code);
-    $result = qSendSms($content,$mobile_phone,$_SESSION[VT_MOBILE_PREFIX]); //todo 获取当前号码的 国家码
+    //$result = qSendSms($content,$mobile_phone,$_SESSION[VT_MOBILE_PREFIX]); //todo 获取当前号码的 国家码
+	$result = qSendSms($content,$mobile_phone,$mobile_prefix); //todo 获取当前号码的 国家码
 	if($result->result==0)
 	{
 		if(! isset($count))

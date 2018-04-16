@@ -24,7 +24,7 @@
   <ul class="header-menu">
     <li class="current"><a href="apply.php" class="joinin"><i></i>商家入驻申请</a></li>
     <li class=""><a href="{$mydomain}supplier/" class="login"><i></i>商家管理中心</a></li>
-    <li class=""><a href="#" class="faq"><i></i>商家帮助指南</a></li>
+    <li class=""><a href="apply_index.php" class="faq"><i></i>商家帮助指南</a></li>
   </ul>
 </div>
 <div class="header-line"><span></span></div>
@@ -33,9 +33,9 @@
   <div id="banner">
     <div id="ctrl1"> <span class="hov"></span> <span></span> <span></span> </div>
     <div id="img1" class="full-screen-slides" style="overflow:hidden"> 
-    	<a href="#"><img style="display:block;" src="images/apply/banner01.jpg" alt="" /></a> 
-        <a href="#"><img src="images/apply/banner02.jpg" alt="" /></a> 
-        <a href="#"><img src="images/apply/banner03.jpg" alt="" /></a> 
+    	<a href="apply_index.php"><img style="display:block;" src="images/apply/banner01.jpg" alt="" /></a>
+        <a href="apply_index.php"><img src="images/apply/banner02.jpg" alt="" /></a>
+        <a href="apply_index.php"><img src="images/apply/banner03.jpg" alt="" /></a>
     </div>
   </div>
 </div>

@@ -37,10 +37,10 @@ $modules['04_order']['12_order_excel']              = 'excel.php?act=order_excel
 /* 代码增加 by www.68ecshop.com start */
 $modules['04_order']['12_invoice_list']                 = 'order.php?act=invoice_list';
 
-$modules['18_virtual']['virtual_goods_s']   = 'virtual_goods.php?act=list&extension_code=virtual_good'; //虚拟商品列表
+/*$modules['18_virtual']['virtual_goods_s']   = 'virtual_goods.php?act=list&extension_code=virtual_good'; //虚拟商品列表
 $modules['18_virtual']['virtual_goods_add']    = 'virtual_goods.php?act=add&extension_code=virtual_good';  //添加虚拟商品
 $modules['18_virtual']['virtual_validate']   = 'virtual_goods_card.php?act=verification_info';
-$modules['18_virtual']['virtual_card_list']   = 'virtual_goods_card.php?act=all_card';
+$modules['18_virtual']['virtual_card_list']   = 'virtual_goods_card.php?act=all_card';*/
 
 /* 代码增加 by www.68ecshop.com end */
 $modules['05_dianpu_manage']['01_base']               	= 	'shop_config.php?act=list_edit';

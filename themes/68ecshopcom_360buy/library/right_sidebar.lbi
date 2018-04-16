@@ -94,13 +94,13 @@
                             {insert name='customer_service'}
                         </div>
                     </li>
-                    <li class="quick-area">
+                    <!--<li class="quick-area">
                     	<a class="quick-links-a" href="javascript:;"><i class="qr-code"></i></a>
                         <div class="sidebar-code quick-sidebar">
                         	<i class="arrow-right"></i>
                             <img src="themes/68ecshopcom_360buy/images/weixin.jpg"/>
                         </div>
-                    </li>
+                    </li>-->
                     <li class="returnTop">
                         <a href="javascript:;" class="return_top quick-links-a"><i class="top"></i></a>
                         <div class="popup">

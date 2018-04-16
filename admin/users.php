@@ -525,7 +525,7 @@ function action_update ()
 	$address = empty($_POST['address']) ? '' : trim($_POST['address']);
 	$status = $_POST['status'];
 	/* 代码增加2014-12-23 by www.68ecshop.com _end */
-	
+
 	$users = & init_users();
 	
 	// 获取用户邮箱和手机号已经验证信息,如果手机号、邮箱变更则需验证，如果未变化则沿用原来的验证结果
@@ -546,7 +546,7 @@ function action_update ()
 	}else{
 		$profile['mobile_validated'] = $user['mobile_validated'];
 	}
-	
+
 	$result = $users->edit_user($profile, 1);
 	
 	if(! $result)
@@ -565,10 +565,28 @@ function action_update ()
 		}
 		sys_msg($msg, 1);
 	}
+	/*判断邮箱和手机号是否为空，若不为空，则修改入驻商管理员邮箱和手机号*/
+	if(!empty($email)){
+		$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET email = '" . $email . "' WHERE uid = " . $_POST['id'];
+		$db->query($sql);
+	}
+	if(!empty($mobile_phone)){
+		$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET mobile_phone = '" . $mobile_phone . "' WHERE uid = " . $_POST['id'];
+		$db->query($sql);
+	}
 	if(! empty($password))
 	{
-		$sql = "UPDATE " . $ecs->table('users') . "SET `ec_salt`='0' WHERE user_name= '" . $username . "'";
-		$db->query($sql);
+		$old_pass_sql = "select mobile_phone from " . $ecs->table('users') . " where user_name = '" . $username ."'";
+		$old_pass = $db->getOne($old_pass_sql);
+		if($password != $old_pass){
+			//如果修改密码，则修改入驻商管理员的密码
+			$supp_ec_salt = rand(1, 9999);
+			$supp_password = ! empty($_POST['password']) ? " password = '" . md5(md5($password) . $supp_ec_salt) . "'" : '';
+			$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $_POST['id'];
+			$db->query($sql);
+			$sql = "UPDATE " . $ecs->table('users') . "SET `ec_salt`='0' WHERE user_name= '" . $username . "'";
+			$db->query($sql);
+		}
 	}
 	/* 代码增加2014-12-23 by www.68ecshop.com _star */
 	if(isset($_FILES['face_card']) && $_FILES['face_card']['tmp_name'] != '')

@@ -194,6 +194,25 @@ elseif ($_REQUEST['act'] == 'post')
         }
     }
 
+    /**
+     * 查找已修改的店铺名称，修改入驻商里的店铺名称Strrt
+     */
+    $sql = "select * from " . $ecs->table('supplier_shop_config') ." where supplier_id=".$_SESSION['supplier_id'];
+    $res = $db->query($sql);
+    while ($row = $db->fetchRow($res))
+    {
+        $shopConfig[$row['id']] = $row;
+    }
+    ini_set('display_errors',1);
+    foreach($shopConfig as $k=>$v){
+        if($v['code'] == 'shop_name'){
+            $shop_name = $v['value'];
+        }
+    }
+    $upSql = "UPDATE " . $ecs->table('supplier') . " SET supplier_name = '".$shop_name."' WHERE supplier_id = ".$_SESSION['supplier_id'];
+    $db->query($upSql);
+    /*查找已修改的店铺名称，修改入驻商里的店铺名称End*/
+
     /* 处理上传文件 */
     $file_var_list = array();
     $sql = "SELECT * FROM " . $ecs->table('supplier_shop_config') . " WHERE parent_id > 0 AND type = 'file' AND supplier_id=".$_SESSION['supplier_id'];

@@ -1424,7 +1424,7 @@ function action_act_edit_profile ()
 	$user_id = $_SESSION['user_id'];
 	
 	include_once (ROOT_PATH . 'includes/lib_transaction.php');
-	
+
 	$birthday = trim($_POST['birthdayYear']) . '-' . trim($_POST['birthdayMonth']) . '-' . trim($_POST['birthdayDay']);
 	$email = trim($_POST['email']);
 	$other['msn'] = $msn = isset($_POST['extend_field1']) ? trim($_POST['extend_field1']) : '';
@@ -1535,6 +1535,13 @@ function action_act_edit_profile ()
 	
 	if(edit_profile($profile))
 	{
+		//前台改变会员名称时候同步入驻商管理账号
+		$selSql = "SELECT * FROM " . $GLOBALS['ecs']->table('supplier_admin_user') . " where uid = '" . $_SESSION['user_id'] . "'";
+		$userRes = $GLOBALS['db']->getRow($selSql);
+		if(!empty($userRes)){
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET user_name = '" . $username . "' where uid = '" . $_SESSION['user_id'] . "'";
+			$db->query($sql);
+		}
 		show_message($_LANG['edit_profile_success'], $_LANG['profile_lnk'], 'user.php?act=profile', 'info');
 	}
 	else

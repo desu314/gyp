@@ -233,6 +233,7 @@ elseif ($_REQUEST['act']=='update')
         'settlement_bank_account_number'	=>	trim($_POST['settlement_bank_account_number']),
         'settlement_bank_name'	=>	trim($_POST['settlement_bank_name']),
         'settlement_bank_code'	=>	trim($_POST['settlement_bank_code']),
+        'supplier_name' => trim($_POST['supplier_name']),
         /* 代码增加 By  www.68ecshop.com Start */
         'rank_id' => $_POST['rank_id'],
         /* 代码增加 By  www.68ecshop.com End */
@@ -283,17 +284,28 @@ elseif ($_REQUEST['act']=='update')
     $sql = "select * from ". $ecs->table('supplier_admin_user') ." where supplier_id=".$supplier_old['supplier_id'];
     $info = $db->getAll($sql);
     if(count($info)>0){
-        $sql = "UPDATE ". $ecs->table('supplier_admin_user') ." SET user_name = '".$supplier_old['user_name']."',password = '".$supplier_old['password']."',email='".$supplier_old['email']."',ec_salt='".$supplier_old['ec_salt']."', checked = ".intval($_POST['status'])." WHERE supplier_id=".$supplier_old['supplier_id']." and uid=".$supplier_old['user_id'];
+        $sql = "UPDATE ". $ecs->table('supplier_admin_user') ." SET user_name = '".$supplier_old['user_name']."',password = '".$supplier_old['password']."',email='".$supplier_old['email']."',ec_salt='".$supplier_old['ec_salt']."', checked = ".intval($_POST['status']).", mobile_phone = '".$supplier_old['mobile_phone']."' WHERE supplier_id=".$supplier_old['supplier_id']." and uid=".$supplier_old['user_id'];
         $db->query($sql);
     }else{
-        $insql = "INSERT INTO " . $ecs->table('supplier_admin_user') . " (`uid`, `user_name`, `email`, `password`, `ec_salt`, `add_time`, `last_login`, `last_ip`, `action_list`, `nav_list`, `lang_type`, `agency_id`, `supplier_id`, `todolist`, `role_id`, `checked`) ".
-            "VALUES(".$supplier_old['user_id'].", '".$supplier_old['user_name']."', '".$supplier_old['email']."', '".$supplier_old['password']."', '".$supplier_old['ec_salt']."', ".$supplier_old['last_login'].", ".$supplier_old['last_login'].", '".$supplier_old['last_ip']."', 'all', '', '', 0, ".$supplier_old['supplier_id'].", NULL, NULL, ".intval($_POST['status']).")";
+        $insql = "INSERT INTO " . $ecs->table('supplier_admin_user') . " (`uid`, `user_name`, `email`, `password`, `ec_salt`, `add_time`, `last_login`, `last_ip`, `action_list`, `nav_list`, `lang_type`, `agency_id`, `supplier_id`, `todolist`, `role_id`, `checked`, `mobile_phone`) ".
+            "VALUES(".$supplier_old['user_id'].", '".$supplier_old['user_name']."', '".$supplier_old['email']."', '".$supplier_old['password']."', '".$supplier_old['ec_salt']."', ".$supplier_old['last_login'].", ".$supplier_old['last_login'].", '".$supplier_old['last_ip']."', 'all', '', '', 0, ".$supplier_old['supplier_id'].", NULL, NULL, ".intval($_POST['status']).",'".$supplier_old['mobile_phone']."')";
         $db->query($insql);
     }
     /* 代码增加_end  By  supplier.68ecshop.com */
 
     /* 保存供货商信息 */
     $db->autoExecute($ecs->table('supplier'), $supplier, 'UPDATE', "supplier_id = '" . $supplier_id . "'");
+
+    /**
+     * 查找入驻商店铺设置，如果存在，则修改店铺名称
+     */
+    $sql = "select * from ". $ecs->table('supplier_shop_config') ." where supplier_id=".$supplier_old['supplier_id'];
+    $shopConfig = $db->getAll($sql);
+    if(!empty($shopConfig)){
+        /*修改店铺信息*/
+        $sql = "update ". $ecs->table('supplier_shop_config') ." set value = '".$_POST['supplier_name']."' where code = 'shop_name' or code = 'shop_title' and supplier_id = ".$supplier_id;
+        $db->query($sql);
+    }
 
     if ($_POST['status']!='1')
     {

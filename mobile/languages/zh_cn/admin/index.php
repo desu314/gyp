@@ -14,7 +14,7 @@
 */
 
 $_LANG['shop_guide'] = '开店向导';
-$_LANG['more_products'] = '更多商之翼产品';
+//$_LANG['more_products'] = '更多商之翼产品';
 $_LANG['set_navigator'] = '设置导航栏';
 $_LANG['about'] = '关于我们';
 $_LANG['preview'] = '查看网店';

@@ -37,6 +37,7 @@ $_LANG['get_new_pwd'] = '找回管理员密码';
 $_LANG['pwd_confirm'] = '确认密码';
 $_LANG['new_password'] = '新密码';
 $_LANG['old_password'] = '旧密码';
+$_LANG['remind'] = '如需修改个人信息，请去首页个人中心修改';
 $_LANG['agency'] = '负责的办事处';
 $_LANG['self_nav'] = '个人导航';
 $_LANG['all_menus'] = '所有菜单';
