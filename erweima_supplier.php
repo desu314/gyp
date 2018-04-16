@@ -1,5 +1,4 @@
 <?php
-ob_end_clean();
 define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 require(dirname(__FILE__) . '/includes/phpqrcode.php');
@@ -31,7 +30,8 @@ if ($logo !== FALSE) {
 //输出图片
 //imagepng($QR, 'helloweba.png');
 //echo '<img src="helloweba.png">';
-header('Content-type: image/png');
+ob_end_clean();
+header('Content-type: image/x-png');
 imagepng($QR);
 imagedestroy($QR);
 ?>
