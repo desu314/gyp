@@ -86,7 +86,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
                 <input name="password" type="password" id="password" placeholder="{$lang.label_password}" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)" class="text" />
                 <i class="i-pass"></i>
                 <div id="pwd_notice" style="display: none;"> <span class="label" id="password_notice"></span> </div>
-                <div id="pwd_intensity"> <span class="label">
+                <div id="pwd_intensity"> <span class="label" style="height: 45px">
                   <table width="295" height="25px" border="0" cellspacing="0" cellpadding="0" style="padding: 0px 0px 10px;">
                     <tr align="center">
                       <td width="33%" id="pwd_lower">{$lang.pwd_lower}</td>

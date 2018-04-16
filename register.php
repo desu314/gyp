@@ -188,7 +188,7 @@ function action_send_mobile_code ()
 
         if(! $captcha->check_word(trim($_POST['captcha'])))
         {
-            exit($_LANG['invalid_captcha']);
+            exit(json_encode(array('error_code'=>2,'result'=>$_LANG['invalid_captcha'])));
             return;
         }
 
@@ -271,11 +271,11 @@ function action_send_mobile_code ()
         $_SESSION[VT_MOBILE_REGISTER] = $mobile_phone;
         // 保存验证信息
         save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_REGISTER, time(), time() + 30 * 60, $ext_info);
-        echo '短信已发送请注意查收!';
+        echo json_encode(array('error_code'=>0,'result'=>'短信验证码发送成功'));
     }
     else
     {
-        echo '短信验证码发送失败';
+        echo json_encode(array('error_code'=>1,'result'=>'短信验证码发送失败'));
     }
 }
 

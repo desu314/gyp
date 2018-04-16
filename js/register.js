@@ -575,7 +575,6 @@ function sendEmailCode(emailObj, emailCodeObj, sendButton) {
 function sendMobileCode(mobileObj,mobile_prefixObj, mobileCodeObj, sendButton) {
 	checkMobilePhone(mobileObj, function(result) {
 		if (result) {
-
 			// 发送短信
 			var url = 'register.php?act=send_mobile_code';
 			$.post(url, {
@@ -584,18 +583,18 @@ function sendMobileCode(mobileObj,mobile_prefixObj, mobileCodeObj, sendButton) {
 				mobile_phone: mobileObj.val(),
 				mobile_prefix: mobile_prefixObj.val()
 			}, function(result) {
-				if (result == 'ok') {
+				if (result.error_code == 0) {
 					// 倒计时
 					countdown(sendButton);
 					$("#captcha_notice").html("");
 					$("#captcha_notice").css({color: '#093'});
 				} else {
-					alert(result);
+					alert(result.result);
 				}
 				if($("#captcha").size() > 0){
 					$("#captcha_img").click();
 				}
-			}, 'text');
+			}, 'json');
 		}
 	});
 }
