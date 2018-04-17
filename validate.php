@@ -105,12 +105,12 @@ function action_send_mobile_code ()
 
 	if(empty($mobile_phone))
 	{
-		exit("手机号不能为空");
+        json_encode(array('error_code'=>2,'result'=>'手机号不能为空'));
 		return;
 	}
 	else if(! is_mobile_phone($mobile_phone))
 	{
-		exit("手机号格式不正确");
+        json_encode(array('error_code'=>2,'result'=>'手机号格式不正确'));
 		return;
 	}
 	else if(check_validate_record_exist($mobile_phone))
@@ -133,12 +133,12 @@ function action_send_mobile_code ()
 
 		if((time() - $last_send_time) < 60)
 		{
-			echo ("每60秒内只能发送一次短信验证码，请稍候重试");
+			echo json_encode(array('error_code'=>2,'result'=>'每60秒内只能发送一次短信验证码，请稍候重试'));
 			return;
 		}
 		else if(time() - $create_time < $max_sms_count_time && $record['count'] > $max_sms_count)
 		{
-			echo ("您发送验证码太过于频繁，请稍后重试！");
+			echo json_encode(array('error_code'=>2,'result'=>'您发送验证码太过于频繁，请稍后重试！'));
 			return;
 		}
 		else
@@ -180,11 +180,11 @@ function action_send_mobile_code ()
 		$_SESSION[VT_MOBILE_VALIDATE] = $mobile_phone;
 		// 保存验证信息
 		save_validate_record($mobile_phone, $mobile_code, VT_MOBILE_VALIDATE, time(), time() + 30 * 60, $ext_info);
-		echo '验证码已发送,请注意查收!';
+		echo json_encode(array('error_code'=>0,'result'=>'已发送'));
 	}
 	else
 	{
-		echo '短信验证码发送失败';
+		echo json_encode(array('error_code'=>1,'result'=>'短信验证码发送失败'));
 	}
 }
 

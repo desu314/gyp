@@ -1420,7 +1420,7 @@ function action_do_payment_password_reset ()
 		else
 		{
 			exit(json_encode(array(
-				'error' => 1, 'content' => '设置支付密码失败，请重新尝试', 'url' => ''
+				'error' => 1, 'content' => '设置支付密码失败或新旧密码相同，请重新尝试', 'url' => ''
 			)));
 		}
 	}
