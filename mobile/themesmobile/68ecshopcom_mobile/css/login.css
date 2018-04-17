@@ -87,6 +87,7 @@ font-size: 14px;-webkit-border-radius: 0;-webkit-appearance: none;background: #f
 	text-align: center;
 }
 /*找回密码*/
+.hq_phone{border: 1px solid #DFDFDF; height:35px; width:50%; padding-left: 5px; -webkit-appearance: none; -webkit-box-flex: 1; -webkit-flex: 1; flex: 1; border-radius: 0; -webkit-rtl-ordering: logical; -webkit-user-select: text; cursor: auto; background-color: white; font-size:14px;}
 .find{ width:100%; background:#FFF; margin:auto; overflow:hidden}
 .innercontent{ width:95%; margin:auto;}
 .yonghu{ width:100%; margin-top:20px; padding-bottom:10px; overflow:hidden}
@@ -98,6 +99,7 @@ font-size: 14px;-webkit-border-radius: 0;-webkit-appearance: none;background: #f
 #l_mobile_phone{font-size:18px; line-height:40px; color:#666}
 #l_email{font-size:18px; line-height:40px; color:#666}
 .validate_type{ width:100%; margin-top:10px; font-size:14px; line-height:40px; color:#333; margin-bottom:10px;}
+.zphone{ width:45%; float:right; height:37px;display:block; border:0px; height:35px; background:#f12b2b; font-size:14px; text-align:center; margin-top:2px;border-radius:0; color:#fff; }
 .m_phone{ width:45%; float:right; height:37px;display:block; border:0px; height:35px; background:#f12b2b; font-size:14px; text-align:center; margin-top:2px;border-radius:0; }
 .find_box_end{ width:100%; margin:auto; margin-top:20px;}
 .find_box_end p{ text-align:center; font-size:18px; color:#F00; line-height:200%;}
