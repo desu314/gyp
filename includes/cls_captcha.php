@@ -274,7 +274,7 @@ class captcha
             }
             else
             {
-                header('Content-type: image/png');
+                header('Content-type: image/x-png');
                 imagepng($img_org);
             }
 
