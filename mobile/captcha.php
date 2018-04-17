@@ -22,7 +22,7 @@ if (isset($_REQUEST['is_login']))
 {
     $img->session_word = 'captcha_login';
 }
-ob_end_clean(); //清除之前出现的多余输入
+ob_clean(); //清除之前出现的多余输入
 $img->generate_image();
 
 ?>
