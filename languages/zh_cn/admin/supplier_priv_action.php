@@ -3,12 +3,6 @@
 /**
  * YNDTH 权限名称语言文件
  * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: priv_action.php 17217 2011-01-19 06:29:08Z liubo $
 */
@@ -20,9 +14,9 @@ $_LANG['sys_manage'] = '店铺系统设置';
 $_LANG['priv_manage'] = '权限管理';
 $_LANG['promotion'] = '促销管理';
 $_LANG['pickup_point'] = '自提点管理';
-/* 代码增加 By  www.68ecshop.com Start */
+/* 代码增加 Start */
 $_LANG['stats'] = '报表统计';
-/* 代码增加 By  www.68ecshop.com End */
+/* 代码增加 End */
 
 //商品管理部分的权限
 $_LANG['goods_list'] = '商品列表审核/未审核/审核未通过';
@@ -90,19 +84,19 @@ $_LANG['pickup_point_manage'] = '自提点添加/编辑';
 $_LANG['pickup_point_batch'] = '自提点批量上传';
 
 
-/* 虚拟团购 代码增加 by www.68ecshop.com start */
+/* 虚拟团购 代码增加 start */
 $_LANG['virtual'] = '虚拟团购';
-/* 虚拟团购 代码增加 by www.68ecshop.com end */
+/* 虚拟团购 代码增加 end */
 // 即时通信管理部分的权限
 $_LANG['chat'] = '即时通信';
 $_LANG['customer'] = '客服管理';
 $_LANG['third_customer'] = '第三方客服';
-/* 代码增加 By  www.68ecshop.com Start */
+/* 代码增加 By Start */
 // 报表统计部分的权限
 $_LANG['order_stats'] = '订单统计';
 $_LANG['goods_stats'] = '商品分析';
 $_LANG['sell_stats'] = '销售报告';
 $_LANG['after_sell_stats'] = '售后统计';
 //$_LANG['report_flow'] = '流量统计';
-/* 代码增加 By  www.68ecshop.com End */
+/* 代码增加 End */
 ?>
