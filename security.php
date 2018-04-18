@@ -574,10 +574,14 @@ function action_do_password_reset ()
 	}
 	else
 	{
-		$supp_ec_salt = rand(1, 9999);
-		$supp_password = ! empty($_POST['password']) ? "password = '" . md5(md5($_POST['password']) . $supp_ec_salt) . "'" : '';
-		$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $user_id;
-		$GLOBALS['db']->query($sql);
+		//判断当前用户是否为商家
+		$uid = $GLOBALS['db']->getOne("select uid from " . $GLOBALS['ecs']->table('supplier_admin_user') . " where uid= ".$user_id);
+		if($uid) {
+			$supp_ec_salt = rand(1, 9999);
+			$supp_password = !empty($_POST['password']) ? "password = '" . md5(md5($_POST['password']) . $supp_ec_salt) . "'" : '';
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $user_id;
+			$GLOBALS['db']->query($sql);
+		}
 		exit(json_encode(array(
 			'error' => 0, 'content' => '', 'url' => ''
 		)));
@@ -914,7 +918,12 @@ function action_do_email_validate ()
 	{
 		// 验证完成
 		$_SESSION['security_validate'] = false;
-		
+		//判断当前用户是否为商家
+		$uid = $GLOBALS['db']->getOne("select uid from " . $GLOBALS['ecs']->table('supplier_admin_user') . " where user_name = '".$user_name."'");
+		if($uid) {
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET email = '" . $email . "' WHERE uid = " . $uid;
+			$GLOBALS['db']->query($sql);
+		}
 		exit(json_encode(array(
 			'error' => 0, 'content' => '', 'url' => ''
 		)));
@@ -1105,8 +1114,12 @@ function action_do_mobile_binding ()
 	{
 		// 设置为第二步
 		$_SESSION['security_validate'] = true;
-		$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET mobile_phone = '" . $mobile . "' WHERE uid = " . $user_id;
-		$GLOBALS['db']->query($sql);
+		//判断当前用户是否为商家
+		$uid = $GLOBALS['db']->getOne("select uid from " . $GLOBALS['ecs']->table('supplier_admin_user') . " where uid= ".$user_id);
+		if($uid) {
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET mobile_phone = '" . $mobile . "' WHERE uid = " . $user_id;
+			$GLOBALS['db']->query($sql);
+		}
 		exit(json_encode(array(
 			'error' => 0, 'content' => '', 'url' => ''
 		)));

@@ -410,21 +410,28 @@ function action_reset_password ()
 	}
 	
 	$user = $_SESSION['find_password'];
-	
+
 	$result = $GLOBALS['user']->edit_user(array(
 		'username' => $user['user_name'], 'password' => $password
 	));
 	
-	unset($_SESSION['find_password']);
-	
 	if($result == false)
 	{
+		unset($_SESSION['find_password']);
 		exit(json_encode(array(
 			'error' => 1, 'content' => '重置密码失败，请重新尝试', 'url' => ''
 		)));
 	}
 	else
 	{
+		$uid = $GLOBALS['db']->getOne("select uid from " . $GLOBALS['ecs']->table('supplier_admin_user') . " where uid= ".$_SESSION['find_password']['user_id']);
+		if($uid){
+			$supp_ec_salt = rand(1, 9999);
+			$supp_password = !empty($_POST['password']) ? " password = '" . md5(md5($_POST['password']) . $supp_ec_salt) . "'" : '';
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $_SESSION['find_password']['user_id'];
+			$db->query($sql);
+		}
+		unset($_SESSION['find_password']);
 		exit(json_encode(array(
 			'error' => 0, 'content' => '', 'url' => ''
 		)));
