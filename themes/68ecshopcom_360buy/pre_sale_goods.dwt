@@ -469,7 +469,7 @@ function reg(str){
             <!-- #BeginLibraryItem "/library/packing_list.lbi" --><!-- #EndLibraryItem --> </div>
           <div class="mc" id="os_shouhou">
             <div class="blank20"></div>
-            <!-- #BeginLibraryItem "/library/pre_baozhang.lbi" --><!-- #EndLibraryItem --> </div>
+             </div>
           <div class="mc" id="os_changjian">
             <div class="blank20"></div>
             <!-- #BeginLibraryItem "/library/pre_common_problem.lbi" --><!-- #EndLibraryItem --> </div>
