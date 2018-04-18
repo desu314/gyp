@@ -1648,6 +1648,13 @@ function action_act_edit_profile()
 	{
 		$sql = 'UPDATE ' . $ecs->table('users') . " SET `user_name`='$user_name' WHERE `user_id`='" . $_SESSION['user_id'] . "'";
 		$db->query($sql);
+		//前台改变会员名称时候同步入驻商管理账号
+		$selSql = "SELECT * FROM " . $GLOBALS['ecs']->table('supplier_admin_user') . " where uid = '" . $_SESSION['user_id'] . "'";
+		$userRes = $GLOBALS['db']->getRow($selSql);
+		if(!empty($userRes)){
+			$sql = "UPDATE " . $GLOBALS['ecs']->table('supplier_admin_user') . " SET user_name = '" . $user_name . "' where uid = '" . $_SESSION['user_id'] . "'";
+			$db->query($sql);
+		}
 		show_message($_LANG['edit_profile_success'], $_LANG['back_user'], 'user.php', 'info');
 	}
 	else

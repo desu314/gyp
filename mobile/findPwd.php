@@ -79,7 +79,6 @@ function action_default ()
  */
 function action_check_username ()
 {
-	
 	//获取全局变量
 	$_LANG = $GLOBALS['_LANG'];
 	$smarty = $GLOBALS['smarty'];
@@ -375,6 +374,13 @@ function action_reset_password()
 	}
 	else 
 	{
+		$uid = $db->getOne("select uid from " . $ecs->table('supplier_admin_user') . " where uid= ".$_SESSION['find_password']['user_id']);
+		if($uid){
+			$supp_ec_salt = rand(1, 9999);
+			$supp_password = !empty($_POST['password']) ? " password = '" . md5(md5($_POST['password']) . $supp_ec_salt) . "'" : '';
+			$sql = "UPDATE " . $ecs->table('supplier_admin_user') . " SET " . $supp_password . ", ec_salt = '" . $supp_ec_salt . "' WHERE uid = " . $_SESSION['find_password']['user_id'];
+			$db->query($sql);
+		}
 		exit(json_encode(array('error' => 0, 'content' => '', 'url' => '')));
 	}
 	
