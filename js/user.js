@@ -1090,7 +1090,6 @@ function sendEmailCode(emailObj, emailCodeObj, sendButton) {
  *            点击发送短信证码的按钮对象，用于显示倒计时信息
  */
 function sendMobileCode(mobileObj, mobileCodeObj, sendButton) {
-    alert(2);
 	checkMobilePhone(mobileObj, function(result) {
 		if (result) {
 			// 发送邮件

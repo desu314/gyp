@@ -587,7 +587,7 @@ function sendMobileCode(mobileObj,mobile_prefixObj, mobileCodeObj, sendButton) {
 					// 倒计时
 					countdown(sendButton);
 					$("#captcha_notice").html("");
-					$("#captcha_notice").css({color: '#093'});
+					$("#captcha_notice").css({color: '#093'});return;
 				} else {
 					alert(result.result);
 				}
