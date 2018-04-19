@@ -1,0 +1,83 @@
+<!-- $Id: order_query.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+{include file="pageheader.htm"}
+<script type="text/javascript" src="../js/calendar.php"></script>
+<link href="../js/calendar/calendar.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="../themes/68ecshopcom_360buy/css/user.css" />
+<script type="text/javascript" src="../themes/68ecshopcom_360buy/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../themes/68ecshopcom_360buy/js/jquery.validate.js"></script>
+<script type="text/javascript" src="../themes/68ecshopcom_360buy/js/messages_zh.js"></script>
+<style>
+  table,table tr th, table tr td { border:1px solid; }
+</style>
+<!-- {if $action eq "pay_view"} -->
+<div class="main-div">
+<form action="apply_pay.php" method="post" enctype="multipart/form-data" name="searchForm">
+  <table cellspacing="1" cellpadding="3" width="100%">
+    <tr align="center">
+      <td colspan="3" align="center"><b>{$lang.rank_level}：</b>{$rank.rank_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        |&nbsp;&nbsp;&nbsp;&nbsp;<b>{$lang.payment_money}：</b>{$rank.rank_money}</td>
+      <input type="hidden" name="amount" value="{$rank.rank_money}" />
+      <input type="hidden" name="user_note" value="{$lang.apply_pay_title}" />
+    </tr>
+    <tr align="center">
+      <td colspan="3" align="left">{$lang.payment}:</td>
+    </tr>
+    <tr align="center">
+      <td>{$lang.pay_name}</td>
+      <td width="60%">{$lang.pay_desc}</td>
+      <td width="17%">{$lang.pay_fee}</td>
+    </tr>
+    <!-- {foreach from=$payment item=list} -->
+    <tr>
+      <td align="left"><input type="radio" name="payment_id" value="{$list.pay_id}" {if $list.pay_code eq 'alipay_bank'}id="alipay_bank_input"{/if}/>
+        {$list.pay_name}</td>
+      <td align="left">{$list.pay_desc}</td>
+      <td align="center">{$list.pay_fee}</td>
+      <!--{if $list.pay_code eq 'alipay_bank'}-->
+    <tr><td colspan="3" style="background-color:#fff">
+      <div class="payment_subbox"  style="display:block"> <!-- #BeginLibraryItem "/Library/alipay_bank.lbi" --><!-- #EndLibraryItem --> </div>
+    </tr></td>
+    <!--{/if}-->
+    </tr>
+    <!-- {/foreach} -->
+    <tr>
+      <td colspan="3"  align="center">
+        <input type="hidden" name="r" value="{$rank.rank_id}"/>
+        <input type="hidden" name="act" value="rank_pay" />
+        <input type="submit" class="button" name="submit" value="{$lang.submit_request}" />
+        <input type="reset" class="button" name="reset" value="{$lang.button_reset}" /></td>
+    </tr>
+  </table>
+</form>
+</div>
+<!-- {/if} -->
+
+  <!-- {if $action eq "act_account_rank"} -->
+  <div class="header">
+    <h2 class="header-logo" align="center"><span style="font-size: 30px; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span></h2>
+  </div>
+  <table width="100%" border="0" cellpadding="10" cellspacing="1">
+    <tr>
+      <td width="25%" align="right">{$lang.rank_surplus_amount}</td>
+      <td width="80%">{$amount}</td>
+    </tr>
+    <tr>
+      <td align="right">{$lang.rank_payment_name}</td>
+      <td>{$payment.pay_name}</td>
+    </tr>
+    <tr>
+      <td align="right">{$lang.rank_payment_fee}</td>
+      <td>{$pay_fee}</td>
+    </tr>
+    <tr>
+      <td align="right" valign="middle">{$lang.rank_payment_desc}</td>
+      <td>{$payment.pay_desc}</td>
+    </tr>
+    <tr>
+      <td colspan="2">{$payment.pay_button}</td>
+    </tr>
+  </table>
+  <!-- {/if} -->
+
+{include file="pagefooter.htm"}

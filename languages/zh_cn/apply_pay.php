@@ -18,6 +18,7 @@
 $_LANG['pay_name'] = '名称';
 $_LANG['pay_desc'] = '描述';
 $_LANG['payment'] = '支付方式';
+$_LANG['pay_fee'] = '手续费';
 $_LANG['apply_pay_title'] = '入驻商店铺缴费';
 $_LANG['apply_pay'] = '入驻商缴费';
 $_LANG['payment_money'] = '支付金额';
@@ -30,5 +31,6 @@ $_LANG['rank_payment_fee'] = '支付手续费用为：';
 $_LANG['rank_payment_desc'] = '支付方式描述：';
 $_LANG['rank_require_login'] = '请先登录！';
 $_LANG['rank_select_payment_pls'] = '请选择一个支付方式';
+$_LANG['rank_account_is_paid'] = '您当前已缴费，请勿重复缴费';
 
 ?>
