@@ -155,7 +155,7 @@ call_user_func($function_name);
 
 /*
  * 入驻商缴费显示页面
- */
+ *//*
 function action_apply_pay(){
 	require_once (ROOT_PATH . 'languages/zh_cn/apply_pay.php');
 	$_LANG = $GLOBALS['_LANG'];
@@ -175,11 +175,11 @@ function action_apply_pay(){
 	$smarty->assign('page_title', '用户中心_工业品首选'); // 页面标题
 	$smarty->assign('action', 'pay_view');
 	$smarty->display('user_transaction.dwt');
-}
+}*/
 
 /**
  * 缴费操作
- */
+ *//*
 function action_rank_pay()
 {
 	include_once(ROOT_PATH . 'includes/lib_clips.php');
@@ -213,7 +213,7 @@ function action_rank_pay()
 	$rank['rec_id'] = insert_rank_account($rank, $amount);
 	// 取得支付信息，生成支付代码
 	$payment = unserialize_config($payment_info['pay_config']);
-	/* 调用相应的支付方式文件 */
+	// 调用相应的支付方式文件
 	include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
 
 	// 生成伪订单号, 不足的时候补0
@@ -230,7 +230,7 @@ function action_rank_pay()
 	// 记录支付log
 	$order['log_id'] = insert_pay_log($rank['rec_id'], $order['order_amount'], $type = PAY_RANK, 0);
 
-	/* 取得在线支付方式的支付按钮 */
+	//取得在线支付方式的支付按钮
 	$pay_obj = new $payment_info['pay_code']();
 	$payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
 
@@ -240,7 +240,7 @@ function action_rank_pay()
 	$smarty->assign('order', $order);
 	$smarty->assign('action', 'act_account_rank');
 	$smarty->display('user_transaction.dwt');
-}
+}*/
 
 
 /* 代码增加_start By www.68ecshop.com */
