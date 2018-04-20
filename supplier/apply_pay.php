@@ -28,7 +28,8 @@ if ($act == 'default')
     //echo $rank_account_sql;die;
     $rank_account = $GLOBALS['db']->getRow($rank_account_sql);
     $paid_time = $rank_account['paid_time'];
-    if($rank_account['is_paid'] && strtotime("$paid_time+1year") < time()){
+
+    if($rank_account['is_paid'] && strtotime("+1years",$paid_time) < time()){
         sys_msg($_LANG['rank_account_is_paid']);
     }
     $sql = "select r.* from " . $GLOBALS['ecs']->table('supplier_rank') . " as r left join " .$GLOBALS['ecs']->table('supplier') . " as s on s.rank_id = r.rank_id where s.supplier_id=" . $supplier_id;

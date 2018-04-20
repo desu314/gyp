@@ -30,7 +30,6 @@ if ($_REQUEST['act'] == 'list')
 
     /* 查询 */
     $result = suppliers_list();
-
     /* 模板赋值 */
     $ur_here_lang = $_REQUEST['status'] =='1' ? $_LANG['supplier_list'] : $_LANG['supplier_reg_list'];
     $smarty->assign('ur_here', $ur_here_lang); // 当前导航
@@ -592,7 +591,7 @@ function suppliers_list()
         $filter['page_count']     = $filter['record_count'] > 0 ? ceil($filter['record_count'] / $filter['page_size']) : 1;
 
         /* 查询 */
-        $sql = "SELECT supplier_id,u.user_name, rank_id, supplier_name, tel, system_fee, supplier_bond, supplier_rebate, supplier_remark,  ".
+        $sql = "SELECT supplier_id,u.user_name, u.user_id, rank_id, supplier_name, tel, system_fee, supplier_bond, supplier_rebate, supplier_remark,  ".
             "s.status ".
             "FROM " . $GLOBALS['ecs']->table("supplier") . " as s left join " . $GLOBALS['ecs']->table("users") . " as u on s.user_id = u.user_id
                 $where
@@ -621,6 +620,14 @@ function suppliers_list()
     {
         $row['rank_name'] = $rankname_list[$row['rank_id']];
         $row['status_name'] = $row['status']=='1' ? '通过' : ($row['status']=='0' ? "未审核" : "未通过");
+        $paid = $GLOBALS['db']->getRow("select is_paid,paid_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$row['user_id']." order by paid_time desc limit 1");
+        $row['is_paid'] = $paid['is_paid'] == 1 ? '已缴费' : '未缴费';
+        if($paid['is_paid'] == 1){
+            $paid_time = intval($paid['paid_time']);
+            $row['end_paid_time'] = date("Y-m-d H:i:s",strtotime("+1years",$paid_time));
+        }else{
+            $row['end_paid_time'] = '当前未缴费';
+        }
         $open = $GLOBALS['db']->getRow("select value from ".$GLOBALS['ecs']->table("supplier_shop_config")." where supplier_id=".$row['supplier_id']." and code='shop_closed'");
         if($open && $open['value'] == 0){
             $row['open'] = 1;
