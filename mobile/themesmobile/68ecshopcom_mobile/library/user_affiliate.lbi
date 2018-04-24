@@ -30,16 +30,16 @@ td.lever5{ color:#68a5dd; font-size:30px; font-family:Helvetica;}
 <!-- *我的推荐 -->
     <!-- {if $affiliate.on eq 1} -->
      <!-- {if $action eq 'affiliate'} -->
-       <div class="utitle2" >分享方式
+       <!--<div class="utitle2" >分享方式
        <i class="utitle2_up"></i>
        </div>
    <div class="tui_main">
-     <div class="bdsharebuttonbox" data-tag="share_1">
+    <div class="bdsharebuttonbox" data-tag="share_1">
 	<a class="bds_qzone shareicon" data-cmd="qzone"></a>
 	<a class="bds_tsina shareicon" data-cmd="tsina"></a>
 	<a class="bds_renren shareicon" data-cmd="renren"></a>
 	<a class="bds_tqq shareicon" data-cmd="tqq"></a>
-</div>
+    </div>
 <script>
 	window._bd_share_config = {
 		common : {
@@ -66,7 +66,7 @@ td.lever5{ color:#68a5dd; font-size:30px; font-family:Helvetica;}
 	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
-</div>
+</div>-->
 
     <!-- {if $affiliate.config.separate_by eq 0} -->
     <!-- 下线人数、分成 -->
