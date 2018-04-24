@@ -32,7 +32,6 @@ $allow_file_types = '|GIF|JPG|PNG|BMP|SWF|DOC|XLS|PPT|MID|WAV|ZIP|RAR|PDF|CHM|RM
 if ($_REQUEST['act'] == 'list')
 {
 	admin_priv('shop_article');
-	
     /* 取得过滤条件 */
     $filter = array();
     create_supplier_article_cat();
