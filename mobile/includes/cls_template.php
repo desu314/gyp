@@ -1051,10 +1051,14 @@ class cls_template
         if ($file_type == '.dwt')
         {
             /* 将模板中所有library替换为链接 */
-            $pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/se';
+            /*$pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/se';
             $replacement = "'{include file='.strtolower('\\1'). '}'";
-            $source      = preg_replace($pattern, $replacement, $source);
+            $source      = preg_replace($pattern, $replacement, $source);*/
+            $pattern = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/s';
 
+            $replacement = function($r){return '{include file='.$r[1]. '}';};
+
+            $source = preg_replace_callback($pattern, $replacement, $source);
 
             /* 检查有无动态库文件，如果有为其赋值 */
             $dyna_libs = get_dyna_libs($GLOBALS['_CFG']['template'], $this->_current_file);
