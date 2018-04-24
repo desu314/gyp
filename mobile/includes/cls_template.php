@@ -1,10 +1,24 @@
 <?php
+
+/**
+ * YNDTH 模版类
+ * ============================================================================
+ * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
+ * 网站地址: http://www.ecshop.com；
+ * ----------------------------------------------------------------------------
+ * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
+ * 使用；不允许对程序代码以任何形式任何目的的再发布。
+ * ============================================================================
+ * $Author: liubo $
+ * $Id: cls_template.php 17217 2011-01-19 06:29:08Z liubo $
+ */
+
 class cls_template
 {
     var $template_dir   = '';
     var $cache_dir      = '';
     var $compile_dir    = '';
-    var $cache_lifetime = 3600; // 缓存更新时间, 默认 3600 秒  
+    var $cache_lifetime = 3600; // 缓存更新时间, 默认 3600 秒
     var $direct_output  = false;
     var $caching        = false;
     var $template       = array();
@@ -21,8 +35,8 @@ class cls_template
     var $_foreachmark   = '';
     var $_seterror      = 0;
 
-    var $_temp_key      = array();  // 临时存放 foreach 里 key 的数组  
-    var $_temp_val      = array();  // 临时存放 foreach 里 item 的数组  
+    var $_temp_key      = array();  // 临时存放 foreach 里 key 的数组
+    var $_temp_val      = array();  // 临时存放 foreach 里 item 的数组
 
     function __construct()
     {
@@ -197,7 +211,7 @@ class cls_template
             error_reporting($this->_errorlevel);
         }
 
-        return $out; // 返回html数据  
+        return $out; // 返回html数据
     }
 
     /**
@@ -270,8 +284,8 @@ class cls_template
         {
             $source = $this->smarty_prefilter_preCompile($source);
         }
-
-        return preg_replace("/{([^\}\{\n]*)}/e", "\$this->select('\\1');", $source);
+        $source = preg_replace("/<\?[^><]+\?>|<\%[^><]+\%>|<script[^>]+language[^>]*=[^>]*php[^>]*>[^><]*<\/script\s*>/iU", "", $source);
+        return preg_replace_callback("/{([^\}\{\n]*)}/", function ($r){return "\$this->select($r[1]);";}, $source);
     }
 
     /**
@@ -347,15 +361,15 @@ class cls_template
         {
             return '{}';
         }
-        elseif ($tag{0} == '*' && substr($tag, -1) == '*') // 注释部分  
+        elseif ($tag{0} == '*' && substr($tag, -1) == '*') // 注释部分
         {
             return '';
         }
-        elseif ($tag{0} == '$') // 变量  
+        elseif ($tag{0} == '$') // 变量
         {
             return '<?php echo ' . $this->get_val(substr($tag, 1)) . '; ?>';
         }
-        elseif ($tag{0} == '/') // 结束 tag  
+        elseif ($tag{0} == '/') // 结束 tag
         {
             switch (substr($tag, 1))
             {
@@ -389,7 +403,8 @@ class cls_template
         }
         else
         {
-            $tag_sel = array_shift(explode(' ', $tag));
+            $tag_sel = explode(' ', $tag);
+            $tag_sel = array_shift($tag_sel);
             switch ($tag_sel)
             {
                 case 'if':
@@ -434,7 +449,7 @@ class cls_template
                     {
                         $tmp = '$this->assign(\'' . $t['var'] . '\',\'' . addcslashes($t['value'], "'") . '\');';
                     }
-                    // $tmp = $this->assign($t['var'], $t['value']);  
+                    // $tmp = $this->assign($t['var'], $t['value']);
 
                     return '<?php ' . $tmp . ' ?>';
                     break;
@@ -519,10 +534,7 @@ class cls_template
     {
         if (strrpos($val, '[') !== false)
         {
-            $val = preg_replace("/
-([\[
-([\[
-]*)\]/eis", "'.'.str_replace('$','\$','\\1')", $val);
+            $val = preg_replace("/\[([^\[\]]*)\]/eis", "'.'.str_replace('$','\$','\\1')", $val);
         }
 
         if (strrpos($val, '|') !== false)
@@ -611,7 +623,7 @@ class cls_template
                         break;
 
                     default:
-                        # code...  
+                        # code...
                         break;
                 }
             }
@@ -648,7 +660,7 @@ class cls_template
             }
             if ($_var_name == 'smarty')
             {
-                $p = $this->_compile_smarty_ref($t);
+                 $p = $this->_compile_smarty_ref($t);
             }
             else
             {
@@ -672,14 +684,14 @@ class cls_template
      *
      * @return  array
      */
-    function get_para($val, $type = 1) // 处理insert外部函数/需要include运行的函数的调用数据  
+    function get_para($val, $type = 1) // 处理insert外部函数/需要include运行的函数的调用数据
     {
         $pa = $this->str_trim($val);
         foreach ($pa AS $value)
         {
             if (strrpos($value, '='))
             {
-                list($a, $b) = explode('=', str_replace(array(' ', '"', "'", '"'), '', $value));
+                list($a, $b) = explode('=', str_replace(array(' ', '"', "'", '&quot;'), '', $value));
                 if ($b{0} == '$')
                 {
                     if ($type)
@@ -738,14 +750,14 @@ class cls_template
      */
     function _compile_if_tag($tag_args, $elseif = false)
     {
-        preg_match_all('/\-?\d+[\.\d]+|\'[^\'|\s]*\'|"[^"|\s]*"|[\$\w\.]+|!==|===|==|!=|<>|<<|>>|<=|>=|&&|\|\|||||,|\!|\^|=|&|<|>|~|\||\%|\+|\-|\/|\*|\@|\S/', $tag_args, $match);
+        preg_match_all('/\-?\d+[\.\d]+|\'[^\'|\s]*\'|"[^"|\s]*"|[\$\w\.]+|!==|===|==|!=|<>|<<|>>|<=|>=|&&|\|\||\(|\)|,|\!|\^|=|&|<|>|~|\||\%|\+|\-|\/|\*|\@|\S/', $tag_args, $match);
 
         $tokens = $match[0];
-        // make sure we have balanced parenthesis  
+        // make sure we have balanced parenthesis
         $token_count = array_count_values($tokens);
         if (!empty($token_count['(']) && $token_count['('] != $token_count[')'])
         {
-            // $this->_syntax_error('unbalanced parenthesis in if statement', E_USER_ERROR, __FILE__, __LINE__);  
+            // $this->_syntax_error('unbalanced parenthesis in if statement', E_USER_ERROR, __FILE__, __LINE__);
         }
 
         for ($i = 0, $count = count($tokens); $i < $count; $i++)
@@ -994,7 +1006,7 @@ class cls_template
                 break;
 
             default:
-                // $this->_syntax_error('$smarty.' . $_ref . ' is an unknown reference', E_USER_ERROR, __FILE__, __LINE__);  
+                // $this->_syntax_error('$smarty.' . $_ref . ' is an unknown reference', E_USER_ERROR, __FILE__, __LINE__);
                 break;
         }
         array_shift($indexes);
@@ -1031,7 +1043,7 @@ class cls_template
     function smarty_prefilter_preCompile($source)
     {
         $file_type = strtolower(strrchr($this->_current_file, '.'));
-        $tmp_dir   = 'themes/' . $GLOBALS['_CFG']['template'] . '/'; // 模板所在路径  
+        $tmp_dir   = 'themesmobile/' . $GLOBALS['_CFG']['template'] . '/'; // 模板所在路径
 
         /**
          * 处理模板文件
@@ -1039,9 +1051,14 @@ class cls_template
         if ($file_type == '.dwt')
         {
             /* 将模板中所有library替换为链接 */
-            $pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/se';
+            /*$pattern     = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/se';
             $replacement = "'{include file='.strtolower('\\1'). '}'";
-            $source      = preg_replace($pattern, $replacement, $source);
+            $source      = preg_replace($pattern, $replacement, $source);*/
+            $pattern = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/s';
+
+            $replacement = function($r){return '{include file='.$r[1]. '}';};
+
+            $source = preg_replace_callback($pattern, $replacement, $source);
 
             /* 检查有无动态库文件，如果有为其赋值 */
             $dyna_libs = get_dyna_libs($GLOBALS['_CFG']['template'], $this->_current_file);
@@ -1073,7 +1090,7 @@ class cls_template
             }
 
             /* 在头部加入版本信息 */
-            //$source = preg_replace('/<head>/i', "<head>\r\n<meta name=\"Generator\" content=\"" . APPNAME .' ' . VERSION . "\" />",  $source);  
+            $source = preg_replace('/<head>/i', "<head>\r\n<meta name=\"Generator\" content=\"" . APPNAME .' ' . VERSION . "\" />",  $source);
 
             /* 修正css路径 */
             $source = preg_replace('/(<link\shref=["|\'])(?:\.\/|\.\.\/)?(css\/)?([a-z0-9A-Z_]+\.css["|\']\srel=["|\']stylesheet["|\']\stype=["|\']text\/css["|\'])/i','\1' . $tmp_dir . '\2\3', $source);
@@ -1089,11 +1106,11 @@ class cls_template
         /**
          * 处理库文件
          */
-        elseif ($file_type == '.lbi')
-        {
+         elseif ($file_type == '.lbi')
+         {
             /* 去除meta */
             $source = preg_replace('/<meta\shttp-equiv=["|\']Content-Type["|\']\scontent=["|\']text\/html;\scharset=(?:.*?)["|\']>\r?\n?/i', '', $source);
-        }
+         }
 
         /* 替换文件编码头部 */
         if (strpos($source, "\xEF\xBB\xBF") !== FALSE)
@@ -1102,13 +1119,13 @@ class cls_template
         }
 
         $pattern = array(
-            '/<!--[^>|\n]*?({.+?})[^<|{|\n]*?-->/', // 替换smarty注释  
-            '/<!--[^<|>|{|\n]*?-->/',               // 替换不换行的html注释  
-            '/(href=["|\'])\.\.\/(.*?)(["|\'])/i',  // 替换相对链接  
-            '/((?:background|src)\s*=\s*["|\'])(?:\.\/|\.\.\/)?(images\/.*?["|\'])/is', // 在images前加上 $tmp_dir  
-            '/((?:background|background-image):\s*?url\()(?:\.\/|\.\.\/)?(images\/)/is', // 在images前加上 $tmp_dir  
-            '/([\'|"])\.\.\//is', // 以../开头的路径全部修正为空  
-        );
+            '/<!--[^>|\n]*?({.+?})[^<|{|\n]*?-->/', // 替换smarty注释
+            '/<!--[^<|>|{|\n]*?-->/',               // 替换不换行的html注释
+            '/(href=["|\'])\.\.\/(.*?)(["|\'])/i',  // 替换相对链接
+            '/((?:background|src)\s*=\s*["|\'])(?:\.\/|\.\.\/)?(images\/.*?["|\'])/is', // 在images前加上 $tmp_dir
+            '/((?:background|background-image):\s*?url\()(?:\.\/|\.\.\/)?(images\/)/is', // 在images前加上 $tmp_dir
+            '/([\'|"])\.\.\//is', // 以../开头的路径全部修正为空
+            );
         $replace = array(
             '\1',
             '',
@@ -1116,11 +1133,11 @@ class cls_template
             '\1' . $tmp_dir . '\2',
             '\1' . $tmp_dir . '\2',
             '\1'
-        );
+            );
         return preg_replace($pattern, $replace, $source);
     }
 
-    function insert_mod($name) // 处理动态内容  
+    function insert_mod($name) // 处理动态内容
     {
         list($fun, $para) = explode('|', $name);
         $para = unserialize($para);
@@ -1251,7 +1268,7 @@ class cls_template
         }
         if ($arr['display_months'] != 'false')
         {
-            $out .= "</select> <select name=\"{$pre}Month\">";
+            $out .= "</select>&nbsp;<select name=\"{$pre}Month\">";
             for ($i = 1; $i <= 12; $i++)
             {
                 $out .= $i == $month ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
@@ -1259,7 +1276,7 @@ class cls_template
         }
         if ($arr['display_days'] != 'false')
         {
-            $out .= "</select> <select name=\"{$pre}Day\">";
+            $out .= "</select>&nbsp;<select name=\"{$pre}Day\">";
             for ($i = 1; $i <= 31; $i++)
             {
                 $out .= $i == $day ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
@@ -1278,8 +1295,8 @@ class cls_template
         $out = '';
         foreach ($options AS $key => $val)
         {
-            $out .= $key == $checked ? "<input type=\"radio\" name=\"$name\" value=\"$key\" checked> {$val} "
-                : "<input type=\"radio\" name=\"$name\" value=\"$key\"> {$val} ";
+            $out .= $key == $checked ? "<input type=\"radio\" name=\"$name\" value=\"$key\" checked>&nbsp;{$val}&nbsp;"
+                : "<input type=\"radio\" name=\"$name\" value=\"$key\">&nbsp;{$val}&nbsp;";
         }
 
         return $out;
@@ -1305,7 +1322,7 @@ class cls_template
                 $out .= $i == $hour ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
             }
 
-            $out .= "</select> ";
+            $out .= "</select>&nbsp;";
         }
         if (!isset($arr['display_minutes']))
         {
@@ -1315,7 +1332,7 @@ class cls_template
                 $out .= $i == $minute ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>";
             }
 
-            $out .= "</select> ";
+            $out .= "</select>&nbsp;";
         }
         if (!isset($arr['display_seconds']))
         {
@@ -1325,7 +1342,7 @@ class cls_template
                 $out .= $i == $second ? "<option value=\"$i\" selected>" . str_pad($i, 2, '0', STR_PAD_LEFT) . "</option>" : "<option value=\"$i\">$i</option>";
             }
 
-            $out .= "</select> ";
+            $out .= "</select>&nbsp;";
         }
 
         return $out;
@@ -1409,4 +1426,4 @@ class cls_template
     }
 }
 
-?>  
+?>
