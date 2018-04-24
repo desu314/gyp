@@ -487,6 +487,7 @@ $_LANG['06_templates'] = '店铺模板选择';
 $_LANG['07_street'] = '店铺街信息设置';
 $_LANG['08_shipping_list'] = '配送方式';
 $_LANG['09_apply_pay'] = '缴纳会员费';
+$_LANG['10_supplier_article_list'] = '<a href="../article.php?id=131" target="_blank">店铺说明</a>';
 
 $_LANG['06_pickup_point_manage'] = '自提点管理';
 

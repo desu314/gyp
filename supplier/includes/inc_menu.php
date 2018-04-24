@@ -43,15 +43,16 @@ $modules['18_virtual']['virtual_validate']   = 'virtual_goods_card.php?act=verif
 $modules['18_virtual']['virtual_card_list']   = 'virtual_goods_card.php?act=all_card';*/
 
 /* 代码增加 by www.68ecshop.com end */
-$modules['05_dianpu_manage']['01_base']               	= 	'shop_config.php?act=list_edit';
-$modules['05_dianpu_manage']['02_menu']               	= 	'navigator.php?act=list';
-$modules['05_dianpu_manage']['03_guanggao']             = 	'flashplay.php?act=list';
-$modules['05_dianpu_manage']['04_article']              = 	'article.php?act=list';
-$modules['05_dianpu_manage']['05_header']               = 	'shop_header.php?act=list_edit';
-$modules['05_dianpu_manage']['06_templates']            = 	'template.php?act=list';
-$modules['05_dianpu_manage']['07_street']				= 	'street.php?act=info';
-$modules['05_dianpu_manage']['08_shipping_list']           = 'shipping.php?act=list';
-$modules['05_dianpu_manage']['09_apply_pay']           = 'apply_pay.php';
+$modules['05_dianpu_manage']['01_base']               	   = 	'shop_config.php?act=list_edit';
+$modules['05_dianpu_manage']['02_menu']               	   = 	'navigator.php?act=list';
+$modules['05_dianpu_manage']['03_guanggao']                = 	'flashplay.php?act=list';
+$modules['05_dianpu_manage']['04_article']                 = 	'article.php?act=list';
+$modules['05_dianpu_manage']['05_header']                  = 	'shop_header.php?act=list_edit';
+$modules['05_dianpu_manage']['06_templates']               = 	'template.php?act=list';
+$modules['05_dianpu_manage']['07_street']				   = 	'street.php?act=info';
+$modules['05_dianpu_manage']['08_shipping_list']           =    'shipping.php?act=list';
+$modules['05_dianpu_manage']['09_apply_pay']               =    'apply_pay.php';
+$modules['05_dianpu_manage']['10_supplier_article_list']   =    'supplier_article.php?act=list';
 
 $modules['06_pickup_point_manage']['pickup_point_list']       = 'pickup_point.php?act=list';
 $modules['06_pickup_point_manage']['pickup_point_add']        = 'pickup_point.php?act=add';

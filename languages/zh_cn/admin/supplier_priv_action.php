@@ -61,6 +61,7 @@ $_LANG['shop_article'] = '店铺文章';
 $_LANG['shop_header'] = '店铺头部自定义';
 $_LANG['shop_templates'] = '店铺模版选择';
 $_LANG['ship_manage'] = '配送方式';
+$_LANG['supplier_article'] = '店铺说明';
 
 
 //权限管理部分的权限

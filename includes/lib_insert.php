@@ -590,7 +590,7 @@ function insert_apply_supplier($user){
 		$GLOBALS['smarty']->assign('supplier_type', $supplier_type);
         $cat_id_sql = "select cat_id from " . $GLOBALS['ecs']->table('article_cat') . " where cat_name='店铺说明'";
         $cat_id = $GLOBALS['db']->getOne($cat_id_sql);
-        $sql = "select * from " . $GLOBALS['ecs']->table('article') . " where cat_id=".$cat_id;
+        $sql = "select * from " . $GLOBALS['ecs']->table('article') . " where cat_id=".$cat_id." and is_open = 1";
         $article_list = $GLOBALS['db']->getAll($sql);
         $GLOBALS['smarty']->assign('article_list', $article_list);
     }elseif($shownum == 5){
