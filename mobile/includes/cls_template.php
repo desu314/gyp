@@ -1056,7 +1056,7 @@ class cls_template
             $source      = preg_replace($pattern, $replacement, $source);*/
             $pattern = '/<!--\s#BeginLibraryItem\s\"\/(.*?)\"\s-->.*?<!--\s#EndLibraryItem\s-->/s';
 
-            $replacement = function($r){return '{include file='.strtolower($r[1]). '}';};
+            $replacement = function($r){return '{include file='.$r[1]. '}';};
 
             $source = preg_replace_callback($pattern, $replacement, $source);
 
