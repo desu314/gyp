@@ -3,7 +3,7 @@
 <div class="main-div">
 <form name="theForm" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 <table width="100%">
-  {if $user.uid eq '0'}
+  {if $action eq "add"}
     <tr>
     <td class="label">{$lang.user_name}：</td>
     <td><input type="text" name="user_name" maxlength="20" value="{$user.user_name|escape}" size="34"/>{$lang.require_field}</td></td>
