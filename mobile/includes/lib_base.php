@@ -82,6 +82,12 @@ function real_ip()
         return $realip;
     }
 
+    /*后台频繁退出*/
+    if(isset($_COOKIE['real_ipd']) && !empty($_COOKIE['real_ipd'])){
+        $realip = $_COOKIE['real_ipd'];
+        return $realip;
+    }
+
     if (isset($_SERVER))
     {
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
@@ -135,7 +141,7 @@ function real_ip()
 
     preg_match("/[\d\.]{7,15}/", $realip, $onlineip);
     $realip = !empty($onlineip[0]) ? $onlineip[0] : '0.0.0.0';
-
+    setcookie("real_ipd", $realip, time()+36000, "/");
     return $realip;
 }
 
