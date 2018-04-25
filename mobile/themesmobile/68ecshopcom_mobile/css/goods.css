@@ -166,7 +166,7 @@
 
 .footer_nav dl{ width:60%; float:left; height:50px;}
 .footer_nav dl dd{ width:33%; float:left; height:51px;text-align:center; margin-top:-1px;}
-.footer_nav dl dd a{ font-size:18px; line-height:51px; color:#FFF }
+.footer_nav dl dd a{ font-size:3vw; line-height:51px; color:#FFF }
 .footer_nav dl .flow{ background:#ff9c00}
 .footer_nav dl .goumai{ background:#dd2726}
 .footer_nav dl .xunjia{ background: #dd3b7c
