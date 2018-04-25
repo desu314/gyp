@@ -63,13 +63,13 @@
                 <option value="{$rank.rank_id}" {if $supplier.rank_id eq $rank.rank_id}selected{/if}>{$rank.rank_name}</option>
 		  {/foreach}
               </select>
-              <!--新增会员费代码start01-->
-                <input type="button" value="充值会员费" id="userMoney" onclick=userMoneyShow() />
-              <!--新增会员费代码end01-->
+              <!--新增服务器费代码start01-->
+                <input type="button" value="充值服务费" id="userMoney" onclick=userMoneyShow() />
+              <!--新增服务费代码end01-->
               <span></span>
               <div id="grade_explain" class="grade_explain"></div></td>
           </tr>
-          <!--新增会员费代码start02-->
+          <!--新增服务费代码start02-->
               <tr>
                 <th>店铺优势：</th>
                 <td>
@@ -78,7 +78,7 @@
                     {/foreach}
                 </td>
               </tr>
-          <!--新增会员费代码end02-->
+          <!--新增服务费代码end02-->
           <tr>
             <th><i>*</i>店铺分类：</th>
             <td> <select name="type_id" size=1>

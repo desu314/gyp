@@ -293,7 +293,7 @@ if(isset($_POST['do']) && $_POST['do']){
 		include_once(ROOT_PATH . 'includes/lib_payment.php');
 		$is_paid = get_rank_paid($userid);
 		if(empty($is_paid)){
-			show_message('请先缴纳会员费！', '返回', 'apply.php');
+			show_message('请先缴纳服务费！', '返回', 'apply.php');
 		}*/
 		//必填项验证
 		$save1 = array_filter($save);

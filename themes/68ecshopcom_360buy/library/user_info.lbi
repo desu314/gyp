@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div class="sideNav">
-  <h1><a href="#"><span>{$smarty.session.user_name}</span></a></h1>
+  <h1><a href="javascript:;;"><span>{$smarty.session.user_name}</span></a></h1>
   <div class="userInfo">
     <div class="myInfo clearfix"> 
       <div class="photo">
