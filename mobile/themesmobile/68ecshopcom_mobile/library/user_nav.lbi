@@ -45,7 +45,7 @@
 
 <div class="Wallet main_top">
 <a href="user.php?act=address_list"><em class="Icon3"></em><dl class="border_bottm"><dt>收货地址</dt><dd>添加/修改</dd></dl></a>
-<a href="user.php?act=affiliate"><em class="Icon4"></em><dl class="border_bottm"><dt>我的推荐</dt><dd>&nbsp;</dd></dl></a>
+<!--<a href="user.php?act=affiliate"><em class="Icon4"></em><dl class="border_bottm"><dt>我的推荐</dt><dd>&nbsp;</dd></dl></a>-->
 <a href="user.php?act=message_list"><em class="Icon5"></em><dl><dt>我的留言</dt><dd>&nbsp;</dd></dl></a>
 </div>
 <div class="Wallet main_top">
