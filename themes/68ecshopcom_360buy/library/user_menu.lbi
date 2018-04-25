@@ -32,7 +32,7 @@
         <a href="user.php?act=tag_list" class="item {if $action eq 'tag_list'}curs{/if}" style="display:none"><span>{$lang.label_tag}</span><i></i></a>
       	<!-- {if $recomm eq 1} -->
         <!-- {if $affiliate.on eq 1} -->
-        <a href="user.php?act=affiliate" class="item {if $action eq 'affiliate'}curs{/if}"><span>{$lang.label_affiliate}</span><i></i></a>
+        <!--<a href="user.php?act=affiliate" class="item {if $action eq 'affiliate'}curs{/if}"><span>{$lang.label_affiliate}</span><i></i></a>-->
         <!--{/if}--> 
        	<!-- {/if} --> 
         <a href="apply_index.php" class="item"><span>我要开店</span><i></i></a>
