@@ -517,9 +517,9 @@ function close_choose_attr1(){
 </section>
 <!-- 询价单-->
 <section class="f_xunjia" style="display: none;"></section>
-{*<section class="f_xunjia_block" id="xunJia_attr" style="height:0; overflow:hidden;">
+<section class="f_xunjia_block" id="xunJia_attr" style="height:0; overflow:hidden;">
 
-</section>*}
+</section>
 <script>
 function choose_attr(num){
 	document.body.style.overflow='hidden';
