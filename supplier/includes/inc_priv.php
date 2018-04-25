@@ -48,7 +48,7 @@ if (!defined('IN_ECS'))
 	$purview['06_templates']			= 'shop_templates';//店铺模版选择
 	$purview['07_street']				= 'shop_base';//店铺街信息
 	$purview['08_shipping_list']		= 'ship_manage';//配送方式管理
-	$purview['09_apply_pay']		    = 'apply_pay';//缴纳会员费
+	$purview['09_apply_pay']		    = 'apply_pay';//缴纳服务费
 	$purview['10_supplier_article_list']   = 'supplier_article';//店铺说明
 	$purview['11_supplier_apply']       = 'supplier_apply';//店铺入驻信息
 
