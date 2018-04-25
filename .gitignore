@@ -44,3 +44,6 @@ mobile/data/afficheimg/*
 data/flashdata/*
 data/flash_data.xml
 data/flashdata/default/data.xml
+
+#supplier files
+supplier/*.txt
