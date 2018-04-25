@@ -478,6 +478,7 @@ $_LANG['03_rebate_nopay'] = '平台交易统计';//本期待结';
 $_LANG['03_rebate_pay'] = '往期结算';
 
 $_LANG['05_dianpu_manage'] = '店铺系统设置';
+$_LANG['11_supplier_apply'] = '店铺入驻信息';
 $_LANG['01_base'] = '店铺基本设置';
 $_LANG['02_menu'] = '店铺导航栏';
 $_LANG['03_guanggao'] = '店铺主广告';
