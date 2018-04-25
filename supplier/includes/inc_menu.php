@@ -52,7 +52,8 @@ $modules['05_dianpu_manage']['06_templates']               = 	'template.php?act=
 $modules['05_dianpu_manage']['07_street']				   = 	'street.php?act=info';
 $modules['05_dianpu_manage']['08_shipping_list']           =    'shipping.php?act=list';
 $modules['05_dianpu_manage']['09_apply_pay']               =    'apply_pay.php';
-//$modules['05_dianpu_manage']['10_supplier_article_list']   =    'supplier_article.php?act=list';
+$modules['05_dianpu_manage']['10_supplier_article_list']   =    'supplier_article.php?act=list';
+$modules['05_dianpu_manage']['11_supplier_apply']          =    'supplier_apply.php?act=info';
 
 $modules['06_pickup_point_manage']['pickup_point_list']       = 'pickup_point.php?act=list';
 $modules['06_pickup_point_manage']['pickup_point_add']        = 'pickup_point.php?act=add';
