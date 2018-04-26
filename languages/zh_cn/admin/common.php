@@ -3,12 +3,6 @@
 /**
  * YNDTH 管理中心共用语言文件
  * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: common.php 17217 2011-01-19 06:29:08Z liubo $
  */
@@ -70,12 +64,12 @@ $_LANG['is_int'] = '应该为整数';
 $_LANG['button_new'] = ' 新建 ';
 $_LANG['top_huanying'] = ' ，欢迎您！ ';
 // yyy添加end
-/* 代码增加_start By www.ecshop68.com */
+/* 代码增加_start */
 $_LANG['17_pickup_point_manage'] = '自提点管理';
 $_LANG['pickup_point_list'] = '自提点列表';
 $_LANG['pickup_point_add'] = '添加自提点';
 $_LANG['pickup_point_batch_add'] = '自提点批量上传';
-/* 代码增加_end By www.ecshop68.com */
+/* 代码增加_end */
 $_LANG['button_submit'] = ' 确定 ';
 $_LANG['button_save'] = ' 保存 ';
 $_LANG['button_reset'] = ' 重置 ';
@@ -155,16 +149,16 @@ $_LANG['13_backup'] = '数据库管理';
 $_LANG['14_sms'] = '短信管理';
 $_LANG['15_rec'] = '推荐管理';
 $_LANG['16_email_manage'] = '邮件群发管理';
-$_LANG['17_weixin_manage'] = '微信模块'; // 增加 by www.68ecshop.com 微商城
+$_LANG['17_weixin_manage'] = '微信模块'; // 增加 微商城
 //$_LANG['18_virtual'] = '虚拟团购管理';
 
 /* 商品管理 */
-/* 代码增加_start By supplier.68ecshop.com */
+/* 代码增加_start */
 $_LANG['01_goods_list'] = '商品列表';
 $_LANG['02_supplier_goods_list'] = '入驻商商品列表';
 $_LANG['03_goods_add'] = '添加新商品';
 $_LANG['04_category_list'] = '商品分类';
-/* 代码增加_end By supplier.68ecshop.com */
+/* 代码增加_end By */
 $_LANG['04_category_add'] = '添加分类';
 $_LANG['05_comment_manage'] = '用户评论';
 // 代码增加
@@ -198,11 +192,11 @@ $_LANG['52_virtual_card_change'] = '更改加密串';
 $_LANG['53_virtual_card_verification'] = '虚拟券验证';
 $_LANG['goods_auto'] = '商品自动上下架';
 $_LANG['scan_store'] = '出入库管理';
-$_LANG['price_batch'] = '批量修改价格'; // 代码增加 By www.68ecshop.com
+$_LANG['price_batch'] = '批量修改价格'; // 代码增加
 $_LANG['article_auto'] = '文章自动发布';
 $_LANG['navigator'] = '自定义导航栏';
 $_LANG['nowinquiry'] = '商品询价';//新增询价
-/* 虚拟团购 代码增加 by www.68ecshop.com start */
+/* 虚拟团购 代码增加 start */
 $_LANG['virtual_card_list'] = '虚拟券订单列表';
 $_LANG['virtual_goods_sup'] = '入驻商虚拟商品列表';
 $_LANG['virtual_goods_list'] = '自营虚拟商品列表';
@@ -211,7 +205,7 @@ $_LANG['virtual_category']	= '虚拟劵商品分类管理';
 $_LANG['virtual_district']	= '入驻商商圈管理';
 $_LANG['virtual_validate'] = '虚拟券验证';
 $_LANG['virtual_goods_s'] = '虚拟商品列表';
-/* 虚拟团购 代码增加 by www.68ecshop.com end */
+/* 虚拟团购 代码增加 end */
 
 /* 促销管理 */
 $_LANG['02_snatch_list'] = '夺宝奇兵';
@@ -238,10 +232,10 @@ $_LANG['package_add'] = '添加超值礼包';
 $_LANG['25_pre_sale_list'] = '预售管理';
 
 /* 订单管理 */
-/* 代码增加_start By supplier.68ecshop.com */
+/* 代码增加_start */
 $_LANG['01_order_list'] = '订单列表';
 $_LANG['02_supplier_order'] = '入驻商订单列表';
-/* 代码增加_end By supplier.68ecshop.com */
+/* 代码增加_end */
 $_LANG['03_order_query'] = '订单查询';
 $_LANG['04_merge_order'] = '合并订单';
 $_LANG['05_edit_order_print'] = '订单打印模板';
@@ -250,12 +244,12 @@ $_LANG['08_add_order'] = '添加订单';
 $_LANG['09_delivery_order'] = '发货单列表';
 $_LANG['10_back_order'] = '退款/退货及维修';
 $_LANG['11_supplier_back_order'] = '入驻商退换货列表';
-// ecshop add start 2013-08-06
+// add start 2013-08-06
 $_LANG['12_order_excel'] = '订单导出';
-// ecshop add end 2013-08-06
-/* 增值税发票_添加_START_www.68ecshop.com */
+// add end 2013-08-06
+
 $_LANG['12_invoice_list'] = '发票列表';
-/* 增值税发票_添加_END_www.68ecshop.com */
+
 $_LANG['11_kuaidi_order'] = '快递单列表';
 $_LANG['12_kuaidi_order2'] = '快递单历史';
 
@@ -265,9 +259,9 @@ $_LANG['ad_list'] = '广告列表';
 
 /* 报表统计 */
 $_LANG['flow_stats'] = '流量分析';
-/* 代码添加_START By www.68ecshop.com */
+
 $_LANG['keyword'] = '客户搜索记录';
-/* 代码添加_END By www.68ecshop.com */
+
 $_LANG['searchengine_stats'] = '搜索引擎';
 $_LANG['report_order'] = '订单统计';
 $_LANG['report_sell'] = '销售概况';
@@ -277,7 +271,7 @@ $_LANG['report_guest'] = '客户统计';
 $_LANG['report_users'] = '会员排行';
 $_LANG['visit_buy_per'] = '访问购买率';
 $_LANG['z_clicks_stats'] = '站外投放JS';
-/* 代码增加 By  www.68ecshop.com Start */
+
 $_LANG['industry_stats'] = '行业分析';
 $_LANG['users_stats'] = '会员统计';
 $_LANG['shops_stats'] = '店铺统计';
@@ -285,7 +279,7 @@ $_LANG['orders_stats'] = '订单统计';
 $_LANG['goods_stats'] = '商品分析';
 $_LANG['sells_stats'] = '销售报告';
 $_LANG['after_sells_stats'] = '售后统计';
-/* 代码增加 By  www.68ecshop.com End */
+
 $_LANG['07_stats'] = '报表统计';
 $_LANG['01_report_order'] = '订单统计';
 $_LANG['02_report_goods'] = '商品分析';
@@ -307,7 +301,7 @@ $_LANG['vote_list'] = '在线调查';
 $_LANG['08_unreply_msg'] = '会员留言';
 $_LANG['03_users_list'] = '会员列表';
 
-$_LANG['04_users_export'] = '会员导出'; // 代码增加 By www.68ecshop.com
+$_LANG['04_users_export'] = '会员导出';
 
 $_LANG['04_users_add'] = '添加会员';
 $_LANG['05_user_rank_list'] = '会员等级';
@@ -417,7 +411,7 @@ $_LANG['brand_name_exist'] = '已存在相同的品牌名称!';
 $_LANG['alipay_login'] = '<a href="https://www.alipay.com/user/login.htm?goto=https%3A%2F%2Fwww.alipay.com%2Fhimalayas%2Fpracticality_profile_edit.htm%3Fmarket_type%3Dfrom_agent_contract%26customer_external_id%3D%2BC4335319945672464113" target="_blank">立即免费申请支付接口权限</a>';
 $_LANG['alipay_look'] = '<a href=\"https://www.alipay.com/himalayas/practicality.htm\" target=\"_blank\">请申请成功后登录支付宝账户查看</a>';
 
-/* 代码增加_start By supplier.68ecshop.com */
+
 $_LANG['02_supplier'] = '入驻商管理';
 $_LANG['05_supplier_rank'] = '入驻商等级';
 $_LANG['06_supplier_tag'] = '店铺标签';
@@ -478,7 +472,6 @@ $_LANG['03_rebate_nopay'] = '平台交易统计';//本期待结';
 $_LANG['03_rebate_pay'] = '往期结算';
 
 $_LANG['05_dianpu_manage'] = '店铺系统设置';
-$_LANG['11_supplier_apply'] = '店铺入驻信息';
 $_LANG['01_base'] = '店铺基本设置';
 $_LANG['02_menu'] = '店铺导航栏';
 $_LANG['03_guanggao'] = '店铺主广告';
@@ -489,6 +482,20 @@ $_LANG['07_street'] = '店铺街信息设置';
 $_LANG['08_shipping_list'] = '配送方式';
 $_LANG['09_apply_pay'] = '缴纳服务费';
 $_LANG['10_supplier_article_list'] = '<a href="../article.php?id=131" target="_blank">店铺说明</a>';
+$_LANG['11_supplier_apply'] = '店铺入驻信息';
+
+/**
+ * 入驻商信息
+ */
+$_LANG['supplier_error'] = '该供应商不存在！';
+$_LANG['edit_supplier'] = '查看 / 编辑供货商';
+$_LANG['edit_supplier_ok'] = '恭喜您，更新成功！';
+$_LANG['back_supplier_apply'] = '返回入驻商信息！';
+$_LANG['back_supplier_apply_error'] = '修改失败，请从新录入信息！';
+$_LANG['edit_supplier_error'] = '更新失败，请检查信息！';
+$_LANG['back_supplier_apply_no'] = '当前未做修改！';
+$_LANG['edit_supplier_no'] = '未更新！';
+$_LANG['please_select'] = '请选择';
 
 $_LANG['06_pickup_point_manage'] = '自提点管理';
 
@@ -498,8 +505,8 @@ $_LANG['chat_settings'] = '聊天服务器设置';
 $_LANG['customer'] = '客服管理';
 $_LANG['third_customer'] = '第三方客服';
 
-/* 代码增加_end By supplier.68ecshop.com */
-// 微信管理 增加 start by www.68ecshop.com 微商城
+
+// 微信管理 增加 start 微商城
 $_LANG['weixin_config'] = '微信设置';
 $_LANG['weixin_addconfig'] = '多微信设置';
 $_LANG['weixin_menu'] = '自定义菜单';
@@ -516,9 +523,9 @@ $_LANG['weixin_addkey'] = '关键字回复';
 // 活动管理
 $_LANG['weixin_act'] = '活动管理';
 $_LANG['weixin_award'] = '中奖管理';
-// 增加 end by www.68ecshop.com 微商城
+// 增加 end by 微商城
 $_LANG['website'] = '合作登录管理'; // 名字你可以自己定
-/* 代码增加_start By www.68ecshop.com */
+
 $_LANG['16_takegoods_list'] = '提货券管理';
 $_LANG['16_takegoods_order'] = '提货券提货列表';
 $_LANG['takegoods_list'] = '提货券管理';
@@ -533,7 +540,7 @@ $_LANG['cfg_name']['takegoods_check_money'] = '给提货券配置商品时是否
 $_LANG['cfg_range']['takegoods_check_money']['1'] = '开启';
 $_LANG['cfg_range']['takegoods_check_money']['0'] = '关闭';
 $_LANG['template_files']['takegoods'] = '提货商品页模板';
-/* 代码增加_end By www.68ecshop.com */
+
 $_LANG['sendmail'] = '发送邮件';
 
 ?>
