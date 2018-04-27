@@ -112,7 +112,7 @@
     </thead>
     <tbody>
       <tr>
-        <th class="w150">营业执照号：</th>
+        <th class="w150">统一社会信用代码：</th>
         <td>{$supplier.business_licence_number}</td>
 	</tr>
 	<tr></tr>
@@ -121,7 +121,7 @@
         <td colspan="20">{$supplier.business_sphere}</td>
       </tr>
       <tr>
-        <th class="w150">营业执照号<br>
+        <th class="w150">营业执照<br>
 	电子版：</th>
         <td colspan="20">{if $supplier.zhizhao}<img src="../data/supplier/{$supplier.zhizhao}" width=50 height=50>&nbsp;&nbsp;
 	<input type="button" onclick="window.open('../data/supplier/{$supplier.zhizhao}');" value="查看原图">
@@ -130,7 +130,7 @@
     </tbody>
   </table>
 
-  <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
+  <!--<table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
     <thead>
       <tr>
         <th colspan="2">组织机构代码证</th>
@@ -165,7 +165,7 @@
 	{/if}</td>
       </tr>
     </tbody>
-  </table>
+  </table>-->
 
   <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
     <thead>
@@ -228,7 +228,7 @@
     
   </table>
 
-  <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
+  <!--<table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
     <thead>
       <tr>
         <th colspan="2">税务登记证</th>
@@ -251,7 +251,7 @@
 	{/if}</td>
       </tr>
     </tbody>
-  </table>
+  </table>-->
 
 
   <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">

@@ -3,12 +3,6 @@
 /**
  * YNDTH 专题前台
  * ============================================================================
- * 版权所有 2005-2011 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * @author:     webboy <laupeng@163.com>
  * @version:    v2.1
  * ---------------------------------------------
@@ -58,7 +52,7 @@ if(isset($_POST['do']) && $_POST['do']){
 	    $save['business_licence_number'] = isset($_POST['business_licence_number']) ? trim(addslashes(htmlspecialchars($_POST['business_licence_number']))) : '';
 	    $save['business_sphere'] = isset($_POST['business_sphere']) ? trim(addslashes(htmlspecialchars($_POST['business_sphere']))) : '';
 	    //$save['organization_code'] = isset($_POST['organization_code']) ? trim(addslashes(htmlspecialchars($_POST['organization_code']))) : '';
-	    
+
 		if (isset($_FILES['zhizhao']) && $_FILES['zhizhao']['tmp_name'] != '' &&  isset($_FILES['zhizhao']['tmp_name']) && $_FILES['zhizhao']['tmp_name'] != 'none')
 		{
 			if($_FILES['zhizhao']['size'] / 1024 > $upload_size_limit)
@@ -228,8 +222,8 @@ if(isset($_POST['do']) && $_POST['do']){
 	    $save['settlement_bank_account_number'] = isset($_POST['settlement_bank_account_number']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_account_number']))) : '';
 	    $save['settlement_bank_name'] = isset($_POST['settlement_bank_name']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_name']))) : '';
 	    $save['settlement_bank_code'] = isset($_POST['settlement_bank_code']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_code']))) : '';
-	    $save['tax_registration_certificate'] = isset($_POST['tax_registration_certificate']) ? trim(addslashes(htmlspecialchars($_POST['tax_registration_certificate']))) : '';
-	    $save['taxpayer_id'] = isset($_POST['taxpayer_id']) ? trim(addslashes(htmlspecialchars($_POST['taxpayer_id']))) : '';
+	    //$save['tax_registration_certificate'] = isset($_POST['tax_registration_certificate']) ? trim(addslashes(htmlspecialchars($_POST['tax_registration_certificate']))) : '';
+	    //$save['taxpayer_id'] = isset($_POST['taxpayer_id']) ? trim(addslashes(htmlspecialchars($_POST['taxpayer_id']))) : '';
 	    
 		if (isset($_FILES['bank_licence_electronic']) && $_FILES['bank_licence_electronic']['tmp_name'] != '' &&  isset($_FILES['bank_licence_electronic']['tmp_name']) && $_FILES['bank_licence_electronic']['tmp_name'] != 'none')
 		{
@@ -249,7 +243,7 @@ if(isset($_POST['do']) && $_POST['do']){
 				$save['bank_licence_electronic'] = $bank_licence_electronic_img;
 			}
 		}
-		if (isset($_FILES['tax_registration_certificate_electronic']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != '' &&  isset($_FILES['tax_registration_certificate_electronic']['tmp_name']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != 'none')
+		/*if (isset($_FILES['tax_registration_certificate_electronic']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != '' &&  isset($_FILES['tax_registration_certificate_electronic']['tmp_name']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != 'none')
 		{
 			if($_FILES['tax_registration_certificate_electronic']['size'] / 1024 > $upload_size_limit)
 	        {
@@ -266,7 +260,7 @@ if(isset($_POST['do']) && $_POST['do']){
 			{
 				$save['tax_registration_certificate_electronic'] = $tax_registration_certificate_electronic_img;
 			}
-		}
+		}*/
 		
 		$save['applynum'] = 2;//公司信息认证二
 		

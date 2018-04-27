@@ -331,7 +331,7 @@
           </thead>
           <tbody>
             <tr>
-              <th><i>*</i>营业执照号：</th>
+              <th><i>*</i>统一社会信用代码：</th>
               <td><input name="business_licence_number" type="text" class="w200" value="{$supplier.business_licence_number}">
                 <span></span></td>
             </tr>
@@ -341,7 +341,7 @@
                 <span></span></td>
             </tr>
             <tr>
-              <th><i>*</i>营业执照号电子版：</th>
+              <th><i>*</i>营业执照电子版：</th>
               <td><input type="file" name="zhizhao" class="w200" onchange='setImagePreview(this,localImag,preview)' />
                 {if $supplier.zhizhao}<br>
                 <img src="data/supplier/{$supplier.zhizhao}" width=80 height=80 id='zz'>{/if} <span class="block">请确保图片清晰，文字可辨并有清晰的红色公章。</span></td>
@@ -512,7 +512,7 @@ function supplier_Reg()
 
 	if (business_licence_number.length == 0)
 	{
-		msg += "营业执照号不能为空！" + '\n';
+		msg += "统一社会信用代码不能为空！" + '\n';
 	}
 
 	if (business_sphere.length == 0)

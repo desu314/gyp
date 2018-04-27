@@ -32,7 +32,7 @@ $modules['04_order']['05_edit_order_print']         = 'order.php?act=templates';
 $modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=list_all';
 $modules['04_order']['09_delivery_order']           = 'order.php?act=delivery_list';
 //$modules['04_order']['10_back_order']               = 'order.php?act=back_list';
-$modules['04_order']['10_back_order']               = 'back.php?act=back_list';  //代码修改 By www.68ecshop.com
+$modules['04_order']['10_back_order']               = 'back.php?act=back_list';  //代码修改
 $modules['04_order']['12_order_excel']              = 'excel.php?act=order_excel';
 /* 代码增加 by www.68ecshop.com start */
 $modules['04_order']['12_invoice_list']                 = 'order.php?act=invoice_list';
@@ -50,7 +50,7 @@ $modules['05_dianpu_manage']['04_article']                 = 	'article.php?act=l
 $modules['05_dianpu_manage']['05_header']                  = 	'shop_header.php?act=list_edit';
 $modules['05_dianpu_manage']['06_templates']               = 	'template.php?act=list';
 $modules['05_dianpu_manage']['07_street']				   = 	'street.php?act=info';
-$modules['05_dianpu_manage']['08_shipping_list']           =    'shipping.php?act=list';
+//$modules['05_dianpu_manage']['08_shipping_list']           =    'shipping.php?act=list';
 $modules['05_dianpu_manage']['09_apply_pay']               =    'apply_pay.php';
 $modules['05_dianpu_manage']['11_supplier_apply']          =    'supplier_apply.php?act=info';
 $modules['05_dianpu_manage']['12_supplier_article']          =    'article.php?act=article_des&id=131';

@@ -3,12 +3,6 @@
 /**
  * YNDTH 购物流程
  * ============================================================================
- * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: douqinghua $
  * $Id: flow.php 17218 2011-01-24 04:10:41Z douqinghua $
  */
@@ -2419,7 +2413,8 @@ elseif ($_REQUEST['step'] == 'done')
 
 		/*检查配送方式是否选择*/
             // 如果是虚拟商品不需要选择配送方式
-        if( $_SESSION['extension_code'] != 'virtual_good'){
+        /*注释掉关于配送方式的限制
+         * if( $_SESSION['extension_code'] != 'virtual_good'){
 	    if(!isset($_POST['pay_ship'][$ckey])){
 	    	show_message('请选择各个商家的配送方式！');
 	    }else{
@@ -2430,7 +2425,7 @@ elseif ($_REQUEST['step'] == 'done')
 	    		show_message('配送方式存在不可用，请重新选择！');
 	    	}
 	    }
-        }
+        }*/
 	
 	    /* 检查积分余额是否合法 */
 	    $user_id = $_SESSION['user_id'];
@@ -2506,14 +2501,15 @@ elseif ($_REQUEST['step'] == 'done')
 	            $is_real_good=1;
 	        }
 	    }
-	    if(isset($is_real_good))
+	    /*注释掉关于配送方式的限制
+	     * if(isset($is_real_good))
 	    {
 	        $sql="SELECT shipping_id FROM " . $ecs->table('shipping') . " WHERE shipping_id=".$order['shipping_id'] ." AND enabled =1"; 
 	        if(!$db->getOne($sql))
 	        {
 	           show_message($_LANG['flow_no_shipping']);
 	        }
-	    }
+	    }*/
 	
 	    /* 收货人信息 */
 	    foreach ($consignee as $key => $value)
