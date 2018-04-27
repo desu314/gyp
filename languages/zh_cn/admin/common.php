@@ -479,6 +479,7 @@ $_LANG['03_rebate_pay'] = '往期结算';
 
 $_LANG['05_dianpu_manage'] = '店铺系统设置';
 $_LANG['11_supplier_apply'] = '店铺入驻信息';
+$_LANG['12_supplier_article'] = '店铺等级说明';
 $_LANG['01_base'] = '店铺基本设置';
 $_LANG['02_menu'] = '店铺导航栏';
 $_LANG['03_guanggao'] = '店铺主广告';
@@ -488,7 +489,7 @@ $_LANG['06_templates'] = '店铺模板选择';
 $_LANG['07_street'] = '店铺街信息设置';
 $_LANG['08_shipping_list'] = '配送方式';
 $_LANG['09_apply_pay'] = '缴纳服务费';
-$_LANG['10_supplier_article_list'] = '<a href="../article.php?id=131" target="_blank">店铺说明</a>';
+$_LANG['10_supplier_article_list'] = '店铺说明';
 
 $_LANG['06_pickup_point_manage'] = '自提点管理';
 
