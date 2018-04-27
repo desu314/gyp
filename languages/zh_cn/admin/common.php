@@ -473,6 +473,7 @@ $_LANG['03_rebate_pay'] = '往期结算';
 
 $_LANG['05_dianpu_manage'] = '店铺系统设置';
 $_LANG['11_supplier_apply'] = '店铺入驻信息';
+$_LANG['12_supplier_article'] = '店铺等级说明';
 $_LANG['01_base'] = '店铺基本设置';
 $_LANG['02_menu'] = '店铺导航栏';
 $_LANG['03_guanggao'] = '店铺主广告';
