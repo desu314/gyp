@@ -326,7 +326,7 @@ $_LANG['01_shop_config'] = '商店设置';
 //$_LANG['shop_authorized'] = '授权证书';
 $_LANG['shp_webcollect'] = '网罗天下';
 $_LANG['02_payment_list'] = '支付方式';
-$_LANG['03_shipping_list'] = '配送方式';
+//$_LANG['03_shipping_list'] = '配送方式';
 $_LANG['04_mail_settings'] = '邮件服务器设置';
 $_LANG['05_area_list'] = '地区列表';
 $_LANG['07_cron_schcron'] = '计划任务';
@@ -479,7 +479,7 @@ $_LANG['04_article'] = '店铺文章';
 $_LANG['05_header'] = '店铺头部自定义';
 $_LANG['06_templates'] = '店铺模板选择';
 $_LANG['07_street'] = '店铺街信息设置';
-$_LANG['08_shipping_list'] = '配送方式';
+//$_LANG['08_shipping_list'] = '配送方式';
 $_LANG['09_apply_pay'] = '缴纳服务费';
 $_LANG['10_supplier_article_list'] = '<a href="../article.php?id=131" target="_blank">店铺说明</a>';
 $_LANG['11_supplier_apply'] = '店铺入驻信息';
@@ -506,7 +506,7 @@ $_LANG['customer'] = '客服管理';
 $_LANG['third_customer'] = '第三方客服';
 
 
-// 微信管理 增加 start 微商城
+// 微信管理 增加 start
 $_LANG['weixin_config'] = '微信设置';
 $_LANG['weixin_addconfig'] = '多微信设置';
 $_LANG['weixin_menu'] = '自定义菜单';
@@ -523,7 +523,7 @@ $_LANG['weixin_addkey'] = '关键字回复';
 // 活动管理
 $_LANG['weixin_act'] = '活动管理';
 $_LANG['weixin_award'] = '中奖管理';
-// 增加 end by 微商城
+// 增加 end
 $_LANG['website'] = '合作登录管理'; // 名字你可以自己定
 
 $_LANG['16_takegoods_list'] = '提货券管理';

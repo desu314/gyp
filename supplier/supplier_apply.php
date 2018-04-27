@@ -65,7 +65,6 @@ if ($_REQUEST['act'] == 'info')
 elseif ($_REQUEST['act']=='update')
 {
     require_once('../includes/lib_main.php');
-    //echo '<pre>';print_R($_FILES);die;
     /* 检查权限
     admin_priv('supplier_manage');*/
     ini_set('display_errors',1);

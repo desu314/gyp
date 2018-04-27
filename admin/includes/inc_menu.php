@@ -3,12 +3,6 @@
 /**
  * YNDTH 管理中心菜单数组
  * ============================================================================
- * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: inc_menu.php 17217 2011-01-19 06:29:08Z liubo $
  */
@@ -24,10 +18,10 @@ $modules['02_cat_and_goods']['04_category_list'] = 'category.php?act=list';
 $modules['02_cat_and_goods']['05_comment_manage'] = 'comment_manage.php?act=list';
 // 代码增加 评论详情
 $modules['02_cat_and_goods']['05_order_comment'] = 'order_comment.php?act=list';
-/* 晒单插件 增加 by www.68ecshop.com */
+/* 晒单插件 增加 */
 $modules['02_cat_and_goods']['05_shaidan_manage'] = 'shaidan.php?act=list';
 $modules['02_cat_and_goods']['05_goods_tags'] = 'goods_tags.php?act=list';
-/* 晒单插件 增加 by www.68ecshop.com */
+/* 晒单插件 增加 */
 // $modules['02_cat_and_goods']['05_question_manage'] =
 // 'question_manage.php?act=list';
 $modules['02_cat_and_goods']['06_goods_brand_list'] = 'brand.php?act=list';
@@ -76,23 +70,16 @@ $modules['04_order']['08_add_order'] = 'order.php?act=add';
 $modules['04_order']['09_delivery_order'] = 'order.php?act=delivery_list';
 // $modules['04_order']['10_back_order'] = 'order.php?act=back_list';
 $modules['04_order']['10_back_order'] = 'back.php?act=back_list'; // 代码修改
-                                                                                // By
-                                                                                // www.68ecshop.com
 $modules['04_order']['11_supplier_back_order'] = 'back.php?act=back_list&supp=1'; // 代码修改
-                                                                                       // By
-                                                                                       // www.68ecshop.com
-                                                                                       // ecshop
-                                                                                       // add
-                                                                                       // start
 $modules['04_order']['12_order_excel'] = 'excel.php?act=order_excel';
 $modules['04_order']['11_kuaidi_order'] = 'kuaidi_order.php?act=list';
 $modules['04_order']['12_kuaidi_order2'] = 'kuaidi_order.php?act=list&order_status=4&is_finish=1';
 // ecshop add end
-/* 增值税发票_添加_START_www.68ecshop.com */
+/* 增值税发票_添加_START*/
 $modules['04_order']['12_invoice_list'] = 'order.php?act=invoice_list';
-/* 增值税发票_添加_START_www.68ecshop.com */
+/* 增值税发票_添加_START */
 
-/* 虚拟卷订单列表_添加_START_www.68ecshop.com
+/* 虚拟卷订单列表_添加_START
 $modules['18_virtual']['virtual_goods_add'] = 'virtual_goods.php?act=add&extension_code=virtual_good'; // 添加虚拟商品
 $modules['18_virtual']['virtual_goods_sup'] = 'virtual_goods.php?act=list&extension_code=virtual_good&supp=1'; // 虚拟商品列表
 $modules['18_virtual']['virtual_goods_list'] = 'virtual_goods.php?act=list&extension_code=virtual_good'; // 虚拟商品列表
@@ -100,15 +87,15 @@ $modules['18_virtual']['virtual_card_list'] = 'virtual_goods_card.php?act=all_ca
 $modules['18_virtual']['virtual_validate'] = 'virtual_goods_card.php?act=verification_info';
 $modules['18_virtual']['virtual_category'] = 'category.php?act=virtual_list'; // 虚拟商品分类管理
 $modules['18_virtual']['virtual_district'] = 'virtual_goods.php?act=district'; // 虚拟商品商圈管理*/
-/* 虚拟卷订单列表_添加_START_www.68ecshop.com */
+/* 虚拟卷订单列表_添加_START */
 
 $modules['05_banner']['ad_position'] = 'ad_position.php?act=list';
 $modules['05_banner']['ad_list'] = 'ads.php?act=list';
 
 //$modules['06_stats']['flow_stats'] = 'flow_stats.php?act=view';
-/* 代码添加_START By www.68ecshop.com */
+/* 代码添加_START */
 $modules['06_stats']['keyword'] = 'keyword.php?act=list'; // 客户搜索记录
-/* 代码添加_SEND By www.68ecshop.com */
+/* 代码添加_SEND */
 //$modules['06_stats']['searchengine_stats'] = 'searchengine_stats.php?act=view';
 //$modules['06_stats']['z_clicks_stats'] = 'adsense.php?act=list';
 $modules['06_stats']['report_guest'] = 'guest_stats.php?act=list'; // 客户统计
@@ -118,7 +105,7 @@ $modules['06_stats']['report_guest'] = 'guest_stats.php?act=list'; // 客户统�
 //$modules['06_stats']['sell_stats'] = 'sale_order.php?act=goods_num';
 //$modules['06_stats']['report_users'] = 'users_order.php?act=order_num';
 //$modules['06_stats']['visit_buy_per'] = 'visit_sold.php?act=list';
-/* 代码增加 By  www.68ecshop.com Start */
+/* 代码增加 Start */
 $modules['06_stats']['industry_stats'] = 'industry_scale_stats.php?act=list'; // 行业分析
 $modules['06_stats']['users_stats'] = 'user_added_stats.php?act=list'; // 会员统计
 $modules['06_stats']['shops_stats'] = 'shop_added_stats.php?act=list'; // 店铺统计
@@ -126,7 +113,7 @@ $modules['06_stats']['orders_stats'] = 'order_stats.php?act=list'; // 订单统�
 $modules['06_stats']['goods_stats'] = 'goods_stats.php?act=list'; // 商品分析
 $modules['06_stats']['sells_stats'] = 'sell_stats.php?act=list'; // 销售报告
 $modules['06_stats']['after_sells_stats'] = 'refund_stats.php?act=list'; // 售后统计
-/* 代码增加 By  www.68ecshop.com End */
+/* 代码增加 End */
 
 $modules['07_content']['03_article_list'] = 'article.php?act=list';
 $modules['07_content']['02_articlecat_list'] = 'articlecat.php?act=list';
@@ -139,7 +126,6 @@ $modules['08_members']['03_users_list'] = 'users.php?act=list';
 
 $modules['08_members']['04_users_export'] = 'users_export.php'; // 代码增加
                                                                             // By
-                                                                            // www.68ecshop.com
 
 $modules['08_members']['04_users_add'] = 'users.php?act=add';
 $modules['08_members']['05_user_rank_list'] = 'user_rank.php?act=list';
@@ -158,7 +144,7 @@ $modules['10_priv_admin']['suppliers_list'] = 'suppliers.php?act=list'; // 供�
 $modules['11_system']['01_shop_config'] = 'shop_config.php?act=list_edit';
 //$modules['11_system']['shop_authorized'] = 'license.php?act=list_edit';
 $modules['11_system']['02_payment_list'] = 'payment.php?act=list';
-$modules['11_system']['03_shipping_list'] = 'shipping.php?act=list';
+//$modules['11_system']['03_shipping_list'] = 'shipping.php?act=list';
 $modules['11_system']['04_mail_settings'] = 'shop_config.php?act=mail_settings';
 $modules['11_system']['05_area_list'] = 'area_manage.php?act=list';
 // $modules['11_system']['06_plugins'] = 'plugins.php?act=list';
@@ -203,7 +189,7 @@ $modules['16_email_manage']['magazine_list'] = 'magazine_list.php?act=list';
 $modules['16_email_manage']['attention_list'] = 'attention_list.php?act=list';
 $modules['16_email_manage']['view_sendlist'] = 'view_sendlist.php?act=list';
 
-/* 代码增加_start By www.68ecshop.com */
+/* 代码增加_start */
 $modules['02_supplier']['06_supplier_tag'] = 'supplier_tag.php?act=list';
 $modules['02_supplier']['05_supplier_rank'] = 'supplier_rank.php?act=list';
 $modules['02_supplier']['01_supplier_reg'] = 'supplier.php?act=list';
@@ -212,7 +198,7 @@ $modules['02_supplier']['03_rebate_nopay'] = 'supplier_rebate.php?act=list';
 //$modules['02_supplier']['03_rebate_pay'] = 'supplier_rebate.php?act=list&is_pay_ok=1';
 $modules['02_supplier']['04_shop_category'] = 'supplier_street_category.php?act=list';
 $modules['02_supplier']['05_shop_street'] = 'supplier_street.php?act=list';
-/* 代码增加_end By www.68ecshop.com */
+/* 代码增加_end */
 
 // 微信权限
 // $modules['17_weixin_manage']['weixin_config'] = 'weixin.php?act=config';
@@ -233,28 +219,28 @@ $modules['02_supplier']['05_shop_street'] = 'supplier_street.php?act=list';
 // $modules['17_weixin_manage']['weixin_qiandao'] = 'weixin.php?act=qiandao';
 // $modules['17_weixin_manage']['weixin_addkey'] = 'weixin.php?act=addkey';
 $modules['11_system']['website'] = 'website.php?act=list';
-/* 代码增加_start By www.68ecshop.com */
+/* 代码增加_start */
 $modules['03_promotion']['16_takegoods_list'] = 'takegoods.php?act=list';
 $modules['03_promotion']['16_takegoods_order'] = 'takegoods.php?act=order_list';
-/* 代码增加_end By www.68ecshop.com */
+/* 代码增加_end */
 $modules['16_email_manage']['sendmail'] = 'sendmail.php?act=sendmail';
-/* 代码增加_start By www.68ecshop.com */
+/* 代码增加_start */
 $modules['02_cat_and_goods']['pricecut'] = 'pricecut.php?act=list&status=-1';
 $purview['pricecut'] = 'goods_manage';
 $_LANG['pricecut'] = '降价通知列表';
-/* 代码增加_end By www.68ecshop.com */
-/* 代码增加_start By www.ecshop68.com */
+/* 代码增加_end */
+/* 代码增加_start */
 $modules['17_pickup_point_manage']['pickup_point_list'] = 'pickup_point.php?act=list';
 $modules['17_pickup_point_manage']['pickup_point_add'] = 'pickup_point.php?act=add';
 $modules['17_pickup_point_manage']['pickup_point_batch_add'] = 'pickup_point.php?act=batch_add';
-/* 代码增加_end By www.ecshop68.com */
+/* 代码增加_end */
 
-/* 代码增加_start By www.68ecshop.com */
+/* 代码增加_start */
 $modules['03_promotion']['19_valuecard_list'] = 'valuecard.php?act=list';
 $_LANG['19_valuecard_list'] = '储值卡管理';
 $purview['19_valuecard_list'] = 'bonus_manage';
 $modules['11_system']['website'] = 'website.php?act=list';
-/* 代码增加_end By www.68ecshop.com */
+/* 代码增加_end */
 
 $modules['20_chat']['chat_settings'] = 'chat_settings.php'; // 聊天服务设置
 $modules['20_chat']['customer'] = 'customer.php?act=list'; // 客服管理
