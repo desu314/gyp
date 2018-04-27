@@ -89,24 +89,7 @@ elseif ($_REQUEST['act']=='update')
             $zhizhao = $zhizhao_img;
         }
     }
-    if (isset($_FILES['tax_registration_certificate_electronic']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != '' &&  isset($_FILES['tax_registration_certificate_electronic']['tmp_name']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != 'none')
-    {
-        if($_FILES['tax_registration_certificate_electronic']['size'] / 1024 > $upload_size_limit)
-        {
-            $err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-            $err->show($_LANG['back_up_page']);
-        }
-        $tax_registration_certificate_electronic_img = upload_file($_FILES['tax_registration_certificate_electronic'], 'supplier');
-        if ($tax_registration_certificate_electronic_img === false)
-        {
-            $err->add('税务登记证号电子版图片上传失败！');
-            $err->show($_LANG['back_up_page']);
-        }
-        else
-        {
-            $tax_registration_certificate_electronic = $tax_registration_certificate_electronic_img;
-        }
-    }
+
     if (isset($_FILES['bank_licence_electronic']) && $_FILES['bank_licence_electronic']['tmp_name'] != '' &&  isset($_FILES['bank_licence_electronic']['tmp_name']) && $_FILES['bank_licence_electronic']['tmp_name'] != 'none')
     {
         if($_FILES['bank_licence_electronic']['size'] / 1024 > $upload_size_limit)
@@ -178,9 +161,6 @@ elseif ($_REQUEST['act']=='update')
         if($zhizhao != ''){
             $sql .= "`zhizhao` = '" . $zhizhao . "',";
         }
-        if($tax_registration_certificate_electronic != ''){
-            $sql .= "`tax_registration_certificate_electronic` = '" . $tax_registration_certificate_electronic . "',";
-        }
         if($bank_licence_electronic != ''){
             $sql .= "`bank_licence_electronic` = '" . $bank_licence_electronic . "',";
         }
@@ -228,13 +208,10 @@ elseif ($_REQUEST['act']=='update')
         }
     }
     //如果信息不为空，上传的文件其中一个不为空
-    elseif(!empty($supplierInfo) && ($zhizhao != '' || $tax_registration_certificate_electronic != '' || $bank_licence_electronic != '')){
+    elseif(!empty($supplierInfo) && ($zhizhao != '' || $bank_licence_electronic != '')){
         $sql = "update ".$ecs->table('supplier')." set ";
         if($zhizhao != ''){
             $sql .= "`zhizhao` = '" . $zhizhao . "',";
-        }
-        if($tax_registration_certificate_electronic != ''){
-            $sql .= "`tax_registration_certificate_electronic` = '" . $tax_registration_certificate_electronic . "',";
         }
         if($bank_licence_electronic != ''){
             $sql .= "`bank_licence_electronic` = '" . $bank_licence_electronic . "',";

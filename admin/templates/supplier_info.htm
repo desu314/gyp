@@ -83,12 +83,12 @@
   <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
     <thead>
       <tr>
-        <th colspan="2">营业执照信息（副本）</th>
+        <th colspan="2">营业执照信息（三证合一副本）</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="label">营业执照号：</td>
+        <td class="label">统一社会信用代码：</td>
         <td><input type="text" name="business_licence_number" value="{$supplier.business_licence_number|escape}" style="float:left;" size="30" /></td></tr><tr>
       </tr>
       <tr>
@@ -96,7 +96,7 @@
         <td><input type="text" name="business_sphere" value="{$supplier.business_sphere|escape}" style="float:left;" size="30" /></td>
       </tr>
       <tr>
-        <td class="label">营业执照号<br>电子版：</td>
+        <td class="label">营业执照<br>电子版：</td>
         <td>{if $supplier.zhizhao}<img src="../data/supplier/{$supplier.zhizhao}" width=50 height=50>&nbsp;&nbsp;<input type="button" onclick="window.open('../data/supplier/{$supplier.zhizhao}');" value="查看原图">{/if}</td>
       </tr>
     </tbody>
@@ -134,7 +134,7 @@
     </tbody>
   </table>-->
 
-  <table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
+  <!--<table border="0" cellpadding="0" cellspacing="0" class="store-joinin">
     <thead>
       <tr>
         <th colspan="2">税务登记证</td>
@@ -154,7 +154,7 @@
         <td>{if $supplier.tax_registration_certificate_electronic}<img src="../data/supplier/{$supplier.tax_registration_certificate_electronic}" width=50 height=50>&nbsp;&nbsp;<input type="button" onclick="window.open('../data/supplier/{$supplier.tax_registration_certificate_electronic}');" value="查看原图">{/if}</td>
       </tr>
     </tbody>
-  </table>
+  </table>-->
 
   <form method="post" action="supplier.php" name="theForm" enctype="multipart/form-data" onsubmit="return validate()">
 
