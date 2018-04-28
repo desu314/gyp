@@ -614,11 +614,10 @@ function suppliers_list()
     {
         $row['rank_name'] = $rankname_list[$row['rank_id']];
         $row['status_name'] = $row['status']=='1' ? '通过' : ($row['status']=='0' ? "未审核" : "未通过");
-        $paid = $GLOBALS['db']->getRow("select is_paid,paid_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$row['user_id']." order by paid_time desc limit 1");
+        $paid = $GLOBALS['db']->getRow("select is_paid,paid_time,end_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$row['user_id']." order by paid_time desc limit 1");
         $row['is_paid'] = $paid['is_paid'] == 1 ? '已缴费' : '未缴费';
         if($paid['is_paid'] == 1){
-            $paid_time = intval($paid['paid_time']);
-            $row['end_paid_time'] = date("Y-m-d H:i:s",strtotime("+1years",$paid_time));
+            $row['end_paid_time'] = date("Y-m-d H:i:s",$paid['end_time']);
         }else{
             $row['end_paid_time'] = '当前未缴费';
         }

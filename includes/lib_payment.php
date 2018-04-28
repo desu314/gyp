@@ -287,8 +287,9 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                     $sql = "UPDATE ".$GLOBALS['ecs']->table('supplier')." set is_pay = 1 where user_id = $user_id limit 1";
                     $GLOBALS['db']->query($sql);
                     /* 更新入驻商预付款的流水状态 */
+                    $end_time = strtotime("+1year",gmtime());
                     $sql = 'UPDATE ' . $GLOBALS['ecs']->table('rank_account') .
-                        " SET paid_time = '" .gmtime(). "', is_paid = 1" .
+                        " SET paid_time = '" .gmtime(). "', is_paid = 1, end_time = '" . $end_time . "'" .
                         " WHERE id = '$pay_log[order_id]' LIMIT 1";
                     $GLOBALS['db']->query($sql);
                 }
