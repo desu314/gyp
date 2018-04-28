@@ -691,12 +691,11 @@ function checkOrderForm(frm)
                     shippingSelected = true;
                 }
 	});
-        
-        
-	if (!shippingSelected) {
+
+	/*if (!shippingSelected) {
 		alert(flow_no_shipping);
 		return false;
-	}
+	}*/
 
 	if (!paymentSelected) {
 		alert(flow_no_payment);

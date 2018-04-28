@@ -1110,7 +1110,7 @@ function close_gift(suitId){
         </li>
         {/if}
         {else}
-        {if $payment.pay_code eq "alipay" || $payment.pay_code eq "unionpay" || $payment.pay_code eq "balance" ||$payment.pay_code eq "cod"}
+        {if  $payment.pay_code eq "unionpay" || $payment.pay_code eq "balance" ||$payment.pay_code eq "cod"}
         <li onclick="selectPayment({$payment.pay_id})" class="clearfix" name="payment_name" {if $payment.pay_code eq 'balance'}style="display:none"{/if}>
           <input type="radio" id="payment_method_{$payment.pay_id}" name="payment" value="{$payment.pay_id}" {if $order.pay_id eq $payment.pay_id} checked="checked"{/if} isCod="{$payment.is_cod}" onclick="selectPayment(this)" class="f_checkbox_t"  {if $cod_disabled and $payment.is_cod eq "1"}disabled="true"{/if}  {if $payment.pay_code eq "balance"}display:none{/if} />
             <label for="payment_method_{$payment.pay_id}" > <div class="fl shipping_title"> {$payment.pay_name}{$payment.format_pay_fee} </div>
