@@ -9,6 +9,8 @@
 define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
+require_once(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/supplier_apply.php');
+$_LANG = $GLOBALS['_LANG'];
 /*------------------------------------------------------ */
 //-- 入驻商店铺信息
 /*------------------------------------------------------ */
@@ -67,7 +69,7 @@ elseif ($_REQUEST['act']=='update')
     require_once('../includes/lib_main.php');
     /* 检查权限
     admin_priv('supplier_manage');*/
-    ini_set('display_errors',1);
+    //ini_set('display_errors',1);
     $upload_size_limit = $_CFG['upload_size_limit'] == '-1' ? ini_get('upload_max_filesize') : $_CFG['upload_size_limit'];
     /* 提交值 */
     $supplier_id =  intval($_POST['supplier_id']);
@@ -143,7 +145,7 @@ elseif ($_REQUEST['act']=='update')
     $supplier_old = $db->getRow($sql);
     if (empty($supplier_old['supplier_id']))
     {
-        sys_msg('该供货商信息不存在！');
+        sys_msg($_LANG['supplier_error']);
     }
     //根据所填信息查询当前商家是否改变信息
     foreach($supplier as $key=>$val){
@@ -199,11 +201,11 @@ elseif ($_REQUEST['act']=='update')
             $sql="update ". $ecs->table('goods') ." set is_on_sale=0 where supplier_id='$supplier_id' ";
             $db->query($sql);
             /* 修改成功提示信息 */
-            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_supplier_apply']));
+            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_up_page']));
             sys_msg($_LANG['edit_supplier_ok'], 0, $links);
         }else{
             /* 修改失败提示信息 */
-            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_supplier_apply_error']));
+            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_up_page']));
             sys_msg($_LANG['edit_supplier_error'], 0, $links);
         }
     }
@@ -251,17 +253,17 @@ elseif ($_REQUEST['act']=='update')
             $sql="update ". $ecs->table('goods') ." set is_on_sale=0 where supplier_id='$supplier_id' ";
             $db->query($sql);
             /* 修改成功提示信息 */
-            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_supplier_apply']));
+            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_up_page']));
             sys_msg($_LANG['edit_supplier_ok'], 0, $links);
         }else{
             /* 修改失败提示信息 */
-            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_supplier_apply_error']));
+            $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_up_page']));
             sys_msg($_LANG['edit_supplier_error'], 0, $links);
         }
     }
     else{
         /* 未做修改提示信息 */
-        $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_supplier_apply_no']));
+        $links[] = array('href' => ('supplier_apply.php?act=info'), 'text' => ($_LANG['back_up_page']));
         sys_msg($_LANG['edit_supplier_no'], 0, $links);
     }
 
