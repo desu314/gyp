@@ -471,7 +471,7 @@
                         <!-- {else}-->
                         <a onclick="tell_me({$goods.goods_id})" class="tell-me"><i></i>到货通知</a>
                         <!-- {/if}--> 
-                        <a id="phone" class="btn-phone" style="position:relative;cursor:pointer">
+                        <a id="phone" class="btn-phone" style="position:relative;cursor:pointer;display: none">
                         	手机购买<i></i>
                             <div id="phone-tan" style="display:none"> 
                               <span class="arr"></span>

@@ -47,7 +47,7 @@
             <!-- {/if} -->
             <!--{/foreach} 结束淘宝旺旺 -->
         </div>
-        <div id="attention-shop">
+        <div id="attention-shop" style="display: none">
             <p>扫一扫，手机访问微商城</p>
             <img src="erweima_supplier.php?sid=0" width="120" height="120" />
         </div>
