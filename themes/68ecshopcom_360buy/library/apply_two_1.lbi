@@ -76,159 +76,7 @@
         </tbody>
       </table>
     </div>
-    <!--div id="apply_person_info" class="apply-company-info">
-      <div class="note"><i></i>以下所需要上传的电子版资质文件仅支持JPG\GIF\PNG格式图片，大小请控制在{$piclimit}K之内。</div>
-      <form id="form_person_info" name="form_person_info" action="apply.php" method="post" enctype="multipart/form-data" onSubmit="return supplier_person_Reg()">
-        <table border="0" cellpadding="0" cellspacing="0" class="all">
-          <thead>
-            <tr>
-              <th colspan="2" align="left">请按照提示填写本人真实的资料</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th><i>*</i>店铺名称：</th>
-              <td><input name="company_name" type="text" value="{$supplier.company_name}" class="w200"  />
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>联系地址：</th>
-              <td><select name="country" id="selCountries_1" onchange="region.changed(this, 1, 'selProvinces_1')">
-                  <option value="0">请选择</option>
-                  <!-- {foreach from=$country_list item=country} -->
-                  <option value="{$country.region_id}" {if $supplier_country eq $country.region_id}selected{/if}>{$country.region_name}</option>
-                  <!-- {/foreach} -->
-                </select>
-                <select name="province" id="selProvinces_1" onchange="region.changed(this, 2, 'selCities_1')">
-                  <option value="0">请选择</option>
-                  <!-- {foreach from=$province_list item=province} -->
-                  <option value="{$province.region_id}" {if $supplier.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
-                  <!-- {/foreach} -->
-                </select>
-                <select name="city" id="selCities_1" onchange="region.changed(this, 3, 'selDistricts_1')">
-                  <option value="0">请选择</option>
-                  <!-- {foreach from=$city_list item=city} -->
-                  <option value="{$city.region_id}" {if $supplier.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
-                  <!-- {/foreach} -->
-                </select>
-                <select name="district" id="selDistricts_1" {if !$district_list}style="display:none"{/if}>
-                  <option value="0">请选择</option>
-                  <!-- {foreach from=$district_list item=district} -->
-                  <option value="{$district.region_id}" {if $supplier.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
-                  <!-- {/foreach} -->
-                </select>
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>详细地址：</th>
-              <td><input name="address" class="w200" type="text"   value="{$supplier.address}" />
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>姓名：</th>
-              <td><input name="contacts_name" type="text" class="w200" value="{$supplier.contacts_name}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>联系人电话：</th>
-              <td><input name="contacts_phone" type="text" class="w200" value="{$supplier.contacts_phone}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>电子邮箱：</th>
-              <td><input type="text" name="email" size=45 value="{$supplier.email}" class="w200"  />
-                <span></span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="20">&nbsp;</td>
-            </tr>
-          </tfoot>
-        </table>
-        <table border="0" cellpadding="0" cellspacing="0" class="all">
-          <thead>
-            <tr>
-              <th colspan="20" align="left">身份证信息</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th><i>*</i>身份证号码：</th>
-              <td><input name="id_card_no" type="text" class="w200" value="{$supplier.id_card_no}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>手持身份证照片：</th>
-              <td><input name="handheld_idcard" type="file">
-                {if $supplier.handheld_idcard}<br>
-                <img src="data/supplier/{$supplier.handheld_idcard}" width=80 height=80 id='handheld_idcard_id'> {/if} <br />
-                <span id="id-hand-s"></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>身份证正面：</th>
-              <td><input name="idcard_front" type="file">
-                {if $supplier.idcard_front}<br>
-                <img src="data/supplier/{$supplier.idcard_front}" width=80 height=80 id='idcard_front_id'>{/if} <br />
-                <span id="id-front-s"></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>身份证反面：</th>
-              <td><input name="idcard_reverse" type="file">
-                {if $supplier.idcard_reverse}<br>
-                <img src="data/supplier/{$supplier.idcard_reverse}" width=80 height=80 id='idcard_reverse_id'>{/if} <br />
-                <span id="id-back-s"></span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="20">&nbsp;</td>
-            </tr>
-          </tfoot>
-        </table>
-        <table border="0" cellpadding="0" cellspacing="0" class="all">
-          <thead>
-            <tr>
-              <th colspan="20" align="left">开户银行信息</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th class="w150"><i>*</i>银行开户名：</th>
-              <td><input name="bank_account_name" id="bank_account_name" type="text" class="w200" value="{$supplier.bank_account_name}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>个人银行账号：</th>
-              <td><input name="bank_account_number" id="bank_account_number" type="text" class="w200" value="{$supplier.bank_account_number}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>开户银行支行名称：</th>
-              <td><input name="bank_name" type="text" id="bank_name" class="w200" value="{$supplier.bank_name}">
-                <span></span></td>
-            </tr>
-            <tr>
-              <th><i>*</i>支行联行号：</th>
-              <td><input name="bank_code" type="text" id="bank_code" class="w200"  value="{$supplier.bank_code}">
-                <span></span></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="20">&nbsp;</td>
-            </tr>
-          </tfoot>
-        </table>
-        <input type="hidden" name="shownum" value="1">
-        <input type="hidden" name="do" value="1">
-        <input type="hidden" name="person" value="1">
-        <div class="bottom">
-          <input type="button" value="上一步" class="btn" onclick="top.location.href='apply.php?shownum=0'">
-          <input type="submit" value="下一步" class="btn">
-        </div>
-      </form>
-    </div-->
+
     <div id="apply_company_info" class="apply-company-info">
       <div class="note"><i></i>以下所需要上传的电子版资质文件仅支持JPG\GIF\PNG格式图片，大小请控制在{$piclimit}K之内。</div>
       <form id="form_company_info" name="form_company_info" action="apply.php" method="post" enctype="multipart/form-data" onSubmit="return supplier_Reg()">
@@ -353,7 +201,7 @@
             </tr>
           </tfoot>
         </table>
-        <!--table border="0" cellpadding="0" cellspacing="0" class="all">
+        <!--<table border="0" cellpadding="0" cellspacing="0" class="all">
           <thead>
             <tr>
               <th colspan="20" align="left">组织机构代码证</th>
@@ -397,7 +245,7 @@
               <td colspan="20">&nbsp;</td>
             </tr>
           </tfoot>
-        </table-->
+        </table>-->
         <input type="hidden" name="shownum" value="1">
         <input type="hidden" name="do" value="1">
         <input type="hidden" name="company" value="1">
@@ -421,7 +269,6 @@ function ispic(filepath){
 }
 function supplier_Reg()
 {
-
 	var msg = '';
 	var frm = document.forms['form_company_info'];
 	var company_name =  frm.elements['company_name'] ? Utils.trim(frm.elements['company_name'].value) : '';
@@ -442,14 +289,8 @@ function supplier_Reg()
 	var business_sphere =  frm.elements['business_sphere'] ? Utils.trim(frm.elements['business_sphere'].value) : '';
 	var zhizhao = frm.elements['zhizhao'].value;
 	var zz	    = document.getElementById("zz");
-	var organization_code =  frm.elements['organization_code'] ? Utils.trim(frm.elements['organization_code'].value) : '';
-	var organization_code_electronic = frm.elements['organization_code_electronic'].value;
-	var oce	    = document.getElementById("oce");
-	//var general_taxpayer = frm.elements['general_taxpayer'].value;
-	var gt	    = document.getElementById("gt");
 
-	
-	
+
 	if (company_name.length == 0)
 	{
 		msg += "公司名称不能为空！" + '\n';
@@ -468,12 +309,7 @@ function supplier_Reg()
 	{
 		msg += "公司电话不能为空！" + '\n';
 	}
-	if (tel.length > 0){
-		var patrn=/^((\+?[0-9]{2,4}[0-9]{3,4})|([0-9]{3,4}))?([0-9]{7,8})(\-[0-9]+)?$/;
-		if (!patrn.exec(tel)){
-	　　     msg += "公司电话不正确！" + '\n';
-	　　   }
-	}
+
 	if (guimo.length == 0)
 	{
 		msg += "企业规模不能为空！" + '\n';
@@ -507,12 +343,18 @@ function supplier_Reg()
 		var patrn=/^1[3|4|5|7|8][0-9]\d{8}$/;
 		if (!patrn.exec(contacts_phone)){
 	　　     msg += "联系人电话不正确！" + '\n';
-	　　   }
+	　　}
 	}
 
 	if (business_licence_number.length == 0)
 	{
 		msg += "统一社会信用代码不能为空！" + '\n';
+	}
+	if(business_licence_number.length > 0){
+        var patrn=/[0-9A-Z]{18}/;
+        if (!patrn.exec(business_licence_number)){
+    　　     msg += "统一社会信用代码不正确！" + '\n';
+    　　}
 	}
 
 	if (business_sphere.length == 0)
@@ -522,142 +364,6 @@ function supplier_Reg()
 
 	if(ispic(zhizhao) == false && zz == null){
 	   msg += "请上传营业执照！" + '\n';
-	}
-
-	if (organization_code.length == 0)
-	{
-		msg += "组织机构代码不能为空！" + '\n';
-	}
-
-	if(ispic(organization_code_electronic) == false && oce == null){
-	   msg += "组织机构代码证！" + '\n';
-	}
-
-	/*if(ispic(general_taxpayer) == false && gt == null){
-	   msg += "组织机构代码证！" + '\n';
-	}*/
-
-	if (msg.length > 0)
-	{
-		alert(msg);
-		return false;
-	}
-	else
-	{
-		return true;
-	}
-}
-function supplier_person_Reg()
-{
-	var msg = '';
-	var frm = document.forms['form_person_info'];
-	var company_name =  frm.elements['company_name'] ? Utils.trim(frm.elements['company_name'].value) : '';
-	var country =  frm.elements['country'] ? Utils.trim(frm.elements['country'].value) : '0';
-	var province =  frm.elements['province'] ? Utils.trim(frm.elements['province'].value) : '0';
-	var city =  frm.elements['city'] ? Utils.trim(frm.elements['city'].value) : '0';
-	var district =  frm.elements['district'] ? Utils.trim(frm.elements['district'].value) : '0';
-	var address =  frm.elements['address'] ? Utils.trim(frm.elements['address'].value) : '';
-
-	var contacts_name =  frm.elements['contacts_name'] ? Utils.trim(frm.elements['contacts_name'].value) : '';
-	var contacts_phone =  frm.elements['contacts_phone'] ? Utils.trim(frm.elements['contacts_phone'].value) : '';
-	var email = frm.elements['email'].value;
-	
-	var id_card_no =  frm.elements['id_card_no'] ? Utils.trim(frm.elements['id_card_no'].value) : '';
-	
-	var handheld_idcard = frm.elements['handheld_idcard'].value;
-	var handheld_idcard_id	    = document.getElementById("handheld_idcard_id");
-
-	var idcard_front = frm.elements['idcard_front'].value;
-	var idcard_front_id	    = document.getElementById("idcard_front_id");
-	
-	var idcard_reverse = frm.elements['idcard_reverse'].value;
-	var idcard_reverse_id	    = document.getElementById("idcard_reverse_id");
-
-	
-	var bank_account_name =  frm.elements['bank_account_name'] ? Utils.trim(frm.elements['bank_account_name'].value) : '';
-	var bank_account_number =  frm.elements['bank_account_number'] ? Utils.trim(frm.elements['bank_account_number'].value) : '';
-	var bank_name =  frm.elements['bank_name'] ? Utils.trim(frm.elements['bank_name'].value) : '';
-	var bank_code =  frm.elements['bank_code'] ? Utils.trim(frm.elements['bank_code'].value) : '';
-	
-	if (company_name.length == 0)
-	{
-		msg += "店铺名称不能为空！" + '\n';
-	}
-
-	if (country == '0' || province=='0' || city=='0' || district=='0')
-	{
-		msg += "联系地址不完整！" + '\n';
-	}
-	
-	if (address.length == 0)
-	{
-		msg += "详细地址不能为空！" + '\n';
-	}
-	
-	if (contacts_name.length == 0)
-	{
-		msg += "姓名不能为空！" + '\n';
-	}
-
-	if (contacts_phone.length == 0)
-	{
-		msg += "联系人电话不能为空！" + '\n';
-	}
-	if (contacts_phone.length > 0){
-		var patrn=/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/;
-		if (!patrn.exec(contacts_phone)){
-	　　     msg += "联系人电话不正确！" + '\n';
-	　　   }
-	}
-	
-	if (email.length == 0)
-	{
-		msg += "电子邮箱不能为空！" + '\n';
-	}
-	else
-	{
-		if ( ! (Utils.isEmail(email)))
-		{
-			msg += "电子邮箱格式错误！" + '\n';
-		}
-	}	
-
-	if (id_card_no.length == 0)
-	{
-		msg += "身份证号码不能为空！" + '\n';
-	}
-	if (id_card_no.length > 0){
-		var patrn=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		if (!patrn.exec(id_card_no)){
-	　　     msg += "身份证格式错误！" + '\n';
-	　　   }
-	}
-
-	if(ispic(handheld_idcard) == false && handheld_idcard_id == null){
-	   msg += "手持身份证照片！" + '\n';
-	}
-	if(ispic(idcard_front) == false && idcard_front_id == null){
-	   msg += "身份证正面照片！" + '\n';
-	}
-	if(ispic(idcard_reverse) == false && idcard_reverse_id == null){
-	   msg += "身份证反面照片！" + '\n';
-	}
-
-	if (bank_account_name.length == 0)
-	{
-		msg += "(开户)银行开户名不能为空！" + '\n';
-	}
-	if (bank_account_number.length == 0)
-	{
-		msg += "(开户)个人银行账号不能为空！" + '\n';
-	}
-	if (bank_name.length == 0)
-	{
-		msg += "(开户)开户银行支行不能为空！" + '\n';
-	}
-	if (bank_code.length == 0)
-	{
-		msg += "(开户)支行联行号不能为空！" + '\n';
 	}
 
 	if (msg.length > 0)

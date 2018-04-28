@@ -71,24 +71,6 @@ if(isset($_POST['do']) && $_POST['do']){
 			   $save['zhizhao'] = $zhizhao_img;
 			}
 		}
-		/*if (isset($_FILES['organization_code_electronic']) && $_FILES['organization_code_electronic']['tmp_name'] != '' &&  isset($_FILES['organization_code_electronic']['tmp_name']) && $_FILES['organization_code_electronic']['tmp_name'] != 'none')
-		{
-			if($_FILES['organization_code_electronic']['size'] / 1024 > $upload_size_limit)
-	        {
-	            $err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-				$err->show($_LANG['back_up_page']);
-	        }
-	        $organization_code_electronic_img = upload_file($_FILES['organization_code_electronic'], 'supplier');
-	        if ($organization_code_electronic_img === false)
-	        {
-	            $err->add('组织机构代码证电子版图片上传失败！');
-				$err->show($_LANG['back_up_page']);
-	        }
-			else
-			{
-				$save['organization_code_electronic'] = $organization_code_electronic_img;
-			}
-		}*/
 		if (isset($_FILES['general_taxpayer']) && $_FILES['general_taxpayer']['tmp_name'] != '' &&  isset($_FILES['general_taxpayer']['tmp_name']) && $_FILES['general_taxpayer']['tmp_name'] != 'none')
 		{
 			if($_FILES['general_taxpayer']['size'] / 1024 > $upload_size_limit)
@@ -109,101 +91,11 @@ if(isset($_POST['do']) && $_POST['do']){
 		}
 		$save['applynum'] = 1;//公司信息认证一
 		
-		//必填项验证
-		$save1 = array_filter($save);
-		if(count($save1)!=count($save)){
-			show_message('请认真填写必填申请资料！', '返回', 'apply.php', 'wrong');
-			}
-			 if ($db->autoExecute($ecs->table('supplier'), $save, 'UPDATE', 'user_id='.$userid) !== false){
-				header("location:apply.php");
-				exit;
-			 }else{
-				show_message('操作失败！', '返回', 'apply.php', 'wrong');
-			 }
-		}
-		if($_POST['person'])
-		{
-			$save['company_name'] = isset($_POST['company_name']) ? trim(addslashes(htmlspecialchars($_POST['company_name']))) : ''; 
-			$save['country'] = isset($_POST['country']) ? intval($_POST['country']) : 1; 
-			$save['province'] = isset($_POST['province']) ? intval($_POST['province']) : 1; 
-			$save['city'] = isset($_POST['city']) ? intval($_POST['city']) : 1; 
-			$save['district'] = isset($_POST['district']) ? intval($_POST['district']) : 1; 
-			$save['address'] = isset($_POST['address']) ? trim(addslashes(htmlspecialchars($_POST['address']))) : '';
-			
-			$save['contacts_name'] = isset($_POST['contacts_name']) ? trim(addslashes(htmlspecialchars($_POST['contacts_name']))) : '';
-			$save['contacts_phone'] = isset($_POST['contacts_phone']) ? trim(addslashes(htmlspecialchars($_POST['contacts_phone']))) : '';
-			$save['email'] = isset($_POST['email']) ? trim($_POST['email']) : '';
-
-			$save['id_card_no'] = isset($_POST['id_card_no']) ? trim(addslashes(htmlspecialchars($_POST['id_card_no']))) : '';
-
-			$save['bank_account_name'] = isset($_POST['bank_account_name']) ? trim(addslashes(htmlspecialchars($_POST['bank_account_name']))) : '';
-			$save['bank_account_number'] = isset($_POST['bank_account_number']) ? trim(addslashes(htmlspecialchars($_POST['bank_account_number']))) : '';
-			$save['bank_name'] = isset($_POST['bank_name']) ? trim(addslashes(htmlspecialchars($_POST['bank_name']))) : '';
-			$save['bank_code'] = isset($_POST['bank_code']) ? trim(addslashes(htmlspecialchars($_POST['bank_code']))) : '';
-			
-			if (isset($_FILES['handheld_idcard']) && $_FILES['handheld_idcard']['tmp_name'] != '' &&  isset($_FILES['handheld_idcard']['tmp_name']) && $_FILES['handheld_idcard']['tmp_name'] != 'none')
-			{
-				if($_FILES['handheld_idcard']['size'] / 1024 > $upload_size_limit)
-				{
-					$err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-					$err->show($_LANG['back_up_page']);
-				}
-				$handheld_idcard_img = upload_file($_FILES['handheld_idcard'], 'supplier');
-				if ($handheld_idcard_img === false)
-				{
-					$err->add('手持身份证照片上传失败！');
-					$err->show($_LANG['back_up_page']);
-				}
-				else
-				{
-					$save['handheld_idcard'] = $handheld_idcard_img;
-				}
-			}
-			if (isset($_FILES['idcard_front']) && $_FILES['idcard_front']['tmp_name'] != '' &&  isset($_FILES['idcard_front']['tmp_name']) && $_FILES['idcard_front']['tmp_name'] != 'none')
-			{
-				if($_FILES['idcard_front']['size'] / 1024 > $upload_size_limit)
-				{
-					$err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-					$err->show($_LANG['back_up_page']);
-				}
-				$idcard_front_img = upload_file($_FILES['idcard_front'], 'supplier');
-				if ($idcard_front_img === false)
-				{
-					$err->add('身份证正面照片上传失败！');
-					$err->show($_LANG['back_up_page']);
-				}
-				else
-				{
-					$save['idcard_front'] = $idcard_front_img;
-				}
-			}
-			if (isset($_FILES['idcard_reverse']) && $_FILES['idcard_reverse']['tmp_name'] != '' &&  isset($_FILES['idcard_reverse']['tmp_name']) && $_FILES['idcard_reverse']['tmp_name'] != 'none')
-			{
-				if($_FILES['idcard_reverse']['size'] / 1024 > $upload_size_limit)
-				{
-					$err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-					$err->show($_LANG['back_up_page']);
-				}
-				$idcard_reverse_img = upload_file($_FILES['idcard_reverse'], 'supplier');
-				if ($idcard_reverse_img === false)
-				{
-					$err->add('身份证反面照片上传失败！');
-					$err->show($_LANG['back_up_page']);
-				}
-				else
-				{
-					$save['idcard_reverse'] = $idcard_reverse_img;
-				}
-			}
-			
-			$save['applynum'] = 2;//公司信息认证一
-			
 			//必填项验证
 			$save1 = array_filter($save);
 			if(count($save1)!=count($save)){
 				show_message('请认真填写必填申请资料！', '返回', 'apply.php', 'wrong');
 			}
-			
 			 if ($db->autoExecute($ecs->table('supplier'), $save, 'UPDATE', 'user_id='.$userid) !== false){
 				header("location:apply.php");
 				exit;
@@ -211,7 +103,7 @@ if(isset($_POST['do']) && $_POST['do']){
 				show_message('操作失败！', '返回', 'apply.php', 'wrong');
 			 }
 		}
-		
+
 	}elseif($shownum == 2){
 		
 		$save['bank_account_name'] = isset($_POST['bank_account_name']) ? trim(addslashes(htmlspecialchars($_POST['bank_account_name']))) : '';
@@ -222,8 +114,6 @@ if(isset($_POST['do']) && $_POST['do']){
 	    $save['settlement_bank_account_number'] = isset($_POST['settlement_bank_account_number']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_account_number']))) : '';
 	    $save['settlement_bank_name'] = isset($_POST['settlement_bank_name']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_name']))) : '';
 	    $save['settlement_bank_code'] = isset($_POST['settlement_bank_code']) ? trim(addslashes(htmlspecialchars($_POST['settlement_bank_code']))) : '';
-	    //$save['tax_registration_certificate'] = isset($_POST['tax_registration_certificate']) ? trim(addslashes(htmlspecialchars($_POST['tax_registration_certificate']))) : '';
-	    //$save['taxpayer_id'] = isset($_POST['taxpayer_id']) ? trim(addslashes(htmlspecialchars($_POST['taxpayer_id']))) : '';
 	    
 		if (isset($_FILES['bank_licence_electronic']) && $_FILES['bank_licence_electronic']['tmp_name'] != '' &&  isset($_FILES['bank_licence_electronic']['tmp_name']) && $_FILES['bank_licence_electronic']['tmp_name'] != 'none')
 		{
@@ -243,24 +133,6 @@ if(isset($_POST['do']) && $_POST['do']){
 				$save['bank_licence_electronic'] = $bank_licence_electronic_img;
 			}
 		}
-		/*if (isset($_FILES['tax_registration_certificate_electronic']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != '' &&  isset($_FILES['tax_registration_certificate_electronic']['tmp_name']) && $_FILES['tax_registration_certificate_electronic']['tmp_name'] != 'none')
-		{
-			if($_FILES['tax_registration_certificate_electronic']['size'] / 1024 > $upload_size_limit)
-	        {
-	            $err->add(sprintf($_LANG['upload_file_limit'], $upload_size_limit));
-				$err->show($_LANG['back_up_page']);
-	        }
-	        $tax_registration_certificate_electronic_img = upload_file($_FILES['tax_registration_certificate_electronic'], 'supplier');
-	        if ($tax_registration_certificate_electronic_img === false)
-	        {
-	            $err->add('税务登记证号电子版图片上传失败！');
-				$err->show($_LANG['back_up_page']);
-	        }
-			else
-			{
-				$save['tax_registration_certificate_electronic'] = $tax_registration_certificate_electronic_img;
-			}
-		}*/
 		
 		$save['applynum'] = 2;//公司信息认证二
 		

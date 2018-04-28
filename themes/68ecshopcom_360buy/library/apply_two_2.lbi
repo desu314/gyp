@@ -125,37 +125,6 @@
         </tfoot>
       </table>
     </div>
-    <!--<table border="0" cellpadding="0" cellspacing="0" class="all">
-      <thead>
-        <tr>
-          <th colspan="20" align="left">税务登记证</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="w150"><i>*</i>税务登记证号：</th>
-          <td><input name="tax_registration_certificate" type="text" class="w200" value="{$supplier.tax_registration_certificate}">
-            <span></span></td>
-        </tr>
-        <tr>
-          <th><i>*</i>纳税人识别号：</th>
-          <td><input name="taxpayer_id" type="text" class="w200" value="{$supplier.taxpayer_id}">
-            <span></span></td>
-        </tr>
-        <tr>
-          <th><i>*</i>税务登记证号电子版：</th>
-          <td><input name="tax_registration_certificate_electronic" type="file">
-	  {if $supplier.tax_registration_certificate_electronic}<br>
-              <img src="data/supplier/{$supplier.tax_registration_certificate_electronic}" width=80 height=80 id='trce'>{/if}
-            <span class="block">请确保图片清晰，文字可辨并有清晰的红色公章。</span></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="20">&nbsp;</td>
-        </tr>
-      </tfoot>
-    </table>-->
     <input type="hidden" name="shownum" value="2">
       <input type="hidden" name="do" value="1">
     
@@ -190,7 +159,6 @@ function ispic(filepath){
 }
 function supplier_Reg()
 {
-
 	var msg = '';
 	var frm = document.forms['form_company_info'];
 	var bank_account_name =  frm.elements['bank_account_name'] ? Utils.trim(frm.elements['bank_account_name'].value) : '';
@@ -205,13 +173,6 @@ function supplier_Reg()
 	var settlement_bank_name =  frm.elements['settlement_bank_name'] ? Utils.trim(frm.elements['settlement_bank_name'].value) : '';
 	var settlement_bank_code =  frm.elements['settlement_bank_code'] ? Utils.trim(frm.elements['settlement_bank_code'].value) : '';
 
-	var tax_registration_certificate =  frm.elements['tax_registration_certificate'] ? Utils.trim(frm.elements['tax_registration_certificate'].value) : '';
-	var taxpayer_id =  frm.elements['taxpayer_id'] ? Utils.trim(frm.elements['taxpayer_id'].value) : '';
-	var tax_registration_certificate_electronic = frm.elements['tax_registration_certificate_electronic'].value;
-	var trce	    = document.getElementById("trce");
-
-	
-	
 	if (bank_account_name.length == 0)
 	{
 		msg += "(开户)银行开户名不能为空！" + '\n';
@@ -220,18 +181,35 @@ function supplier_Reg()
 	{
 		msg += "(开户)公司银行账号不能为空！" + '\n';
 	}
+	if(bank_account_number.length > 0){
+	    var patrn=/^([1-9]{1})(\d{12}|\d{13}|\d{14}|\d{15}|\d{16}|\d{17}|\d{18})$/;
+        if (!patrn.exec(bank_account_number)){
+    　　     msg += "(开户)公司银行账号不正确！" + '\n';
+    　　}
+	}
 	if (bank_name.length == 0)
 	{
 		msg += "(开户)开户银行支行不能为空！" + '\n';
 	}
+	if(bank_name.length > 0){
+        var patrn=/[\u4e00-\u9fa5]+/;
+        if (!patrn.exec(bank_name)){
+    　　     msg += "(开户)银行支行名称不正确！" + '\n';
+    　　}
+    }
 	if (bank_code.length == 0)
 	{
 		msg += "(开户)支行联行号不能为空！" + '\n';
 	}
+	if(bank_code.length > 0){
+        var patrn=/^([0-9]{12})$/;
+        if (!patrn.exec(bank_code)){
+    　　     msg += "(开户)支行联行号不正确！" + '\n';
+    　　}
+    }
 	if(ispic(bank_licence_electronic) == false && ble == null){
 	   msg += "请上传开户银行许可证！" + '\n';
 	}
-
 
 	if (settlement_bank_account_name.length == 0)
 	{
@@ -241,27 +219,32 @@ function supplier_Reg()
 	{
 		msg += "(结算)公司银行账号不能为空！" + '\n';
 	}
+	if(settlement_bank_account_number.length > 0){
+	    var patrn=/^([1-9]{1})(\d{12}|\d{13}|\d{14}|\d{15}|\d{16}|\d{17}|\d{18})$/;
+        if (!patrn.exec(settlement_bank_account_number)){
+    　　     msg += "(结算)公司银行账号不正确！" + '\n';
+    　　}
+    }
 	if (settlement_bank_name.length == 0)
 	{
 		msg += "(结算)开户银行支行不能为空！" + '\n';
 	}
+	if(settlement_bank_name.length > 0){
+        var patrn=/[\u4e00-\u9fa5]+/;
+        if (!patrn.exec(settlement_bank_name)){
+    　　     msg += "(结算)开户银行支行名称不正确！" + '\n';
+    　　}
+    }
 	if (settlement_bank_code.length == 0)
 	{
 		msg += "(结算)支行联行号不能为空！" + '\n';
 	}
-
-
-	/*if (tax_registration_certificate.length == 0)
-	{
-		msg += "税务登记证号不能为空！" + '\n';
-	}
-	if (taxpayer_id.length == 0)
-	{
-		msg += "纳税人识别号不能为空！" + '\n';
-	}
-	if(ispic(tax_registration_certificate_electronic) == false && trce == null){
-	   msg += "请上传税务登记证！" + '\n';
-	}*/
+    if(settlement_bank_code.length > 0){
+        var patrn=/^([0-9]{12})$/;
+        if (!patrn.exec(settlement_bank_code)){
+    　　     msg += "(结算)支行联行号不正确！" + '\n';
+    　　}
+    }
 
 	if (msg.length > 0)
 	{
