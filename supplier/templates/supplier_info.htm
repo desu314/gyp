@@ -333,7 +333,7 @@ function validate()
       msg += "(开户)公司银行账号不能为空！" + '\n';
     }
     if(bank_account_number.length > 0){
-      var patrn=/^([1-9]{1})(\d{12}|\d{13}|\d{14}|\d{15}|\d{16}|\d{17}|\d{18})$/;
+      var patrn=/^[0-9]*$/;
       if (!patrn.exec(bank_account_number)){
         msg += "(开户)公司银行账号不正确！" + '\n';
       }
@@ -368,7 +368,7 @@ function validate()
       msg += "(结算)公司银行账号不能为空！" + '\n';
     }
     if(settlement_bank_account_number.length > 0){
-      var patrn=/^([1-9]{1})(\d{12}|\d{13}|\d{14}|\d{15}|\d{16}|\d{17}|\d{18})$/;
+      var patrn=/^[0-9]*$/;
       if (!patrn.exec(settlement_bank_account_number)){
         msg += "(结算)公司银行账号不正确！" + '\n';
       }
