@@ -1504,6 +1504,28 @@ elseif ($_REQUEST['act'] == 'batch')
         {
             /* 检查权限 */
             admin_priv('goods_manage');
+            $supplier_id = $supplier_row['supplier_id'];
+            /**
+             * 查看当前店铺是否缴纳服务费，未缴纳则不能添加、编辑以及复制商品
+             */
+            $goodsIdArr = explode(',',$goods_id);
+            foreach($goodsIdArr as $key){
+                $sql="select supplier_id from ". $ecs->table('goods') ." where goods_id='$key' ";
+                $supplier_id =$db->getOne($sql);
+                $supplierApplySql = "select * from " . $ecs->table('supplier') . " as s left join " . $ecs->table('rank_account') ." as ra on s.user_id = ra.user_id where s.supplier_id = " . $supplier_id . " and s.is_pay = 1 and ra.is_paid = 1 and ra.paid_time != 0 and ra.paid_time < " . time() . " and ra.end_time > " . time() ." limit 1";
+                if(!$db->getRow($supplierApplySql)){
+                    $supplier_sql = "select supplier_name from " . $ecs->table('supplier') . " where supplier_id = ".$supplier_id;
+                    $supplier_name = $db->getOne($supplier_sql);
+                    sys_msg($supplier_name.$_LANG['suppliers_apply_pay_no']);
+                }
+                //查看当前店铺是否通过审核，未通过则不能添加、编辑以及复制商品
+                $supplierStatusSql = "select * from " . $ecs->table('supplier') . " where status = 1 and supplier_id = ".$supplier_id;
+                if(!$db->getRow($supplierStatusSql)){
+                    $supplier_sql = "select supplier_name from " . $ecs->table('supplier') . " where supplier_id = ".$supplier_id;
+                    $supplier_name = $db->getOne($supplier_sql);
+                    sys_msg($supplier_name.$_LANG['suppliers_status_no']);
+                }
+            }
             update_goods($goods_id, 'is_on_sale', '1');
         }
 
@@ -1942,6 +1964,19 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
 	/* 代码增加_start  By  www.68ecshop.com */
 	$sql="select supplier_id,supplier_status from ". $ecs->table('goods') ." where goods_id='$goods_id' ";
 	$supplier_row =$db->getRow($sql);
+    $supplier_id = $supplier_row['supplier_id'];
+    /**
+     * 查看当前店铺是否缴纳服务费，未缴纳则不能添加、编辑以及复制商品
+     */
+    $supplierApplySql = "select * from " . $ecs->table('supplier') . " as s left join " . $ecs->table('rank_account') ." as ra on s.user_id = ra.user_id where s.supplier_id = " . $supplier_id . " and s.is_pay = 1 and ra.is_paid = 1 and ra.paid_time != 0 and ra.paid_time < " . time() . " and ra.end_time > " . time() ." limit 1";
+    if(!$db->getRow($supplierApplySql)){
+        make_json_error($_LANG['supplier_apply_pay_no']);
+    }
+    //查看当前店铺是否通过审核，未通过则不能添加、编辑以及复制商品
+    $supplierStatusSql = "select * from " . $ecs->table('supplier') . " where status = 1 and supplier_id = ".$supplier_id;
+    if(!$db->getRow($supplierStatusSql)){
+        make_json_error($_LANG['supplier_status_no']);
+    }
 	if ($supplier_row['supplier_id']>0 && $supplier_row['supplier_status'] <=0 )
 	{
 		make_json_error('对不起，该商品还未审核通过！不能上架！');

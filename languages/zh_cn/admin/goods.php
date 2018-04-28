@@ -95,6 +95,10 @@ $_LANG['goods_sn_null'] = '请输入货号';
 $_LANG['shop_price_not_number'] = '价格不是数字';
 $_LANG['shop_price_invalid'] = '您输入了一个非法的市场价格。';
 $_LANG['goods_sn_exists'] = '您输入的货号已存在，请换一个';
+$_LANG['supplier_apply_pay_no'] = '当前店铺未缴纳服务费，不能上传商品！';
+$_LANG['suppliers_apply_pay_no'] = '店铺未缴纳服务费，不能上架商品，请重新选择！';
+$_LANG['supplier_status_no'] = '当前店铺未通过审核，不能上传商品！';
+$_LANG['suppliers_status_no'] = '店铺未通过审核，不能上架商品，请重新选择！';
 
 /*------------------------------------------------------ */
 //-- 添加/编辑商品信息
