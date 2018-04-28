@@ -603,7 +603,6 @@ elseif ($_REQUEST['act'] == 'batch')
 }
 
 elseif ($_REQUEST['act'] == 'article_des'){
-    ini_set('display_errors',1);
     include_once(ROOT_PATH . 'includes/lib_main.php');
     assign_template();
     $article = get_article_info($_REQUEST['id']);
