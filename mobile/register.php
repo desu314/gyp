@@ -244,7 +244,12 @@ ini_set('display_errors',1);
     //todo 腾讯手机短信发送插件
     $mobile_code = rand_number(6);
     //您的注册验证码为{1}。如非本人操作，请忽略本短信。
-    $content = sprintf($_LANG['register_template'],  $mobile_code);
+    if($_POST['mobile_prefix'] == 86){
+        $register_template = $_LANG['register_template'];
+    }else{
+        $register_template = $_LANG['register_template_other'];
+    }
+    $content = sprintf($register_template,  $mobile_code);
     $result = qSendSms($content,$mobile_phone,$_POST['mobile_prefix']);
     //成功记录发送次数*/
     if($result->result == 0)

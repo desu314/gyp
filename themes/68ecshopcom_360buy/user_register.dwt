@@ -147,7 +147,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
             <div class="item">
               <input id="mobile_code" class="text text-te fl" type="text" placeholder="手机验证码" name="mobile_code">
               <i class="i-phone"></i>
-              <input id="zphone" class="zphone" type="button" value="获取手机验证码 ">
+              <input id="zphone" class="zphone" type="button" value="获取手机验证码">
               <div> <span id="extend_field5i" class="label"></span> </div>
             </div>
             <!-- {/if} -->

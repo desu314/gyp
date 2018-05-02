@@ -158,7 +158,12 @@ function action_send_mobile_code ()
     // 生成6位短信验证码
     $mobile_code = rand_number(6);
     // 短信内容
-    $content = sprintf($_LANG['mobile_code_template'],  $mobile_code);
+    if($_SESSION[VT_MOBILE_PREFIX] == 86){
+        $register_template = $_LANG['mobile_code_template'];
+    }else{
+        $register_template = $_LANG['register_template_other'];
+    }
+    $content = sprintf($register_template,  $mobile_code);
     $result = qSendSms($content,$mobile_phone,$_SESSION[VT_MOBILE_PREFIX]);
 	if($result->result==0)
 	{
