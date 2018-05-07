@@ -257,7 +257,7 @@
 		-->
         {* 代码删除 By www.68ecshop.com End *}
 		<tr>
-			<td class="label">平台使用费：</td>
+			<td class="label">平台信息服务费：</td>
 			<td><input type="text" name="system_fee" value="{if $supplier.system_fee>0.00}{$supplier.system_fee}{/if}"></td>
 		</tr>
 		<tr>
@@ -439,7 +439,7 @@
         -->
         {* 代码删除 By www.68ecshop.com End *}
 		<tr>
-			<td class="label">平台使用费：</td>
+			<td class="label">平台信息服务费：</td>
 			<td><input type="text" name="system_fee" value="{if $supplier.system_fee>0.00}{$supplier.system_fee}{/if}"></td>
 		</tr>
 		<tr>
@@ -494,7 +494,7 @@ function validate()
 {
 	var theForm=document.forms['theForm'];
     validator = new Validator("theForm");
-    validator.isNumber("system_fee",  "平台使用费需为整数！");
+    validator.isNumber("system_fee",  "平台信息服务费需为整数！");
 	validator.isNumber("supplier_bond",  "商家保证金需为整数！");
 	validator.isNumber("supplier_rebate",  "百分位需为整数！");
 	if (theForm.elements['status'].value == '1')
@@ -505,7 +505,7 @@ function validate()
 			validator.required("settlement_bank_name",  "填写了开户银行支行名称才能审核通过！");
 			validator.required("settlement_bank_code",  "填写了支行联行号才能审核通过！");
 
-			validator.required("system_fee",  "填写了平台使用费才能审核通过！");
+			validator.required("system_fee",  "填写了平台信息服务费才能审核通过！");
 			validator.required("supplier_bond",  "填写了商家保证金才能审核通过！");
 			validator.required("supplier_rebate",  "填写了分成百分比才能审核通过！");
 		}
@@ -515,7 +515,7 @@ function validate()
 			validator.required("bank_name",  "填写了开户银行支行名称才能审核通过！");
 			validator.required("bank_code",  "填写了支行联行号才能审核通过！");
 
-			validator.required("system_fee",  "填写了平台使用费才能审核通过！");
+			validator.required("system_fee",  "填写了平台信息服务费才能审核通过！");
 			validator.required("supplier_bond",  "填写了商家保证金才能审核通过！");
 			validator.required("supplier_rebate",  "填写了分成百分比才能审核通过！");
 		}
