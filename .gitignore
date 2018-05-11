@@ -44,6 +44,12 @@ mobile/data/afficheimg/*
 data/flashdata/*
 data/flash_data.xml
 data/flashdata/default/data.xml
+data/street_logo/*
+data/flash_data_supplier36.xml
 
 #supplier files
 supplier/*.txt
+
+
+33$affiliate.txt
+33$recomm.txt
