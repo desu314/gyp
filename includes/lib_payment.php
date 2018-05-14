@@ -279,12 +279,12 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
             {
                 $sql = 'SELECT `id` FROM ' . $GLOBALS['ecs']->table('rank_account') .  " WHERE `id` = '$pay_log[order_id]' AND `is_paid` = 1  LIMIT 1";
                 $res_id = $GLOBALS['db']->getOne($sql);
-                $sql = 'select `user_id` from '. $GLOBALS['ecs']->table('rank_account') . " where `id` = '$pay_log[order_id]' limit 1";
-                $user_id = $GLOBALS['db']->getOne($sql);
-                if(empty($res_id) && !empty($user_id))
+                $sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `id` = '$pay_log[order_id]' limit 1";
+                $user_rank = $GLOBALS['db']->getRow($sql);
+                if(empty($res_id) && !empty($user_rank['user_id']))
                 {
                     /* 更新入驻商表付款状态 */
-                    $sql = "UPDATE ".$GLOBALS['ecs']->table('supplier')." set is_pay = 1 where user_id = $user_id limit 1";
+                    $sql = "UPDATE ".$GLOBALS['ecs']->table('supplier')." set is_pay = 1 where user_id = $user_rank[user_id] limit 1";
                     $GLOBALS['db']->query($sql);
                     /* 更新入驻商预付款的流水状态 */
                     $end_time = strtotime("+1year",gmtime());
@@ -292,6 +292,12 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                         " SET paid_time = '" .gmtime(). "', is_paid = 1, end_time = '" . $end_time . "'" .
                         " WHERE id = '$pay_log[order_id]' LIMIT 1";
                     $GLOBALS['db']->query($sql);
+                    if($user_rank['balance'] != 0){
+                        /* 修改会员帐户金额 */
+                        $_LANG = array();
+                        include_once(ROOT_PATH . 'languages/' . $GLOBALS['_CFG']['lang'] . '/user.php');
+                        log_account_change($user_rank['user_id'], -$user_rank['balance'], 0, 0, 0, $_LANG['surplus_type_3'], ACT_OTHER);
+                    }
                 }
             }
         }
