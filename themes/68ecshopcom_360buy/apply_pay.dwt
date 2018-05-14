@@ -25,7 +25,7 @@
       </div>
 
       <!-- {if $action eq "pay_view"} -->
-      <form name="formSurplus" method="post" action="apply_pay.php" onSubmit="return submitSurplus()">
+      <form name="formSurplus" method="post" action="apply_pay.php" onSubmit="return validate()">
         <div class="blank10"></div>
         <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
           <tr align="center">
@@ -37,6 +37,41 @@
           <tr align="center">
             <td colspan="3" align="left">{$lang.payment}:</td>
           </tr>
+
+          <tr>
+            <td colspan=4 class="tdother2">
+              <script type="text/javascript">
+                function checkboxOnclick(checkbox){
+                  var surplus = {$user_info.user_money|default:0};
+                if (document.getElementById("issurplus").checked == true){
+                  document.getElementById("allow_user_surplus").style.display = "block";
+                  if(surplus < {$rank.rank_money}){
+                    document.getElementById("ECS_SURPLUS").value = surplus;
+                  }else{
+                    document.getElementById("ECS_SURPLUS").value = {$rank.rank_money};
+                }
+                changeSurplus(surplus);
+                }else{
+                  document.getElementById("allow_user_surplus").style.display = "none";
+                  changeSurplus(0);
+                }
+                }
+                window.onload=checkboxOnclick;
+              </script>
+              <div class="allow_user_surplus">
+                <p style="float: left">
+                  <label class="is_user_surplus" for="issurplus"><input type="checkbox" id="issurplus" onclick="checkboxOnclick(this)" style="vertical-align:middle; cursor:pointer" />使用账户余额支付</label>
+                </p>
+                <div id="allow_user_surplus" style=" float: left">
+            <span class="surplus_desc">
+            <input name="surplus" type="text" class="surplus" id="ECS_SURPLUS" onkeyup="value=value.replace(/[^\d]/g,'')" value="0" onblur="changeSurplus(this.value);" />&nbsp;&nbsp;元</span>
+                  您当前的可用余额为<span class="your_surplus">{$user_info.formated_user_money|default:0} </span>
+                  <span id="ECS_SURPLUS_NOTICE_{$key}" class="notice"></span>
+                </div>
+              </div>
+            </td>
+          </tr>
+
           <tr align="center">
             <td>{$lang.pay_name}</td>
             <td width="60%">{$lang.pay_desc}</td>
@@ -44,7 +79,7 @@
           </tr>
           <!-- {foreach from=$payment item=list} -->
           <tr>
-            <td align="left"><input type="radio" name="payment_id" value="{$list.pay_id}" {if $list.pay_code eq 'alipay_bank'}id="alipay_bank_input"{/if}/>
+            <td align="left"><input type="radio" name="payment_id" id="payment_id" value="{$list.pay_id}" {if $list.pay_code eq 'alipay_bank'}id="alipay_bank_input"{/if}/>
               {$list.pay_name}</td>
             <td align="left">{$list.pay_desc}</td>
             <td align="center">{$list.pay_fee}</td>
@@ -94,5 +129,47 @@
 </div>
   </div>
 </body>
+<script type="text/javascript">
+  /**
+   * 改变余额
+   */
+  function changeSurplus(val) {
+    var selectedSurplus = {$user_info.user_money};
+    if (selectedSurplus < val) {
+      alert('{$lang.user_money_lt}');
+    }
+  }
 
+  //检查输入金额
+  function validate(){
+    var formRadioFlag = false;
+    var amount = {$rank.rank_money};
+    var balance = document.getElementById("ECS_SURPLUS").value;
+    var formRadio = document.getElementsByName('payment_id');
+    for (var i = 0; i < formRadio.length; i++) {
+      if (formRadio[i].checked) {
+        formRadioFlag = true;
+        break;
+      }
+    }
+    if(balance > amount)
+    {
+      alert('{$lang.user_money_no}');
+      return false;
+    }
+    if(balance == amount && formRadioFlag == true)
+    {
+      alert('{$lang.other_payment_no}');
+      document.getElementById('payment_id').checked = false;
+      return false;
+    }
+    if(balance < amount && formRadioFlag == false)
+    {
+      alert('{$lang.other_payment_sel}');
+      return false;
+    }
+    return true;
+
+  }
+</script>
 </html>

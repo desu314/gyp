@@ -40,6 +40,11 @@ if ($act == 'default')
     include_once(ROOT_PATH . 'includes/lib_clips.php');
     $smarty->assign('payment', get_online_payment_list(false));//支付方式
 
+    //获取用户信息
+    $user_id = $GLOBALS['db']->getOne("select user_id from ".$GLOBALS['ecs']->table('supplier')." where supplier_id = ".$supplier_id);
+    $user_info = supp_user_info($user_id);
+    $smarty->assign('user_info', $user_info);
+
     $smarty->assign('lang', $_LANG);
     $smarty->assign('action', 'pay_view');
     $smarty->display('apply_pay.htm');
@@ -57,7 +62,12 @@ elseif($act == 'rank_pay')
 
     $smarty->assign('lang', $_LANG);
     //ini_set('display_errors',1);
-    if ($_POST['payment_id'] <= 0) {
+
+    $user_info = supp_user_info($user_id);
+    if($_POST['surplus'] > 0 && $_POST['surplus'] > $user_info['user_money']){//如果当前商家所填余额大于用户余额，则提示错误
+        sys_msg($_LANG['user_money_lt']);
+    }
+    if ($_POST['payment_id'] <= 0 && ($_POST['surplus'] == 0 || $_POST['surplus'] == '')) {//判断是否选择余额支付或者在线支付
         sys_msg($_LANG['rank_select_payment_pls']);
     }
 
@@ -73,13 +83,24 @@ elseif($act == 'rank_pay')
     if ($payment_info['pay_code'] == 'alipay_bank') {
         $rank['defaultbank'] = isset($_POST['www_68ecshop_com_bank']) ? trim($_POST['www_68ecshop_com_bank']) : '';
     }
-    //插入入驻商缴费明细
-    $rank['rec_id'] = insert_rank_account($rank, $amount);
+    if ($_POST['payment_id'] <= 0 && $_POST['surplus'] != $amount) {//如果只选择的余额支付，则判断余额够不够支付
+        sys_msg($_LANG['rank_select_payment_pls']);
+    }
+
     // 取得支付信息，生成支付代码
     $payment = unserialize_config($payment_info['pay_config']);
     /* 调用相应的支付方式文件 */
     include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
 
+    if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
+        //插入入驻商缴费明细
+        $amount -= $_POST['surplus'];
+        $rank['payment'] = $rank['payment'].'+余额';
+        $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], $amount);
+    }else{
+        //插入入驻商缴费明细
+        $rank['rec_id'] = insert_rank_account($rank, 0, $amount);
+    }
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0
     $order = array();
@@ -107,4 +128,29 @@ elseif($act == 'rank_pay')
     $smarty->display('apply_pay.htm');
 }
 
+/**
+ * 取得用户信息
+ * @param   int     $user_id    用户id
+ * @return  array   用户信息
+ */
+function supp_user_info($user_id)
+{
+    $sql = "SELECT * FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id = '$user_id'";
+    $user = $GLOBALS['db']->getRow($sql);
+
+    unset($user['question']);
+    unset($user['answer']);
+
+    /* 格式化帐户余额 */
+    if ($user)
+    {
+        if ($user['user_money'] < 0)
+        {
+            $user['user_money'] = 0;
+        }
+        $user['formated_user_money'] = price_format($user['user_money'], false);
+        $user['formated_frozen_money'] = price_format($user['frozen_money'], false);
+    }
+    return $user;
+}
 ?>

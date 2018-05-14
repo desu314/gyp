@@ -64,6 +64,7 @@ $_LANG['repay_money'] = '提现金额';
 $_LANG['money'] = '金额';
 $_LANG['surplus_type_0'] = '充值';
 $_LANG['surplus_type_1'] = '提现';
+$_LANG['surplus_type_3'] = '缴纳入驻服务费';
 $_LANG['deposit_money'] = '充值金额';
 $_LANG['process_notic'] = '会员备注';
 $_LANG['admin_notic'] = '管理员备注';

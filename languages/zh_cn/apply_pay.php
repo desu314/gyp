@@ -32,5 +32,9 @@ $_LANG['rank_payment_desc'] = '支付方式描述：';
 $_LANG['rank_require_login'] = '请先登录！';
 $_LANG['rank_select_payment_pls'] = '请选择一个支付方式';
 $_LANG['rank_account_is_paid'] = '您当前已缴费，请勿重复缴费';
+$_LANG['user_money_lt'] = '您当前所填余额不足，请充值！';
+$_LANG['user_money_no'] = '当前所填余额支付金额不正确，请重新填写！';
+$_LANG['other_payment_no'] = '您当前所填余额足够支付服务费，不需选择其他支付方式';
+$_LANG['other_payment_sel'] = '您当前所填余额不够支付服务费，请再选一个其他支付方式';
 
 ?>

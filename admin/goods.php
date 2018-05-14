@@ -1507,7 +1507,7 @@ elseif ($_REQUEST['act'] == 'batch')
             $supplier_id = $supplier_row['supplier_id'];
             /**
              * 查看当前店铺是否缴纳服务费，未缴纳则不能添加、编辑以及复制商品
-             */
+
             $goodsIdArr = explode(',',$goods_id);
             foreach($goodsIdArr as $key){
                 $sql="select supplier_id from ". $ecs->table('goods') ." where goods_id='$key' ";
@@ -1525,7 +1525,7 @@ elseif ($_REQUEST['act'] == 'batch')
                     $supplier_name = $db->getOne($supplier_sql);
                     sys_msg($supplier_name.$_LANG['suppliers_status_no']);
                 }
-            }
+            }*/
             update_goods($goods_id, 'is_on_sale', '1');
         }
 
@@ -1838,9 +1838,9 @@ elseif ($_REQUEST['act'] == 'edit_goods_price')
         if ($exc->edit("zhekou = '$zhekou', shop_price = '$goods_price', market_price = '$price_rate', last_update=" .gmtime(), $goods_id))
         {
 			tongbu_cart_price($goods_id);
-		/* 代码增加_start  By  www.68ecshop.com */
+		/* 代码增加_start  By */
 		sendsms_pricecut($goods_id);			
-		/* 代码增加_end  By  www.68ecshop.com */
+		/* 代码增加_end  By */
 
             clear_cache_files();
             make_json_result(number_format($goods_price, 2, '.', ''));
@@ -1860,9 +1860,7 @@ elseif ($_REQUEST['act'] == 'edit_exclusive')
 
 	if ($exc->edit("exclusive = '$exclusive', last_update=" .gmtime(), $goods_id))
         {
-			/* 代码增加_start  By  www.68ecshop.com */
-			sendsms_pricecut($goods_id);			
-			/* 代码增加_end  By  www.68ecshop.com */
+			sendsms_pricecut($goods_id);
 
             clear_cache_files();
             make_json_result(number_format($exclusive, 2, '.', ''));
@@ -1961,17 +1959,16 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
     $goods_id       = intval($_POST['id']);
     $on_sale        = intval($_POST['val']);
 
-	/* 代码增加_start  By  www.68ecshop.com */
 	$sql="select supplier_id,supplier_status from ". $ecs->table('goods') ." where goods_id='$goods_id' ";
 	$supplier_row =$db->getRow($sql);
     $supplier_id = $supplier_row['supplier_id'];
     /**
      * 查看当前店铺是否缴纳服务费，未缴纳则不能添加、编辑以及复制商品
-     */
+
     $supplierApplySql = "select * from " . $ecs->table('supplier') . " as s left join " . $ecs->table('rank_account') ." as ra on s.user_id = ra.user_id where s.supplier_id = " . $supplier_id . " and s.is_pay = 1 and ra.is_paid = 1 and ra.paid_time != 0 and ra.paid_time < " . time() . " and ra.end_time > " . time() ." limit 1";
     if(!$db->getRow($supplierApplySql)){
         make_json_error($_LANG['supplier_apply_pay_no']);
-    }
+    }*/
     //查看当前店铺是否通过审核，未通过则不能添加、编辑以及复制商品
     $supplierStatusSql = "select * from " . $ecs->table('supplier') . " where status = 1 and supplier_id = ".$supplier_id;
     if(!$db->getRow($supplierStatusSql)){
@@ -1981,7 +1978,6 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
 	{
 		make_json_error('对不起，该商品还未审核通过！不能上架！');
 	}
-	/* 代码增加_end  By  www.68ecshop.com */
 
     if ($exc->edit("is_on_sale = '$on_sale', last_update=" .gmtime(), $goods_id))
     {
