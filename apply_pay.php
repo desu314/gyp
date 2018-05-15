@@ -83,7 +83,7 @@ function action_rank_pay()
     $ecs = $GLOBALS['ecs'];
     $user_id = $_SESSION['user_id'];
     $smarty->assign('lang', $_LANG);
-    //ini_set('display_errors',1);
+    ini_set('display_errors',1);
 
     $user_info = supp_user_info($user_id);
     if($_POST['surplus'] > 0 && $_POST['surplus'] > $user_info['user_money']){//如果当前商家所填余额大于用户余额，则提示错误
@@ -109,19 +109,31 @@ function action_rank_pay()
     if ($_POST['payment_id'] <= 0 && $_POST['surplus'] != $amount) {//如果只选择的余额支付，则判断余额够不够支付
         show_message($_LANG['rank_select_payment_pls'], '', 'apply_pay.php?r=' . $_POST['r']);
     }
-    // 取得支付信息，生成支付代码
-    $payment = unserialize_config($payment_info['pay_config']);
-    /* 调用相应的支付方式文件 */
-    include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
 
-    if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
-        //插入入驻商缴费明细
-        $amount -= $_POST['surplus'];
-        $rank['payment'] = $rank['payment'].'+余额';
-        $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], $amount);
+    if($_POST['surplus'] > 0 && $_POST['surplus'] <= $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
+        if($_POST['surplus'] == $amount){
+            //插入入驻商缴费明细
+            $rank['payment'] = '余额';
+            $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
+            $log_id = insert_pay_log($rank['rec_id'], $_POST['surplus'], $type = PAY_RANK, 0);
+            order_paid($log_id);
+            echo "<script>alert('$_LANG[supp_rank_payment_ok]');window.close();</script>";
+            exit;
+        }else{
+            //插入入驻商缴费明细
+            $amount -= $_POST['surplus'];
+            $rank['payment'] = $rank['payment'].'+余额';
+            $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], $amount);
+        }
     }else{
         //插入入驻商缴费明细
         $rank['rec_id'] = insert_rank_account($rank, 0, $amount);
+    }
+    // 取得支付信息，生成支付代码
+    $payment = unserialize_config($payment_info['pay_config']);
+    /* 调用相应的支付方式文件 */
+    if($payment_info['pay_code'] != ''){
+        include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
     }
     // 生成伪订单号, 不足的时候补0
     $order = array();

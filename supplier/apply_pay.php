@@ -22,16 +22,20 @@ if ($act == 'default')
     $_LANG = $GLOBALS['_LANG'];
     $smarty = $GLOBALS['smarty'];
     $supplier_id = $_SESSION['supplier_id'];
+    $user_id = $GLOBALS['db']->getOne("select user_id from " . $GLOBALS['ecs']->table('supplier') . " where supplier_id=".$supplier_id);
     //ini_set('display_errors', 1);
     //echo '<pre>';print_r($_SESSION);die;
+    //取出店铺当前服务费截止日期Start
     $rank_account_sql = "select ra.* from " . $GLOBALS['ecs']->table('rank_account') . " as ra left join " . $GLOBALS['ecs']->table('supplier') . " as s on ra.user_id = s.user_id where s.supplier_id = ".$supplier_id . " order by paid_time desc limit 1";
     //echo $rank_account_sql;die;
     $rank_account = $GLOBALS['db']->getRow($rank_account_sql);
-    $paid_time = $rank_account['paid_time'];
-
-    if($rank_account['is_paid'] && strtotime("+1years",$paid_time) < time()){
-        sys_msg($_LANG['rank_account_is_paid']);
+    $end_time = $rank_account['end_time'];
+    if($rank_account['is_paid'] && $end_time > time()){
+        $smarty->assign('end_date',$_LANG['rank_payment_time'].date("Y-m-d H:i:s",$end_time));
+    }else{
+        $smarty->assign('end_date',$_LANG['rank_payment_time_over']);
     }
+    //取出店铺当前服务费截止日期End
     $sql = "select r.* from " . $GLOBALS['ecs']->table('supplier_rank') . " as r left join " .$GLOBALS['ecs']->table('supplier') . " as s on s.rank_id = r.rank_id where s.supplier_id=" . $supplier_id;
     $res = $GLOBALS['db']->getRow($sql);
 
@@ -40,6 +44,13 @@ if ($act == 'default')
     include_once(ROOT_PATH . 'includes/lib_clips.php');
     $smarty->assign('payment', get_online_payment_list(false));//支付方式
 
+    //获取当前商家缴费状态
+    $rank_account = $GLOBALS['db']->getRow("select is_paid,paid_time,end_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$user_id." order by end_time desc limit 1");
+    if($paid['is_paid'] == 1){
+        $row['end_paid_time'] = date("Y-m-d H:i:s",$paid['end_time']);
+    }else{
+        $row['end_paid_time'] = '当前未缴费';
+    }
     //获取用户信息
     $user_id = $GLOBALS['db']->getOne("select user_id from ".$GLOBALS['ecs']->table('supplier')." where supplier_id = ".$supplier_id);
     $user_info = supp_user_info($user_id);
@@ -87,19 +98,30 @@ elseif($act == 'rank_pay')
         sys_msg($_LANG['rank_select_payment_pls']);
     }
 
-    // 取得支付信息，生成支付代码
-    $payment = unserialize_config($payment_info['pay_config']);
-    /* 调用相应的支付方式文件 */
-    include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
-
     if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
-        //插入入驻商缴费明细
-        $amount -= $_POST['surplus'];
-        $rank['payment'] = $rank['payment'].'+余额';
-        $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], $amount);
+        if($_POST['surplus'] == $amount){
+            //插入入驻商缴费明细
+            $rank['payment'] = '余额';
+            $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
+            $log_id = insert_pay_log($rank['rec_id'], $_POST['surplus'], $type = PAY_RANK, 0);
+            order_paid($log_id);
+            sys_msg($_LANG['supp_rank_payment_ok']);
+        }else{
+            //插入入驻商缴费明细
+            $amount -= $_POST['surplus'];
+            $rank['payment'] = $rank['payment'].'+余额';
+            $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], $amount);
+        }
     }else{
         //插入入驻商缴费明细
         $rank['rec_id'] = insert_rank_account($rank, 0, $amount);
+    }
+
+    // 取得支付信息，生成支付代码
+    $payment = unserialize_config($payment_info['pay_config']);
+    /* 调用相应的支付方式文件 */
+    if($payment_info['pay_code'] != ''){
+        include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
     }
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0

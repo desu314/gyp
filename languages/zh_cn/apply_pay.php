@@ -36,5 +36,8 @@ $_LANG['user_money_lt'] = '您当前所填余额不足，请充值！';
 $_LANG['user_money_no'] = '当前所填余额支付金额不正确，请重新填写！';
 $_LANG['other_payment_no'] = '您当前所填余额足够支付服务费，不需选择其他支付方式';
 $_LANG['other_payment_sel'] = '您当前所填余额不够支付服务费，请再选一个其他支付方式';
+$_LANG['supp_rank_payment_ok'] = '服务费缴纳成功！';
+$_LANG['rank_payment_time'] = '当前服务费截止日期：';
+$_LANG['rank_payment_time_over'] = '当前商家已欠费，请及时缴纳服务费！';
 
 ?>
