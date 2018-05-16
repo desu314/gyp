@@ -3,12 +3,6 @@
 /**
  * YNDTH 会员管理程序
  * ============================================================================
- * 版权所有 2005-2011 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
- * 使用；不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
  * $Author: liubo $
  * $Id: users.php 17217 2011-01-19 06:29:08Z liubo $
  */
@@ -515,7 +509,7 @@ function action_update ()
 	$birthday = $_POST['birthdayYear'] . '-' . $_POST['birthdayMonth'] . '-' . $_POST['birthdayDay'];
 	$rank = empty($_POST['user_rank']) ? 0 : intval($_POST['user_rank']);
 	$credit_line = empty($_POST['credit_line']) ? 0 : floatval($_POST['credit_line']);
-	/* 代码增加2014-12-23 by www.68ecshop.com _star */
+	/* 代码增加2014-12-23  _star */
 	$real_name = empty($_POST['real_name']) ? '' : trim($_POST['real_name']);
 	$card = empty($_POST['card']) ? '' : trim($_POST['card']);
 	$country = $_POST['country'];
@@ -524,13 +518,13 @@ function action_update ()
 	$district = $_POST['district'];
 	$address = empty($_POST['address']) ? '' : trim($_POST['address']);
 	$status = $_POST['status'];
-	/* 代码增加2014-12-23 by www.68ecshop.com _end */
+	/* 代码增加2014-12-23 _end */
 
 	$users = & init_users();
 	
 	// 获取用户邮箱和手机号已经验证信息,如果手机号、邮箱变更则需验证，如果未变化则沿用原来的验证结果
 	$user = $users->get_profile_by_name($username);
-	
+
 	$profile = array(
 		'username' => $username,'password' => $password,'email' => $email, 'mobile_phone' => $mobile_phone, 'gender' => $sex,'bday' => $birthday
 	);
@@ -587,7 +581,7 @@ function action_update ()
 		$sql = "UPDATE " . $ecs->table('users') . "SET `ec_salt`='0' WHERE user_name= '" . $username . "'";
 		$db->query($sql);
 	}
-	/* 代码增加2014-12-23 by www.68ecshop.com _star */
+	/* 代码增加2014-12-23 _star */
 	if(isset($_FILES['face_card']) && $_FILES['face_card']['tmp_name'] != '')
 	{
 		$face_card = $image->upload_image($_FILES['face_card']);
@@ -618,7 +612,7 @@ function action_update ()
 		$sql = "update " . $ecs->table('users') . " set `back_card` = '$back_card' where user_name = '" . $username . "'";
 		$db->query($sql);
 	}
-	/* 代码增加2014-12-23 by www.68ecshop.com _end */
+	/* 代码增加2014-12-23 _end */
 	/* 更新用户扩展字段的数据 */
 	$sql = 'SELECT id FROM ' . $ecs->table('reg_fields') . ' WHERE type = 0 AND display = 1 ORDER BY dis_order, id'; // 读出所有扩展字段的id
 	$fields_arr = $db->getAll($sql);
@@ -799,7 +793,11 @@ function action_edit_email ()
 	
 	$sql = "SELECT user_name FROM " . $ecs->table('users') . " WHERE user_id = '$id'";
 	$username = $db->getOne($sql);
-	
+
+	$user = $users->get_profile_by_name($username);
+	if($email == $user['email']){
+		make_json_result(stripcslashes($email));
+	}
 	if(is_email($email))
 	{
 		if($users->edit_user(array(
@@ -844,6 +842,10 @@ function action_edit_mobile_phone ()
 	$sql = "SELECT user_name FROM " . $ecs->table('users') . " WHERE user_id = '$id'";
 	$username = $db->getOne($sql);
 
+	$user = $users->get_profile_by_name($username);
+	if($mobile_phone == $user['mobile_phone']){
+		make_json_result(stripcslashes($mobile_phone));
+	}
 	if(is_mobile_phone($mobile_phone))
 	{
 		if($users->edit_user(array(
