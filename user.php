@@ -1103,6 +1103,43 @@ function action_act_login ()
 	/* 代码增加2014-12-23 by www.68ecshop.com _end */
 	if($user->login($username, $password, isset($_POST['remember'])))
 	{
+	    //判断登陆用户是否是入驻商  获取信息设置商家后台SESSION
+        $sql = "select user_id,user_name from " . $ecs->table('users') . " where user_name='" .$username. "'";
+        $user_info = $db->getRow($sql);
+        if(!empty($user_info['user_id'])){
+            $sql = "select supplier_id,user_id from" .$ecs->table('supplier')." where user_id=".$user_info['user_id'];
+            $supplier_info = $db->getRow($sql);
+            //管理员权限信息
+            $sql = "SELECT user_id, user_name, password, last_login, action_list, last_login,supplier_id,ec_salt" . " FROM " . $ecs->table('supplier_admin_user') . " WHERE uid = '" . $supplier_info['user_id'] . "'  AND checked=1";
+            $supplier_admin_info = $db->getRow($sql);
+            //session_start();
+            session_set_cookie_params(0,'/');
+            $_SESSION['supplier_id'] = $supplier_info['supplier_id']; // 店铺的id
+            $_SESSION['supplier_user_id'] = $supplier_info['user_id']; // 管理员id
+            $_SESSION['supplier_name'] = $user_info['user_name']; // 管理员名称
+            $_SESSION['supplier_action_list'] = $supplier_admin_info['action_list']; // 管理员权限
+            $_SESSION['supplier_last_check'] = $supplier_admin_info['last_login']; // 用于保存最后一次检查订单的时间
+            $new_possword = $supplier_admin_info['password'];
+            if(empty($supplier_admin_info['ec_salt']))
+            {
+                $ec_salt = rand(1, 9999);
+                $new_possword = md5(md5($_POST['password']) . $ec_salt);
+                $db->query("UPDATE " . $ecs->table('supplier_admin_user') . " SET ec_salt='" . $ec_salt . "', password='" . $new_possword . "'" . " WHERE user_id='$_SESSION[admin_id]'");
+            }
+
+            if($supplier_admin_info['action_list'] == 'all')
+            {
+                $_SESSION['supplier_admin_id'] = $row['user_id']; // 超级管理员的标识管理员id
+                $_SESSION['supplier_shop_guide'] = true; // 超级管理员标识
+            }
+            // 更新最后登录时间和IP
+            $db->query("UPDATE " . $ecs->table('supplier_admin_user') . " SET last_login='" . gmtime() . "', last_ip='" . real_ip() . "'" . " WHERE user_id='$_SESSION[supplier_user_id]'");
+            $time = gmtime() + 3600 * 24 * 365;
+            setcookie('ECSCP[supplier_id]', $supplier_info['supplier_id'], $time );
+            setcookie('ECSCP[supplier_user_id]', $supplier_info['user_id'], $time);
+            setcookie('ECSCP[supplier_pass]', md5($new_possword . $_CFG['hash_code']), $time);
+        }
+
 		update_user_info();
 		recalculate_price();
 		

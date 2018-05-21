@@ -301,7 +301,7 @@ if ((!isset($_SESSION['supplier_id']) || intval($_SESSION['supplier_id']) <= 0) 
                 $db->query('UPDATE ' . $ecs->table('supplier_admin_user') .
                             " SET last_login = '" . gmtime() . "', last_ip = '" . real_ip() . "'" .
                             " WHERE user_id = '" . $_SESSION['supplier_user_id'] . "'");
-				
+
             }
             else
             {
@@ -352,7 +352,17 @@ if ($_REQUEST['act'] != 'login' && $_REQUEST['act'] != 'signin' &&
         }
         else
         {
-            ecs_header("Location: privilege.php?act=login\n");
+            //如果前台登陆过商家可以省去后台登录
+
+            if(isset($_SESSION['supplier_id']) && isset($_SESSION['supplier_user_id']) && isset($_SESSION['supplier_name'])){
+                $sql = "SELECT user_id, user_name, password, last_login, action_list, last_login,supplier_id,ec_salt" . " FROM " . $ecs->table('supplier_admin_user') . " WHERE user_id = '" . $_SESSION['supplier_user_id'] . "'  AND checked=1";
+                $supplier_admin_info = $db->getRow($sql);
+                $_SESSION['supplier_action_list'] = $supplier_admin_info['action_list']; // 管理员权限
+                $_SESSION['supplier_last_check'] = $supplier_admin_info['last_login']; // 用于保存最后一次检查订单的时间
+                ecs_header("Location: ./index.php\n");
+            }else{
+                ecs_header("Location: privilege.php?act=login\n");
+            }
         }
 
         exit;
