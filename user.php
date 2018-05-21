@@ -153,6 +153,47 @@ call_user_func($function_name);
 
 /* 路由 */
 
+/**
+ * 生成推广链接显示页面
+ */
+function action_share_register(){
+	require_once (ROOT_PATH . 'languages/zh_cn/user.php');
+	$_LANG = $GLOBALS['_LANG'];
+	$smarty = $GLOBALS['smarty'];
+	$user_id = $_SESSION['user_id'];
+	//ini_set('display_errors', 1);
+
+	$weburl = $_SERVER['SERVER_NAME'];
+	$sql = "SELECT share_url FROM " . $GLOBALS['ecs']->table('users') . " WHERE `user_id` = " . $user_id;
+	$url = $GLOBALS['db']->getOne($sql);
+	$smarty->assign('url',$url);
+	$smarty->assign('weburl',$weburl.'/register.php');
+	$smarty->assign('lang', $_LANG);
+	$smarty->assign('page_title', $_LANG['lable_share_register']); // 页面标题
+	$smarty->assign('action', 'add_share_register');
+	$smarty->display('user_transaction.dwt');
+}
+
+/**
+ * 添加生成的推广链接
+ */
+function action_add_share_url(){
+	$user_id = $_SESSION['user_id'];
+	$_LANG = $GLOBALS['_LANG'];
+	$key = "key";
+	$url = 'user_id='.$user_id;
+	$url = encrypt_url($url,$key);
+	//$url1 = geturl($url,$key);
+	//echo $url;die;
+	$sql = "update" . $GLOBALS['ecs']->table('users') . " set `share_url` = '" . $url . "'";
+	if($GLOBALS['db']->query($sql)){
+		show_message($_LANG['share_url_ok'], '', 'user.php?act=share_register');
+	}else{
+		show_message($_LANG['share_url_no'], '', 'user.php?act=share_register');
+	}
+	//print_r($url1);
+}
+
 /*
  * 入驻商缴费显示页面
  *//*

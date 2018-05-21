@@ -23,7 +23,6 @@ $_LANG['shot_message'] = "短消息";
 /* 用户菜单 */
 $_LANG['label_welcome'] = '欢迎页';
 $_LANG['label_profile'] = "用户信息";
-$_LANG['label_pay'] = '缴纳服务费';
 $_LANG['label_order'] = '我的订单';
 $_LANG['label_address'] = '收货地址';
 $_LANG['label_message'] = '我的留言';
@@ -38,6 +37,13 @@ $_LANG['label_user_surplus'] = '资金管理';
 $_LANG['label_track_packages'] = '跟踪包裹';
 $_LANG['label_transform_points'] = '积分兑换';
 $_LANG['label_logout'] = '退出';
+$_LANG['lable_share_register'] = '生成推广链接';
+
+/* 生成推广链接 */
+$_LANG['add_share_button'] = '生成链接';
+$_LANG['add_share_url'] = '点击下方生成推荐链接';
+$_LANG['share_url_ok'] = '生成成功，快去分享给好友注册吧！';
+$_LANG['share_url_no'] = '生成失败，请从新生成！';
 
 /* 入驻商缴费 */
 $_LANG['pay_name'] = '名称';
