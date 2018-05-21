@@ -64,7 +64,7 @@
                 </p>
                 <div id="allow_user_surplus" style=" float: left">
             <span class="surplus_desc">
-            <input name="surplus" type="text" class="surplus" id="ECS_SURPLUS" onkeyup="value=value.replace(/[^\d]/g,'')" value="0" onblur="changeSurplus(this.value);" />&nbsp;&nbsp;元</span>
+            <input name="surplus" type="text" class="surplus" id="ECS_SURPLUS" onkeyup= "if(!/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(this.value)){alert('只能输入数字，小数点后只能保留两位');this.value='';}" value="0" onblur="changeSurplus(this.value);" />&nbsp;&nbsp;元</span>
                   您当前的可用余额为<span class="your_surplus">{$user_info.formated_user_money|default:0} </span>
                   <span id="ECS_SURPLUS_NOTICE_{$key}" class="notice"></span>
                 </div>
