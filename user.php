@@ -185,7 +185,7 @@ function action_add_share_url(){
 	$url = encrypt_url($url,$key);
 	//$url1 = geturl($url,$key);
 	//echo $url;die;
-	$sql = "update" . $GLOBALS['ecs']->table('users') . " set `share_url` = '" . $url . "'";
+	$sql = "update" . $GLOBALS['ecs']->table('users') . " set `share_url` = '" . $url . "' where `user_id` = " . $user_id;
 	if($GLOBALS['db']->query($sql)){
 		show_message($_LANG['share_url_ok'], '', 'user.php?act=share_register');
 	}else{

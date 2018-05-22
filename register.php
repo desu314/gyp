@@ -342,6 +342,21 @@ function action_default ()
     $db = $GLOBALS['db'];
     $ecs = $GLOBALS['ecs'];
     $back_act = trim($_REQUEST['back_act']);
+
+    //print_r($_REQUEST);die;
+    $key = 'key';
+    $url = $_REQUEST['s'];
+    $urlArr = geturl($url,$key);
+    if(isset($_REQUEST['s']) && $_REQUEST['s'] !=  ''){
+        $share_user_id = $urlArr['user_id'];//获取分享人id
+    }
+    else{
+        $share_user_id = '';
+    }
+    //echo $share_user_id;die;
+    $smarty->assign('s',urlencode($url));
+    $smarty->assign('share_user_id', $share_user_id);
+
     if((! isset($back_act) || empty($back_act)) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
     {
         $back_act = strpos($GLOBALS['_SERVER']['HTTP_REFERER'], 'user.php') ? './index.php' : $GLOBALS['_SERVER']['HTTP_REFERER'];
@@ -393,7 +408,7 @@ function action_default ()
  */
 function action_register ()
 {
-
+//print_r($_POST);die;
     // 获取全局变量
     $_CFG = $GLOBALS['_CFG'];
     $_LANG = $GLOBALS['_LANG'];
@@ -420,6 +435,7 @@ function action_register ()
         $other['qq'] = isset($_POST['extend_field2']) ? $_POST['extend_field2'] : '';
         $other['office_phone'] = isset($_POST['extend_field3']) ? $_POST['extend_field3'] : '';
         $other['home_phone'] = isset($_POST['extend_field4']) ? $_POST['extend_field4'] : '';
+        $other['share_user_id'] = isset($_POST['share_user_id']) ? $_POST['share_user_id'] : '';//添加推荐人id
         //$other['mobile_phone'] = isset($_POST['extend_field5']) ? $_POST['extend_field5'] : '';
         $sel_question = empty($_POST['sel_question']) ? '' : compile_str($_POST['sel_question']);
         $passwd_answer = isset($_POST['passwd_answer']) ? compile_str(trim($_POST['passwd_answer'])) : '';
@@ -557,7 +573,7 @@ function action_register ()
             $username = generate_username_by_mobile($mobile_phone);
 
             /* 手机注册 */
-            $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix);
+            $result = register_by_mobile($username, $password, $mobile_phone, $other, $mobile_prefix,$_POST['share_user_id']);
 
             if($result)
             {

@@ -48,7 +48,11 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
     <div class="register-con">
       <div class="box-pic-reg"></div>
       <div class="uc-box-reg">
+        <!-- {if isset($s) && $s neq ''} -->
+        <form action="register.php?s={$s}" method="post" id="formRegister" name="formRegister">
+        <!-- {else} -->
         <form action="register.php" method="post" id="formRegister" name="formRegister">
+        <!-- {/if} -->
           <input type="hidden" id="register_type" name="register_type" value="${register_type}" />
           <ul class="register-tab">
             <li id="li-register-type-mobile" class="tab-item fl" register_type="mobile">手机注册<span class="bg-ff"></span></li>
@@ -158,6 +162,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
             <div class="item">
               <input name="act" type="hidden" value="register">
               <input type="hidden" name="back_act" value="user.php" />
+              <input type="hidden" name="share_user_id" value="{$share_user_id}" />
               <input type="submit" id="btn_submit" name="Submit" class="btn-img btn-regist" value="立即注册" />
             </div>
           </div>
