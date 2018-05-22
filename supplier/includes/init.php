@@ -264,8 +264,7 @@ if ((!isset($_SESSION['supplier_id']) || intval($_SESSION['supplier_id']) <= 0) 
         //$row = $db->GetRow($sql);
         $sql = 'SELECT user_id, user_name, password, action_list, last_login, supplier_id ' .
                 ' FROM ' .$ecs->table('supplier_admin_user') .
-                " WHERE user_id = '" . intval($_COOKIE['ECSCP']['supplier_user_id']) . "' AND supplier_id=".intval($_COOKIE['ECSCP']['supplier_id']);
-        
+                " WHERE uid = '" . intval($_COOKIE['ECSCP']['supplier_user_id']) . "' AND supplier_id=".intval($_COOKIE['ECSCP']['supplier_id']);
         $row = $db->GetRow($sql);
 
         if (!$row)
@@ -353,7 +352,6 @@ if ($_REQUEST['act'] != 'login' && $_REQUEST['act'] != 'signin' &&
         else
         {
             //如果前台登陆过商家可以省去后台登录
-
             if(isset($_SESSION['supplier_id']) && isset($_SESSION['supplier_user_id']) && isset($_SESSION['supplier_name'])){
                 $sql = "SELECT user_id, user_name, password, last_login, action_list, last_login,supplier_id,ec_salt" . " FROM " . $ecs->table('supplier_admin_user') . " WHERE user_id = '" . $_SESSION['supplier_user_id'] . "'  AND checked=1";
                 $supplier_admin_info = $db->getRow($sql);
