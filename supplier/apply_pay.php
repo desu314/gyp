@@ -47,6 +47,7 @@ if ($act == 'default')
     //获取当前商家缴费状态
     $rank_account = $GLOBALS['db']->getRow("select is_paid,paid_time,end_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$user_id." order by end_time desc limit 1");
     if($rank_account['is_paid'] == 1){
+        date_default_timezone_set('Asia/Shanghai');
         $row['end_paid_time'] = date("Y-m-d H:i:s",$rank_account['end_time']);
     }else{
         $row['end_paid_time'] = '当前未缴费';

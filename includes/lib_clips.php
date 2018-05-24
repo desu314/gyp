@@ -436,12 +436,12 @@ function insert_rank_account($rank, $balance, $amount)
         $end_time = strtotime("+1year",$end_time);
         $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
             ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
-            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . time() . "', '" . time() . "', '" . $end_time . "', '$rank[payment]', 1)";
+            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', '" . gmtime() . "', '" . $end_time . "', '$rank[payment]', 1)";
         $GLOBALS['db']->query($sql);
     }else{
         $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
             ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
-            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . time() . "', 0, 0, '$rank[payment]', 0)";
+            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', 0, 0, '$rank[payment]', 0)";
         $GLOBALS['db']->query($sql);
     }
 
