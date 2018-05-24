@@ -290,12 +290,12 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                     $rank_account_sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `is_paid` = 1 and `end_time` > ".gmtime()." order by end_time desc limit 1";
                     $rank_account_res = $GLOBALS['db']->getRow($rank_account_sql);
                     if(empty($rank_account_res)){
-                        $end_time = strtotime("+1year",gmtime());
+                        $end_time = strtotime("+1year",time());
                     }else{
                         $end_time = strtotime("+1year",$rank_account_res['end_time']);
                     }
                     $sql = 'UPDATE ' . $GLOBALS['ecs']->table('rank_account') .
-                        " SET paid_time = '" .gmtime(). "', is_paid = 1, end_time = '" . $end_time . "'" .
+                        " SET paid_time = '" .time(). "', is_paid = 1, end_time = '" . $end_time . "'" .
                         " WHERE id = '$pay_log[order_id]' LIMIT 1";
                     $GLOBALS['db']->query($sql);
                     if($user_rank['balance'] != 0){
