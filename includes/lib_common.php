@@ -3155,7 +3155,6 @@ function log_account_change($user_id, $user_money = 0, $frozen_money = 0, $rank_
             " rank_points = rank_points + ('$rank_points')," .
             " pay_points = pay_points + ('$pay_points')" .
             " WHERE user_id = '$user_id' LIMIT 1";
-
     file_put_contents('11.txt',$sql);
     $GLOBALS['db']->query($sql);
 }
