@@ -432,7 +432,8 @@ function insert_user_account($surplus, $amount)
 function insert_rank_account($rank, $balance, $amount)
 {
     if($amount == 0){
-        $end_time = strtotime("+1year",time());
+        $end_time = $GLOBALS['db']->getOne("select end_time from ".$GLOBALS['ecs']->table('rank_account')." where user_id = ".$rank['user_id']." order by end_time desc limit 1");
+        $end_time = strtotime("+1year",$end_time);
         $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
             ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
             " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . time() . "', '" . time() . "', '" . $end_time . "', '$rank[payment]', 1)";
