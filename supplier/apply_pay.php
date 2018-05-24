@@ -73,7 +73,7 @@ elseif($act == 'rank_pay')
     $user_id = $GLOBALS['db']->getOne("select user_id from " . $GLOBALS['ecs']->table('supplier') . " where supplier_id=".$_SESSION['supplier_id']);
 
     $smarty->assign('lang', $_LANG);
-    //ini_set('display_errors',1);
+    ini_set('display_errors',1);
 
     $user_info = supp_user_info($user_id);
     if($_POST['surplus'] > 0 && $_POST['surplus'] > $user_info['user_money']){//如果当前商家所填余额大于用户余额，则提示错误
@@ -130,6 +130,12 @@ elseif($act == 'rank_pay')
     /* 调用相应的支付方式文件 */
     if($payment_info['pay_code'] != ''){
         include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
+
+        /* 取得在线支付方式的支付按钮 */
+        $pay_obj = new $payment_info['pay_code']();
+        $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
+    }else{
+        $payment_info['pay_button'] = '';
     }
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0
@@ -146,9 +152,6 @@ elseif($act == 'rank_pay')
     // 记录支付log
     $order['log_id'] = insert_pay_log($rank['rec_id'], $order['order_amount'], $type = PAY_RANK, 0);
 
-    /* 取得在线支付方式的支付按钮 */
-    $pay_obj = new $payment_info['pay_code']();
-    $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
 
     $smarty->assign('payment', $payment_info);
     $smarty->assign('pay_fee', price_format($payment_info['pay_fee'], false));
