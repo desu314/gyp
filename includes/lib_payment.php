@@ -281,7 +281,6 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 $res_id = $GLOBALS['db']->getOne($sql);
                 $sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `id` = '$pay_log[order_id]' limit 1";
                 $user_rank = $GLOBALS['db']->getRow($sql);
-
                 if(empty($res_id) && !empty($user_rank['user_id']))
                 {
                     /* 更新入驻商表付款状态 */
@@ -299,7 +298,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                         " SET paid_time = '" .gmtime(). "', is_paid = 1, end_time = '" . $end_time . "'" .
                         " WHERE id = '$pay_log[order_id]' LIMIT 1";
                     $GLOBALS['db']->query($sql);
-                    if($user_rank['balance'] != 0){
+                    if(floatval($user_rank['balance']) != floatval(0)){
                         /* 修改会员帐户金额 */
                         $_LANG = array();
                         include_once(ROOT_PATH . 'languages/' . $GLOBALS['_CFG']['lang'] . '/user.php');
