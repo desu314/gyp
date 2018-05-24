@@ -105,6 +105,13 @@ elseif($act == 'rank_pay')
             $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
             $log_id = insert_pay_log($rank['rec_id'], $_POST['surplus'], $type = PAY_RANK, 0);
             order_paid($log_id);
+            include_once(ROOT_PATH . 'includes/lib_common.php');
+            $share_user_id = $GLOBALS['db']->getOne("select share_user_id from ".$GLOBALS['ecs']->table('users')." where user_id = ".$user_id);
+            $count = $GLOBALS['db']->getOne("select count(user_id) from ".$GLOBALS['ecs']->table('rank_account')." where user_id = ".$user_id." and is_paid = 1");
+            if($share_user_id != '' && $count == 1){
+                $money = $amount*APPLY_EXTRACT;//计算需要返给推荐人的金额
+                log_account_change($share_user_id, $money, 0, 0, 0, "'".$_LANG['rank_share_pay_extract']."'", ACT_OTHER);//记录推荐人账户变动
+            }
             sys_msg($_LANG['supp_rank_payment_ok']);
         }else{
             //插入入驻商缴费明细

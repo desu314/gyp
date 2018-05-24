@@ -300,6 +300,9 @@ define('VT_MOBILE_FIND_PWD', 'mobile_find_password');// 手机号找回密码
 define('VT_EMAIL_VALIDATE', 'email_validate');// 邮箱验证
 define('VT_MOBILE_VALIDATE', 'mobile_validate');// 手机验证
 
+//入驻商缴费返推荐人
+define('APPLY_EXTRACT', '0.1');//返金额的比例
+
 
 
 ?>

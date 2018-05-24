@@ -431,10 +431,18 @@ function insert_user_account($surplus, $amount)
  */
 function insert_rank_account($rank, $balance, $amount)
 {
-    $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
-        ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
-        " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', 0, 0, '$rank[payment]', 0)";
-    $GLOBALS['db']->query($sql);
+    if($amount == 0){
+        $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
+            ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
+            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', '" . gmtime() . "', '" . gmtime() . "', '$rank[payment]', 1)";
+        $GLOBALS['db']->query($sql);
+    }else{
+        $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('rank_account') .
+            ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
+            " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', 0, 0, '$rank[payment]', 0)";
+        $GLOBALS['db']->query($sql);
+    }
+
     //return 1;
     return $GLOBALS['db']->insert_id();
 }
