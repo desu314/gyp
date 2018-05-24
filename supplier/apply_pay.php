@@ -105,6 +105,7 @@ elseif($act == 'rank_pay')
             $rank['payment'] = '余额';
             $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
             $log_id = insert_pay_log($rank['rec_id'], $_POST['surplus'], $type = PAY_RANK, 0);
+            order_paid($log_id);
             include_once(ROOT_PATH . 'includes/lib_common.php');
             $share_user_id = $GLOBALS['db']->getOne("select share_user_id from ".$GLOBALS['ecs']->table('users')." where user_id = ".$user_id);
             $count = $GLOBALS['db']->getOne("select count(user_id) from ".$GLOBALS['ecs']->table('rank_account')." where user_id = ".$user_id." and is_paid = 1");
