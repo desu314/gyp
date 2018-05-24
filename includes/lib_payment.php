@@ -281,6 +281,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                 $res_id = $GLOBALS['db']->getOne($sql);
                 $sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `id` = '$pay_log[order_id]' limit 1";
                 $user_rank = $GLOBALS['db']->getRow($sql);
+
                 if(empty($res_id) && !empty($user_rank['user_id']))
                 {
                     /* 更新入驻商表付款状态 */
