@@ -99,10 +99,7 @@ elseif($act == 'rank_pay')
         sys_msg($_LANG['rank_select_payment_pls']);
     }
 
-    if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
-        var_dump($_POST['surplus']);
-        echo '<br>';
-        var_dump($amount);die;
+    if($_POST['surplus'] > 0 && $_POST['surplus'] <= $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
         if($_POST['surplus'] == $amount){
             //插入入驻商缴费明细
             $rank['payment'] = '余额';
@@ -132,10 +129,7 @@ elseif($act == 'rank_pay')
     // 取得支付信息，生成支付代码
     $payment = unserialize_config($payment_info['pay_config']);
     /* 调用相应的支付方式文件 */
-/*    if($payment_info['pay_code'] == ''){
-        $payment_info['pay_code'] = 'aa';
-        $payment_info['pay_button'] = '';
-    }*/
+
     include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0
