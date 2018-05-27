@@ -100,8 +100,10 @@ elseif($act == 'rank_pay')
     }
 
     if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
+        var_dump($_POST['surplus']);
+        echo '<br>';
+        var_dump($amount);die;
         if($_POST['surplus'] == $amount){
-            echo 111;die;
             //插入入驻商缴费明细
             $rank['payment'] = '余额';
             $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
