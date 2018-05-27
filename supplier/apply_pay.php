@@ -129,10 +129,10 @@ elseif($act == 'rank_pay')
     // 取得支付信息，生成支付代码
     $payment = unserialize_config($payment_info['pay_config']);
     /* 调用相应的支付方式文件 */
-    if($payment_info['pay_code'] == ''){
+/*    if($payment_info['pay_code'] == ''){
         $payment_info['pay_code'] = 'aa';
         $payment_info['pay_button'] = '';
-    }
+    }*/
     include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0
