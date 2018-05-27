@@ -100,7 +100,7 @@ elseif($act == 'rank_pay')
     }
 
     if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
-        if(floatval($_POST['surplus']) == floatval($amount)){
+        if($_POST['surplus'] == $amount){
             //插入入驻商缴费明细
             $rank['payment'] = '余额';
             $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
@@ -114,6 +114,7 @@ elseif($act == 'rank_pay')
                 log_account_change($share_user_id, $money, 0, 0, 0, "'".$_LANG['rank_share_pay_extract']."'", ACT_OTHER);//记录推荐人账户变动
             }
             sys_msg($_LANG['supp_rank_payment_ok']);
+            exit();
         }else{
             //插入入驻商缴费明细
             $amount -= $_POST['surplus'];
@@ -131,9 +132,6 @@ elseif($act == 'rank_pay')
     if($payment_info['pay_code'] != ''){
         include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
 
-        /* 取得在线支付方式的支付按钮 */
-        $pay_obj = new $payment_info['pay_code']();
-        $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
     }else{
         $payment_info['pay_button'] = '';
     }
@@ -153,6 +151,9 @@ elseif($act == 'rank_pay')
     $order['log_id'] = insert_pay_log($rank['rec_id'], $order['order_amount'], $type = PAY_RANK, 0);
 
 
+    /* 取得在线支付方式的支付按钮 */
+    $pay_obj = new $payment_info['pay_code']();
+    $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
     $smarty->assign('payment', $payment_info);
     $smarty->assign('pay_fee', price_format($payment_info['pay_fee'], false));
     $smarty->assign('amount', price_format($amount, false));
