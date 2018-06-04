@@ -146,7 +146,6 @@ elseif($act == 'rank_pay')
     // 记录支付log
     $order['log_id'] = insert_pay_log($rank['rec_id'], $order['order_amount'], $type = PAY_RANK, 0);
 
-
     /* 取得在线支付方式的支付按钮 */
     $pay_obj = new $payment_info['pay_code']();
     $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
