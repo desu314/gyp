@@ -21,26 +21,30 @@
 	</div>
       <section>
       	<ul class="border_b">
-        	<li class="border_r">
-            	<a href="supplier_rebate.php?act=list&is_pay_ok=0">
-                	<span><img alt="" src="images/n1.png"></span>
-                    <p>佣金管理</p>
+            <li class="border_r">
+                <a href="goods.php?act=list&is_pay_ok=0">
+                    <span><img alt="" src="images/n1.png"></span>
+                    <p>商品管理</p>
                 </a>
-            </li>
+            </li><li class="border_r">
+            <a href="supplier_rebate.php?act=list&is_pay_ok=0">
+                <span><img alt="" src="images/n1.png"></span>
+                <p>佣金管理</p>
+            </a>
+        </li>
             <li class="border_r">
             	<a href="order.php?act=list">
                 	<span><img alt="" src="images/n2.png"></span>
                     <p>订单列表</p>
                 </a>
             </li>
-            <li>
+            <li class="border_r">
             	<a href="goods_stock.php?act=list">
                 	<span><img alt="" src="images/n3.png"></span>
                     <p>库存列表</p>
                 </a>
             </li>
-        </ul>
-        <ul class="border_b">
+
         	<li class="border_r">
             	<a href="order.php?act=delivery_list">
                 	<span><img alt="" src="images/n4.png"></span>
@@ -53,7 +57,7 @@
                     <p>新退款</p>
                 </a>
             </li>
-            <li>
+            <li  class="border_r">
             	<a href="back.php?act=back_list&order_type=2&back_type={$back_type_goods}">
                 	<span><img alt="" src="images/n6.png"></span>
                     <p>新退货</p>

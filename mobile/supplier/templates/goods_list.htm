@@ -1,0 +1,414 @@
+{if $full_page eq 1}
+<!DOCTYPE html>
+<html>
+  <head>
+    {include file='html_header.htm'}
+    <script type="text/javascript">
+      function search_stock()
+       {
+         if(check_form_empty('theForm'))
+         {
+           $.zalert.add('至少有一项输入不为空！',1)
+         }
+         else
+         {
+           $.zcontent.set('goods_name',$('#goods_name').val());
+           $.zcontent.set('goods_sn',$('#goods_sn').val());
+           search();
+         }
+         return false;
+       }
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+      {/if}
+      {include file='page_header.htm'}
+      <section>
+        {include file='menu_list.htm'}
+        <div class="order_con" id="con_order_manage_2" style="display:none">
+          <div class="order_pd">
+            <div class="order order_t">
+              <form name="theForm" method="post" action="goods.php" class="order_search">
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="goods_name" id='goods_name' class="inputBg" placeholder="请输入商品名称" {if $filter.goods_name}value='{$filter.goods_name}'{/if}/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" name="goods_sn" id='goods_sn' class="inputBg" placeholder="请输入商品货号"  {if $filter.goods_sn}value='{$filter.goods_sn}'{/if}/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="submit" class="button2" value="查找"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+		  
+        </div>
+        <div class="order_con" id="con_order_manage_3" style="display:none">
+          <div class="order_pd">
+            <div class="order order_t">
+              <form enctype="multipart/form-data" name="theForm" method="post" action="goods.php" class="order_search" >
+                <table width="100%" border="0">
+                  <tr>
+                    <td>
+                      <input type="text" name="goods_name" id='goods_name' value="{$goods.goods_name|escape}" class="inputBg" placeholder="请输入商品名称" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <!--TODO 分类赋值 样式整改-->
+                      <select class="inputBg" id="cat_name" name="cat_id" style=" height: 38px; width: 70%; float: left;"><option value="0">{$lang.all_category}{$cat_list}</select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <!--TODO 联想输入 字段赋值-->
+                      <div class="inputBg" style="text-align: initial; min-height: 38px;line-height: 38px;">店内分类：
+                        {$catstr}</div>
+                    </td>
+                  </tr>
+                  <!--<tr>
+                    <td>
+                      <input id="brand_search" name="brand_search" type="text" value="{$brand_name_val}" class="inputBg" placeholder="商品品牌" />
+                    </td>
+                  </tr>-->
+                  <tr>
+                    <td>
+                      <input id="brand_search" name="shop_price" type="number" value="{$brand_name_val}" class="inputBg" placeholder="本店售价" step="any" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input name="goods_number" type="number" value="{$goods_number}" class="inputBg" placeholder="库存" />
+                    </td>
+                  </tr>
+                  <tr>
+                  <tr>
+                    <td>
+                      <div>
+                        <style>
+                          li{list-style-type: none;}
+                          a,input{outline: none;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+                          #choose{display: none;}
+                          canvas{width: 100%;border: 1px solid #000000;}
+                          #upload{display: block;  height: 38px;  text-align: center;  line-height: 38px;  border: 1px solid;  border-radius: 5px;  cursor: pointer;}
+                          .touch{background-color: #ddd;}
+                          .img-list{margin: 0px 5px;}
+                          .img-list li{position: relative;display: inline-block;width: 100px;height: 100px;margin: 5px 5px 20px 5px;border: 1px solid rgb(100,149,198);background: #fff no-repeat center;background-size: cover;}
+                          .progress{position: absolute;width: 100%;height: 20px;line-height: 20px;bottom: 0;left: 0;background-color:rgba(100,149,198,.5);}
+                          .progress span{display: block;width: 0;height: 100%;background-color:rgb(100,149,198);text-align: center;color: #FFF;font-size: 13px;}
+                          .size{position: absolute;width: 100%;height: 15px;line-height: 15px;bottom: -18px;text-align: center;font-size: 13px;color: #666;}
+                          .tips{display: block;text-align:center;font-size: 13px;margin: 3px;color: #999;}
+                          .pic-list{margin: 10px;line-height: 18px;font-size: 13px;}
+                          .pic-list a{display: block;margin: 10px 0;}
+                          .pic-list a img{vertical-align: middle;max-width: 30px;max-height: 30px;margin: -4px 0 0 10px;}
+                        </style>
+                        <input type="file" id="choose" accept="image/*" multiple>
+                        <ul class="img-list" style="display: none"></ul>
+                        <a id="upload">上传图片</a>
+                        <span class="tips">只允许上传jpg、png及gif</span>
+                        <script>
+                            var filechooser = document.getElementById("choose");
+                            //    用于压缩图片的canvas
+                            var canvas = document.createElement("canvas");
+                            var ctx = canvas.getContext('2d');
+                            //    瓦片canvas
+                            var tCanvas = document.createElement("canvas");
+                            var tctx = tCanvas.getContext("2d");
+                            var maxsize = 100 * 1024;
+                            var filename;
+                            $("#upload").on("click", function() {
+                                $(this).prev('ul').css('display','block');
+                                filechooser.click();
+                            })
+                                .on("touchstart", function() {
+                                    $(this).addClass("touch")
+                                })
+                                .on("touchend", function() {
+                                    $(this).removeClass("touch")
+                                });
+                            filechooser.onchange = function() {
+                                if (!this.files.length) return;
+                                var files = Array.prototype.slice.call(this.files);
+                                if (files.length > 9) {
+                                    alert("最多同时只可上传9张图片");
+                                    return;
+                                }
+                                files.forEach(function(file, i) {
+                                    if (!/\/(?:jpeg|png|gif)/i.test(file.type)) return;
+                                    var reader = new FileReader();
+                                    var li = document.createElement("li");
+                                    filename = file.name;
+//          获取图片大小
+                                    var size = file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB";
+                                    li.innerHTML = '<div class="progress"><span></span></div><div class="size">' + size + '</div>';
+                                    $(".img-list").append($(li));
+                                    reader.onload = function() {
+                                        var result = this.result;
+                                        var img = new Image();
+                                        img.src = result;
+                                        $(li).css("background-image", "url(" + result + ")");
+                                        //如果图片大小小于100kb，则直接上传
+                                        if (result.length <= maxsize) {
+                                            img = null;
+                                            upload(result, file.type, $(li));
+                                            return;
+                                        }
+//      图片加载完毕之后进行压缩，然后上传
+                                        if (img.complete) {
+                                            callback();
+                                        } else {
+                                            img.onload = callback;
+                                        }
+                                        function callback() {
+                                            var data = compress(img);
+                                            upload(data, file.type, $(li));
+                                            img = null;
+                                        }
+                                    };
+                                    reader.readAsDataURL(file);
+                                })
+                            };
+                            //    使用canvas对大图片进行压缩
+                            function compress(img) {
+                                var initSize = img.src.length;
+                                var width = img.width;
+                                var height = img.height;
+                                //如果图片大于四百万像素，计算压缩比并将大小压至400万以下
+                                var ratio;
+                                if ((ratio = width * height / 4000000) > 1) {
+                                    ratio = Math.sqrt(ratio);
+                                    width /= ratio;
+                                    height /= ratio;
+                                } else {
+                                    ratio = 1;
+                                }
+                                canvas.width = width;
+                                canvas.height = height;
+//        铺底色
+                                ctx.fillStyle = "#fff";
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                //如果图片像素大于100万则使用瓦片绘制
+                                var count;
+                                if ((count = width * height / 1000000) > 1) {
+                                    count = ~~(Math.sqrt(count) + 1); //计算要分成多少块瓦片
+//            计算每块瓦片的宽和高
+                                    var nw = ~~(width / count);
+                                    var nh = ~~(height / count);
+                                    tCanvas.width = nw;
+                                    tCanvas.height = nh;
+                                    for (var i = 0; i < count; i++) {
+                                        for (var j = 0; j < count; j++) {
+                                            tctx.drawImage(img, i * nw * ratio, j * nh * ratio, nw * ratio, nh * ratio, 0, 0, nw, nh);
+                                            ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);
+                                        }
+                                    }
+                                } else {
+                                    ctx.drawImage(img, 0, 0, width, height);
+                                }
+                                //进行最小压缩
+                                var ndata = canvas.toDataURL('image/jpeg', 0.1);
+                                console.log('压缩前：' + initSize);
+                                console.log('压缩后：' + ndata.length);
+                                console.log('压缩率：' + ~~(100 * (initSize - ndata.length) / initSize) + "%");
+                                tCanvas.width = tCanvas.height = canvas.width = canvas.height = 0;
+                                return ndata;
+                            }
+                            //    图片上传，将base64的图片转成二进制对象，塞进formdata上传
+                            function upload(basestr, type, $li) {
+                                var text = window.atob(basestr.split(",")[1]);
+                                var buffer = new Uint8Array(text.length);
+                                var pecent = 0, loop = null;
+                                for (var i = 0; i < text.length; i++) {
+                                    buffer[i] = text.charCodeAt(i);
+                                }
+                                var blob = getBlob([buffer], type);
+                                var xhr = new XMLHttpRequest();
+                                var formdata = getFormData();
+                                formdata.append('goods_img', blob);
+                                xhr.open('post', './goods.php?act=uploads');
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState == 4 && xhr.status == 200) {
+                                        var jsonData = JSON.parse(xhr.responseText);
+                                        var imagedata = jsonData[0] || {};
+                                        var text = imagedata.path ? '上传成功' : '上传失败';
+                                        console.log(text + '：' + imagedata.path);
+                                        clearInterval(loop);
+                                        //当收到该消息时上传完毕
+                                        $li.find(".progress span").animate({'width': "100%"}, pecent < 95 ? 200 : 0, function() {
+                                            $(this).html(text);
+                                        });
+                                        if (!imagedata.path) return;
+                                            $("#brand_search").append("<input type=\"hidden\" name=\"img[]\" value="+imagedata.path+">");
+                                    }
+                                };
+                                //数据发送进度，前50%展示该进度
+                                xhr.upload.addEventListener('progress', function(e) {
+                                    if (loop) return;
+                                    pecent = ~~(100 * e.loaded / e.total) / 2;
+                                    $li.find(".progress span").css('width', pecent + "%");
+                                    if (pecent == 50) {
+                                        mockProgress();
+                                    }
+                                }, false);
+                                //数据后50%用模拟进度
+                                function mockProgress() {
+                                    if (loop) return;
+                                    loop = setInterval(function() {
+                                        pecent++;
+                                        $li.find(".progress span").css('width', pecent + "%");
+                                        if (pecent == 99) {
+                                            clearInterval(loop);
+                                        }
+                                    }, 100)
+                                }
+                                xhr.send(formdata);
+                            }
+                            /**
+                             * 获取blob对象的兼容性写法
+                             * @param buffer
+                             * @param format
+                             * @returns {*}
+                             */
+                            function getBlob(buffer, format) {
+                                try {
+                                    return new Blob(buffer, {type: format});
+                                } catch (e) {
+                                    var bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MSBlobBuilder);
+                                    buffer.forEach(function(buf) {
+                                        bb.append(buf);
+                                    });
+                                    return bb.getBlob(format);
+                                }
+                            }
+                            /**
+                             * 获取formdata
+                             */
+                            function getFormData() {
+
+                                var isNeedShim = ~navigator.userAgent.indexOf('Android')
+                                    && ~navigator.vendor.indexOf('Google')
+                                    && !~navigator.userAgent.indexOf('Chrome')
+                                    && navigator.userAgent.match(/AppleWebKit\/(\d+)/).pop() <= 534;
+                                return new FormDataShim()
+                            }
+                            /**
+                             * formdata 补丁, 给不支持formdata上传blob的android机打补丁
+                             * @constructor
+                             */
+                            function FormDataShim() {
+                                console.warn('using formdata shim');
+                                var o = this,
+                                    parts = [],
+                                    boundary = Array(21).join('-') + (+new Date() * (1e16 * Math.random())).toString(36),
+                                    oldSend = XMLHttpRequest.prototype.send;
+                                this.append = function(name, value) {
+                                    parts.push('--' + boundary + '\r\nContent-Disposition: form-data; name="' + name + '"');
+                                    parts.push('; filename="' + (filename) + '"\r\nContent-Type: ' + value.type + '\r\n\r\n');
+                                    if (value instanceof Blob) {
+                                        parts.push(value);
+                                    }
+                                    else {
+                                        parts.push('\r\n\r\n' + value);
+                                    }
+                                    parts.push('\r\n');
+                                };
+                                // Override XHR send()
+                                XMLHttpRequest.prototype.send = function(val) {
+                                    var fr,
+                                        data,
+                                        oXHR = this;
+                                    if (val === o) {
+                                        // Append the final boundary string
+                                        parts.push('--' + boundary + '--\r\n');
+                                        // Create the blob
+                                        data = getBlob(parts);
+                                        // Set up and read the blob into an array to be sent
+                                        fr = new FileReader();
+                                        fr.onload = function() {
+                                            oldSend.call(oXHR, fr.result);
+                                        };
+                                        fr.onerror = function(err) {
+                                            throw err;
+                                        };
+                                        fr.readAsArrayBuffer(data);
+                                        // Set the multipart content type and boudary
+                                        this.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+                                        XMLHttpRequest.prototype.send = oldSend;
+                                    }
+                                    else {
+                                        oldSend.call(this, val);
+                                    }
+                                };
+                            }
+                        </script>
+                      </div>
+                    </td>
+                </tr>
+                  <tr>
+                    <td>
+                      <input type="hidden" name="act" value="insert">
+                      <input type="submit" class="button2" value="添加商品"/>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+          </div>
+
+        </div>
+        <div class="order_pd goods_pd"  id="con_order_manage_1">
+		{include file='store_menu.htm'}
+          <div class="goods">
+            <ul class="goods_list">
+              {foreach from=$goods item=item}
+              <li class="goods_list_info" {if $item.goods_attr}style="padding-bottom:0;"{/if}>
+                <p>{$item.goods_name}</p>
+                <p>货号：{$item.goods_sn}</p>
+                 {if $item.goods_attr}
+		<p>属性：{$item.goods_attr_name}</p>
+               
+                <p class="special_info">
+                <ul>
+                  {foreach from=$item.goods_attr item=attr_item}
+                  <li>{$attr_item.goods_attr_name}&nbsp;&nbsp;<span class="font">({$attr_item.product_number})</span> </li>
+                  {/foreach}
+                </ul>
+                </p>
+                {else}
+              <style>
+                p .button{width: 10%;  height: 21px;  font-size: 1px;  text-align: center;  display: block;  border: 1px #ddd solid;  background: #ffffff;  border-radius: 3px;  float: right;  margin-right: 17px;}
+              </style>
+                <p>库存：<span class="font">{$item.goods_number}</span>
+                  {if $item.is_on_sale}<a class="button" href="javascript:void(0)" class="prev">上架</a>
+                  {else}<a class="button" href="javascript:void(0)" class="prev">下架</a>
+                  {/if}</p>
+                {/if}
+
+              </li>
+              {foreachelse}
+              <li class="no_goods_list">
+                <div class="no_goods">没有找到任何商品！</div>
+              </li>
+              {/foreach}
+            </ul>
+          </div>
+          <!--{include file='page.htm'}-->
+        </div>
+      </section>
+      {include file='page_footer.htm'}
+      {if $full_page eq 1}
+    </div>
+    {include file='static_div.htm'}
+  </body>
+</html>
+{/if}
+

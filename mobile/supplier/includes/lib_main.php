@@ -347,7 +347,7 @@ function get_goods_list($filter)
      //      'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' . $where .
       //     'LIMIT 50';
     
-    $sql = 'select g.goods_id,g.goods_name,g.shop_price '.
+    $sql = 'select g.goods_id,g.goods_name,g.shop_price,g.goods_sn,g.goods_number,g.is_on_sale '.
            'from ' . $GLOBALS['ecs']->table('supplier_goods_cat') . 'as sgc '.
            'left join ' . $GLOBALS['ecs']->table('goods') . 'as g on sgc.goods_id = g.goods_id' . $where.
            'LIMIT 50';

@@ -130,10 +130,10 @@ class cls_session
     {
         static $ip = '';
 
-        if ($ip == '')
+        /*if ($ip == '')
         {
             $ip = substr($this->_ip, 0, strrpos($this->_ip, '.'));
-        }
+        }*/
 
         return sprintf('%08x', crc32(ROOT_PATH . $ip . $session_id));
     }

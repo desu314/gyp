@@ -37,13 +37,35 @@ function toggle_menu()
 	if($('#con_order_manage_2').css('display') == 'none')
   {
 		$('#con_order_manage_1').slideLeftOut(200,function(){$('#con_order_manage_2').slideLeftIn(200);$('#menu_list_marker').removeClass();
-	$('#menu_list_marker').addClass('menu');});
+      $('#menu_list_marker').addClass('menu');});
+      $('#con_order_manage_3').slideLeftOut(200,function(){});
   }
     else
 	  {
 		$('#con_order_manage_2').slideLeftOut(200,function(){$('#con_order_manage_1').slideLeftIn(200);$('#menu_list_marker').removeClass();
 	$('#menu_list_marker').addClass('on');});
 	  }
+  }
+
+  /*商品添加页面*/
+  function goods_add() {
+	  //显示添加商品页面，并上传商品
+      if($('#con_order_manage_3').css('display') == 'none')
+      {
+          $('#con_order_manage_1').slideLeftOut(200,function(){
+          	$('#con_order_manage_3').slideLeftIn(200);$('#menu_list_marker').removeClass();
+              $('#menu_list_marker').addClass('menu');
+          });
+          $('#con_order_manage_2').slideLeftOut(200,function(){
+          });
+      }
+      else
+      {
+          $('#con_order_manage_3').slideLeftOut(200,function(){
+          	$('#con_order_manage_1').slideLeftIn(200);$('#menu_list_marker').removeClass();
+              $('#menu_list_marker').addClass('on');});
+      }
+
   }
   function refresh()
   {
