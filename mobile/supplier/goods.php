@@ -1133,6 +1133,16 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
     sys_msg($is_insert ? $_LANG['add_goods_ok'] : $_LANG['edit_goods_ok'], 0, $link);
 }
 
+
+elseif ($_REQUEST['act'] == 'update_onsale'){
+    $re = update_goods($_REQUEST['good_id'], 'is_on_sale', $_REQUEST['is_on_sale']);
+    if($re){
+        echo 1;
+    }else{
+        echo 0;
+    }
+
+}
 /*------------------------------------------------------ */
 //-- 批量操作
 /*------------------------------------------------------ */

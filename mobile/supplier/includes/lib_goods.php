@@ -2020,4 +2020,29 @@ function generate_goods_sn($goods_id)
 
     return $goods_sn;
 }
+
+/**
+ * 修改商品某字段值
+ * @param   string  $goods_id   商品编号，可以为多个，用 ',' 隔开
+ * @param   string  $field      字段名
+ * @param   string  $value      字段值
+ * @return  bool
+ */
+function update_goods($goods_id, $field, $value)
+{
+    if ($goods_id)
+    {
+        /* 清除缓存 */
+        clear_cache_files();
+
+        $sql = "UPDATE " . $GLOBALS['ecs']->table('goods') .
+            " SET $field = '$value' , last_update = '". gmtime() ."' " .
+            "WHERE goods_id " . db_create_in($goods_id);
+        return $GLOBALS['db']->query($sql);
+    }
+    else
+    {
+        return false;
+    }
+}
 ?>

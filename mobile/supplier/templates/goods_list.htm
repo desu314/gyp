@@ -3,6 +3,11 @@
 <html>
   <head>
     {include file='html_header.htm'}
+    {insert_scripts files='../js/transport.js,../js/utils.js'}
+    <script type="text/javascript">
+
+        var process_request = "{$lang.process_request}";
+    </script>
     <script type="text/javascript">
       function search_stock()
        {
@@ -21,7 +26,9 @@
     </script>
   </head>
   <body>
-    <div id='container'>
+
+
+  <div id='container'>
       {/if}
       {include file='page_header.htm'}
       <section>
@@ -388,8 +395,9 @@
                 p .button{width: 10%;  height: 21px;  font-size: 1px;  text-align: center;  display: block;  border: 1px #ddd solid;  background: #ffffff;  border-radius: 3px;  float: right;  margin-right: 17px;}
               </style>
                 <p>库存：<span class="font">{$item.goods_number}</span>
-                  {if $item.is_on_sale}<a class="button" href="javascript:void(0)" class="prev">上架</a>
-                  {else}<a class="button" href="javascript:void(0)" class="prev">下架</a>
+                  {if $item.is_on_sale eq 0}<a class="button" href="javascript:void(0)" class="prev" onclick="goods_sale(1,{$item.goods_id},this.innerHTML,this)">上架</a>
+                  {else}<a class="button" href="javascript:void(0)" class="prev"
+                           onclick="goods_sale(0,{$item.goods_id},this.innerHTML,this)">下架</a>
                   {/if}</p>
                 {/if}
 
@@ -403,6 +411,18 @@
           </div>
           <!--{include file='page.htm'}-->
         </div>
+        <script>
+          function goods_sale($status,$id,$text) {
+              $.ajax({
+                  type: "POST",
+                  url: "goods.php",
+                  data: "act=update_onsale&is_on_sale="+ $status +"&good_id="+$id,
+                  success: function(msg){
+                      window.location.reload()
+                  }
+              });
+          }
+        </script>
       </section>
       {include file='page_footer.htm'}
       {if $full_page eq 1}
