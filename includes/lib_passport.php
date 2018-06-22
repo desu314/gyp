@@ -250,7 +250,7 @@ function _register ($username, $password, $email_or_mobile, $other = array(), $r
 		$other_key_array = array(
 			// 改为手机注册时，则不需要此处的手机验证了
 			// 'msn','qq','office_phone','home_phone','mobile_phone'
-			'msn','qq','office_phone','home_phone'
+			'msn','qq','office_phone','home_phone','share_user_id'//添加推荐人id auth lm
 		);
 		$update_data['reg_time'] = local_strtotime(local_date('Y-m-d H:i:s'));
 		$update_data['froms'] = WEB_FROM;

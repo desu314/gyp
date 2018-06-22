@@ -435,6 +435,7 @@ function insert_rank_account($rank, $balance, $amount)
         ' (user_id, rank_id, balance, amount, add_time, paid_time, end_time, payment, is_paid)' .
         " VALUES ('$rank[user_id]', '$rank[rank_id]', '$balance', '$amount', '" . gmtime() . "', 0, 0, '$rank[payment]', 0)";
     $GLOBALS['db']->query($sql);
+
     //return 1;
     return $GLOBALS['db']->insert_id();
 }

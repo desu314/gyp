@@ -88,6 +88,27 @@ function is_email($user_email)
 }
 
 /**
+ * 验证输入的手机号码是否合法
+ *
+ * @access public
+ * @param string $mobile_phone
+ *        	需要验证的手机号码
+ *
+ * @return bool
+ */
+function is_mobile_phone ($mobile_phone)
+{
+
+    $chars = " /\d{1,14}$/";
+    if(preg_match($chars, $mobile_phone))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * 检查是否为一个合法的时间格式
  *
  * @access  public

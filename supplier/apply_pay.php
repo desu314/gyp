@@ -17,6 +17,7 @@ require_once(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/apply_pay.php');
 $act = empty($_REQUEST['act']) ? 'default' : $_REQUEST['act'];
 if ($act == 'default')
 {
+    date_default_timezone_set('Asia/Shanghai');
     /* 检查权限 */
     admin_priv('default');
     $_LANG = $GLOBALS['_LANG'];
@@ -46,8 +47,8 @@ if ($act == 'default')
 
     //获取当前商家缴费状态
     $rank_account = $GLOBALS['db']->getRow("select is_paid,paid_time,end_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$user_id." order by end_time desc limit 1");
-    if($paid['is_paid'] == 1){
-        $row['end_paid_time'] = date("Y-m-d H:i:s",$paid['end_time']);
+    if($rank_account['is_paid'] == 1){
+        $row['end_paid_time'] = date("Y-m-d H:i:s",$rank_account['end_time']);
     }else{
         $row['end_paid_time'] = '当前未缴费';
     }
@@ -72,7 +73,7 @@ elseif($act == 'rank_pay')
     $user_id = $GLOBALS['db']->getOne("select user_id from " . $GLOBALS['ecs']->table('supplier') . " where supplier_id=".$_SESSION['supplier_id']);
 
     $smarty->assign('lang', $_LANG);
-    //ini_set('display_errors',1);
+    ini_set('display_errors',1);
 
     $user_info = supp_user_info($user_id);
     if($_POST['surplus'] > 0 && $_POST['surplus'] > $user_info['user_money']){//如果当前商家所填余额大于用户余额，则提示错误
@@ -98,14 +99,22 @@ elseif($act == 'rank_pay')
         sys_msg($_LANG['rank_select_payment_pls']);
     }
 
-    if($_POST['surplus'] > 0 && $_POST['surplus'] < $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
+    if($_POST['surplus'] > 0 && $_POST['surplus'] <= $user_info['user_money']){//商家所填余额小于用户余额，则减掉相应余额
         if($_POST['surplus'] == $amount){
             //插入入驻商缴费明细
             $rank['payment'] = '余额';
             $rank['rec_id'] = insert_rank_account($rank, $_POST['surplus'], 0);
             $log_id = insert_pay_log($rank['rec_id'], $_POST['surplus'], $type = PAY_RANK, 0);
             order_paid($log_id);
+            include_once(ROOT_PATH . 'includes/lib_common.php');
+            $share_user_id = $GLOBALS['db']->getOne("select share_user_id from ".$GLOBALS['ecs']->table('users')." where user_id = ".$user_id);
+            $count = $GLOBALS['db']->getOne("select count(user_id) from ".$GLOBALS['ecs']->table('rank_account')." where user_id = ".$user_id." and is_paid = 1");
+            if($share_user_id != '' && $count == 1){
+                $money = $amount*APPLY_EXTRACT;//计算需要返给推荐人的金额
+                log_account_change($share_user_id, $money, 0, 0, 0, "'".$_LANG['rank_share_pay_extract']."'", ACT_OTHER);//记录推荐人账户变动
+            }
             sys_msg($_LANG['supp_rank_payment_ok']);
+            exit();
         }else{
             //插入入驻商缴费明细
             $amount -= $_POST['surplus'];
@@ -120,9 +129,8 @@ elseif($act == 'rank_pay')
     // 取得支付信息，生成支付代码
     $payment = unserialize_config($payment_info['pay_config']);
     /* 调用相应的支付方式文件 */
-    if($payment_info['pay_code'] != ''){
-        include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
-    }
+
+    include_once(ROOT_PATH . 'includes/modules/payment/' . $payment_info['pay_code'] . '.php');
     //echo '<pre>';print_r($_SESSION);die;
     // 生成伪订单号, 不足的时候补0
     $order = array();
@@ -141,7 +149,6 @@ elseif($act == 'rank_pay')
     /* 取得在线支付方式的支付按钮 */
     $pay_obj = new $payment_info['pay_code']();
     $payment_info['pay_button'] = $pay_obj->get_code($order, $payment);
-
     $smarty->assign('payment', $payment_info);
     $smarty->assign('pay_fee', price_format($payment_info['pay_fee'], false));
     $smarty->assign('amount', price_format($amount, false));

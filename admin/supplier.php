@@ -617,6 +617,7 @@ function suppliers_list()
         $paid = $GLOBALS['db']->getRow("select is_paid,paid_time,end_time from ".$GLOBALS['ecs']->table("rank_account")." where user_id = ".$row['user_id']." order by paid_time desc limit 1");
         $row['is_paid'] = $paid['is_paid'] == 1 ? '已缴费' : '未缴费';
         if($paid['is_paid'] == 1){
+            date_default_timezone_set('Asia/Shanghai');
             $row['end_paid_time'] = date("Y-m-d H:i:s",$paid['end_time']);
         }else{
             $row['end_paid_time'] = '当前未缴费';

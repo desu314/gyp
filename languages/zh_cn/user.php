@@ -61,6 +61,7 @@ $_LANG['rank_payment_fee'] = '支付手续费用为：';
 $_LANG['rank_payment_desc'] = '支付方式描述：';
 $_LANG['rank_require_login'] = '请先登录！';
 $_LANG['rank_select_payment_pls'] = '请选择一个支付方式';
+$_LANG['rank_share_pay_extract'] = '推荐缴费提成';
 
 /* 会员余额(预付款) */
 $_LANG['add_surplus_log'] = '查看帐户明细';

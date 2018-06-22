@@ -74,6 +74,35 @@ elseif ($_REQUEST['act'] == 'signin')
         }
     }
 
+    if(is_email($_POST['username']))
+    {
+        $sql = "select user_name from " . $ecs->table('supplier_admin_user') . " where email='" . $_POST['username'] . "'";
+        $username_email = $db->getOne($sql);
+        if($username_email)
+        {
+            $_POST['username'] = $username_email;
+        }
+    }
+    else if(is_mobile_phone($_POST['username']))
+    {
+        $sql = "select user_name from " . $ecs->table('supplier_admin_user') . " where mobile_phone='" . $_POST['username'] . "'";
+        $rows = $db->query($sql);
+        $i = 0;
+        while($row = $db->fetchRow($rows))
+        {
+            $username_mobile = $row['user_name'];
+            $i = $i + 1;
+        }
+        if($i > 1)
+        {
+            show_message('本网站有多个会员ID绑定了和您相同的手机号，请使用其他登录方式，如：邮箱或用户名。', $_LANG['relogin_lnk'], 'user.php', 'error');
+        }
+        if(isset($username_mobile))
+        {
+            $_POST['username'] = $username_mobile;
+        }
+    }
+
  	$sql = "SELECT `ec_salt` FROM ". $ecs->table('supplier_admin_user') ." WHERE user_name = '" . $_POST['username']."'";
     $ec_salt = $db->getOne($sql);
     $md5_password = empty($ec_salt) ? md5($_POST['password']) : md5(md5($_POST['password']).$ec_salt);

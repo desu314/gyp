@@ -2992,7 +2992,7 @@ function submit_surplus_form(){
         <form name="formSurplus" method="post" action="user.php" onSubmit="return submitSurplus()">
             <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
                 <tr align="center">
-                    <td colspan="3" align="center"><input type="text" name="share_url" style="width:600px;height:30px" readonly {if $url eq ''}placeholder="{$lang.add_share_url}"{else}value='{$weburl}?{$url}'{/if} />
+                    <td colspan="3" align="center"><input type="text" name="share_url" style="width:600px;height:30px" readonly {if $url eq ''}placeholder="{$lang.add_share_url}"{else}value='{$weburl}?s={$url}'{/if} />
                     </td>
                 </tr>
                 {if $url eq ''}
