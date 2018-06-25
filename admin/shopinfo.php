@@ -125,7 +125,7 @@ if ($_REQUEST['act'] == 'update')
     /* 检查重名 */
     if ($_POST['title'] != $_POST['old_title'])
     {
-        $is_only = $exc->is_only('title', $_POST['title'], $_POST['id']);
+        $is_only = $exc->is_only('title', $_POST['title'], intval($_POST['id']));
 
         if (!$is_only)
         {
