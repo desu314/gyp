@@ -105,7 +105,7 @@ if ($_REQUEST['act'] == 'edit')
     admin_priv('shopinfo_manage');
 
     /* 取得文章数据 */
-    $sql = "SELECT article_id, title, content FROM ".$ecs->table('article')."WHERE article_id =".$_REQUEST['id'];
+    $sql = "SELECT article_id, title, content FROM ".$ecs->table('article')."WHERE article_id =".intval($_REQUEST['id']);
     $article = $db->GetRow($sql);
 
     /* 创建 html editor */
