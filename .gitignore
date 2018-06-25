@@ -21,6 +21,7 @@ supplier.png
 /mobile/supplier/temp/caches/*
 /mobile/supplier/temp/compiled/*
 /mobile/supplier/temp/static_caches/*
+/mobile/supplier/temp/query_caches/*
 
 *.sql
 /data/config.php

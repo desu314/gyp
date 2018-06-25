@@ -36,7 +36,7 @@ if ($_REQUEST['act'] == 'list')
     $smarty->assign('filter',       $logdb['filter']);
     $smarty->assign('record_count', $logdb['record_count']);
     $smarty->assign('page_count',   $logdb['page_count']);
-    if (!empty($_GET['auid']))
+    if (!empty(intval($_GET['auid'])))
     {
         $smarty->assign('action_link',  array('text' => $_LANG['back_note'], 'href'=>"users.php?act=edit&id=intval($_GET[auid])"));
     }
