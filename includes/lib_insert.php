@@ -444,6 +444,7 @@ function insert_comments($arr)
     $need_cache = $GLOBALS['smarty']->caching;
     $need_compile = $GLOBALS['smarty']->force_compile;
     $arr['id'] = intval($arr['id']);
+    $arr['type'] = addslashes($arr['type']);
     $GLOBALS['smarty']->caching = false;
     $GLOBALS['smarty']->force_compile = true;
 

@@ -327,6 +327,9 @@ if ($_REQUEST['act'] == 'batch')
  */
 function get_comment_list()
 {
+    /*参数处理*/
+    $_REQUEST['sort_by'] = addslashes($_REQUEST['sort_by']);
+    $_REQUEST['sort_order'] = addslashes($_REQUEST['sort_order']);
     /* 查询条件 */
     $filter['keywords']     = empty($_REQUEST['keywords']) ? 0 : trim($_REQUEST['keywords']);
     if (isset($_REQUEST['is_ajax']) && $_REQUEST['is_ajax'] == 1)
