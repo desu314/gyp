@@ -34,7 +34,7 @@ if($_REQUEST['act'] == 'get_password')
 
         /* 管理员用户名和邮件地址是否匹配，并取得原密码 */
         $sql = 'SELECT user_id, password, email FROM ' .$ecs->table('supplier_admin_user').
-               " WHERE user_name = '$admin_username'";
+            " WHERE user_name = '$admin_username'";
         $admin_info = $db->getRow($sql);
         if(empty($admin_info))
         {
@@ -64,7 +64,7 @@ if($_REQUEST['act'] == 'get_password')
 
         /* 发送确认重置密码的确认邮件 */
         if (send_mail($admin_username, $admin_email, $template['template_subject'], $content,
-        $template['is_html']))
+            $template['is_html']))
         {
             //提示信息
             $link[0]['text'] = $_LANG['back'];
@@ -102,7 +102,7 @@ if($_REQUEST['act'] == 'get_password')
         {
             sys_msg('参数错误！',1);
         }
-        
+
         /* 以用户的原密码，与code的值匹配 */
         $sql = 'SELECT password FROM ' .$ecs->table('supplier_admin_user'). " WHERE user_id = '$adminid'";
         $password = $db->getOne($sql);
@@ -117,9 +117,9 @@ if($_REQUEST['act'] == 'get_password')
         }
 
         //更新管理员的密码
-		$ec_salt=rand(1,9999);
+        $ec_salt=rand(1,9999);
         $sql = "UPDATE " .$ecs->table('supplier_admin_user'). "SET password = '".md5(md5($new_password).$ec_salt)."',`ec_salt`='$ec_salt' ".
-               "WHERE user_id = '$adminid'";
+            "WHERE user_id = '$adminid'";
         $result = $db->query($sql);
         if ($result)
         {

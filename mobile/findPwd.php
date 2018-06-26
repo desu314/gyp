@@ -66,10 +66,11 @@ return;
  */
 function action_default ()
 {
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+	$smarty->assign("supp", $supp);
 	$smarty->assign("action", "step_1");
 	$smarty->display('user_findPwd.dwt');
 }
@@ -84,7 +85,8 @@ function action_check_username ()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
 	$username = empty($_POST['u_name']) ? '' : $_POST['u_name'];
 	
 	$user_id = null;
@@ -226,7 +228,8 @@ function action_check_username ()
 	$_SESSION[VT_MOBILE_VALIDATE] = $row['mobile_phone'];
 	$_SESSION[VT_MOBILE_PREFIX] = $row['mobile_prefix'];
 	$_SESSION[VT_EMAIL_VALIDATE] = $row['email'];
-	
+
+	$smarty->assign("supp", $supp);
 	$smarty->assign("validate_types", $validate_types);
 	$smarty->assign("action", "step_2");
 	$smarty->display('user_findPwd.dwt');
@@ -243,9 +246,10 @@ function action_validate ()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
 	$user = $_SESSION['find_password'];
-	
+
 	if(!isset($_SESSION['find_password']))
 	{
 		//show_message('账户名不能为空', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
@@ -335,10 +339,12 @@ function action_validate ()
  */
 function action_to_reset_password()
 {
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
 
+	$smarty->assign("supp", $supp);
 	$smarty->assign("action", "step_3");
 	$smarty->display('user_findPwd.dwt');
 }
@@ -351,7 +357,8 @@ function action_reset_password()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
 	$password = $_POST['password'];
 	
 	if(!isset($_POST['password']) || empty($_POST['password']))
@@ -394,7 +401,9 @@ function action_to_success()
 	$smarty = $GLOBALS['smarty'];
 	$db = $GLOBALS['db'];
 	$ecs = $GLOBALS['ecs'];
-	
+	$supp = isset($_REQUEST['supp']) ? trim($_REQUEST['supp']) : '';
+
+	$smarty->assign("supp", $supp);
 	$smarty->assign("action", "step_4");
 	$smarty->display('user_findPwd.dwt');
 }
