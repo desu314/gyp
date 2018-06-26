@@ -66,6 +66,7 @@
 									</div>                                    
 		<div class="submit-btn">
 					<input type="button" id="btn_submit" class="btn_big1" value="下一步" />
+					<input type="hidden" id="supp" name="supp" value="{$supp}">
 					<input type="hidden" name="act" value="check_username" />
 			</div>
 			</form>
@@ -139,6 +140,7 @@
                 
                 <div class="submit-btn " style=" padding-top:40px;">
 				<input type="button" name="button" id="btn_submit" class="btn_big1" value="提 交" />
+					<input type="hidden" id="supp" name="supp" value="{$supp}">
 					<input type="hidden" name="act" value="to_reset_password" />
 			</div>
 		
@@ -245,6 +247,7 @@
 				</div>
 				<div class="submit-btn">
 					<input type="button" id="btn_submit" name="btn_submit" class="btn_big1" value="提 交" />
+					<input type="hidden" id="supp" name="supp" value="{$supp}">
 					<input type="hidden" name="act" value="to_success" />
 				</div>
 			</form>
@@ -308,8 +311,14 @@
 				</p>
 				<p>请您牢记新密码！</p>
 				<p class="on_go">
+				<!-- {if $supp neq 1} -->
 					<a href="user.php" title="立即购物" class="btn_big1" style=" color:#FFF">立即登录&gt;&gt;</a>
+				<!-- {/if} -->
+				<!-- {if $supp eq 1} -->
+				<a href="supplier/privilege.php?act=login" title="" class="btn_big1" style=" color:#FFF">立即登录&gt;&gt;</a>
+				<!-- {/if} -->
 				</p>
+					<input type="hidden" id="supp" name="supp" value="{$supp}">
 			</div>
 			</section>
 			<!-- {/if} -->
@@ -330,6 +339,7 @@
 					<div class="tips">
 						<a href="user.php?act=get_password" class="btn_big1" style=" color:#FFF">注册邮件找回密码</a>
 					</div>
+					<input type="hidden" id="supp" name="supp" value="{$supp}">
 				</fieldset>
 			</form>
 			</section>
@@ -393,7 +403,9 @@
 			</section>
 			<!-- {/if} -->
 			    <div style="height:20px; line-height:20px; clear:both"></div>
+			    <!-- {if $supp neq 1} -->
             <!-- {include file='library/page_footer.lbi'} -->
+            	<!-- {/if} -->
             
 		</div>
 	</div>
@@ -405,8 +417,10 @@
 	var username_exist = "{$lang.username_exist}";
 	</script>
 	</div>
+	<!-- {if $supp neq 1} -->
 	<!-- #BeginLibraryItem "/library/footer_nav.lbi" -->
 	<!-- #EndLibraryItem -->
+ 	<!-- {/if} -->
 	<script type="text/javascript">
 	$(function(){ 
 		$('input[type=text],input[type=password]').bind({ 
