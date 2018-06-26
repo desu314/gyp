@@ -183,7 +183,7 @@ class alipay
         //$order_sn = str_replace($_GET['subject'], '', $_GET['out_trade_no']);
         $search = '`'. preg_quote($_GET['subject'], '`'). '`';
         $order_sn = preg_replace($search, '', $_GET['out_trade_no'], 1);
-        $order_sn = trim($order_sn);
+        $order_sn = trim(addslashes($order_sn));
 
         /* 检查数字签名是否正确 */
         ksort($_GET);

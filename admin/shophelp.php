@@ -151,6 +151,7 @@ if ($_REQUEST['act'] == 'edit')
 }
 if ($_REQUEST['act'] == 'update')
 {
+    $_POST['id'] = intval($_POST['id']);
     /* 权限判断 */
     admin_priv('shophelp_manage');
 
