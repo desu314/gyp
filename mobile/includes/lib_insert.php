@@ -249,6 +249,8 @@ function insert_ads($arr)
     static $static_res = NULL;
 
     $time = gmtime();
+    $arr['num'] = intval($arr['num']);
+    $arr['id'] = intval($arr['id']);
     if (!empty($arr['num']) && $arr['num'] != 1)
     {
         $sql  = 'SELECT a.ad_id, a.position_id, a.media_type, a.ad_link, a.ad_code, a.ad_name, p.ad_width, ' .
@@ -408,7 +410,8 @@ function insert_comments($arr)
 {
     $need_cache = $GLOBALS['smarty']->caching;
     $need_compile = $GLOBALS['smarty']->force_compile;
-
+    $arr['id'] = intval($arr['id']);
+    $arr['type'] = addslashes($arr['type']);
     $GLOBALS['smarty']->caching = false;
     $GLOBALS['smarty']->force_compile = true;
 
@@ -446,7 +449,7 @@ function insert_bought_notes($arr)
 {
     $need_cache = $GLOBALS['smarty']->caching;
     $need_compile = $GLOBALS['smarty']->force_compile;
-
+    $arr['id'] = intval($arr['id']);
     $GLOBALS['smarty']->caching = false;
     $GLOBALS['smarty']->force_compile = true;
 
