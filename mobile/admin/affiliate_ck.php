@@ -38,6 +38,7 @@ if ($_REQUEST['act'] == 'list')
     $smarty->assign('page_count',   $logdb['page_count']);
     if (!empty($_GET['auid']))
     {
+        $_GET['id'] = intval($_GET['auid']);
         $smarty->assign('action_link',  array('text' => $_LANG['back_note'], 'href'=>"users.php?act=edit&id=$_GET[auid]"));
     }
 	$smarty->assign('supplier_list',get_supplier_list());
@@ -197,6 +198,7 @@ function get_affiliate_ck()
     }
     if (isset($_GET['auid']))
     {
+        $_GET['id'] = intval($_GET['auid']);
         $sqladd = ' AND o.user_id=' . $_GET['auid'];
     }
 	
