@@ -121,7 +121,7 @@ if ($_REQUEST['act'] == 'update')
 {
     /* 权限判断 */
     admin_priv('shopinfo_manage');
-
+    $_POST['id'] = intval($_REQUEST['id']);
     /* 检查重名 */
     if ($_POST['title'] != $_POST['old_title'])
     {
