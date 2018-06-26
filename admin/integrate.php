@@ -544,7 +544,7 @@ if ($_REQUEST['act'] == 'import_user')
     {
         $salt = rand(100000, 999999);
         $password = md5($data['password'].$salt);
-        $data['username'] = addslashes($data['user_name']);
+        $data['username'] = htmlspecialchars(addslashes($data['user_name']));
         $lastuid = $data['user_id'] + $maxuid;
         $uc_userinfo = $ucdb->getRow("SELECT `uid`, `password`, `salt` FROM ".$cfg['db_pre']."members WHERE `username`='$data[username]'");
         if(!$uc_userinfo)
