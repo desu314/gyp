@@ -93,7 +93,11 @@ function action_check_username ()
 	
 	if(empty($username))
 	{
-		show_message('请输入用户名/邮箱/已验证的手机号！', '返回', 'findPwd.php?act=index', 'info');
+		if($supp == 1){
+			show_message('请输入用户名/邮箱/已验证的手机号！', '返回', 'findPwd.php?act=index&supp=1', 'info');
+		}else{
+			show_message('请输入用户名/邮箱/已验证的手机号！', '返回', 'findPwd.php?act=index', 'info');
+		}
 	}
 	
 	// 处理验证码
@@ -102,7 +106,11 @@ function action_check_username ()
 	{
 		if(empty($_POST['captcha']))
 		{
-			show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			if($supp == 1){
+				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php?supp=1', 'error');
+			}else{
+				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			}
 		}
 		
 		/* 检查验证码 */
@@ -112,7 +120,11 @@ function action_check_username ()
 		$validator->session_word = 'captcha_login';
 		if(! $validator->check_word($_POST['captcha']))
 		{
-			show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			if($supp == 1){
+				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php?supp=1', 'error');
+			}else{
+				show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			}
 		}
 	}
 	
@@ -153,7 +165,11 @@ function action_check_username ()
 		}
 		if($index > 1)
 		{
-			show_message('本网站有多个会员ID绑定了和您相同的手机号，请使用其他登录方式，如：邮箱或用户名。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			if($supp == 1){
+				show_message('本网站有多个会员ID绑定了和您相同的手机号，请使用其他登录方式，如：邮箱或用户名。', $_LANG['relogin_lnk'], 'findPwd.php?supp=1', 'error');
+			}else{
+				show_message('本网站有多个会员ID绑定了和您相同的手机号，请使用其他登录方式，如：邮箱或用户名。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+			}
 		}
 		else if($index == 1)
 		{
@@ -168,7 +184,11 @@ function action_check_username ()
 	// 检查用户名是否存在
 	if(! $username_exist)
 	{
-		show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+		if($supp == 1){
+			show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php?supp=1', 'error');
+		}else{
+			show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+		}
 	}
 	
 	// 获取用户信息，判断用户是否验证了手机、邮箱
@@ -178,7 +198,11 @@ function action_check_username ()
 	
 	if($row == false)
 	{
-		show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+		if($supp == 1){
+			show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php?supp=1', 'error');
+		}else{
+			show_message('您输入的账户名不存在，请核对后重新输入。', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
+		}
 	}
 	
 	$validate_types = array();
@@ -253,14 +277,22 @@ function action_validate ()
 	if(!isset($_SESSION['find_password']))
 	{
 		//show_message('账户名不能为空', $_LANG['relogin_lnk'], 'findPwd.php', 'error');
-		exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php')));
+		if($supp == 1){
+			exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php?supp=1')));
+		}else{
+			exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php')));
+		}
 	}
 	
 	$validate_type = $_POST['validate_type'];
 	
 	if(!isset($_POST['validate_type']) || empty($_POST['validate_type']))
 	{
-		exit(json_encode(array('error' => 1, 'content' => '验证类型不能为空', 'url' => 'findPwd.php')));
+		if($supp == 1){
+			exit(json_encode(array('error' => 1, 'content' => '验证类型不能为空', 'url' => 'findPwd.php?supp=1')));
+		}else{
+			exit(json_encode(array('error' => 1, 'content' => '验证类型不能为空', 'url' => 'findPwd.php')));
+		}
 	}
 	
 	require_once (ROOT_PATH . 'includes/lib_passport.php');
@@ -275,11 +307,19 @@ function action_validate ()
 		
 		if($result == 1)
 		{
-			exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_blank'], 'url' => 'findPwd.php')));
+			if($supp == 1){
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_blank'], 'url' => 'findPwd.php?supp=1')));
+			}else{
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_blank'], 'url' => 'findPwd.php')));
+			}
 		}
 		else if($result == 2)
 		{
-			exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_format'], 'url' => 'findPwd.php')));
+			if($supp == 1){
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_format'], 'url' => 'findPwd.php?supp=1')));
+			}else{
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_email_format'], 'url' => 'findPwd.php')));
+			}
 		}
 		else if($result == 3)
 		{
@@ -305,11 +345,19 @@ function action_validate ()
 		
 		if($result == 1)
 		{
-			exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_blank'], 'url' => 'findPwd.php')));
+			if($supp == 1){
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_blank'], 'url' => 'findPwd.php?supp=1')));
+			}else{
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_blank'], 'url' => 'findPwd.php')));
+			}
 		}
 		else if($result == 2)
 		{
-			exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_format'], 'url' => 'findPwd.php')));
+			if($supp == 1){
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_format'], 'url' => 'findPwd.php?supp=1')));
+			}else{
+				exit(json_encode(array('error' => 1, 'content' => $_LANG['msg_mobile_phone_format'], 'url' => 'findPwd.php')));
+			}
 		}
 		else if($result == 3)
 		{
@@ -328,10 +376,18 @@ function action_validate ()
 	else
 	{
 		/* 无效的注册类型 */
-		exit(json_encode(array('error' => 1, 'content' => '非法验证参数', 'url' => 'findPwd.php')));
+		if($supp == 1){
+			exit(json_encode(array('error' => 1, 'content' => '非法验证参数', 'url' => 'findPwd.php?supp=1')));
+		}else{
+			exit(json_encode(array('error' => 1, 'content' => '非法验证参数', 'url' => 'findPwd.php')));
+		}
 	}
-	
-	exit(json_encode(array('error' => 0, 'content' => '', 'url' => 'findPwd.php')));
+
+	if($supp == 1){
+		exit(json_encode(array('error' => 0, 'content' => '', 'url' => 'findPwd.php?supp=1')));
+	}else{
+		exit(json_encode(array('error' => 0, 'content' => '', 'url' => 'findPwd.php')));
+	}
 	
 }
 /**
@@ -368,7 +424,11 @@ function action_reset_password()
 	
 	if(!isset($_SESSION['find_password']))
 	{
-		exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php')));
+		if($supp == 1){
+			exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php?supp=1')));
+		}else{
+			exit(json_encode(array('error' => 1, 'content' => '账户名不能为空', 'url' => 'findPwd.php')));
+		}
 	}
 	
 	$user = $_SESSION['find_password'];
