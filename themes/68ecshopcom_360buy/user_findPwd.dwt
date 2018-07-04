@@ -68,6 +68,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
             </div>
             <div class="item">
               <label></label>
+              <input type="hidden" name="s" value="{$s}" />
               <input type="button" id="btn_submit" class="btn_next" value="下一步" />
               <input type="hidden" name="act" value="check_username" />
             </div>
@@ -159,6 +160,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
               <input id="zemail" type="button" value="获取邮箱验证码" class="code">
             </div>
             <div class="item">
+              <input type="hidden" name="s" value="{$s}" />
               <input type="button" name="button" id="btn_submit" class="btn_next" value="提交" />
             </div>
             <!-- {/if} --> 
@@ -306,6 +308,7 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
             </div>
             <div class="item">
               <label></label>
+              <input type="hidden" name="s" value="{$s}" />
               <input type="button" id="btn_submit" name="btn_submit" class="btn_next" value="提交" />
             </div>
           </div>
@@ -389,7 +392,12 @@ function erweima1(obj, sType) { var oDiv = document.getElementById(obj); if (sTy
           <div class="find-box-end">
             <p> <i></i> 新密码设置成功！ </p>
             <p>请您牢记新密码！</p>
-            <a class="main-btn on-go" href="user.php" title="立即购物">立即登录&gt;&gt;</a>
+            <!-- {if $s neq 1} -->
+                <a class="main-btn on-go" href="user.php" title="立即购物">立即登录&gt;&gt;</a>
+            <!-- {/if} -->
+            <!-- {if $s eq 1} -->
+                <a class="main-btn on-go" href="supplier/privilege.php?act=login" title="">立即登录&gt;&gt;</a>
+            <!-- {/if} -->
           </div>
         </div>
       </div>
