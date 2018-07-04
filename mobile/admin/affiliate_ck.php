@@ -199,7 +199,7 @@ function get_affiliate_ck()
     if (isset($_GET['auid']))
     {
         $_GET['id'] = intval($_GET['auid']);
-        $sqladd = ' AND o.user_id=' . $_GET['auid'];
+        $sqladd = ' AND o.user_id=' . $_GET['id'];
     }
 	
 	if($GLOBALS['_CFG']['is_add_distrib'] == 0)
