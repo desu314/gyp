@@ -498,7 +498,15 @@ i, cite,em, strong, th {
 	height: 106px;
 	padding: 15px;
 	text-align: center;
-	background:url(../images/common/app.jpg) no-repeat 19px 45px;	
+	background:url(../images/common/app.jpg) no-repeat 19px 45px;
+}
+.app_store1{
+	display: block;
+	width: 85px;
+	height: 106px;
+	padding: 15px;
+	text-align: center;
+	background:url(../images/common/app_supp.png) no-repeat 19px 45px;
 }
 .sn-container .sn-qrcode .app_down img{
 	width: 76px;

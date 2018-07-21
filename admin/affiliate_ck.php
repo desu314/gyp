@@ -290,7 +290,7 @@ function get_affiliate_ck()
     if (isset($_GET['auid']))
     {
         $_GET['id'] = intval($_GET['auid']);
-        $sqladd = ' AND a.user_id=' . $_GET['auid'];
+        $sqladd = ' AND a.user_id=' . $_GET['id'];
     }
 
     if(!empty($affiliate['on']))

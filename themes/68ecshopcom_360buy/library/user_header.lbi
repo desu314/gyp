@@ -46,11 +46,18 @@
       <li class="menu-item">
         <div class="sn-menu"> 
           <a class="menu-hd sn-mobile" href="" target="_top">手机版<b></b></a>
-          <div class="menu-bd sn-qrcode" id="menu-5">
+          <div class="menu-bd sn-qrcode" id="menu-5" style="width:232px">
             <ul>
               <li class="app_down">
               	<a href="javascript:;;" target="_top" class="app_store">
-                	<p>Android</p>
+                	<p>客户移动端</p>
+                </a>
+              </li>
+            </ul>
+            <ul>
+              <li class="app_down">
+                <a href="javascript:;;" target="_top" class="app_store1">
+                    <p>商家移动端</p>
                 </a>
               </li>
             </ul>
