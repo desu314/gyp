@@ -50,14 +50,14 @@
             <ul>
               <li class="app_down">
               	<a href="javascript:;;" target="_top" class="app_store">
-                	<p>客户移动端</p>
+                	<p>采购方App下载码</p>
                 </a>
               </li>
             </ul>
             <ul>
               <li class="app_down">
                 <a href="javascript:;;" target="_top" class="app_store1">
-                    <p>商家移动端</p>
+                    <p>供货方App下载码</p>
                 </a>
               </li>
             </ul>
