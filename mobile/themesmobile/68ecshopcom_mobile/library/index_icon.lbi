@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div class="entry-list clearfix">
 	<nav>
-		<ul>
+		<ul style="display: none">
 			{foreach from=$menu_list item=list name=name}
 			<li>
 				<a href="{$list.menu_url}">
@@ -11,5 +11,28 @@
 			</li>
 			{/foreach}
 		</ul>
+
+		{*首页分类显示*}
+		<ul>
+            {foreach from=$cat_list item=list name=name}
+				<li>
+					<a href="cate.php?act=next_cat&cat_id={$list.cat_id}">
+						<span>{$list.cat_name}</span>
+					</a>
+				</li>
+            {/foreach}
+		</ul>
 	</nav>
+	<style>
+		.entry-list a {
+			width: 32%;
+			height: 68px;
+			background-color: #dadbdb;
+			margin-left: 2px;
+			margin-top: 2px;
+		}
+		.entry-list a span{
+			font-size: 20px;
+		}
+	</style>
 </div>
