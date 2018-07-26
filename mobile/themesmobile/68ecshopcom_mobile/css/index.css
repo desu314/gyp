@@ -19,7 +19,7 @@ button {
 .top_bt { display:block; float:left; width:45px; height:45px; position:absolute; top: 3px; left:5px;background-position:0 5}
 /*首页搜索*/
 .index_search{ width:100%; background: #fff; overflow:hidden}
-.index_search_mid{ width:90%; margin:auto; height:35px; border-radius:3px; margin:auto; border:1px solid #CCC; background:none; margin-top:20px;}
+.index_search_mid{ width:90%; margin:auto; height:35px; border-radius:3px; margin:auto; border:2px solid #CCC; background:none; margin-top:20px;}
 .index_search_mid a{ display:block; width:100%; height:35px;}
 .index_search_mid em { display:block; font-size:14px; line-height:35px; color:#999;height:35px; float:left; margin-left:10px;}
 .index_search_mid span { display:block; border-left:1px solid #ccc;width:40px; height:35px; float:right; margin-right:5px;}
