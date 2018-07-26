@@ -13,14 +13,15 @@
 {* 包含脚本文件 *}
 {insert_scripts files='common.js'}
     <style>
-        .category2 {
-            width: 100%;
-        }
+        .category2 {  width: 100%;  }
+        .fen {  width: 24.3%;  }
+        .fen a {  display: block;  width: 90%;  height: 41px;  line-height: 35px;  border: 1px solid #e5e5e5;  text-align: center;  font-size: 17px;  font-weight: 600;  color: #000000;  background: #fff0ea;  margin: auto;  box-shadow: -2px 6px 8px 0 rgba(0,0,0,0.2), inset 2px -2px 20px 4px rgba(136, 167, 167, 0.81);  border-radius: 23px;}
+        .container{  margin-top: 45px;  }
     </style>
 </head>
 <body>
 <!-- 头部 start -->
-<header class="header" style=" position:fixed; top:0">
+<header class="header" style=" position:fixed; top:0;margin-bottom: 45px">
   <div class="tab_nav">
       <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
       <div class="h-mid">二级分类</div>
@@ -37,9 +38,9 @@
     <div class="category-box">
           <div class="category2" style=" outline: none; overflow-y:scroll" tabindex="5001">
               <!--{foreach from=$second_categories item=cat name=name}-->
-              <dl style="display: block; padding-top:45px;">
+              <dl style="display: block; padding-top:5px;">
 
-                  <a href="category.php?id={$cat.id}" class="all" style=" color:#FFF">进入{$cat.name|escape:html}频道&nbsp;></a>
+                  <a href="category.php?id={$cat.id}" class="all" style="    color: #FFF; font-size: 17px; font-weight: 600; height: 44px; text-align: center;">进入{$cat.name|escape:html}频道&nbsp;></a>
                   <dd>
                       <div class="fenimg">
                           <!--{foreach from=$cat.cat_id item=childer name=cat22}-->

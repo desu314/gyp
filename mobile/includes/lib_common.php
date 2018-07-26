@@ -267,7 +267,7 @@ function cat_list($cat_id = 0, $selected = 0, $re_type = true, $level = 0, $is_s
         $data = read_static_cache('cat_pid_releate');
         if ($data === false)
         {
-            $sql = "SELECT c.cat_id, c.cat_name, c.measure_unit, c.parent_id, c.is_show, c.show_in_nav, c.grade, c.sort_order, COUNT(s.cat_id) AS has_children ".
+            $sql = "SELECT c.cat_id, c.cat_name, c.measure_unit, c.parent_id, c.is_show, c.show_in_nav, c.grade, c.sort_order,c.type_img, COUNT(s.cat_id) AS has_children ".
                 'FROM ' . $GLOBALS['ecs']->table('category') . " AS c ".
                 "LEFT JOIN " . $GLOBALS['ecs']->table('category') . " AS s ON s.parent_id=c.cat_id ".
                  "WHERE c.is_virtual= '0' ".
