@@ -575,7 +575,7 @@ function insert_apply_supplier($user){
     
     
     $GLOBALS['smarty']->assign('supplier',       $supplier);
-    
+    return 'library/apply_'.$apply_info[$shownum].'.lbi';
     $val = $GLOBALS['smarty']->fetch('library/apply_'.$apply_info[$shownum].'.lbi');
 
     return $val;
