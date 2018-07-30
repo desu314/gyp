@@ -127,8 +127,9 @@ if (!$smarty->is_cached('index.dwt', $cache_id))
 
 	 
 	 $smarty->assign('menu_list',get_menu());
-	
-	
+
+	 $smarty->assign('cat_list',cat_list(0,0,false,1,false));
+
 	//yyy添加end
 	
     /* 首页主广告设置 */
