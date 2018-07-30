@@ -1,0 +1,123 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='utils.js'}
+<div class="headerLayout">
+    <div class="headerCon ">
+      <h1 id="mallLogo"> <a href="index.php" class="header-logo"><img src="../../themes/68ecshopcom_360buy/images/logo.gif" /></a></h1>
+      <div class="header-extra">
+       	 <div class="panel-heading">
+            <div class="more">
+                <div class="progress">
+                    <div class="progress-wrap">
+                        <div class="progress-item passed">
+                            <div class="number">1</div>
+                            <div class="progress-desc">1、入驻须知</div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <div class="progress-item passed">
+                            <div class="number">2</div>
+                            <div class="progress-desc">2、公司信息认证</div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <div class="progress-item ongoing">
+                            <div class="number">3</div>
+                            <div class="progress-desc">3、店铺信息认证</div>
+                        </div>
+                    </div>
+                    <div class="progress-wrap">
+                        <div class="progress-item tobe">
+                            <div class="number"><i class="tick"></i></div>
+                            <div class="progress-desc">4、等待审核</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+<div class="store-joinin-apply">
+  <div class="main">
+    <div id="apply_company_info" class="apply-company-info">
+        <div style="height:10px;border-bottom:1px dashed #CBDDE6"></div><br>
+      <form id="form_store_info" name="form_company_info" action="apply.php" method="post" enctype="multipart/form-data" onSubmit="return supplier_Reg()">
+      <div style="font-size: 20px;font-weight: bold">店铺经营信息</div><br>
+         <div style="font-size: 15px">店铺名称：<input name="supplier_name" type="text" class="w200" value="{$supplier.supplier_name}">
+              <span></span>
+              <p style="color:#F30;">*店铺名称注册后不可修改，请认真填写。</p></div><br>
+          <div style="font-size: 15px">店铺等级：
+	        <select name="rank_id" size=1>
+                <option value="0">请选择</option>
+		 {foreach from=$supplier_rank item=rank}
+                <option value="{$rank.rank_id}" {if $supplier.rank_id eq $rank.rank_id}selected{/if}>{$rank.rank_name}</option>
+		  {/foreach}
+              </select>
+              <!--新增服务器费代码start01-->
+                <input type="button" value="充值服务费" id="userMoney" onclick=userMoneyShow() />
+              <!--新增服务费代码end01-->
+              <span></span>
+              <div id="grade_explain" class="grade_explain"></div></div><br>
+          <!--新增服务费代码start02-->
+              <div style="font-size: 15px">店铺优势：
+                    {foreach from=$article_list item=article}
+                        <p><a href="article.php?id={$article.article_id}" target="_blank">《{$article.title}》</a></p>
+                    {/foreach}
+              </div><br>
+          <!--新增服务费代码end02-->
+          <div style="font-size: 15px">店铺分类：
+              <select name="type_id" size=1>
+                <option value="0">请选择</option>
+		 {foreach from=$supplier_type item=type}
+                <option value="{$type.str_id}" {if $supplier.type_id eq $type.str_id}selected{/if}>{$type.str_name}</option>
+		  {/foreach}
+              </select>
+              <span></span>
+              <p style="color:#F30;">*请根据您所经营的内容认真选择店铺分类，注册后商家不可自行修改。</p></div><br>
+
+      <input type="hidden" name="shownum" value="3">
+      <input type="hidden" name="do" value="1">
+      <div class="bottom"><input type="button" value="上一步" class="btn" {if $supplier.guimo}onclick="top.location.href='apply.php?shownum=2'"{else}onclick="top.location.href='apply.php?shownum=1'"{/if}><input type="submit" value="下一步" class="btn"></div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+function supplier_Reg()
+{
+	var frm = document.forms['form_company_info'];
+	var rank_id = frm.elements['rank_id'].value;
+	var supplier_name = frm.elements['supplier_name'] ? Utils.trim(frm.elements['supplier_name'].value) : '';
+
+	if (supplier_name.length == 0)
+	{
+		msg += "店铺名称不能为空！" + '\n';
+	}
+    alert(msg);return false;
+	if (rank_id.length == 0 || rank_id=='0')
+	{
+		msg += "店铺等级不能为空！" + '\n';
+	}
+	if (type_id.length == 0 || type_id=='0')
+	{
+		msg += "店铺分类不能为空！" + '\n';
+	}
+    alert(msg);return false;
+	if (msg.length > 0)
+	{
+		alert(msg);
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+function userMoneyShow()
+{
+    var frm = document.forms['form_company_info'];
+    var r = frm.elements['rank_id'].value;
+    window.open("apply_pay.php?r="+r);
+}
+</script>

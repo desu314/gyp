@@ -1419,8 +1419,9 @@ function upload_file($upload, $type)
             }
 
             $name = $_SESSION['user_id'] . '_' . $name . '.' . $ftype;
+            $path = str_replace('mobile/','',ROOT_PATH);
+            $target = $path . DATA_DIR . '/' . $type . '/' . $name;
 
-            $target = ROOT_PATH . DATA_DIR . '/' . $type . '/' . $name;
             if (!move_upload_file($upload['tmp_name'], $target))
             {
                 $GLOBALS['err']->add($GLOBALS['_LANG']['upload_file_error'], 1);
