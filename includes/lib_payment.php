@@ -287,7 +287,7 @@ function order_paid($log_id, $pay_status = PS_PAYED, $note = '')
                     $sql = "UPDATE ".$GLOBALS['ecs']->table('supplier')." set is_pay = 1 where user_id = $user_rank[user_id] limit 1";
                     $GLOBALS['db']->query($sql);
                     /* 更新入驻商预付款的流水状态 */
-                    $rank_account_sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `is_paid` = 1 and `end_time` > ".gmtime()." order by end_time desc limit 1";
+                    $rank_account_sql = 'select * from '. $GLOBALS['ecs']->table('rank_account') . " where `is_paid` = 1 and `user_id` = ".$user_rank[user_id]." and `end_time` > ".gmtime()." order by end_time desc limit 1";
                     $rank_account_res = $GLOBALS['db']->getRow($rank_account_sql);
                     if(empty($rank_account_res)){
                         $end_time = strtotime("+1year",gmtime());
