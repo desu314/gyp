@@ -5504,8 +5504,8 @@ elseif ($_REQUEST['act'] == 'get_query_info'){
     //获取当前询价单的 用户信息，并修改状态
     $query_info = getQueryOne($id);
     /*修改状态 为1*/
-    //$sql = "update nowinquiry set status =1 where id = ".$id;
-    if (1/*$GLOBALS['db']->query($sql)*/){
+    $sql = "update nowinquiry set status =1 where id = ".$id;
+    if ($GLOBALS['db']->query($sql)){
         $res['err_msg']="ok";
         $res['result'] = $query_info;
         die($json->encode($res));
