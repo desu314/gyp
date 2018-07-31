@@ -27,17 +27,17 @@ if ($act == 'default')
     //ini_set('display_errors', 1);
     //echo '<pre>';print_r($_SESSION);die;
     //取出店铺当前服务费截止日期Start
-    $rank_account_sql = "select ra.* from " . $GLOBALS['ecs']->table('rank_account') . " as ra left join " . $GLOBALS['ecs']->table('supplier') . " as s on ra.user_id = s.user_id where s.supplier_id = ".$supplier_id . " order by paid_time desc limit 1";
+    $rank_account_sql = "select ra.* from " . $GLOBALS['ecs']->table('rank_account') . " as ra left join " . $GLOBALS['ecs']->table('supplier') . " as s on ra.user_id = s.user_id where s.user_id = ".$user_id . " order by paid_time desc limit 1";
     //echo $rank_account_sql;die;
     $rank_account = $GLOBALS['db']->getRow($rank_account_sql);
-    $end_time = $rank_account['end_time'];
+    $end_time = $rank_account['end_time']; 
     if($rank_account['is_paid'] && $end_time > time()){
         $smarty->assign('end_date',$_LANG['rank_payment_time'].date("Y-m-d H:i:s",$end_time));
     }else{
         $smarty->assign('end_date',$_LANG['rank_payment_time_over']);
     }
     //取出店铺当前服务费截止日期End
-    $sql = "select r.* from " . $GLOBALS['ecs']->table('supplier_rank') . " as r left join " .$GLOBALS['ecs']->table('supplier') . " as s on s.rank_id = r.rank_id where s.supplier_id=" . $supplier_id;
+    $sql = "select r.* from " . $GLOBALS['ecs']->table('supplier_rank') . " as r left join " .$GLOBALS['ecs']->table('supplier') . " as s on s.rank_id = r.rank_id where s.user_id=" . $user_id;
     $res = $GLOBALS['db']->getRow($sql);
 
     $smarty->assign('rank', $res);//所选店铺等级信息
@@ -53,7 +53,7 @@ if ($act == 'default')
         $row['end_paid_time'] = '当前未缴费';
     }
     //获取用户信息
-    $user_id = $GLOBALS['db']->getOne("select user_id from ".$GLOBALS['ecs']->table('supplier')." where supplier_id = ".$supplier_id);
+    $user_id = $GLOBALS['db']->getOne("select user_id from ".$GLOBALS['ecs']->table('supplier')." where user_id = ".$user_id);
     $user_info = supp_user_info($user_id);
     $smarty->assign('user_info', $user_info);
 
