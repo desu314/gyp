@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+body, button, input, select, textarea {
+	font: 16px/150% microsoft yahei;
+	color: #666666;
+	background: #FFF none repeat scroll 0 0;
+	margin: 0;
+	padding: 0;
+}
+input:focus, textarea:focus {
+	outline: none;
+}
+h1, h2, h3, h4, h5, h6 {
+	#font-size: 100%;
+	#padding: 0px;
+	#margin: 0px;
+	font-size: 3em;
+	#font-style: normal;
+	font-weight: normal;
+}
+html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, fieldset, input {
+	padding: 0px;
+	margin: 0px;
+}
+ .defeated, .number i.tick, .main .explain i, .main .explain1 i, .main table.all tbody th i, .main .note i {
+	background: url(../../../../themes/68ecshopcom_360buy/images/apply/apply.png) no-repeat;
+}
+input[type="button"], input[type="submit"] {
+	color: #fff;
+	background-color: #E31939;
+	display: inline-block;
+	height: 22px;
+	padding: 0 4px;
+	border: none;
+	cursor: pointer;
+}
+input[type="text"] {
+	height: 20px;
+	line-height: 20px;
+	background-color: #ffffff;
+	vertical-align: middle;
+	display: inline-block;
+	padding: 5px;
+	border: solid 1px #ddd;
+}
+.progress {
+	clear: both;
+	overflow: hidden;
+	padding-top: 5px;
+	padding-right: 5px;
+	position: relative;
+}
+.progress .progress-wrap {
+	width: 100%;
+	text-align: center;
+	float: left;
+}
+.progress .progress-item {
+	width: 100%;
+}
+.progress .passed {
+	background-position: 0px -45px;
+	color: #a5d4f4;
+	position: relative;
+}
+.progress .ongoing {
+	background-position: 0px -92px;
+	position: relative;
+	color: #48a7e7;
+}
+.progress .tobe {
+	background-position: 0px 0px;
+	color: #aaa;
+}
+.progress .number {
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	margin-bottom: 5px;
+	color: #fff;
+	font-weight: bold;
+	position: relative;
+}
+.progress .number i.tick {
+	background-position: 0px -140px;
+	position: absolute;
+	width: 10px;
+	height: 8px;
+	top: 7px;
+	left: 55px;
+}
+.main .bottom, .apply-agreement .bottom, .joinin-pay .bottom {
+	text-align: center;
+	height: 30px;
+	margin: 30px 0 10px 0;
+}
+.main .btn, .apply-agreement .btn, .joinin-pay .btn {
+	display: inline-block;
+	height: 40px;
+	padding: 0px 12px;
+	margin-right: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.main .note {
+	color: #1279BB;
+	font-size: 13px;
+	line-height: 16px;
+	padding: 10px 0;
+	margin-bottom: 10px;
+	border-bottom: dashed 1px #CBDDE6;
+}
+.main .note i {
+	background-position: -62px -140px;
+	vertical-align: top;
+	display: inline-block;
+	width: 11px;
+	height: 16px;
+	margin-right: 6px;
+}
+.block {
+	color: red;
+	font-size: 15px;
+	display: block;
+}

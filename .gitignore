@@ -54,3 +54,8 @@ supplier/*.txt
 
 33$affiliate.txt
 33$recomm.txt
+
+
+mobile/supplier/temp/*
+mobile/supplier/images/*
+
