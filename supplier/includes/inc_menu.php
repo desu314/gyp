@@ -27,6 +27,7 @@ $modules['03_promotion']['13_pre_sale']           = 'pre_sale.php?act=list';//é¢
 
 $modules['04_order']['01_order_list']               = 'order.php?act=list';
 $modules['04_order']['03_order_query']              = 'order.php?act=order_query';
+$modules['04_order']['13_order_quiry']              = 'order.php?act=order_quiry';
 $modules['04_order']['04_merge_order']              = 'order.php?act=merge';
 $modules['04_order']['05_edit_order_print']         = 'order.php?act=templates';
 $modules['04_order']['06_undispose_booking']        = 'goods_booking.php?act=list_all';

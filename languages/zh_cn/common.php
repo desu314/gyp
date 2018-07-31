@@ -45,6 +45,7 @@ $_LANG['new_goods'] = '新品上市';
 $_LANG['hot_goods'] = '热销商品';
 $_LANG['view_cart'] = "查看购物车";
 $_LANG['catalog'] = '所有分类';
+$_LANG['more_other'] = '更多';
 $_LANG['regist_login'] = '注册/登录';
 $_LANG['profile'] = '个人资料';
 $_LANG['query_info'] = "共执行 %d 个查询，用时 %f 秒，在线 %d 人";

@@ -31,6 +31,7 @@ if (!defined('IN_ECS'))
 //订单管理
     $purview['01_order_list']			= 'order_list';//订单列表
     $purview['03_order_query']			= 'order_query';//订单查询
+    $purview['13_order_quiry']			= 'order_queiy';//询价意向单
     $purview['04_merge_order']			= 'merge_order';//合并订单
     $purview['05_edit_order_print']		= 'edit_order_print';//订单打印
 	$purview['06_undispose_booking'] = 'booking';

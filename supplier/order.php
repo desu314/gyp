@@ -98,7 +98,7 @@ elseif($_REQUEST['act'] == 'invoice_list')
 elseif ($_REQUEST['act'] == 'query')
 {
     /* 检查权限 */
-    /*增值税发票_更改_START_www.68ecshop.com*/
+    /*增值税发票*/
     if(isset($_REQUEST['act_detail'])&&$_REQUEST['act_detail']=='invoice_query')
     {
         admin_priv('invoice_manage');
@@ -108,7 +108,7 @@ elseif ($_REQUEST['act'] == 'query')
     {
         admin_priv('order_view');
     }
-    /*增值税发票_更改_END_www.68ecshop.com*/
+    /*增值税发票*/
 
     $order_list = order_list();
 
@@ -5463,6 +5463,131 @@ elseif($_REQUEST['act'] == 'export_all_invoice')
         $rows = format_invoice_rows($rows);
         export_invoice_to_xml_excel($rows);
     }
+}
+
+/*询价单列表*/
+elseif($_REQUEST['act'] == 'order_quiry')
+    {
+        require(ROOT_PATH . 'languages/' .$_CFG['lang']. '/admin/nowinquiry.php');
+        $smarty->assign('lang', $_LANG);
+        $nowinquiry_list = nowinquiry_list();
+        //判断询价单状态，如果是已经处理过的 可以直接显示信息
+        foreach ($nowinquiry_list['list'] as $item=>$val){
+            if($val['status']==0){
+                $nowinquiry_list['list'][$item]['tel'] = "************";
+                $nowinquiry_list['list'][$item]['supplier_name'] = "************";
+            }
+        }
+        $smarty->assign('nowinquiry_list',$nowinquiry_list);
+        $smarty->assign('full_page',    1);
+        /* 模板赋值 */
+        $smarty->assign('ur_here', $_LANG['nowinquiry_list']);
+        /* 显示模板 */
+        assign_query_info();
+        $smarty->assign('nowinquiry_list', $nowinquiry_list['list']);
+        $smarty->assign('filter', $nowinquiry_list['filter']);
+        $smarty->assign('record_count', $nowinquiry_list['record_count']);
+        $smarty->assign('page_count', $nowinquiry_list['page_count']);
+        $smarty->display('nowinquiry_list.htm');
+    }
+
+/*询价用户详情*/
+elseif ($_REQUEST['act'] == 'get_query_info'){
+    include('../includes/cls_json.php');
+    $json   = new JSON;
+    $res    = array('err_msg' => '', 'result' => '');
+    if(empty($_REQUEST['id'])){
+        $res['err_msg'] = "非法请求";
+        die($json->encode($res));
+    }
+    $id = intval($_REQUEST['id']);
+    //获取当前询价单的 用户信息，并修改状态
+    $query_info = getQueryOne($id);
+    /*修改状态 为1*/
+    //$sql = "update nowinquiry set status =1 where id = ".$id;
+    if (1/*$GLOBALS['db']->query($sql)*/){
+        $res['err_msg']="ok";
+        $res['result'] = $query_info;
+        die($json->encode($res));
+    }else{
+        $res['err_msg']="操作失败！稍后再试";
+        die($json->encode($res));
+    }
+
+
+}
+
+/*获取某条询价详情*/
+function getQueryOne($id){
+    $sql = "SELECT u.user_name, g.goods_name, s.supplier_name, n.id, n.tel, n.date, n.status FROM nowinquiry AS n
+            left join ". $GLOBALS['ecs']->table('users') ." as u on n.user_id = u.user_id
+            left join ". $GLOBALS['ecs']->table('supplier') ." as s on n.supplier_id = s.supplier_id
+            left join ". $GLOBALS['ecs']->table('goods') ." as g on n.good_id = g.goods_id where id=" .$id;
+    return $GLOBALS['db']->getRow($sql);
+
+}
+
+/**
+ * 获得询价 列表
+ *
+ * @access  public
+ * @return  array
+ */
+function nowinquiry_list()
+{
+    $result = get_filter();
+    if ($result === false)
+    {
+        $filter['tel']       = empty($_REQUEST['tel']) ? 0 : $_REQUEST['tel'];
+        $filter['status']    = empty($_REQUEST['status']) ? 0 : intval($_REQUEST['status']);
+
+        $where = 1;
+        if($filter['tel'] != '')
+        {
+            $where .= " and n.tel like '%".$filter['tel']."%'";
+        }
+        if($filter['status'] != '-1' && $filter['status'] != '')
+        {
+            $where .= " and n.status = ".$filter['status'];
+        }
+        if (!empty($_SESSION['supplier_id'])){
+            $where .= " and n.supplier_id = ".intval($_SESSION['supplier_id']);
+        }
+        /* 记录总数 */
+        $sql = "SELECT COUNT(*) FROM nowinquiry AS n
+            left join ". $GLOBALS['ecs']->table('users') ." as u on n.user_id = u.user_id
+            left join ". $GLOBALS['ecs']->table('supplier') ." as s on n.supplier_id = s.supplier_id
+            left join ". $GLOBALS['ecs']->table('goods') ." as g on n.good_id = g.goods_id where " . $where .
+            " ORDER BY priority desc";
+
+        $filter['record_count'] = $GLOBALS['db']->getOne($sql);
+
+        /* 分页大小 */
+        $filter = page_and_size($filter);
+
+        $sql = "SELECT u.user_name, g.goods_name, s.supplier_name, n.id, n.tel, n.date, n.status FROM nowinquiry AS n
+            left join ". $GLOBALS['ecs']->table('users') ." as u on n.user_id = u.user_id
+            left join ". $GLOBALS['ecs']->table('supplier') ." as s on n.supplier_id = s.supplier_id
+            left join ". $GLOBALS['ecs']->table('goods') ." as g on n.good_id = g.goods_id where " .$where.
+            " ORDER BY priority desc".
+            " LIMIT " . $filter['start'] . ",$filter[page_size]";
+
+        set_filter($filter, $sql);
+    }
+    else
+    {
+        $sql    = $result['sql'];
+        $filter = $result['filter'];
+    }
+
+    //return $sql;
+    $row = $GLOBALS['db']->getAll($sql);
+
+    /* 代码增加 By  www.68ecshop.com End */
+    foreach($row as $k=>$v){
+        $row[$k]['date'] = date('Y-m-d H:i:s',$v['date']);
+    }
+    return array('list' => $row, 'filter' => $filter, 'page_count' => $filter['page_count'], 'record_count' => $filter['record_count']);
 }
 
 /*取消开票*/

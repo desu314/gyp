@@ -17,3 +17,6 @@ $_LANG['status'] = '状态';
 $_LANG['select'] = '请选择...';
 $_LANG['no'] = '未完成';
 $_LANG['yes'] = '已完成';
+
+$_LANG['action']  = '操作';
+$_LANG['get_detail']  = '点击获取详情';
