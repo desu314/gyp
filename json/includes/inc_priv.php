@@ -100,6 +100,7 @@ if (!defined('IN_ECS'))
 //订单管理权限
     $purview['02_order_list']        = 'order_view';
     $purview['03_order_query']       = 'order_view';
+    $purview['13_order_quiry']       = 'order_view';
     $purview['04_merge_order']       = 'order_os_edit';
     $purview['05_edit_order_print']  = 'order_os_edit';
     $purview['06_undispose_booking'] = 'booking';

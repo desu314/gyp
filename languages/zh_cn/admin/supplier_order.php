@@ -227,6 +227,7 @@ $_LANG['zipcode'] = '邮编';
 $_LANG['tel'] = '电话';
 $_LANG['mobile'] = '备用电话';
 
+
 /* 合并订单 */
 $_LANG['order_sn_not_null'] = '请填写要合并的订单号';
 $_LANG['two_order_sn_same'] = '要合并的两个订单号不能相同';

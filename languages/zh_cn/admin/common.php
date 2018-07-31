@@ -244,10 +244,8 @@ $_LANG['08_add_order'] = '添加订单';
 $_LANG['09_delivery_order'] = '发货单列表';
 $_LANG['10_back_order'] = '退款/退货及维修';
 $_LANG['11_supplier_back_order'] = '入驻商退换货列表';
-// add start 2013-08-06
 $_LANG['12_order_excel'] = '订单导出';
-// add end 2013-08-06
-
+$_LANG['13_order_quiry'] = '询价意向单';
 $_LANG['12_invoice_list'] = '发票列表';
 
 $_LANG['11_kuaidi_order'] = '快递单列表';

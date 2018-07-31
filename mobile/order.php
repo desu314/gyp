@@ -263,7 +263,7 @@ if($_REQUEST['act'] == 'order_lise')
     $smarty->display('order.html');
     exit;
 }
-elseif($_REQUEST['act'] = 'done')
+elseif($_REQUEST['act'] == 'done')
 {
     /*------------------------------------------------------ */
     //-- 完成所有订单操作，提交到数据库
