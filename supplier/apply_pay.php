@@ -30,7 +30,7 @@ if ($act == 'default')
     $rank_account_sql = "select ra.* from " . $GLOBALS['ecs']->table('rank_account') . " as ra left join " . $GLOBALS['ecs']->table('supplier') . " as s on ra.user_id = s.user_id where s.user_id = ".$user_id . " order by paid_time desc limit 1";
     //echo $rank_account_sql;die;
     $rank_account = $GLOBALS['db']->getRow($rank_account_sql);
-    $end_time = $rank_account['end_time'];
+    $end_time = $rank_account['end_time']; 
     if($rank_account['is_paid'] && $end_time > time()){
         $smarty->assign('end_date',$_LANG['rank_payment_time'].date("Y-m-d H:i:s",$end_time));
     }else{
