@@ -546,6 +546,21 @@ function insert_apply_supplier($user){
 		$company_type = explode("\n", str_replace("\r\n", "\n", $_CFG['company_type']));
 		$GLOBALS['smarty']->assign('company_type', $company_type);
     }elseif($shownum == 3){
+        //查询是否缴费成功
+        $path = str_replace('mobile/','',ROOT_PATH);
+        include_once($path . 'includes/lib_payment.php');
+        $is_paid = get_rank_paid($user['id']);
+        if(empty($is_paid)){
+            $GLOBALS['smarty']->assign('rank_id',0);
+        }else{
+            $is_paid_sql = "select * from ".$GLOBALS['ecs']->table('rank_account')." where end_time > ".gmtime()." and user_id=".$user['id']." and is_paid = 1 order by paid_time desc limit 1";
+            $supp_rank = $GLOBALS['db']->getRow($is_paid_sql);
+            if($supp_rank){
+                $GLOBALS['smarty']->assign('rank_id',$supp_rank['rank_id']);
+            }else{
+                $GLOBALS['smarty']->assign('rank_id',0);
+            }
+        }
     	$sql="select rank_id,rank_name from ". $GLOBALS['ecs']->table('supplier_rank') ." order by sort_order";
 		$supplier_rank=$GLOBALS['db']->getAll($sql);
 		$GLOBALS['smarty']->assign('supplier_rank', $supplier_rank);

@@ -2,7 +2,7 @@
 {insert_scripts files='utils.js'}
 <div class="headerLayout">
     <div class="headerCon ">
-      <h1 id="mallLogo"> <a href="index.php" class="header-logo"><img src="../../themes/68ecshopcom_360buy/images/logo.gif" /></a></h1>
+      <h1 id="mallLogo" align="center"> <a href="index.php" class="header-logo"><img src="../../themes/68ecshopcom_360buy/images/logo.gif" /></a></h1>
       <div class="header-extra">
        	 <div class="panel-heading">
             <div class="more">
@@ -48,10 +48,18 @@
               <p style="color:#F30;">*店铺名称注册后不可修改，请认真填写。</p></div><br>
           <div style="font-size: 15px">店铺等级：
 	        <select name="rank_id" size=1>
+                {if $rank_id eq 0}
                 <option value="0">请选择</option>
-		 {foreach from=$supplier_rank item=rank}
-                <option value="{$rank.rank_id}" {if $supplier.rank_id eq $rank.rank_id}selected{/if}>{$rank.rank_name}</option>
-		  {/foreach}
+                    {foreach from=$supplier_rank item=rank}
+                        <option value="{$rank.rank_id}" {if $supplier.rank_id eq $rank.rank_id}selected{/if}>{$rank.rank_name}</option>
+                    {/foreach}
+                {else}
+                    <option value="0" disabled>请选择</option>
+                    {foreach from=$supplier_rank item=rank}
+                        <option value="{$rank.rank_id}" {if $rank_id eq $rank.rank_id}selected{/if} disabled>{$rank.rank_name}</option>
+                    {/foreach}
+                    <input type="hidden" name="rank_id" value="{$rank_id}">
+                {/if}
               </select>
               <!--新增服务器费代码start01-->
                 <input type="button" value="充值服务费" id="userMoney" onclick=userMoneyShow() />
@@ -118,6 +126,6 @@ function userMoneyShow()
 {
     var frm = document.forms['form_company_info'];
     var r = frm.elements['rank_id'].value;
-    window.open("apply_pay.php?r="+r);
+    window.location.href="apply_pay.php?r="+r;
 }
 </script>

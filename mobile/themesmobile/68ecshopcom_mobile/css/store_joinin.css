@@ -25,11 +25,11 @@ html, body, div, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, p, b
  .defeated, .number i.tick, .main .explain i, .main .explain1 i, .main table.all tbody th i, .main .note i {
 	background: url(../../../../themes/68ecshopcom_360buy/images/apply/apply.png) no-repeat;
 }
-input[type="button"], input[type="submit"] {
+input[type="button"], input[type="submit"], input[type="reset"] {
 	color: #fff;
 	background-color: #E31939;
 	display: inline-block;
-	height: 22px;
+	height: 40px;
 	padding: 0 4px;
 	border: none;
 	cursor: pointer;

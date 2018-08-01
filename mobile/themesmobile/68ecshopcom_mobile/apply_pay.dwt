@@ -1,37 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html >
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{$page_title}</title>
   <meta name="Keywords" content="{$keywords}" />
   <meta name="Description" content="{$description}" />
-  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <!-- TemplateBeginEditable name="doctitle" -->
   <title>{$page_title}</title>
+  <!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+  <!-- TemplateEndEditable -->
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="icon" href="animated_favicon.gif" type="image/gif" />
-  <link rel="stylesheet" type="text/css" href="../../../themes/68ecshopcom_360buy/css/user.css" />
-  <script type="text/javascript" src="../../themes/68ecshopcom_360buy/js/jquery-1.9.1.min.js"></script>
+  <link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css"/>
+  <link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/store_joinin.css" />
+  <script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="../../themes/68ecshopcom_360buy/js/jquery.validate.js"></script>
   <script type="text/javascript" src="../../themes/68ecshopcom_360buy/js/messages_zh.js"></script>
   {insert_scripts files='jquery.json.js,transport.js'}
   {insert_scripts files='common.js,user.js'}
 </head>
 <body>
-<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
-<div class="margin-w1210 clearfix">
+<!-- #BeginLibraryItem "./library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+  <h1 align="center"> <a href="index.php" class="header-logo"><img src="../../themes/68ecshopcom_360buy/images/logo.gif" /></a></h1><br>
   <div class="user-right">
-    <div class="box">
       <div class="header">
-        <h2 class="header-logo" align="center"><span style="font-size: 30px; margin: 1cm 3cm 0cm 0cm">{$lang.apply_pay_title}</span></h2>
+        <h2 align="center"><span style="font-size: 30px;">{$lang.apply_pay_title}</span></h2>
       </div>
 
       <!-- {if $action eq "pay_view"} -->
       <form name="formSurplus" method="post" action="apply_pay.php" onSubmit="return validate()">
-
-        <div><b>{$lang.rank_level}：</b>{$rank.rank_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              |&nbsp;&nbsp;&nbsp;&nbsp;<b>{$lang.payment_money}：</b>{$rank.rank_money}
+        <div class="blank10"></div>
+        <table width="100%" border="1" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
+          <tr align="center">
+            <td colspan="3" align="center"><b>{$lang.rank_level}：</b>{$rank.rank_name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              |&nbsp;&nbsp;&nbsp;&nbsp;<b>{$lang.payment_money}：</b>{$rank.rank_money}</td>
             <input type="hidden" name="amount" value="{$rank.rank_money}" />
             <input type="hidden" name="user_note" value="{$lang.apply_pay_title}" />
-          </div><br>
+          </tr>
           <tr align="center">
             <td colspan="3" align="left">{$lang.payment}:</td>
           </tr>
@@ -41,18 +50,19 @@
               <script type="text/javascript">
                 function checkboxOnclick(checkbox){
                   var surplus = {$user_info.user_money|default:0};
-                if (document.getElementById("issurplus").checked == true){
-                  document.getElementById("allow_user_surplus").style.display = "block";
-                  if(surplus < {$rank.rank_money}){
-                    document.getElementById("ECS_SURPLUS").value = surplus;
+                  if (document.getElementById("issurplus").checked == true){
+                    document.getElementById("allow_user_surplus").style.display = "block";
+                    if(surplus < {$rank.rank_money}){
+                      document.getElementById("ECS_SURPLUS").value = surplus;
+                    }else{
+                      document.getElementById("ECS_SURPLUS").value = {$rank.rank_money};
+                    }
+                    changeSurplus(surplus);
                   }else{
-                    document.getElementById("ECS_SURPLUS").value = {$rank.rank_money};
-                }
-                changeSurplus(surplus);
-                }else{
-                  document.getElementById("allow_user_surplus").style.display = "none";
-                  changeSurplus(0);
-                }
+                    document.getElementById("allow_user_surplus").style.display = "none";
+                    document.getElementById("ECS_SURPLUS").value = '';
+                    changeSurplus(0);
+                  }
                 }
                 window.onload=checkboxOnclick;
               </script>
@@ -63,7 +73,7 @@
                 <div id="allow_user_surplus" style=" float: left">
             <span class="surplus_desc">
             <input name="surplus" type="text" class="surplus" id="ECS_SURPLUS" onkeyup= "if(!/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/.test(this.value)){alert('只能输入数字，小数点后只能保留两位');this.value='';}" value="0" onblur="changeSurplus(this.value);" />&nbsp;&nbsp;元</span>
-                  您当前的可用余额为<span class="your_surplus">{$user_info.formated_user_money|default:0} </span>
+                  <br>您当前的可用余额为<span style="color: red">{$user_info.formated_user_money|default:0} </span>
                   <span id="ECS_SURPLUS_NOTICE_{$key}" class="notice"></span>
                 </div>
               </div>
@@ -83,7 +93,7 @@
             <td align="center">{$list.pay_fee}</td>
             <!--{if $list.pay_code eq 'alipay_bank'}-->
           <tr><td colspan="3" style="background-color:#fff">
-            <div class="payment_subbox"  style="display:block"> <!-- #BeginLibraryItem "/Library/alipay_bank.lbi" --><!-- #EndLibraryItem --> </div>
+              <div class="payment_subbox"  style="display:block"> <!-- #BeginLibraryItem "/Library/alipay_bank.lbi" --><!-- #EndLibraryItem --> </div>
           </tr></td>
           <!--{/if}-->
           </tr>
@@ -92,18 +102,19 @@
             <td colspan="3"  align="center">
               <input type="hidden" name="r" value="{$rank_id}"/>
               <input type="hidden" name="act" value="rank_pay" />
+              <input type="button" class="main-btn main-btn-large" name="button" value="{$lang.return}" onclick="javascript:history.back(-1);" />
               <input type="submit" class="main-btn main-btn-large" name="submit" value="{$lang.submit_request}" />
               <input type="reset" class="main-btn main-btn-large" name="reset" value="{$lang.button_reset}" /></td>
           </tr>
         </table>
       </form>
-    <!-- {/if} -->
+      <!-- {/if} -->
 
       <!-- {if $action eq "act_account"} -->
-      <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
+      <table width="100%" border="1" cellpadding="10" cellspacing="1" bgcolor="#eeeeee">
         <tr>
-          <td width="25%" align="right">{$lang.rank_surplus_amount}</td>
-          <td width="80%">{$amount}</td>
+          <td width="40%" align="right">{$lang.rank_surplus_amount}</td>
+          <td width="60%">{$amount}</td>
         </tr>
         <tr>
           <td align="right">{$lang.rank_payment_name}</td>
@@ -118,14 +129,20 @@
           <td>{$payment.pay_desc}</td>
         </tr>
         <tr>
-          <td colspan="2">{$payment.pay_button}</td>
+          <td align="center">
+            <input type="button" class="main-btn main-btn-large" value="{$lang.return}" onclick="javascript:history.back(-1);" />
+          </td>
+          <td style=" margin-left: 20px">
+              {$payment.pay_button}
+          </td>
         </tr>
       </table>
+    <br>
+    <div align="center"><a href="apply.php">{$lang.payment_completion}</a></div>
       <!-- {/if} -->
 
     </div>
-</div>
-  </div>
+
 </body>
 <script type="text/javascript">
   /**
@@ -167,7 +184,7 @@
       return false;
     }
     return true;
-
   }
+
 </script>
 </html>
