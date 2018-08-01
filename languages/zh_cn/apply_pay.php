@@ -13,7 +13,6 @@
  * $Id: demo.php 17217 2011-01-19 06:29:08Z liubo $
  */
 
-
 //入驻商缴费
 $_LANG['pay_name'] = '名称';
 $_LANG['pay_desc'] = '描述';
@@ -23,6 +22,7 @@ $_LANG['apply_pay_title'] = '入驻商店铺缴费';
 $_LANG['apply_pay'] = '入驻商缴费';
 $_LANG['payment_money'] = '支付金额';
 $_LANG['submit_request'] = '开始缴费';
+$_LANG['return'] = '返回上一步';
 $_LANG['rank_error'] = '请选择一个店铺级别！';
 $_LANG['rank_level'] = '店铺等级';
 $_LANG['rank_surplus_amount'] = '您的缴费金额为：';
@@ -39,5 +39,6 @@ $_LANG['other_payment_sel'] = '您当前所填余额不够支付服务费，请�
 $_LANG['supp_rank_payment_ok'] = '服务费缴纳成功！';
 $_LANG['rank_payment_time'] = '当前服务费截止日期：';
 $_LANG['rank_payment_time_over'] = '当前商家已欠费，请及时缴纳服务费！';
+$_LANG['payment_completion'] = '支付成功？点此继续开通店铺！';
 
 ?>

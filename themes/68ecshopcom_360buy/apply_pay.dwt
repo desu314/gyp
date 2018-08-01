@@ -53,6 +53,7 @@
                 changeSurplus(surplus);
                 }else{
                   document.getElementById("allow_user_surplus").style.display = "none";
+                  document.getElementById("ECS_SURPLUS").value = '';
                   changeSurplus(0);
                 }
                 }

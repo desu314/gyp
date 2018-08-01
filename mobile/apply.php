@@ -122,7 +122,6 @@ if(isset($_POST['do']) && $_POST['do']){
 		if(count($save1)!=count($save)){
 			show_message('请认真填写必填申请资料！', '返回', 'apply.php', 'wrong');
 		}
-
 		if ($db->autoExecute($ecs->table('supplier'), $save, 'UPDATE', 'user_id='.$userid) !== false){
 			header("location:apply.php");
 			exit;
@@ -131,7 +130,6 @@ if(isset($_POST['do']) && $_POST['do']){
 		}
 
 	}elseif($shownum == 3){
-		print_r($_POST);die;
 		$save['supplier_name'] = isset($_POST['supplier_name']) ? trim(addslashes(htmlspecialchars($_POST['supplier_name']))) : '';
 		$save['rank_id'] = isset($_POST['rank_id']) ? intval($_POST['rank_id']) : 0;
 		$save['type_id'] = isset($_POST['type_id']) ? intval($_POST['type_id']) : 0;
