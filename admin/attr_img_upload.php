@@ -9,7 +9,7 @@ $goods_id = $_REQUEST['goods_id'] ? $_REQUEST['goods_id'] : 0;
 $goods_attr_id = isset($_REQUEST['goods_attr_id']) ? intval($_REQUEST['goods_attr_id']) : '-1';
 if(!$goods_id or $goods_attr_id=='-1' )
 {
-	echo '<center><br>错误操作！</center>';
+	//echo '<center><br>错误操作！</center>';
     $up_sql="SELECT AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='gph' AND TABLE_NAME='ecs_goods'";
 // $up_sql="SELECT AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=".$GLOBALS['ecs']->table('goods') ;
     $row = $GLOBALS['db']->getRow($up_sql);
