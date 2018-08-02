@@ -1962,6 +1962,7 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
 	$sql="select supplier_id,supplier_status from ". $ecs->table('goods') ." where goods_id='$goods_id' ";
 	$supplier_row =$db->getRow($sql);
     $supplier_id = $supplier_row['supplier_id'];
+    //入驻商缴费限制start
     /**
      * 查看当前店铺是否缴纳服务费，未缴纳则不能添加、编辑以及复制商品
 
@@ -1974,6 +1975,7 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
     if(!$db->getRow($supplierStatusSql)){
         make_json_error($_LANG['supplier_status_no']);
     }*/
+    //入驻商缴费限制end
 	if ($supplier_row['supplier_id']>0 && $supplier_row['supplier_status'] <=0 )
 	{
 		make_json_error('对不起，该商品还未审核通过！不能上架！');
