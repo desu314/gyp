@@ -45,7 +45,7 @@
 			border-radius: 23px;
 		}
 		.entry-list a span {
-			font-size: 17px;
+			font-size: 1em;
 			font-weight: 600;
 		}
 		.entry-list a img {
