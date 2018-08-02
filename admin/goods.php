@@ -1978,7 +1978,6 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
 	{
 		make_json_error('对不起，该商品还未审核通过！不能上架！');
 	}
-
     if ($exc->edit("is_on_sale = '$on_sale', last_update=" .gmtime(), $goods_id))
     {
         clear_cache_files();
