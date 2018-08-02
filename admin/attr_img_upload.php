@@ -14,7 +14,7 @@ if(!$goods_id or $goods_attr_id=='-1' )
 // $up_sql="SELECT AUTO_INCREMENT from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=".$GLOBALS['ecs']->table('goods') ;
     $row = $GLOBALS['db']->getRow($up_sql);
     $goods_id=$row['AUTO_INCREMENT'];
-	exit;
+	//exit;
 }
 //echo $goods_attr_id;
 
