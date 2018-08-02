@@ -1968,12 +1968,12 @@ elseif ($_REQUEST['act'] == 'toggle_on_sale')
     $supplierApplySql = "select * from " . $ecs->table('supplier') . " as s left join " . $ecs->table('rank_account') ." as ra on s.user_id = ra.user_id where s.supplier_id = " . $supplier_id . " and s.is_pay = 1 and ra.is_paid = 1 and ra.paid_time != 0 and ra.paid_time < " . time() . " and ra.end_time > " . time() ." limit 1";
     if(!$db->getRow($supplierApplySql)){
         make_json_error($_LANG['supplier_apply_pay_no']);
-    }*/
+    }
     //查看当前店铺是否通过审核，未通过则不能添加、编辑以及复制商品
     $supplierStatusSql = "select * from " . $ecs->table('supplier') . " where status = 1 and supplier_id = ".$supplier_id;
     if(!$db->getRow($supplierStatusSql)){
         make_json_error($_LANG['supplier_status_no']);
-    }
+    }*/
 	if ($supplier_row['supplier_id']>0 && $supplier_row['supplier_status'] <=0 )
 	{
 		make_json_error('对不起，该商品还未审核通过！不能上架！');
