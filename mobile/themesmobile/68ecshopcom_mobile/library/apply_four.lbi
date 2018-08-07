@@ -38,7 +38,7 @@
   </div>
 <div class="store-joinin-apply"><br>
   <div class="main">
-	<div class="explain1"><i></i>您好，审核通过，您可以通过<a style="color: red;" href="../../app/gph_supp.apk" download="供货商.apk" target="_blank" class="main-color">下载供货商APP</a>来登录供货商后台！</div>
+	<div class="explain1"><i></i>您好，审核通过，您可以通过<a style="color: red;" href="../../app/gph_supp.apk" download="供货商.apk" class="main-color">下载供货商APP</a>来登录供货商后台！</div>
     <div class="joinin-pay">
 <table border="1" cellpadding="0" cellspacing="0" class="store-joinin" style="font-size: 15px" width="100%">
     <thead>
