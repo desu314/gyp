@@ -14,7 +14,7 @@
 </head>
 <body>
 {insert name='share'}{insert name='add_url_uid'}
-<div-- class="body_bj">
+<div class="body_bj">
 <!--网站头部-->
 <header id="header"> <!-- #BeginLibraryItem "/library/page_header.lbi" --> <!-- #EndLibraryItem --> </header>
 <!--banner--> 

@@ -123,10 +123,10 @@
 								height:233
 							};
 							$(document).ready(function () {
-								$("textarea").drawMultipleTree(defaults);
+								$("#zNodeText").drawMultipleTree(defaults);
 							});
 						</script>
-						<textarea style="width: 300px; overflow:hidden;" checks="{$check_cat_list}" name="other_cat" textLabel="jasontext"  type="text" readonly></textarea>
+						<textarea id="zNodeText" style="width: 300px; overflow:hidden;" checks="{$check_cat_list}" name="other_cat" textLabel="jasontext"  type="text" readonly></textarea>
 
 						<!--<select name="other_cat[]" onchange="hideCatDiv()">
 							<option value="0">{$lang.select_please}</option>
@@ -692,7 +692,7 @@
 				</tr>
 			</table>
 
-      		<!-- 属性与规格 --> 
+      		<!-- 属性与规格 -->
 			{if $goods_type_list}
 			<table width="100%" id="properties-table" style="display:none" align="center">
 				<tr>
@@ -1077,7 +1077,7 @@ function array_search_value(arrayinfo,value){
 
 function getType(txm,id,value,good_id)
 {
-	
+
 	var txm = txm;
 	var cid = id;//所选属性的上级ID
 	var val = value;//选中的值
@@ -1090,12 +1090,12 @@ function getType(txm,id,value,good_id)
 			j++;
 		}
 	})
-	
+
 	var par_str = '';
 	var parm_key = '';
 	var parm_value = '';
 	for(i in parm){
-		parm_key = '&attr_'+parm[i]+'='; 
+		parm_key = '&attr_'+parm[i]+'=';
 		parm_value = '';
 		$('.attr_num_'+parm[i]).each(function(key,value){
 			if(value.value !=''){
@@ -1104,9 +1104,9 @@ function getType(txm,id,value,good_id)
 		})
 		par_str += parm_key+parm_value;
 	}
-	
+
 	Ajax.call('goods.php?is_ajax=1&act=get_txm', 'goods_id=' + goodid + "&id=" + id + par_str , chu, "GET", "JSON");
-	
+
 	return;
 }
 /*条形码数据返回*/
@@ -1363,7 +1363,7 @@ function chu (result)
       var response = result.content;
 
 	  // 代码增加_start_derek20150129admin_goods  www.68ecshop.com
-	  
+
 	  document.getElementById("brand_search").value = response.brand;
 	  document.getElementById("brand_id").value = response.id;
 	  document.getElementById("xin_brand").innerHTML += "&nbsp;[<a href=javascript:go_brand_id("+response.id+",'"+response.brand+"')>"+response.brand+"</a>]&nbsp;";
@@ -1398,7 +1398,7 @@ function chu (result)
           alert(category_cat_not_null);
           return;
       }
-      
+
       var params = 'parent_id=' + parent_id.value;
       params += '&cat=' + cat.value;
       Ajax.call('category.php?is_ajax=1&act=add_category', params, addCatResponse, 'GET', 'JSON');
@@ -1425,15 +1425,15 @@ function chu (result)
       category_add_div.style.display = 'none';
 
       var response = result.content;
-      
+
       $("#cat_id").val(response.id);
       $("#cat_name").val(response.cat);
       $("#cat_name").attr("nowvalue", response.cat);
-      
+
       $.ajaxCategorySelecter($("#cat_name"), $("#cat_id"), response.id);
 
       return;
-      
+
       var selCat = document.forms['theForm'].elements['cat_id'];
       var opt = document.createElement("OPTION");
       opt.value = response.id;
@@ -1532,7 +1532,7 @@ function chu (result)
   {
       var sel = document.createElement("SELECT");
       var selCat = document.forms['theForm'].elements['other_cat[]'][0];
-      
+
       if(selCat.length == undefined)
       {
     	  selCat = document.forms['theForm'].elements['other_cat[]'];
