@@ -23,6 +23,7 @@ $_LANG['ip_address'] = 'IP';
 
 $_LANG['drop_logs'] = 'Delete';
 
+$_LANG['view_admin'] = 'View by administrator';
 $_LANG['view_ip'] = 'IP';
 $_LANG['select_ip'] = 'Please select...';
 $_LANG['drop_logs'] = 'Delete logs';

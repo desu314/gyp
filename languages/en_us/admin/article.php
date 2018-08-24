@@ -45,12 +45,11 @@ $_LANG['no_select_act'] = 'Select Article Categories！';
 $_LANG['display'] = 'Display the article content.';
 $_LANG['download'] = 'Download';
 $_LANG['both'] = 'Both display content and download files.';
+
 $_LANG['button_remove'] ='Batch delete';
 $_LANG['button_hide'] ='Batch hidden';
 $_LANG['button_show'] ='Batch show';
 $_LANG['move_to'] = 'Transfer to the classification';
-
-$_LANG['button_remove'] ='Batch delete';
 
 $_LANG['article_edit'] = 'Edit article content';
 $_LANG['tab_general'] = 'Common information';
@@ -61,7 +60,7 @@ $_LANG['link_goods'] = 'Products related to article';
 $_LANG['keyword'] = 'Keywords';
 
 /* Prompting message */
-$_LANG['title_exist'] ='%s already exists.';
+$_LANG['title_exist'] ='Article %s already exists.';
 $_LANG['back_list'] ='Return to article list.';
 $_LANG['continue_add'] ='Continue add new article.';
 $_LANG['articleadd_succeed'] ='Add new article successfully.';

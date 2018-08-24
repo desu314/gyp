@@ -46,4 +46,5 @@ $_LANG['help_lpa'] = 'Orders integral part of this percentage as divided by Inte
 $_LANG['help_lma'] = 'The amount of orders as part of this percentage divided by the amount.';
 $_LANG['help_lra'] = 'Introduction of Member Registration, references available rating points.';
 $_LANG['help_lru'] = 'Integral to this level of the ceiling is no longer reward points introduce Register.';
+$_LANG['help_lma'] = 'The percentage portion of the order amount is used as the divided amount. (when the percentage is 100%, the base of the amount divided is the divided amount in the commodity information. )';
 ?>

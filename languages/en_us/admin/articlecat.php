@@ -40,7 +40,7 @@ $_LANG['articlecat_edit'] = 'Edit article category';
 
 
 /* Prompting message */
-$_LANG['catname_exist'] = '%s already exists.';
+$_LANG['catname_exist'] = 'The category name %s already exists.';
 $_LANG['parent_id_err'] = 'Category name %s parent classification should not set itself or its own sub-classification';
 $_LANG['back_list'] = 'Return to category list';
 $_LANG['continue_add'] = 'Continue add new category';

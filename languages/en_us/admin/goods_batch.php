@@ -44,6 +44,8 @@ $_LANG['give_integral'] = 'Free points';
 $_LANG['goods_number'] ='Stock';
 $_LANG['brand'] ='Brand';
 
+$_LANG['batch_edit_ok'] = 'Batch modification success';
+
 $_LANG['export_format'] = 'Data formats';
 $_LANG['export_ecshop'] = 'ecshop to support data formats';
 $_LANG['export_taobao'] = 'taobao Assistant to support data formats';
@@ -51,7 +53,6 @@ $_LANG['export_taobao46'] = 'taobao Assistant4.6 to support data formats';
 $_LANG['export_paipai'] = 'paipai Assistant to support data formats';
 $_LANG['export_paipai3'] = 'paipai 3.0 Assistant to support data formats';
 $_LANG['batch_edit_ok'] ='Batch modify successfully.';
-
 $_LANG['goods_cat'] ='Category:';
 $_LANG['csv_file'] ='Upload csv files:';
 $_LANG['notice_file'] ='(The product quantity once upload had better be less than 1000 in CSV file, the CSV file size had better be less than 500K.)';

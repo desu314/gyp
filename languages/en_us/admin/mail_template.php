@@ -36,6 +36,8 @@ $_LANG['remind_of_new_order'] = 'Remind of new order template';
 $_LANG['goods_booking'] = 'Reply to goods booking template';
 $_LANG['user_message'] = 'Reply to message template';
 $_LANG['recomment'] = 'Reply to comment template';
+$_LANG['reg_email_code'] = 'Registered mailbox verification code module';
+$_LANG['findPwd_email_code'] = 'Retrieving password box verification module';
 
 $_LANG['subject_empty'] = 'Sorry, mail subject can\'t be blank.';
 $_LANG['content_empty'] = 'Sorry, mail content can\'t be blank.';

@@ -24,6 +24,8 @@ $_LANG['payment_author'] = 'Author';
 $_LANG['payment_is_cod'] = 'Pay after received?';
 $_LANG['payment_is_online'] = 'Online payment?';
 
+$_LANG['payment_is_pickup'] = 'Store self mention?';
+
 $_LANG['name_is_null'] = 'Please enter payment method name!';
 $_LANG['name_exists'] = 'The payment method has existed!';
 

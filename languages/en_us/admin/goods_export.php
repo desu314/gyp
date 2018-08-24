@@ -39,7 +39,6 @@ $_LANG['post_express_not_null'] = 'Ordinary price must be greater than 0';
 $_LANG['express_not_null'] = 'Express the price must be greater than 0';
 $_LANG['ems_not_null'] = 'EMS price must be greater than 0';
 
-
 /* 淘宝 */
 $_LANG['taobao']['goods_name'] = '宝贝名称';
 $_LANG['taobao']['goods_class'] = '宝贝类目';
@@ -161,7 +160,6 @@ $_LANG['paipai']['pic_width'] = 'pic_width';
 $_LANG['paipai']['pic_height'] = 'pic_height';
 $_LANG['paipai']['skin'] = 'skin';
 $_LANG['paipai']['prop'] = 'prop';
-
 
 $_LANG['export_paipai4'] = 'Export to patted Assistant Supporting 3.0 data formats';
 $_LANG['paipai4']['id'] = 'id';

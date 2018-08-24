@@ -18,10 +18,11 @@ $_LANG['comment_id'] = 'ID';
 $_LANG['user_name'] = 'Username';
 $_LANG['from'] = 'sent comment at ';
 $_LANG['to'] = 'about';
-$_LANG['send_comment'] = '';
+$_LANG['send_comment'] = 'Comment';
 $_LANG['user_name'] = 'Username';
 $_LANG['email'] = 'Email';
 $_LANG['anonymous'] = 'Anonymous';
+$_LANG['send_email_notice'] = 'Email notification';
 $_LANG['remail'] = 'Re-issued e-mail';
 
 $_LANG['comment_type'] = 'Type';
@@ -35,7 +36,6 @@ $_LANG['yes_reply'] = 'Replied';
 $_LANG['admin_user_name'] = 'Administrator';
 
 $_LANG['type'] = array('Product','Article');
-$_LANG['send_email_notice'] = 'Email notification';
 
 $_LANG['ip_address'] = 'IP';
 $_LANG['comment_rank'] = 'Rank';

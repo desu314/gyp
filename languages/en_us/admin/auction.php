@@ -45,6 +45,7 @@ $_LANG['no_record_selected'] = 'Record no choice';
 /* info */
 $_LANG['label_act_name'] = 'Auction Activity Name:';
 $_LANG['notice_act_name'] = 'If blank, check the auction merchandise name (the name used only for the background, the future will not be displayed)';
+$_LANG['notice_deposit'] = 'The amount in the balance of the account should not be less than the amount of the deposit when the user pats the commodity, otherwise the commodity can not be patted';
 $_LANG['label_act_desc'] = 'Events described in the auction:';
 $_LANG['label_search_goods'] = 'According to the merchandise code, merchandise name, or Item Search';
 $_LANG['label_goods_name'] = 'Auction merchandise Name:';
@@ -74,6 +75,7 @@ $_LANG['pls_search_goods'] = 'Please search for merchandise';
 $_LANG['search_result_empty'] = 'Did not find merchandise, please re-english';
 
 $_LANG['pls_select_goods'] = 'Please select merchandise auction';
+$_LANG['yjtj_select_goods'] = 'This item has been added to the auction product and cannot be repeated';
 $_LANG['goods_not_exist'] = 'You want to auction merchandise does not exist';
 
 $_LANG['js_languages']['start_price_not_number'] = 'Starting price type is not correct (figure)';

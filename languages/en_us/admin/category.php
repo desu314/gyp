@@ -33,6 +33,10 @@ $_LANG['show_in_nav'] = 'Display in navigation';
 $_LANG['cat_style'] = 'Style sheet document classification';
 $_LANG['is_show'] = 'Does it show that the';
 $_LANG['show_in_index'] = 'Is set to recommend home';
+$_LANG['is_show_cat_pic'] = 'Is it recommended for home page?';
+$_LANG['cat_pic'] = 'Upload shop ads like this';
+$_LANG['cat_pic_url'] = 'Shop advertising map link';
+$_LANG['cat_goods_limit'] = 'The number of such goods displayed on the front page';
 $_LANG['notice_show_in_index'] = 'This setting can be the latest in the home, hot, Department recommend that the classification of merchandise under Recommend';
 $_LANG['goods_number'] = 'Quantity of goods';
 $_LANG['grade'] = 'Price range of the number of';
@@ -87,5 +91,15 @@ $_LANG['js_languages']['is_leafcat'] ="You selected category is a bottom class c
 $_LANG['js_languages']['not_leafcat'] =" You selected category isn\'t a bottom class category. \\nThe category of product transfer can just be operated between the bottom class categories.";
 $_LANG['js_languages']['filter_attr_not_repeated'] = 'Filter property can`t be repeated';
 $_LANG['js_languages']['filter_attr_not_selected'] = 'Please select a filter property';
+$_LANG['notice_cat_name'] = 'If you need to add multiple categories, please use semi comma separated between categories.';
+
+$_LANG['cat_expand'] = '[All unfolding]';
+$_LANG['cat_collect'] = '[All contraction]';
+
+$_LANG['virtual_category_list'] = 'Classified management of virtual coupon products';
+
+$_LANG['export'] = 'Derived classification structure';
+$_LANG['category_search'] = 'Search commodity classification';
+
 
 ?>

@@ -77,6 +77,7 @@ $_LANG['act_ship_num'] = 'Shipped quantity is more then order quantity';
 $_LANG['act_good_vacancy'] = 'Out of stock';
 $_LANG['act_good_delivery'] = 'Shipped';
 $_LANG['notice_gb_ship'] = 'Notice: You can\'t shipping until you deal with the associates successfully.';
+$_LANG['notice_ps_ship'] = 'Remarks: pre-sale activities are not processed before shipment.';
 $_LANG['back_list'] = 'Return order list.';
 $_LANG['op_remove'] = 'Remove';
 $_LANG['op_you_can'] = 'The operation you can do';
@@ -166,6 +167,7 @@ $_LANG['product_sn'] = 'Item No';
 $_LANG['goods_info'] = 'Product information';
 $_LANG['goods_name'] = 'Product name';
 $_LANG['goods_name_brand'] = 'Product name [ Brand ]';
+$_LANG['goods_shouhou'] = 'After sale';
 $_LANG['goods_sn'] = 'NO.';
 $_LANG['goods_price'] = 'Price';
 $_LANG['goods_number'] = 'Quantity';
@@ -381,6 +383,7 @@ $_LANG['delivery_status'][2] = 'Has shipped';
 
 /* 发货单标签 */
 $_LANG['label_delivery_status'] = 'Invoice Status';
+$_LANG['label_suppliers_name'] = 'supplier';
 $_LANG['label_delivery_time'] = 'Generation Time';
 $_LANG['label_delivery_sn'] = 'Serial number of Invoice';
 $_LANG['label_add_time'] = 'Order Time';
@@ -402,6 +405,60 @@ $_LANG['tips_back_del'] = 'Return a single deletion of success!';
 
 $_LANG['goods_num_err'] = 'Stocks, please re-select!';
 
+$_LANG['label_pickup_point'] = 'Selected from the mention point：';
+$_LANG['p_shop_name'] = 'Store name：';
+$_LANG['p_address'] = 'address：';
+$_LANG['p_contact'] = 'Contacts：';
+$_LANG['p_phone'] = 'Contact information：';
+$_LANG['order_type'] = 'Order type';
+$_LANG['pickup_order'] = 'Self - made order';
+$_LANG['normal_order'] = 'General order';
+
+$_LANG['unprovided'] = 'No ticket';
+$_LANG['provided'] = 'Invoiced';
+$_LANG['provide_invoice'] = '开票Ticket opening';
+$_LANG['export'] = 'export';
+$_LANG['export_to_excel'] = 'Export to Excel';
+$_LANG['export_all_to_excel'] = 'All exported to Excel';
+$_LANG['normal_invoice'] = 'General invoice';
+$_LANG['vat_invoice'] = 'Value added tax invoice';
+$_LANG['please_select'] = 'Please choose';
+$_LANG['inv_type'] = 'Invoice type';
+$_LANG['inv_info'] = 'Invoice information';
+$_LANG['inv_payee'] = 'Invoices are raised';
+$_LANG['inv_content'] = 'Invoice content';
+$_LANG['company_name1'] = 'Unit name';
+$_LANG['taxpayer_id'] = 'Taxpayer identification number';
+$_LANG['registration_address'] = 'Registered address';
+$_LANG['registration_phone'] = 'Registered telephone';
+$_LANG['deposit_bank'] = 'Account opening bank';
+$_LANG['bank_account'] = 'Bank account';
+$_LANG['inv_consignee_info'] = 'Ticket information';
+$_LANG['inv_consignee_name'] = 'Name of the receiver';
+$_LANG['inv_consignee_phone'] = 'Receiver mobile phone';
+$_LANG['inv_consignee_address'] = 'Address of ticket collector';
+$_LANG['inv_status'] = 'Invoice status';
+$_LANG['inv_money'] = 'Invoice value';
+$_LANG['edit_invoice'] = 'Edit the invoice';
+$_LANG['check_invoice'] = 'Check the invoice';
+$_LANG['individual'] = 'personal';
+$_LANG['unit'] = 'Company';
+
+$_LANG['label_inv_info'] = 'Invoice information：';
+$_LANG['label_company_name1'] = 'Unit name：';
+$_LANG['label_taxpayer_id'] = 'Taxpayer identification number：';
+$_LANG['label_registration_address'] = 'Registered address：';
+$_LANG['label_registration_phone'] = 'Registered telephone：';
+$_LANG['label_deposit_bank'] = 'Account opening bank：';
+$_LANG['label_bank_account'] = 'Bank account：';
+$_LANG['label_inv_consignee_info'] = 'Ticket information：';
+$_LANG['label_inv_consignee_name'] = 'Name of the receiver：';
+$_LANG['label_inv_consignee_phone'] = 'Receiver mobile phone：';
+$_LANG['label_inv_consignee_address'] = 'Address of ticket collector：';
+$_LANG['label_inv_status'] = 'Invoice status：';
+$_LANG['label_inv_money'] = 'Invoice value：';
+$_LANG['label_action_note2'] = 'Remarks：';
+$_LANG['js_languages']['remove_invoice_confirm'] = 'Are you sure you want to delete the invoice information of the order?';
 
 /* ERP绑定 */
 $_LANG['erp_enter']='enter';

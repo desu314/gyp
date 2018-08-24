@@ -61,6 +61,7 @@ $_LANG['cfg_name']['shop_country'] = 'Country';
 $_LANG['cfg_name']['shop_province'] = 'Province';
 $_LANG['cfg_name']['shop_city'] = 'City';
 $_LANG['cfg_name']['shop_address'] = 'Address';
+$_LANG['cfg_name']['shop_option'] = '位置坐标';
 $_LANG['cfg_name']['licensed'] = 'Display Licensed?';
 $_LANG['cfg_name']['qq'] = 'Customer service QQ';
 $_LANG['cfg_name']['ww'] = 'Taobao WangWang';
@@ -72,6 +73,8 @@ $_LANG['cfg_name']['service_phone'] = 'Customer service phone';
 $_LANG['cfg_name']['can_invoice'] = 'Invoice';
 $_LANG['cfg_name']['user_notice'] = 'Member center notice';
 $_LANG['cfg_name']['shop_notice'] = 'Notice stores';
+$_LANG['cfg_name']['shop_index_num'] = 'Number of stores on the front page';
+$_LANG['cfg_name']['shop_search_price'] = 'Whole store search price range';
 $_LANG['cfg_name']['shop_reg_closed'] = 'Registration is closed';
 $_LANG['cfg_name']['send_mail_on'] = 'Whether or not to open automatically send e-mail';
 $_LANG['cfg_name']['auto_generate_gallery'] = 'Merchandise is automatically upload album chart';
@@ -140,12 +143,7 @@ $_LANG['cfg_name']['show_goods_in_cart'] = 'Display Type In Cart';
 $_LANG['cfg_name']['show_attr_in_cart'] = 'Shows attributes of goods?';
 $_LANG['test_mail_title'] = 'Test email';
 $_LANG['cfg_name']['email_content'] = 'How are you! Tupload_size_limithis is the test mail of an examination mail server setting. Receive this mail, and your mail server config exactitude! You can carry on other mails to send out of operate!';
-$_LANG['cfg_name']['sms'] = 'SMS';
-$_LANG['cfg_name']['sms_shop_mobile'] = 'Shop mobile';
-$_LANG['cfg_name']['sms_order_placed'] = 'Send message to shop when customer order.';
-$_LANG['cfg_name']['sms_order_payed'] = 'Sent message to shop when customer payment.';
-$_LANG['cfg_name']['sms_order_shipped'] = 'Send message to customer when shipping.';
-$_LANG['cfg_name']['sms_order_payed_to_customer'] = 'Consumers pay for orders issued to consumers';
+
 $_LANG['cfg_name']['attr_related_number'] = 'Product quantity of relational attribute';
 $_LANG['cfg_name']['top10_time'] = 'Ranking time';
 $_LANG['cfg_name']['goods_gallery_number'] = 'Details page gallery image quantity';
@@ -163,6 +161,8 @@ $_LANG['cfg_name']['name_of_region_4'] = '4 Distribution of regional Name';
 $_LANG['cfg_name']['related_goods_number'] = 'Associated merchandise display quantity';
 $_LANG['cfg_name']['visit_stats'] = 'Visit stats';
 $_LANG['cfg_name']['help_open'] = 'Open the user help';
+$_LANG['cfg_name']['recom_rank'] = 'Integral lower limit of participation';
+$_LANG['cfg_name']['shop_opint'] = 'Address coordinates';
 
 $_LANG['cfg_desc']['smtp'] = 'Config SMTP basic parameter';
 $_LANG['cfg_desc']['market_price_rate'] = 'While you enter product price, the system will calculate market price by proportion automatically.';
@@ -195,16 +195,17 @@ $_LANG['cfg_desc']['comment_factor'] = 'Select higher comments condition can eff
 $_LANG['cfg_desc']['min_goods_amount'] = 'To achieve this amount in order to submit orders.';
 $_LANG['cfg_desc']['search_keywords'] = 'Keywords displayed on index, please divided each keyword by comma(, ).';
 $_LANG['cfg_desc']['shop_notice'] = 'Above will appear in the home store announcement, attention to controlling the content of the length of notice should not exceed the size of bulletin display area.';
+$_LANG['cfg_desc']['shop_opint'] = 'Please input the location coordinates of the store to be separated by commas:x,y。<a target="blank" href="http://api.map.baidu.com/lbsapi/getpoint/index.html">Coordinate query</a>';
+$_LANG['cfg_desc']['shop_index_num'] = 'The number of boutiques returns to the latest number of goods, and the number of hot (items to enter)';
+$_LANG['cfg_desc']['shop_search_price'] = 'Price range 1 carriage return price range 2 carriage return price range 3(items to enter)';
 $_LANG['cfg_desc']['bgcolor'] = 'Color Please fill in the format # FFFFFF';
 $_LANG['cfg_desc']['use_how_oos'] = 'Out of stock when the deal with the future use order confirmation page allows the user to choose when out-of-stock approach.';
 $_LANG['cfg_desc']['cart_confirm'] = 'Allows users click on the "Add to Cart" after the prompt and the subsequent action.';
 $_LANG['cfg_desc']['send_service_email'] = 'If service email is empty,the option is invalid.';
 $_LANG['cfg_desc']['send_mail_on'] = 'Enable this option, it will automatically send mail in the maillist';
-$_LANG['cfg_desc']['sms_shop_mobile'] = 'Please register your mobile SMS or mobile phone number and then';
 $_LANG['cfg_desc']['send_verify_email'] = 'If you want to use "Send registration verification email automatically","E-mail to verify whether or not to open membership" must be open.';
 
-$_LANG['cfg_range']['cart_confirm'][1] = 'Prompts the user, click "OK" into the Shopping Cart
-';
+$_LANG['cfg_range']['cart_confirm'][1] = 'Prompts the user, click "OK" into the Shopping Cart';
 $_LANG['cfg_range']['cart_confirm'][2] = 'Prompts the user, click "Cancel" into the Shopping Cart';
 $_LANG['cfg_range']['cart_confirm'][3] = 'Go directly to Cart';
 $_LANG['cfg_range']['cart_confirm'][4] = 'Do not prompt and remain in the current page';
@@ -328,14 +329,7 @@ $_LANG['cfg_range']['goodsattr_style']['1'] = 'Radio button';
 $_LANG['cfg_range']['goodsattr_style']['0'] = 'Drop-down list';
 $_LANG['cfg_range']['show_marketprice']['1'] = 'Display';
 $_LANG['cfg_range']['show_marketprice']['0'] = 'Conceal';
-$_LANG['cfg_range']['sms_order_placed']['1'] = 'Send sms';
-$_LANG['cfg_range']['sms_order_placed']['0'] = 'Not send sms';
-$_LANG['cfg_range']['sms_order_payed']['1'] = 'Send sms';
-$_LANG['cfg_range']['sms_order_payed']['0'] = 'Not send sms';
-$_LANG['cfg_range']['sms_order_shipped']['1'] = 'Send sms';
-$_LANG['cfg_range']['sms_order_shipped']['0'] = 'Not send sms';
-$_LANG['cfg_range']['sms_order_payed_to_customer']['1'] = 'Send sms';
-$_LANG['cfg_range']['sms_order_payed_to_customer']['0'] = 'Not send sms';
+
 $_LANG['cfg_range']['cron_method']['0'] = 'No';
 $_LANG['cfg_range']['cron_method']['1'] = 'Yes';
 $_LANG['cfg_range']['enable_order_check']['0'] = 'No';
@@ -353,7 +347,6 @@ $_LANG['cfg_range']['show_attr_in_cart']['0'] = 'No';
 $_LANG['cfg_range']['show_attr_in_cart']['1'] = 'Yes';
 $_LANG['cfg_range']['shop_reg_closed']['0'] = 'No';
 $_LANG['cfg_range']['shop_reg_closed']['1'] = 'Yes';
-
 $_LANG['cfg_range']['timezone']['-12'] = '(GMT -12:00) Eniwetok, Kwajalein';
 $_LANG['cfg_range']['timezone']['-11'] = '(GMT -11:00) Midway Island, Samoa';
 $_LANG['cfg_range']['timezone']['-10'] = '(GMT -10:00) Hawaii';
@@ -456,6 +449,157 @@ $_LANG['back_mail_settings'] = 'Return e-mail server settings';
 $_LANG['mail_settings'] = 'E-mail server settings';
 
 $_LANG['sms_url'] = '<a href="'.$url.'" target="_blank">Click here to register mobile phone short message service</a>';
+
+$_LANG['cfg_name']['erweima_wapurl']	= 'Scan URL for two-dimensional code';
+$_LANG['cfg_desc']['erweima_wapurl']      = ' Input format：http://Your domain name/goods.php?id={id}<br>If you purchase a micro mall, enter the format：http://Your domain name/mobile/goods.php?id={id}';
+$_LANG['cfg_name']['erweima_logo']	= 'Two dimensional code intermediate LOGO';
+$_LANG['cfg_desc']['erweima_logo']      = 'If you upload a large picture of LOGO, too large picture, occlusion of two-dimensional code too much, will lead to two-dimensional code can not recognize < br > Assuming your two-dimensional code picture is 200 * 200, then you upload the image of LOGO to 80 * 80 below the appropriate';
+
+
+$_LANG['cfg_name']['tuihuan_days_fahuo'] = 'Return period (from the first day after shipment)';
+$_LANG['cfg_name']['tuihuan_days_qianshou']  = 'Return period (days after shipment)';
+$_LANG['cfg_desc']['tuihuan_days_fahuo'] = '';
+$_LANG['cfg_desc']['tuihuan_days_qianshou'] = 'Within X-Y days after delivery, the goods can be returned and exchanged, e.g. 3 above and 5 below, indicating that the goods can be exchanged within 3-5 days after delivery.';
+$_LANG['cfg_name']['time_shouhuo'] = 'N hours after delivery.';
+$_LANG['cfg_desc']['time_shouhuo'] = 'Input numbers, for example, enter 48, representing the earliest delivery time for 48 hours after placing orders.';
+
+$_LANG['cfg_name']['tuihuan_days_fahuo'] = 'Refund / return / repair period (from the first day after shipment)';
+$_LANG['cfg_desc']['tuihuan_days_fahuo'] = '';
+$_LANG['cfg_name']['tuihuan_days_qianshou']  = 'Refund / return / repair period (days after delivery)';
+$_LANG['cfg_desc']['tuihuan_days_qianshou'] = 'Refund/return/repair within X-Y days after delivery, e.g. 3 above and 5 below, indicating refundable/return/repair within 3-5 days after delivery';
+$_LANG['cfg_name']['email_domain'] = 'User registration email type reminder:';
+$_LANG['cfg_desc']['email_domain'] = 'Tip: Domain names are separated by\',\'(commas do not divide all corners and half corners), and domains do not need to be in the WWW < br > reference style：163.com,68ecshop.com,sina.com';
+
+
+$_LANG['cfg_name']['comment_youxiaoqi'] = 'Evaluation / exposure period (confirmed on the next day after receipt)';
+$_LANG['cfg_desc']['comment_youxiaoqi'] = 'For example, when setting 30, the buyer can appraise and dry the goods within 30 days from the confirmation receipt.';
+$_LANG['cfg_name']['comment_total_min'] = 'Evaluating minimum amount of order';
+$_LANG['cfg_name']['comment_pay_points'] = 'Evaluation is integral.';
+$_LANG['cfg_name']['shaidan_pre_num'] = 'How many points can be obtained before baking';
+$_LANG['cfg_desc']['shaidan_pre_num'] = 'If the reviews do not need to be audited, the buyers of the first X places can get points. If the reviews need to be audited, the buyers who pass the previous X pass can get an integral of 0, indicating no restriction.';
+$_LANG['cfg_name']['shaidan_img_num'] = 'The number of photos is larger than the number of photos.';
+$_LANG['cfg_name']['shaidan_pay_points'] = 'The product fraction can be obtained from drying list.';
+$_LANG['cfg_name']['shaidan_check'] = 'Do you need to check the drying list?';
+$_LANG['cfg_range']['shaidan_check']['0'] = 'yes';
+$_LANG['cfg_range']['shaidan_check']['1'] = 'no';
+$_LANG['cfg_name']['user_tag_check'] = 'Do custom tags need to be audited?';
+$_LANG['cfg_range']['user_tag_check']['0'] = 'yes';
+$_LANG['cfg_range']['user_tag_check']['1'] = 'no';
+$_LANG['cfg_name']['tag_show_num'] = 'Number of merchandise labels displayed';
+$_LANG['cfg_desc']['tag_show_num'] = 'For example, if 5 is set, 5 labels will be displayed on the product details page.';
+
+$_LANG['cfg_name']['time_shouhuo'] = 'N hours after delivery.';
+$_LANG['cfg_desc']['time_shouhuo']      = 'Input numbers, for example, enter 48, representing the earliest delivery time for 48 hours after placing orders.';
+
+
+$_LANG['cfg_name']['sms_register'] = 'Is the mobile phone verification code sent to the customer when registering?';
+$_LANG['cfg_range']['sms_register'][1] = 'Send out';
+$_LANG['cfg_range']['sms_register'][0] = 'Not send';
+
+$_LANG['cfg_name']['identity'] = 'Whether to open real name authentication';
+$_LANG['cfg_range']['identity'][1] = 'yes';
+$_LANG['cfg_range']['identity'][0] = 'no';
+
+$_LANG['cfg_name']['okgoods_time'] = 'Confirmation of delivery time (days after shipment)';
+$_LANG['cfg_desc']['okgoods_time'] = 'For example, set 7, from the next seventh days, the system will automatically confirm receipt.';
+$_LANG['cfg_name']['okback_time']  = 'Return / refund / repair seller confirmation period (unit days)';
+$_LANG['cfg_desc']['okback_time']  = 'Return / refund / repair seller confirmation period (unit days)';
+$_LANG['cfg_name']['delback_time'] = 'Delivery time of return / repair buyer (unit days)';
+$_LANG['cfg_desc']['delback_time'] = 'For example: Set 7, within 7 days after the Seller agrees to the agreement, if the buyer does not have additional logistics information, the application is cancelled automatically and the application is closed.';
+$_LANG['cfg_name']['weixiu_time']  = 'Time limit for application maintenance (days after confirmation of receipt)';
+$_LANG['cfg_desc']['weixiu_time']  = 'For example, set 30, the buyer can apply for maintenance within 30 days from the confirmation receipt.';
+
+
+$_LANG['normal_invoice'] = 'General invoice';
+$_LANG['vat_invoice'] = 'Value added tax invoice';
+$_LANG['myname'] = 'wo de ming zi';
+
+
+$_LANG['cfg_name']['sms'] = 'SMS';
+
+$_LANG['cfg_name']['ecsdxt_user_name'] = 'SMS account';
+$_LANG['cfg_desc']['ecsdxt_user_name'] = 'The accounts needed by SMS providers to send SMS messages to the system.';
+
+$_LANG['cfg_name']['ecsdxt_pass_word'] = 'SMS password';
+$_LANG['cfg_desc']['ecsdxt_pass_word'] = 'The password required by SMS providers to send SMS messages to the system.';
+
+$_LANG['cfg_name']['sms_shop_mobile'] = 'Shop mobile';
+$_LANG['cfg_desc']['sms_shop_mobile'] = 'Please register your mobile SMS or mobile phone number and then';
+
+$_LANG['cfg_name']['sms_sign'] = 'Short message signature';
+$_LANG['cfg_desc']['sms_sign'] = 'Tip: SMS signature and SMS content do not modify at will, the modification needs to be filed with SMS operators before normal use, otherwise it will lead to SMS sending failure.';
+
+$_LANG['cfg_name']['sms_order_placed'] = 'Send message to shop when customer order.';
+$_LANG['cfg_range']['sms_order_placed']['1'] = 'Send sms';
+$_LANG['cfg_range']['sms_order_placed']['0'] = 'Not send sms';
+$_LANG['cfg_name']['sms_order_placed_tpl'] = '';
+
+$_LANG['cfg_name']['sms_order_pay'] = 'Does the customer send short messages to customers when payment is made?';
+$_LANG['cfg_range']['sms_order_pay']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_order_pay']['0'] = 'Do not send text messages';
+$_LANG['cfg_name']['sms_order_pay_tpl'] = '';
+
+$_LANG['cfg_name']['sms_order_payed'] = 'Sent message to shop when customer payment.';
+$_LANG['cfg_range']['sms_order_payed']['1'] = 'Send sms';
+$_LANG['cfg_range']['sms_order_payed']['0'] = 'Not send sms';
+$_LANG['cfg_name']['sms_order_payed_tpl'] = '';
+
+$_LANG['cfg_name']['sms_order_shipped'] = 'Send message to customer when shipping.';
+$_LANG['cfg_range']['sms_order_shipped']['1'] = 'Send sms';
+$_LANG['cfg_range']['sms_order_shipped']['0'] = 'Not send sms';
+$_LANG['cfg_name']['sms_order_shipped_tpl'] = '';
+
+$_LANG['cfg_name']['sms_register'] = 'Does client registration send verification code?';
+$_LANG['cfg_range']['sms_register']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_register']['0'] = 'Do not send text messages';
+$_LANG['cfg_name']['sms_register_tpl'] = '';
+
+$_LANG['cfg_name']['sms_goods_stockout'] = 'Is the shortage of goods delivered to the registered users by SMS?';
+$_LANG['cfg_range']['sms_goods_stockout']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_goods_stockout']['0'] = 'Do not send text messages';
+$_LANG['cfg_name']['sms_goods_stockout_tpl'] = '';
+
+$_LANG['cfg_name']['sms_pricecut'] = 'Does the price of goods send text messages to customers?';
+$_LANG['cfg_range']['sms_pricecut']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_pricecut']['0'] = 'Do not send text messages';
+$_LANG['cfg_name']['sms_pricecut_tpl'] = '';
+
+$_LANG['cfg_name']['sms_change_password'] = 'Does password modification send text messages to customers?';
+$_LANG['cfg_range']['sms_change_password']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_change_password']['0'] = 'Do not send text messages';
+$_LANG['cfg_name']['sms_change_password_tpl'] = '';
+
+$_LANG['cfg_name']['sms_user_money_change'] = 'Does the balance change send short messages to customers?';
+$_LANG['cfg_range']['sms_user_money_change']['1'] = 'Send message';
+$_LANG['cfg_range']['sms_user_money_change']['0'] = 'Do not send text messages';
+
+$_LANG['use_balance_reduce'] = 'Reduction of user consumption balance';
+$_LANG['cfg_name']['sms_use_balance_reduce_tpl'] = '';
+$_LANG['deposit_balance_reduce'] = 'Decrease in user withdrawals balance';
+$_LANG['cfg_name']['sms_deposit_balance_reduce_tpl'] = '';
+$_LANG['recharge_balance_add'] = 'Increase in user recharge balance';
+$_LANG['cfg_name']['sms_recharge_balance_add_tpl'] = '';
+$_LANG['admin_operation'] = 'Administrator operation balance';
+$_LANG['cfg_name']['sms_admin_operation_tpl'] = '';
+$_LANG['return_goods'] = 'Return balance increased';
+$_LANG['cfg_name']['sms_return_goods_tpl'] = '';
+
+
+$_LANG['cfg_name']['fulltext_search'] = 'Full text search engine';
+$_LANG['cfg_range']['fulltext_search']['0'] = 'Close';
+$_LANG['cfg_range']['fulltext_search']['1'] = 'open';
+
+
+$_LANG['cfg_name']['bonus_reg_rand'] = 'Random registration of red envelopes';
+$_LANG['cfg_desc']['bonus_reg_rand'] = 'Explanation: when the red packets are issued according to registered users, the settings will be valid.';
+$_LANG['cfg_range']['bonus_reg_rand'][0] = 'Close';
+$_LANG['cfg_range']['bonus_reg_rand'][1] = 'open';
+
+$_LANG['cfg_name']['shop_opint'] = 'Store coordinates';
+
+$_LANG['cfg_name']['sms_order_payed_to_customer'] = 'Consumers pay for orders issued to consumers';
+$_LANG['cfg_range']['sms_order_payed_to_customer']['1'] = 'Send sms';
+$_LANG['cfg_range']['sms_order_payed_to_customer']['0'] = 'Not send sms';
 $_LANG['open_logistics_trace_fail'] = 'Enable logistics tracking failed';
 $_LANG['preview_template'] = 'Preview template';
 ?>

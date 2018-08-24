@@ -46,6 +46,11 @@ $_LANG['send_by'][SEND_BY_USER] = 'By user';
 $_LANG['send_by'][SEND_BY_GOODS] = 'By product';
 $_LANG['send_by'][SEND_BY_ORDER] = 'By order money';
 $_LANG['send_by'][SEND_BY_PRINT] = 'Off line';
+$_LANG['send_by'][SEND_BY_REGISTER] = 'Issued by registered users';
+$_LANG['send_by'][SEND_BY_ONLINE] = 'Online red envelopes';
+$_LANG['bonus_img'] = 'Online red envelopes';
+$_LANG['user_bonus_max'] = 'Users receive the upper limit of online red packets';
+
 $_LANG['report_form'] = 'Report';
 $_LANG['send'] = 'Send';
 $_LANG['bonus_excel_file'] = 'Offline bonus information list ';
@@ -91,7 +96,10 @@ $_LANG['js_languages']['user_name_empty'] = 'Please select a member at least!';
 $_LANG['js_languages']['invalid_min_amount'] = 'Please enter a minimum level of orders (the figure is greater than 0)';
 $_LANG['js_languages']['send_start_lt_end'] = 'bonus release date can not be greater than the beginning date of the end';
 $_LANG['js_languages']['use_start_lt_end'] = 'bonus use date can not be greater than the beginning date of the end';
-
+//代码增加--cb--线上红包--68ecshop
+$_LANG['bonus_type4_notic'] = 'Picture size 1210px*100px';
+$_LANG['bonus_type4_max_notic'] = 'This setting is only valid for online red packets, which is the number of online red packets that users can receive.';
+//代码增加--cb--线上红包--68ecshop
 $_LANG['order_money_notic'] = 'As long as the amount of the value of orders will be issued red packets to the user';
 $_LANG['type_money_notic'] = 'The type bonus can offset money';
 $_LANG['send_startdate_notic'] = 'The type bonus can be provided only current time between start time and deadline.';

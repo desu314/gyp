@@ -26,6 +26,9 @@ $_LANG['email'] = 'Email management';
 $_LANG['templates_manage'] = 'Template management';
 $_LANG['db_manage'] = 'Database Management';
 $_LANG['sms_manage'] = 'SMS Management';
+$_LANG['pickup_point'] = 'Self starting point management';
+$_LANG['chat_manage'] = 'Instant messaging management';
+$_LANG['stats'] = 'Report statistics';
 
 //Authorization of product management
 $_LANG['goods_manage'] = 'Add/Edit product';
@@ -35,6 +38,7 @@ $_LANG['cat_drop'] = 'Shift/Delete category';
 $_LANG['attr_manage'] = 'Product attribute';
 $_LANG['brand_manage'] = 'Product brand';
 $_LANG['comment_priv'] = 'User comment';
+$_LANG['order_comment_priv'] = 'Order comment management'; // 代码增加 订单评论
 $_LANG['goods_type'] = 'Product type';
 $_LANG['tag_manage'] = 'Tag';
 $_LANG['topic_manage'] = 'Topic management';
@@ -44,6 +48,12 @@ $_LANG['picture_batch'] = 'Image batch processing';
 $_LANG['goods_export'] = 'Export volume of goods ';
 $_LANG['goods_batch'] = 'Commodity bulk upload / edit';
 $_LANG['gen_goods_script'] = ' Generating commodity code';
+
+
+$_LANG['suppliers_goods'] = 'Supplier\'s commodity management';
+$_LANG['question_manage'] = 'User consultation';
+$_LANG['shaidan_manage'] = 'User bask';
+$_LANG['scan_store'] = 'Outgoing and storage management';
 
 //Authorization of article management
 $_LANG['article_cat'] = 'Article category';
@@ -62,7 +72,6 @@ $_LANG['user_rank'] = 'User rank management';
 $_LANG['feedback_priv'] = 'User message management';
 $_LANG['surplus_manage'] = 'User balance management';
 $_LANG['account_manage'] = 'Member Account Management';
-
 
 //Authority of Authority management
 $_LANG['admin_manage'] = 'Add/Edit administrator';
@@ -95,6 +104,7 @@ $_LANG['sitemap'] = 'Site Map Management';
 $_LANG['file_check'] = 'File checksums';
 $_LANG['file_priv'] = 'File permissions test';
 $_LANG['reg_fields'] = 'User register options management';
+$_LANG['website_login'] = 'Cooperative login management';
 
 //Authorization of orders management
 $_LANG['order_os_edit'] = 'Edit order status';
@@ -103,12 +113,14 @@ $_LANG['order_ss_edit'] = 'Edit shipping status';
 $_LANG['order_edit'] = 'Add edit order';
 $_LANG['order_view'] = 'View unfinished order';
 $_LANG['order_view_finished'] = 'View finished order';
+$_LANG['order_rebate'] = 'Calculate order Commission';
 $_LANG['repay_manage'] = 'Refundment application management';
 $_LANG['booking'] = 'Booking management';
 $_LANG['sale_order_stats'] = 'Sale order statistic';
 $_LANG['client_flow_stats'] = 'Client flow statistic';
 $_LANG['delivery_view'] = 'Invoice Note';
 $_LANG['back_view'] = 'Returned Note';
+$_LANG['invoice_manage'] = 'control over invoices';
 
 //Sales promotion management
 $_LANG['snatch_manage'] = 'Dutch auction management';
@@ -123,12 +135,14 @@ $_LANG['favourable'] = 'Concessions activities';
 $_LANG['whole_sale'] = 'Whole sale management';
 $_LANG['package_manage'] = 'Preferential Packeage';
 $_LANG['exchange_goods'] = 'Integral Mall Goods';
+$_LANG['pre_sale'] = 'Pre sale management';
 
 //Email management
 $_LANG['attention_list'] = 'Attention management';
 $_LANG['email_list'] = 'E-mail subscription';
 $_LANG['magazine_list'] = 'Magazine management';
 $_LANG['view_sendlist'] = 'Mail Queue Management';
+$_LANG['send_mail'] = 'Sending mail management';
 
 //Template management
 $_LANG['template_select'] = 'Template Chooser ';
@@ -143,7 +157,7 @@ $_LANG['db_backup']    = 'Data Backup ';
 $_LANG['db_renew']     = 'Data Recovery ';
 $_LANG['db_optimize']  = 'Data sheet optimization';
 $_LANG['sql_query']    = 'SQL query ';
-$_LANG['convert']      = ' Conversion data';
+//$_LANG['convert']      = ' Conversion data';
 
 //SMS Management
 $_LANG['my_info']         = 'Account Information ';
@@ -152,10 +166,45 @@ $_LANG['sms_charge']      = 'SMS recharge ';
 $_LANG['send_history']    = 'Send record ';
 $_LANG['charge_history']  = 'Voucher record ';
 
-//云服务中心管理
-$_LANG['certificate_manage'] = 'Authorization binding';
+// 微信管理
+$_LANG['weixin_manage'] = 'WeChat module';
+$_LANG['weixin_config'] = 'WeChat setting';
+$_LANG['weixin_addconfig'] = 'Multiple WeChat settings';
+$_LANG['weixin_menu'] = 'Custom menu';
+$_LANG['weixin_notice'] = 'Reminder settings';
+$_LANG['weixin_keywords'] = 'Functional variables';
+$_LANG['weixin_fans'] = 'Vermicelli management';
+$_LANG['weixin_news'] = 'Message push';
+$_LANG['weixin_addqcode'] = 'Generate two-dimensional code';
+$_LANG['weixin_qcode'] = 'Managing two-dimensional code';
+$_LANG['weixin_reg'] = 'Registration management';
+// 活动管理
+$_LANG['weixin_act'] = 'Activity management';
+$_LANG['weixin_award'] = 'Winning management';
+$_LANG['weixin_oauth'] = 'OAuth settings';
+$_LANG['weixin_qiandao'] = 'Sign in';
+$_LANG['weixin_addkey'] = 'Keyword reply';
 
-//移动版全民分销开通引导页管理
-$_LANG['lead_manage'] = 'wap';
+// 自提点管理部分的权限
+$_LANG['pickup_point_manage'] = 'Self adding / editing';
+$_LANG['pickup_point_batch'] = 'Self uploading and batch uploading';
 
+// 即时通信管理部分的权限
+$_LANG['chat'] = 'Instant messaging';
+$_LANG['chat_settings'] = 'Chat server settings';
+$_LANG['customer'] = 'The customer service managing';
+$_LANG['third_customer'] = 'Third party customer service';
+//虚拟团购
+$_LANG['virtual'] = 'Virtual group purchase';
+
+// 报表统计
+$_LANG['industry_stats'] = 'Industry analysis';
+$_LANG['users_stats'] = 'Membership statistics';
+$_LANG['shops_stats'] = 'Shop statistics';
+$_LANG['orders_stats'] = 'Order statistics';
+$_LANG['goods_stats'] = 'Commodity analysis';
+$_LANG['sells_stats'] = 'Sales Report';
+$_LANG['after_sells_stats'] = 'After-sale statistics';
+$_LANG['client_keyword_stats'] = 'Customer search record';
+$_LANG['client_flow_stats'] = 'Customer statistics';
 ?>

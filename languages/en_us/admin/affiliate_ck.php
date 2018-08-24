@@ -38,6 +38,7 @@ $_LANG['order_stats'][1] = 'Has confirmed';
 $_LANG['order_stats'][2] = 'Has been canceled';
 $_LANG['order_stats'][3] = 'Invalid';
 $_LANG['order_stats'][4] = 'Return';
+$_LANG['order_stats'][5] = 'Completed';
 $_LANG['js_languages']['cancel_confirm'] = 'Are you sure you want to cancel into it? This action can not be revoked.';
 $_LANG['js_languages']['rollback_confirm'] = 'You sure you want to revoke this into it?';
 $_LANG['js_languages']['separate_confirm'] = 'Are you sure you want into it?';

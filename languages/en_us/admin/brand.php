@@ -24,8 +24,10 @@ $_LANG['is_show'] = 'Display';
 $_LANG['drop_brand_logo'] = 'Delete the logo';
 $_LANG['confirm_drop_logo'] = 'Are you sure delete the logo?';
 $_LANG['drop_brand_logo_success'] = 'Delete the logo successfully!';
+$_LANG['batch_drop_confirm'] = 'Are you sure you want to delete the merchandise brand in bulk?';
+$_LANG['drop_success'] = 'You have successfully deleted %d commodity brands.';
 
-$_LANG['brand_edit_lnk']='Re-edit that brand';
+$_LANG['brand_edit_lnk'] = 'Re-edit that brand';
 $_LANG['brand_list_lnk'] = 'Return to the list page';
 
 /*Help information*/
@@ -57,5 +59,9 @@ $_LANG['visibility_notes'] = 'When brand merchandise under no time and the break
 /*JS language item*/
 $_LANG['js_languages']['no_brandname'] = 'Please enter brand name!';
 $_LANG['js_languages']['require_num']='The sort ordinal number must be a figure.';
+
+
+$_LANG['export'] =  'Batch export';
+
 
 ?>

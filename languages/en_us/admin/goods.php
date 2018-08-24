@@ -15,35 +15,34 @@
  * $Id: goods.php 17217 2011-01-19 06:29:08Z liubo $
 */
 
-$_LANG['edit_goods'] ='Edit';
-$_LANG['copy_goods'] ='Copy';
-$_LANG['continue_add_goods'] ='Continue add new product';
-$_LANG['back_goods_list'] ='Return product list';
-$_LANG['add_goods_ok'] ='Add successfully';
-$_LANG['edit_goods_ok'] ='Edit successfully';
-$_LANG['trash_goods_ok'] ='Move to recycle bin successfully.';
-$_LANG['restore_goods_ok'] ='Restore successfully.';
-$_LANG['drop_goods_ok'] ='Delete successfully.';
-$_LANG['batch_handle_ok']       = 'Batch operation successfully.';
-$_LANG['drop_goods_confirm']    = 'Are you sure delete the product?';
-$_LANG['batch_drop_confirm']    = 'All related products will be deleted if you thorough delete the pruduct!';
-$_LANG['trash_goods_confirm']   = 'Are you sure move the product to recycle bin?';
-$_LANG['batch_trash_confirm']   = 'Are you sure move the checked product to recycle bin?';
+$_LANG['edit_goods'] = 'Edit';
+$_LANG['copy_goods'] = 'Copy';
+$_LANG['continue_add_goods'] = 'Continue add new product';
+$_LANG['back_goods_list'] = 'Return product list';
+$_LANG['add_goods_ok'] = 'Add successfully';
+$_LANG['edit_goods_ok'] = 'Edit successfully';
+$_LANG['trash_goods_ok'] = 'Move to recycle bin successfully.';
+$_LANG['restore_goods_ok'] = 'Restore successfully.';
+$_LANG['drop_goods_ok'] = 'Delete successfully.';
+$_LANG['batch_handle_ok'] = 'Batch operation successfully.';
+$_LANG['drop_goods_confirm'] = 'Are you sure delete the product?';
+$_LANG['batch_drop_confirm'] = 'All related products will be deleted if you thorough delete the pruduct!';
+$_LANG['trash_goods_confirm'] = 'Are you sure move the product to recycle bin?';
 $_LANG['trash_product_confirm'] = 'Are you sure you take the goods removed?';
+$_LANG['batch_trash_confirm'] = 'Are you sure move the checked product to recycle bin?';
 $_LANG['restore_goods_confirm'] = 'Are you sure restore the product?';
 $_LANG['batch_restore_confirm'] = 'Are you sure restore the checked product?';
 $_LANG['batch_on_sale_confirm'] = 'Are you sure set the checked product as on sale?';
 $_LANG['batch_not_on_sale_confirm'] = 'Are you sure cancel the checked on sale product?';
-$_LANG['batch_best_confirm']    = 'Are you sure set the checked product as best?';
-$_LANG['batch_not_best_confirm']    = 'Are you sure cancel the checked best product?';
-$_LANG['batch_new_confirm']     = 'Are you sure set the checked product as new?';
+$_LANG['batch_best_confirm'] = 'Are you sure set the checked product as best?';
+$_LANG['batch_not_best_confirm'] = 'Are you sure cancel the checked best product?';
+$_LANG['batch_new_confirm'] = 'Are you sure set the checked product as new?';
 $_LANG['batch_not_new_confirm'] = 'Are you sure cancel the checked new product?';
-$_LANG['batch_hot_confirm']     = 'Are you sure set the checked product as hot?';;
-$_LANG['batch_not_hot_confirm']='Are you surecancel the checked hot product?';
+$_LANG['batch_hot_confirm'] = 'Are you sure set the checked product as hot?';;
+$_LANG['batch_not_hot_confirm'] = 'Are you surecancel the checked hot product?';
 $_LANG['cannot_found_goods'] = 'Don\'t find appointed product.';
 $_LANG['sel_goods_type'] = 'Please choose the type of merchandise';
 $_LANG['sel_goods_suppliers'] = 'Please select the suppliers';
-
 /*------------------------------------------------------ */
 //-- The picture processing is related to hint an information
 /*------------------------------------------------------ */
@@ -89,12 +88,20 @@ $_LANG['hot'] ='Hot product';
 $_LANG['not_hot'] ='Cancel hot product';
 $_LANG['move_to'] ='Move to category';
 
+$_LANG['pass_audit'] = 'Review and pass through';
+$_LANG['not_audit'] = 'Unaudited';
+$_LANG['not_pass_audit'] = 'Audit failed';
+
 // ajax
 $_LANG['goods_name_null'] ='Please enter product name.';
 $_LANG['goods_sn_null'] ='Please enter product NO..';
 $_LANG['shop_price_not_number']='Price must be a figure.';
 $_LANG['shop_price_invalid'] = 'You have entered an illegal market price.';
 $_LANG['goods_sn_exists'] ='The product NO. already exist, please change a number.';
+$_LANG['supplier_apply_pay_no'] = 'At present, the shop has not paid the service charge and cannot upload the goods!';
+$_LANG['suppliers_apply_pay_no'] = 'The shop has not paid the service charge, and can not get the goods on the shelves. Please choose again!';
+$_LANG['supplier_status_no'] = 'At present, stores can not upload goods without auditing!';
+$_LANG['suppliers_status_no'] = 'Shops can not be put on the shelves without examination, please choose again!';
 
 /*------------------------------------------------------ */
 //-- Add /edit a product information
@@ -142,7 +149,6 @@ $_LANG['lab_is_on_sale'] ='On sale:';
 $_LANG['lab_is_alone_sale'] ='Common product:';
 $_LANG['lab_is_free_shipping'] = 'Free shipping：';
 
-
 $_LANG['compute_by_mp'] ='Calculate';
 
 $_LANG['notice_goods_sn'] ='If you don\'t enter product NO., the system will create unique NO. automatically.';
@@ -154,7 +160,7 @@ $_LANG['notice_storage'] = 'Inventories of goods for the virtual goods or commod
 $_LANG['notice_keywords'] ='Divided by blank character.';
 $_LANG['notice_user_price'] = 'Member price is -1, said member prices Member grade discount rate. You can also specify a hierarchy for each fixed-price';
 $_LANG['notice_goods_type'] = 'Please select the type of the goods, then complete the attributes of the goods';
-
+$_LANG['notice_cost_price'] = 'Dividing the amount of money that a customer can purchase by purchasing the goods.';
 $_LANG['on_sale_desc'] ='Checked means it can be allowed to sale, otherwise can be disallowed to sale.';
 $_LANG['alone_sale'] ='Checked means it can be sold as common product, otherwise can be sold as accessories or gifts.';
 $_LANG['free_shipping'] = 'Checked means it can shipped free, otherwise as regular.';
@@ -296,4 +302,8 @@ $_LANG['cannot_goods_number'] = 'Item Specifications Property repeat';
 $_LANG['not_exist_goods_attr'] = 'This product does not exist specifications, please add the size of their';
 $_LANG['goods_sn_exists'] = 'The goods_sn you entered already exists';
 
+$_LANG['cat_expand'] = 'Open';
+$_LANG['cat_collect'] = 'shrink';
+$_LANG['cat_expand_all'] = 'All unfolding';
+$_LANG['cat_collect_all'] = 'All contraction';
 ?>

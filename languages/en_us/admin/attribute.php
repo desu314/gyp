@@ -51,6 +51,8 @@ $_LANG['note_attr_type'] = 'Select "Yes" when the merchandise can set up a numbe
 $_LANG['attr_type_values'][0] = 'The only property';
 $_LANG['attr_type_values'][1] = 'Radio property';
 $_LANG['attr_type_values'][2] = 'Check property';
+/* Add bar code*/
+$_LANG['label_txm_type'] ='Whether barcode is enabled';
 
 
 $_LANG['add_next'] = 'Add next attribute';

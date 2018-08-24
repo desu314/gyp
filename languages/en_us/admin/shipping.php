@@ -21,7 +21,9 @@ $_LANG['shipping_desc'] = 'Description';
 $_LANG['shipping_author'] = 'Author';
 $_LANG['insure'] = 'Insurance';
 $_LANG['support_cod'] = 'COD?';
+$_LANG['support_pickup'] = 'Store self mention?';
 $_LANG['shipping_area'] = 'Config area';
+$_LANG['shipping_pups'] = 'Self starting point management';
 $_LANG['shipping_print_edit'] = 'Edit print template';
 $_LANG['shipping_print_template'] = 'Express a single template';
 $_LANG['shipping_template_info'] = 'Order template variable description:<br/>{$shop_name}Shop name express<br/>{$province}Shop express their respective provinces<br/>{$city}Shop express-owned urban<br/>{$shop_address}Express Shop Address<br/>{$service_phone}Express Shop top<br/>{$order.order_amount}Express orders<br/>{$order.region}Express the recipient area<br/>{$order.tel}That the recipient phone<br/>{$order.mobile}Express the recipient mobile phone<br/>{$order.zipcode}Recipient express Zip<br/>{$order.address}Express the full address of the recipient<br/>{$order.consignee}Express the recipient name<br/>{$order.order_sn}Express order number';
@@ -67,6 +69,7 @@ $_LANG['no_shipping_name'] = 'Sorry, shipping method name can\'t be blank.';
 $_LANG['no_shipping_desc'] = 'Sorry, shipping method description can\'t be blank.';
 $_LANG['repeat_shipping_name'] = 'Sorry, the shipping method already exists.';
 $_LANG['uninstall_success'] = 'Shipping method %s has uninstall successfully.';
+$_LANG['is_default_show'] = 'The delivery mode %s has been successfully set up.';
 $_LANG['add_shipping_area'] = 'Creat new shipping area for shipping method';
 $_LANG['no_shipping_insure'] = 'Sorry, insurance money can\'t be blank, if you don\'t use it please config as 0.';
 $_LANG['not_support_insure'] = 'The shipping method isn\t support insure, config insure cost has failed.';
@@ -75,6 +78,7 @@ $_LANG['no_shipping_install'] = 'Distribution means that you have not installed 
 $_LANG['edit_template_success'] = 'Express has been successfully edit the template.';
 
 /* JS language item */
+$_LANG['js_languages']['lang_isdefaultshowconfirm'] = 'After the setup is successful, the delivery mode selected by the front end user and all the installed delivery modes will be synchronized with the freight and distribution area of this distribution mode. Are you sure you want to set it up?';
 $_LANG['js_languages']['lang_removeconfirm'] = 'Are you sure uninstall the shipping method?';
 $_LANG['js_languages']['shipping_area'] = 'Config area';
 $_LANG['js_languages']['upload_falid'] = 'Error: file type is not correct. Please upload "%s" type of file!';

@@ -41,6 +41,17 @@ $_LANG['myship'] = 'Distribution methods';
 $_LANG['message_board'] = 'Message Board';
 $_LANG['quotation'] = 'Quotations';
 
+$_LANG['kuaidi'] = 'Intra-City Express Service';
+$_LANG['article_list'] = 'Channel channel';
+$_LANG['scan'] = 'Clean up the goods';
+$_LANG['auction'] = 'auction';
+$_LANG['pro_sale'] = 'Pre sale';
+$_LANG['package'] = 'Super value bag';
+$_LANG['stores'] = 'Shop list';
+$_LANG['exchange'] = 'Integral mall';
+$_LANG['pro_search'] = 'Time limit group purchase';
+
+
 $_LANG['namecannotnull'] = 'Please enter the name of the navigation bar!';
 $_LANG['linkcannotnull'] = 'Please enter the link!';
 

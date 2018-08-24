@@ -96,13 +96,14 @@ $_LANG['flag'] = 'Status';
 $_LANG['enabled'] = 'Enabled';
 $_LANG['is_enabled'] = 'Enabled';
 $_LANG['no_enabled'] = 'Disabled';
+
+$_LANG['ads_add'] = 'Add new advertisement';
+$_LANG['ads_edit'] = 'Edit advertisement';
 $_LANG['back_ads_list'] = 'Return to ADs list.';
 $_LANG['back_position_list'] = 'Return to AD position list.';
 $_LANG['continue_add_ad'] = 'Continue add AD.';
 $_LANG['continue_add_position'] = 'Continue add AD position.';
 $_LANG['show_ads_template'] = 'Show AD in template';
-$_LANG['ads_add'] = 'Add new advertisement';
-$_LANG['ads_edit'] = 'Edit advertisement';
 
 /* Description information */
 $_LANG['ad_img'] = 'Image';
